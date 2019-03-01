@@ -1,0 +1,17 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Análisis de rendimiento",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "performance-websites",
+            "resourceType": "microsoft.resources/subscriptions/resourcegroups",
+            "order": 100
+        },
+        {
+            "type": "performance-appinsights",
+            "resourceType": "microsoft.resources/subscriptions/resourcegroups",
+            "order": 100
+        }
+    ]
+}
