@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"8a610-101\">Métricas de rendimiento.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8a610-101\">Performance Metrics</span></span>",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "performance-websites",
+            "resourceType": "microsoft.resources/subscriptions/resourcegroups",
+            "order": 300
+        }
+    ]
+}

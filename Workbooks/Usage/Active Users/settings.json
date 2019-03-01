@@ -1,0 +1,17 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"7889f-101\">Usuarios activos</span><span class=\"sxs-lookup\"><span data-stu-id=\"7889f-101\">Active Users</span></span>",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "microsoft.insights/components",
+            "order": 100
+        },
+        {
+            "type": "usage",
+            "resourceType": "microsoft.insights/components",
+            "order": 100
+        }
+    ]
+}

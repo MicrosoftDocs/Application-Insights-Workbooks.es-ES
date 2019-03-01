@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"cda34-101\">Rendimiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"cda34-101\">Performance</span></span>",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "performance-vm",
+            "resourceType": "microsoft.compute/virtualmachines",
+            "order": 200
+        }
+    ]
+}

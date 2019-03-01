@@ -1,0 +1,17 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"7f3fb-101\">Tablas</span><span class=\"sxs-lookup\"><span data-stu-id=\"7f3fb-101\">Tables</span></span>",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "performance-storage",
+            "resourceType": "microsoft.resources/subscriptions/resourcegroups",
+            "order": 200
+        },
+        {
+            "type": "failure-storage",
+            "resourceType": "microsoft.resources/subscriptions/resourcegroups",
+            "order": 200
+        }
+    ]
+}
