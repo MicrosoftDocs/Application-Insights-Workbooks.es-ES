@@ -1,0 +1,17 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Análisis de errores",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "failure-websites",
+            "resourceType": "microsoft.resources/subscriptions/resourcegroups",
+            "order": 100
+        },
+        {
+            "type": "failure-appinsights",
+            "resourceType": "microsoft.resources/subscriptions/resourcegroups",
+            "order": 100
+        }
+    ]
+}

@@ -1,0 +1,428 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
+    "version": "Notebook/1.0",
+    "isLocked": true,
+    "items": [
+        {
+            "type": 1,
+            "content": {
+                "json": "# <a name=\"queue-storage-classic-metrics\"></a>Métricas de Queue Storage (clásico)"
+            },
+            "conditionalVisibility": null
+        },
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "query": "",
+                "crossComponentResources": [],
+                "parameters": [
+                    {
+                        "id": "99846120-1f35-44fc-ad8a-6f69f7261a62",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "StorageResources",
+                        "type": 5,
+                        "isRequired": true,
+                        "multiSelect": true,
+                        "quote": "'",
+                        "delimiter": ",",
+                        "isHiddenWhenLocked": false,
+                        "typeSettings": {
+                            "resourceTypeFilter": {
+                                "microsoft.classicstorage/storageaccounts": true
+                            },
+                            "additionalResourceOptions": [
+                                "value::all",
+                                "value::3"
+                            ]
+                        },
+                        "value": [
+                            "value::3"
+                        ]
+                    },
+                    {
+                        "id": "1ef46e50-5030-43fe-8c94-7e0564f4ae5f",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "TimeRange",
+                        "type": 4,
+                        "isRequired": true,
+                        "value": {
+                            "durationMs": 14400000,
+                            "createdTime": "2018-08-22T17:44:54.405Z",
+                            "isInitialTime": false,
+                            "grain": 1,
+                            "useDashboardTimeRange": false
+                        },
+                        "isHiddenWhenLocked": false,
+                        "typeSettings": {
+                            "selectableValues": [
+                                {
+                                    "durationMs": 300000,
+                                    "createdTime": "2018-08-22T17:44:54.404Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 900000,
+                                    "createdTime": "2018-08-22T17:44:54.404Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 1800000,
+                                    "createdTime": "2018-08-22T17:44:54.404Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 3600000,
+                                    "createdTime": "2018-08-22T17:44:54.404Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 14400000,
+                                    "createdTime": "2018-08-22T17:44:54.404Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 43200000,
+                                    "createdTime": "2018-08-22T17:44:54.404Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 86400000,
+                                    "createdTime": "2018-08-22T17:44:54.405Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 172800000,
+                                    "createdTime": "2018-08-22T17:44:54.405Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 259200000,
+                                    "createdTime": "2018-08-22T17:44:54.405Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 604800000,
+                                    "createdTime": "2018-08-22T17:44:54.405Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "resourceType": "microsoft.resources/resourcegroups"
+            },
+            "conditionalVisibility": null
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"total-requests\"></a>Total de solicitudes"
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"availability\"></a>Disponibilidad"
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook1efa2216-beb3-4350-ae7c-678c7f1705bf",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 0,
+                    "endTime": null,
+                    "createdTime": "2018-08-24T20:38:26.811Z",
+                    "isInitialTime": false,
+                    "grain": 1,
+                    "useDashboardTimeRange": false
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.classicstorage/storageaccounts",
+                "resourceParameter": "StorageResources",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.classicstorage/storageaccounts/services/queue",
+                        "metric": "microsoft.classicstorage/services/queue--TotalRequests",
+                        "aggregation": 1,
+                        "chartType": 2,
+                        "color": "blue"
+                    }
+                ]
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook9cfa71e6-07a5-4b1b-9e25-f4e2be4b5da4",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 0,
+                    "endTime": null,
+                    "createdTime": "2018-08-24T20:38:26.820Z",
+                    "isInitialTime": false,
+                    "grain": 1,
+                    "useDashboardTimeRange": false
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.classicstorage/storageaccounts",
+                "resourceParameter": "StorageResources",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.classicstorage/storageaccounts/services/queue",
+                        "metric": "microsoft.classicstorage/services/queue--Availability",
+                        "aggregation": 4,
+                        "chartType": 2,
+                        "color": "purple"
+                    }
+                ]
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "*Total de solicitudes* es el número de solicitudes realizadas a un servicio de almacenamiento o la operación de API especificada. Este número incluye solicitudes correctas y con errores, así como las solicitudes que generaron errores."
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "*Disponibilidad* es el porcentaje de disponibilidad para el servicio de almacenamiento o la operación de API especificada. Para calcular la disponibilidad hay que tomar el valor deTotalBillableRequests y dividirlo por el número de solicitudes aplicables, incluidas aquellas que generaron errores inesperados. Todos los errores inesperados reducen la disponibilidad del servicio de almacenamiento o de la operación de API especificada. "
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": ""
+            },
+            "conditionalVisibility": null
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"total-ingress\"></a>Total de entrada"
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"total-egress\"></a>Total de salida"
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook1efa2216-beb3-4350-ae7c-678c7f1705bf",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 0,
+                    "endTime": null,
+                    "createdTime": "2018-08-24T20:38:26.839Z",
+                    "isInitialTime": false,
+                    "grain": 1,
+                    "useDashboardTimeRange": false
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.classicstorage/storageaccounts",
+                "resourceParameter": "StorageResources",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.classicstorage/storageaccounts/services/queue",
+                        "metric": "microsoft.classicstorage/services/queue--TotalIngress",
+                        "aggregation": 1,
+                        "chartType": 2,
+                        "color": "blue"
+                    }
+                ]
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook9cfa71e6-07a5-4b1b-9e25-f4e2be4b5da4",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 0,
+                    "endTime": null,
+                    "createdTime": "2018-08-24T20:38:26.846Z",
+                    "isInitialTime": false,
+                    "grain": 1,
+                    "useDashboardTimeRange": false
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.classicstorage/storageaccounts",
+                "resourceParameter": "StorageResources",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.classicstorage/storageaccounts/services/queue",
+                        "metric": "microsoft.classicstorage/services/queue--TotalEgress",
+                        "aggregation": 1,
+                        "chartType": 2,
+                        "color": "purple"
+                    }
+                ]
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "*Total de entrada* es la cantidad de datos de entrada, en bytes. Este número incluye la entradas desde un cliente externo en Azure Storage, así como la entrada dentro de Azure."
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "*Total de salida* es la cantidad de datos de salida, en bytes. Este número incluye la salida de un cliente externo en Azure Storage, así como la salida dentro de Azure. En consecuencia, este número no refleja las salidas facturables."
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": ""
+            },
+            "conditionalVisibility": null
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"average-e2e-latency\"></a>Latencia media de E2E"
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"average-server-latency\"></a>Latencia media del servidor"
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook1efa2216-beb3-4350-ae7c-678c7f1705bf",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 0,
+                    "endTime": null,
+                    "createdTime": "2018-08-24T20:38:26.865Z",
+                    "isInitialTime": false,
+                    "grain": 1,
+                    "useDashboardTimeRange": false
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.classicstorage/storageaccounts",
+                "resourceParameter": "StorageResources",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.classicstorage/storageaccounts/services/queue",
+                        "metric": "microsoft.classicstorage/services/queue--AverageE2ELatency",
+                        "aggregation": 4,
+                        "chartType": 2,
+                        "color": "blue"
+                    }
+                ]
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook9cfa71e6-07a5-4b1b-9e25-f4e2be4b5da4",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 0,
+                    "endTime": null,
+                    "createdTime": "2018-08-24T20:38:26.872Z",
+                    "isInitialTime": false,
+                    "grain": 1,
+                    "useDashboardTimeRange": false
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.classicstorage/storageaccounts",
+                "resourceParameter": "StorageResources",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.classicstorage/storageaccounts/services/queue",
+                        "metric": "microsoft.classicstorage/services/queue--AverageServerLatency",
+                        "aggregation": 4,
+                        "chartType": 2,
+                        "color": "purple"
+                    }
+                ]
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "*Latencia media de E2E* es la latencia media de un extremo a otro de las solicitudes correctas realizadas a un servicio de almacenamiento o a la operación de API especificada, en milisegundos. Este valor incluye el tiempo de procesamiento requerido dentro de Azure Storage para leer la solicitud, enviar la respuesta y recibir la confirmación de la respuesta."
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "*Latencia media del servidor* es la latencia media utilizada por Azure Storage para procesar una solicitud correcta, en milisegundos. Este valor no incluye la latencia de red especificada en AverageE2ELatency."
+            },
+            "conditionalVisibility": null,
+            "customWidth": "50"
+        }
+    ]
+}

@@ -1,0 +1,200 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
+    "version": "Notebook/1.0",
+    "isLocked": true,
+    "items": [
+        {
+            "type": 1,
+            "content": {
+                "json": "# <a name=\"bracket-retention\"></a>Retención durante un intervalo\n---\n\nLa retención durante un intervalo mide cuántos de sus usuarios regresan para realizar una de las `RetainingActivities` en un período en particular después de haber realizado una de las `CohortingActivities` en la aplicación. Por ejemplo, podría estar midiendo el número de usuarios que volvieron a usar la aplicación una semana a partir del día en que la descargaron por primera vez. Si ve la tendencia de retención durante los días 7 a 13, le dará una indicación de la adherencia de la aplicación. \n\nLa retención durante un intervalo es similar a la retención durante un período N, excepto que los intervalos de tiempo de retención o cubos no son fijos. Es libre de elegir cualquier cubo de tiempo que tenga sentido para la aplicación. Esto da a los propietarios de aplicaciones mucha más flexibilidad a la hora de analizar la retención de usuarios.\n\nLa retención durante un intervalo es muy adecuada para aplicaciones de juego u otros tipos de aplicaciones en las que se intenta que los usuarios desarrollen un hábito diario."
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"activity-selection\"></a>Selección de actividad\nUtilice estos campos para establecer eventos que correspondan a actividades de usuario interesantes. La sección `Understanding Retention Parameter` en la parte inferior describe estos parámetros con detalle."
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "query": "",
+                "crossComponentResources": [],
+                "parameters": [
+                    {
+                        "id": "1bf002e1-a1cf-45fc-9b2a-2a0a0718f4c5",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "CohortingActivities",
+                        "type": 2,
+                        "isRequired": true,
+                        "multiSelect": true,
+                        "quote": "'",
+                        "delimiter": ",",
+                        "query": "union customEvents, pageViews\r\n| where timestamp >= ago(7d)\r\n| summarize count() by name\r\n| order by count_ desc\r\n| project Id=name, Title=name, Selected=false\r\n| union (\r\ndatatable(Id:string, Title:string, Selected:boolean)[\r\n'*', 'All Events and Page Views', true\r\n]\r\n)"
+                    },
+                    {
+                        "id": "3d623c97-550a-4214-9fa7-164dfee39fc5",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "CohortingFilters",
+                        "type": 1,
+                        "description": null,
+                        "isRequired": false,
+                        "value": ""
+                    },
+                    {
+                        "id": "7a6de1a4-1cc5-4f93-83d5-5a906a786bcf",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "RetainingActivities",
+                        "type": 2,
+                        "description": null,
+                        "isRequired": true,
+                        "multiSelect": true,
+                        "quote": "'",
+                        "delimiter": ",",
+                        "query": "union customEvents, pageViews\r\n| where timestamp >= ago(7d)\r\n| summarize count() by name\r\n| order by count_ desc\r\n| project Id=name, Title=name, Selected=false\r\n| union (\r\ndatatable(Id:string, Title:string, Selected:boolean)[\r\n'#', 'Same as cohorting activities', true,\r\n'*', 'All Events and Page Views', false\r\n])"
+                    },
+                    {
+                        "id": "0eb882bb-3a17-456d-bae3-6510833982db",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "RetainingFilters",
+                        "type": 1,
+                        "description": null,
+                        "isRequired": false,
+                        "query": "datatable(x:int)[ 1 ]\r\n| extend retainingFilter = iff('#' in ({RetainingActivities}), '{CohortingFilters}', '')\r\n| project retainingFilter",
+                        "isHiddenWhenLocked": false
+                    }
+                ]
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"retention-parameters\"></a>Parámetros de retención\nUse estos campos para personalizar la configuración de retención. "
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "query": "",
+                "crossComponentResources": [],
+                "parameters": [
+                    {
+                        "id": "39bddfc5-884d-4961-b740-67a0e275d7f4",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "CohortSize",
+                        "type": 2,
+                        "description": "1d: todos los días, 7d: semanalmente, 30/28d: Mensual",
+                        "isRequired": true,
+                        "multiSelect": null,
+                        "query": "datatable(id:string, text:string)[\r\n'1d', 'Daily',\r\n'7d', 'Weekly',\r\n'28d', 'Monthly (28 days)', \r\n'30d', 'Monthly (30 days)'\r\n]",
+                        "value": "7d"
+                    },
+                    {
+                        "id": "3f79ef58-8e21-4d79-923a-2293888b0b0f",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "CohortsToAnalyze",
+                        "type": 1,
+                        "description": "Número de períodos de cohortes para analizar",
+                        "isRequired": true,
+                        "value": "6"
+                    },
+                    {
+                        "id": "bdd221c7-ed8d-4e35-b2cd-644a81bdfd16",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "SelectBrackets",
+                        "type": 2,
+                        "description": null,
+                        "isRequired": true,
+                        "multiSelect": null,
+                        "query": "datatable(value:string, text:string)[\r\n'1d, 7d, 29d', '1-6 days and 7-29 days',\r\n'1d, 5d, 10d, 15d', '1-4 days, 5-9 days and 10-14 days',\r\n'1d, 2d, 7d, 14d, 29d', '1 day, 2-6 days, 7-13 days and 14-29 days',\r\n]",
+                        "value": "1d, 2d, 7d, 14d, 29d"
+                    },
+                    {
+                        "id": "68b965ed-def3-40da-9445-a7fce363dd66",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "CustomBrackets",
+                        "type": 1,
+                        "description": null,
+                        "isRequired": true,
+                        "query": "datatable(x:string)['{SelectBrackets}']"
+                    },
+                    {
+                        "id": "16c1668c-38b2-426d-bf2f-eb6ff7162e71",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "BasedOn",
+                        "type": 2,
+                        "description": null,
+                        "isRequired": true,
+                        "multiSelect": null,
+                        "query": "datatable(v:string, t:string)[  \r\n'user_Id', 'Anonymous Users',  \r\n'user_AuthenticatedId', 'Authenticated Users'  \r\n]",
+                        "isHiddenWhenLocked": false,
+                        "value": "user_Id"
+                    }
+                ]
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"bracket-retention-table\"></a>Tabla de retenciones durante un intervalo\n"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "let bracketDefinition = dynamic([{CustomBrackets}]);\r\nlet periodsToAnalyze = {CohortsToAnalyze};\r\nlet cohortSize = {CohortSize};\r\nlet retainingActivities = iff('#' in ({RetainingActivities}), dynamic([{CohortingActivities}]), dynamic([{RetainingActivities}]));\r\nlet cohortUnit = case(cohortSize == 30d or cohortSize == 28d, \"month\", cohortSize == 7d, \"week\", \"day\");\r\nlet timeRange = startofday(now()) - case(cohortSize == 30d or cohortSize == 28d, startofmonth(now() - periodsToAnalyze * cohortSize), cohortSize == 7d, startofweek(now() - periodsToAnalyze * cohortSize), startofday(now() - periodsToAnalyze * cohortSize));\r\nlet bracketTables = range i from 1 to 1 step 1\r\n| extend bracketDefinition = bracketDefinition\r\n| mvexpand bracketDefinition limit 1000\r\n| extend brackets = totimespan(bracketDefinition)\r\n| serialize id = row_number();\r\nlet brackets = bracketTables\r\n| join kind = inner (bracketTables) on i\r\n| where id1 - id == 1\r\n//| project Bracket = id, Start = brackets, End = brackets1, jkey = 1\r\n| extend Range = range(brackets, brackets1 - 1d, 1d)\r\n| project Bracket = id, Range, jkey = 1, BracketTitle = iff(brackets == brackets1 - 1d, strcat('Day ', toint(brackets / 1d)), strcat('Days ', toint(brackets / 1d), '-', toint((brackets1 - 1d) / 1d)));\r\nlet cohorts = union customEvents, pageViews\r\n| where timestamp > startofday(now() - timeRange)\r\n| where name in ({CohortingActivities}) or '*' in ({CohortingActivities})\r\n{CohortingFilters}\r\n| extend Cohort = case(cohortSize == 30d or cohortSize == 28d, startofmonth(timestamp), cohortSize == 7d, startofweek(timestamp), startofday(timestamp))\r\n| summarize EarliestInCohort = min(startofday(timestamp)) by {BasedOn}, Cohort\r\n| summarize UsersInCohort = hll({BasedOn}) by EarliestInCohort, Cohort;\r\nlet users = union customEvents, pageViews\r\n| where timestamp > startofday(now() - timeRange)\r\n| where name in (retainingActivities) or '*' in (retainingActivities)\r\n{RetainingFilters}\r\n| summarize Users = hll({BasedOn}) by Day = startofday(timestamp);\r\nlet Retention = materialize(range i from 0d to timeRange step 1d\r\n| extend Day = startofday(now() - i)\r\n| extend jkey = 1\r\n| join kind = inner (brackets | project-away BracketTitle) on jkey\r\n| mvexpand Range limit 10000\r\n| extend RetentionDay = Day + totimespan(Range) \r\n| where RetentionDay <= startofday(now())\r\n| project Day, Bracket, RetentionDay\r\n| join kind=inner\r\n(\r\n    users\r\n    | project UsersOnDay = Users, RetentionDay = Day\r\n)\r\non RetentionDay\r\n| summarize UsersForRetentionWeek = hll_merge(UsersOnDay) by Day, Bracket\r\n| join kind=inner\r\n(\r\n    cohorts\r\n    | project UsersInCohort, Cohort, Day = EarliestInCohort\r\n)\r\non Day\r\n| project-away Day1\r\n| evaluate dcount_intersect(UsersInCohort, UsersForRetentionWeek)\r\n| summarize RetainedUsers = sum(s1) by Cohort, Bracket);\r\ncohorts\r\n| summarize UsersInCohort = hll_merge(UsersInCohort) by Cohort\r\n| project Cohort, CohortUsers = dcount_hll(UsersInCohort)\r\n| join kind=inner\r\n(\r\n    Retention\r\n)\r\non Cohort\r\n| project-away Cohort1\r\n| extend RetentionRate = round(100.0 * RetainedUsers / CohortUsers, 2)\r\n| project-away RetainedUsers\r\n| join kind = inner (brackets | project Bracket, BracketTitle) on Bracket\r\n| order by Cohort asc, Bracket asc\r\n| serialize rank = row_number()\r\n| project-away Bracket, Bracket1\r\n| extend month = monthofyear(Cohort)\r\n| extend friendlyMonthName = case(month == 1, 'January', month == 2, 'February', month == 3, 'March', month == 4, 'April', month == 5, 'May', month == 6, 'June', month == 7, 'July', month == 8, 'August', month == 9, 'September', month == 10, 'October', month == 11, 'November', 'December')\r\n| extend dayofweek = dayofweek(Cohort)\r\n| extend friendlyDayOfweek = case(dayofweek == 0d, \"Sun\", dayofweek == 1d, \"Mon\", dayofweek == 2d, \"Tue\", dayofweek == 3d, \"Wed\", dayofweek == 4d, \"Thu\", dayofweek == 5d, \"Fri\", \"Sat\")\r\n| extend Cohort = iff(cohortSize == 1d, strcat(friendlyMonthName, ' ', dayofmonth(Cohort), ' (', friendlyDayOfweek, ')'), strcat(friendlyMonthName, ' ', dayofmonth(Cohort)))\r\n| order by rank asc\r\n| project-away month, friendlyMonthName, dayofweek, friendlyDayOfweek, rank\r\n| evaluate pivot(BracketTitle, sum(RetentionRate))",
+                "showQuery": false,
+                "size": 0,
+                "aggregation": 0,
+                "showAnnotations": false,
+                "visualization": "table",
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "Day",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "min": 0,
+                                "max": 100,
+                                "palette": "green"
+                            }
+                        }
+                    ]
+                }
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"understanding-the-retention-parameters\"></a>Comprensión de los parámetros de retención\n| Parámetro | Usado para |\n| ----- | ----- |\n| Período de retención | Período que se va a utilizar en el cálculo de la retención. Puede ser diario, semanal o mensual. |\n| Cohortes para analizar  | Número de cohortes que se va a analizar. Se corresponde a la N en la retención de N períodos. |\n| Actividades de cohorte  | Las actividades que seleccionan una cohorte de usuarios. Ejemplo: Usuarios que utilizan el evento *Read Product Review* (Leer reseña del producto) (actividad de cohorte). |\n| Actividades de retención  | Las actividades que indican la retención de un usuario de la cohorte seleccionado anteriormente. Ejemplo: Usuarios que usaron el evento *Read Product Review* (Leer reseña del producto) (actividad de cohorte) y volvieron a usar *Purchase Product* (Comprar producto) (actividad de retención). |\n| Filtros de cohorte/retención  | Un fragmento de consulta de análisis para filtrar aún más la actividad de cohorte. Ejemplo: *&#124; where application_Version = '1.0'* |\n| SelectBrackets | Algunos intervalos de tiempo de ejemplo para comenzar |\n| CustomBrackets | Utilice este campo para establecer intervalos de tiempo personalizados que tengan sentido para la aplicación. Contiene una lista separada por comas de intervalos de tiempo que se corresponden con los límites de los intervalos. |\n"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"related-workbook-templates\"></a>Plantillas de libro relacionadas\n* Retención: a N períodos\n* Retención: no vinculada\n* Análisis de cohortes"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        }
+    ]
+}

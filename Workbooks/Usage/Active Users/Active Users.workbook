@@ -1,0 +1,224 @@
+{
+    "version": "Notebook/1.0",
+    "isLocked": true,
+    "items": [
+        {
+            "type": 1,
+            "content": {
+                "json": "# <a name=\"active-users\"></a>Usuarios activos\n\nLos usuarios activos cuentan como el número de usuarios que han utilizado la aplicación al menos una vez en un período de tiempo anterior. Se utiliza normalmente para responder a la pregunta: *¿cuántos usuarios tiene su aplicación o característica?*\n\nEdite el parámetro `Activities` siguiente para personalizar qué eventos personalizados y vistas de página se consideran un uso activo. \n"
+            },
+            "conditionalVisibility": null
+        },
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "query": "",
+                "crossComponentResources": [],
+                "parameters": [
+                    {
+                        "id": "593d7ebe-107d-4823-87dd-d020d2138611",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Metric",
+                        "type": 2,
+                        "description": null,
+                        "isRequired": true,
+                        "multiSelect": null,
+                        "query": "datatable(val: string, text: string)[\r\n'1d', 'Daily Active Users',\r\n'7d', 'Weekly Active Users',\r\n'28d', 'Monthly Active Users (28d)',\r\n'30d', 'Monthly Active Users (30d)',\r\n]",
+                        "value": "28d"
+                    },
+                    {
+                        "id": "25a6fdc1-ae28-4886-9a5c-90254deb6a3d",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Activities",
+                        "type": 2,
+                        "description": "Conjunto de vistas de página o eventos, separados por coma, que se cuentan como actividades. O utilice \"*\" para incluir todos los eventos.",
+                        "isRequired": true,
+                        "multiSelect": true,
+                        "quote": "'",
+                        "delimiter": ",",
+                        "query": "union customEvents, pageViews\n| where timestamp >= ago(7d)\n| summarize count() by name\n| order by count_ desc\n| project Id=name, Title=name, Selected=false\n| union (\ndatatable(Id:string, Title:string, Selected:boolean)[\n'*', 'All Events and Page Views', true,\n'%', 'All Page Views', false,\n'#', 'All Custom Events', false\n]\n)",
+                        "isHiddenWhenLocked": false,
+                        "value": [
+                            "*"
+                        ]
+                    },
+                    {
+                        "id": "79126a9c-4ec6-4719-872a-f4a9b022e8f9",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "OtherFilters",
+                        "type": 1,
+                        "description": "Un fragmento de código KQL que filtra aún más las actividades. Ejemplo: | donde application_Version == '1.0'",
+                        "isRequired": false
+                    },
+                    {
+                        "id": "b911209e-14fc-4e33-b62a-f029f213ac2a",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "TimeRange",
+                        "type": 4,
+                        "isRequired": true,
+                        "value": {
+                            "durationMs": 2419200000,
+                            "createdTime": "2019-02-14T19:07:28.267Z",
+                            "isInitialTime": false,
+                            "grain": 1,
+                            "useDashboardTimeRange": false
+                        },
+                        "isHiddenWhenLocked": false,
+                        "typeSettings": {
+                            "selectableValues": [
+                                {
+                                    "durationMs": 604800000,
+                                    "createdTime": "2019-02-14T19:07:28.267Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 1209600000,
+                                    "createdTime": "2019-02-14T19:07:28.267Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 2419200000,
+                                    "createdTime": "2019-02-14T19:07:28.267Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 2592000000,
+                                    "createdTime": "2019-02-14T19:07:28.267Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 5184000000,
+                                    "createdTime": "2019-02-14T19:07:28.267Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 7776000000,
+                                    "createdTime": "2019-02-14T19:07:28.267Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                }
+                            ]
+                        },
+                        "timeContextFromParameter": null
+                    },
+                    {
+                        "id": "6f0149b7-df6d-445c-a10d-3deac839cd50",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "AnalyzeBy",
+                        "type": 2,
+                        "description": null,
+                        "isRequired": true,
+                        "multiSelect": null,
+                        "query": "datatable(value:string, text:string)[\r\n'name', '📛 Activity Name',\r\n'cloud_RoleInstance', '🖥️ Machine',\r\n'client_CountryOrRegion', '📍 Country or Region',\r\n'client_StateOrProvince', '📍 State or Province',\r\n'client_City', '📍 City',\r\n'client_Browser', '🌐 Client Browser',\r\n'client_OS', '️️🖥️ Client Operating System',\r\n'client_Model', '📱 Client Model',\r\n'application_Version', '⚪ Application Version',\r\n'operation_Name', '⚪ Operation',\r\n]\r\n| union (union pageViews, customEvents\r\n| where timestamp >= ago(1d)\r\n| where name in ({Activities}) or '*' in ({Activities})\r\n| project customDimensions \r\n| summarize schema = buildschema(customDimensions) \r\n| mvexpand schema\r\n| extend e = extract(@'{\"(.+)\":.+}', 1, tostring(schema))\r\n| project text = strcat('❄️ ', e), value = strcat('customDimensions[\"', e, '\"]'))",
+                        "isHiddenWhenLocked": false,
+                        "value": "name"
+                    },
+                    {
+                        "id": "1f390088-f193-498f-99d2-104109f03429",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Filter",
+                        "type": 1,
+                        "description": null,
+                        "isRequired": false,
+                        "isHiddenWhenLocked": true
+                    }
+                ],
+                "style": "pills",
+                "resourceType": "microsoft.insights/components"
+            },
+            "conditionalVisibility": null
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"users-who-have-used-your-app-at-least-once-in-the-last-metric\"></a>Usuarios que han utilizado la aplicación al menos una vez en los últimos {Metric}"
+            },
+            "conditionalVisibility": null
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "let start = startofday(ago({Metric}));\r\nlet events = union customEvents, pageViews\r\n| where timestamp >= start\r\n| where name in ({Activities}) or '*' in ({Activities}) or ('%' in ({Activities}) and itemType == 'pageView') or ('#' in ({Activities}) and itemType == 'customEvent')\r\n{OtherFilters}\r\n| extend Dim1 = tostring({AnalyzeBy});\r\nlet overall = events |  summarize Users = dcount(user_Id);\r\nlet allUsers = toscalar(overall);\r\nevents\r\n| summarize Users = dcount(user_Id), Sessions = dcount(session_Id), Instances = count() by Dim1\r\n| extend rank = 2, Dim1 = strcat('🔹 ', Dim1)\r\n| union (\r\n    events |  summarize Users = dcount(user_Id), Sessions = dcount(session_Id), Instances = count()\r\n    | extend Dim1 = '🔸 Overall', rank = 1)\r\n| order by rank asc, Users desc\r\n| project Dim1, Users, Sessions, Instances\r\n| project Values = Dim1, ['Active Users'] = Users, ['Unique Sessions'] = Sessions, ['Sessions per User'] = round(1.0 * Sessions / Users, 1), ['Total Instances'] = Instances, ['Instances per User'] = round(1.0 * Instances / Users, 1)\r\n",
+                "showQuery": false,
+                "size": 0,
+                "aggregation": 5,
+                "showAnnotations": false,
+                "exportFieldName": "Values",
+                "exportParameterName": "Filter",
+                "showAnalytics": false,
+                "timeContextFromParameter": null,
+                "resourceType": "microsoft.insights/components",
+                "visualization": "table",
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "Active Users",
+                            "formatter": 4,
+                            "formatOptions": {
+                                "min": 0,
+                                "max": null,
+                                "palette": "green"
+                            }
+                        },
+                        {
+                            "columnMatch": "Unique Sessions",
+                            "formatter": 4,
+                            "formatOptions": {
+                                "min": 0,
+                                "max": null,
+                                "palette": "yellow"
+                            }
+                        },
+                        {
+                            "columnMatch": "Total Instances",
+                            "formatter": 4,
+                            "formatOptions": {
+                                "min": 0,
+                                "max": null,
+                                "palette": "orange"
+                            }
+                        }
+                    ]
+                }
+            },
+            "conditionalVisibility": null
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"trend-of-active-users\"></a>Tendencia de usuarios activos\nSeleccione una fila de la tabla anterior para ver los cambios en el número mensual de usuarios activos para ese elemento."
+            },
+            "conditionalVisibility": null
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "let ts = {TimeRange:end} - {TimeRange:start};\r\nlet start = startofday(ago(ts + {Metric}));\r\nunion customEvents, pageViews\r\n| where timestamp >= start\r\n| where name in ({Activities}) or '*' in ({Activities}) or ('%' in ({Activities}) and itemType == 'pageView') or ('#' in ({Activities}) and itemType == 'customEvent')\r\n{OtherFilters}\r\n| where '{Filter}' == '' or '{Filter}' == '🔸 Overall' or {AnalyzeBy} == replace('🔹 ', '', '{Filter}')\r\n| evaluate activity_engagement(user_Id, timestamp, start, now(), 1d, {Metric})\r\n| where timestamp >= startofday(ago(ts))\r\n| project timestamp, [\"Active User\"] = dcount_activities_outer\r\n| render timechart ",
+                "showQuery": false,
+                "size": 0,
+                "aggregation": 5,
+                "showAnnotations": false,
+                "showAnalytics": false,
+                "timeContextFromParameter": null,
+                "resourceType": "microsoft.insights/components",
+                "visualization": "linechart"
+            },
+            "conditionalVisibility": null
+        }
+    ],
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}

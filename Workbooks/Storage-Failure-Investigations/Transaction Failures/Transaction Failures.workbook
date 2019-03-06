@@ -1,0 +1,229 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
+    "version": "Notebook/1.0",
+    "isLocked": true,
+    "items": [
+        {
+            "type": 1,
+            "content": {
+                "json": "# <a name=\"investigating-transaction-failures\"></a>Investigación de errores de transacción"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "query": "",
+                "crossComponentResources": [],
+                "parameters": [
+                    {
+                        "id": "34ea9bf4-837f-48e4-b3fd-ade518019950",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "StorageAccount",
+                        "type": 5,
+                        "description": null,
+                        "isRequired": true,
+                        "multiSelect": null,
+                        "isHiddenWhenLocked": false,
+                        "typeSettings": {
+                            "resourceTypeFilter": {
+                                "microsoft.storage/storageaccounts": true
+                            },
+                            "additionalResourceOptions": [
+                                "value::1"
+                            ],
+                            "selectedAdditionalResourceOptions": [
+                                "value::1"
+                            ]
+                        },
+                        "value": [
+                            "value::1"
+                        ]
+                    },
+                    {
+                        "id": "031e0cf8-ad0d-4328-8a4e-cec21dd90dc8",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "TimeRange",
+                        "type": 4,
+                        "description": null,
+                        "isRequired": true,
+                        "isHiddenWhenLocked": false,
+                        "typeSettings": {
+                            "selectableValues": [
+                                {
+                                    "durationMs": 300000,
+                                    "createdTime": "2018-06-26T21:41:37.864Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 900000,
+                                    "createdTime": "2018-06-26T21:41:37.864Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 1800000,
+                                    "createdTime": "2018-06-26T21:41:37.865Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 3600000,
+                                    "createdTime": "2018-06-26T21:41:37.865Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 14400000,
+                                    "createdTime": "2018-06-26T21:41:37.865Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 43200000,
+                                    "createdTime": "2018-06-26T21:41:37.865Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 86400000,
+                                    "createdTime": "2018-06-26T21:41:37.865Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 172800000,
+                                    "createdTime": "2018-06-26T21:41:37.865Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 259200000,
+                                    "createdTime": "2018-06-26T21:41:37.866Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 604800000,
+                                    "createdTime": "2018-06-26T21:41:37.866Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                }
+                            ],
+                            "allowCustom": null
+                        },
+                        "value": {
+                            "durationMs": 14400000,
+                            "createdTime": "2018-06-26T21:41:37.865Z",
+                            "isInitialTime": false,
+                            "grain": 1,
+                            "useDashboardTimeRange": false
+                        }
+                    }
+                ],
+                "resourceType": "microsoft.resourcegroup/resourcegroups"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"transactions-by-response-type\"></a>Transacciones por tipo de respuesta"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbookeea84fcb-f288-4c8d-a901-9f0bebbb6c31",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 86400000,
+                    "endTime": null,
+                    "createdTime": "2018-07-12T23:05:28.336Z",
+                    "isInitialTime": false,
+                    "grain": 1,
+                    "useDashboardTimeRange": false
+                },
+                "resourceType": "microsoft.storage/storageaccounts",
+                "resourceParameter": "StorageAccount",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.storage/storageaccounts",
+                        "metric": "microsoft.storage/storageaccounts-Transaction-Transactions",
+                        "aggregation": 1,
+                        "chartType": 2,
+                        "splitBy": "ResponseType",
+                        "color": "blue"
+                    }
+                ]
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "*Transacciones*: número de solicitudes realizadas a un servicio de almacenamiento. Este número incluye solicitudes correctas y con errores, así como las solicitudes que generaron errores. \n\n*Tipo de respuesta*: tipo de respuesta de la transacción. Los valores disponibles son: \n\n* __ServerOtherError__: todos los errores del servidor, excepto los descritos.\n* __ServerBusyError__: solicitud autenticada que devolvió un código de estado HTTP 503.\n* __ServerTimeoutError__: solicitud autenticada que ha superado el tiempo de espera y que devolvió un código de estado HTTP 500. El tiempo de espera se superó debido a un error del servidor.\n* __AuthorizationError__: solicitud autenticada errónea debido a un acceso no autorizado de los datos o a un error de autorización.\n* __NetworkError__: solicitud autenticada errónea debido a errores de red. Normalmente se produce cuando un cliente cierra prematuramente una conexión antes de que se haya superado el tiempo de expiración.\n* __ClientThrottlingError__: error de limitación del lado cliente.\n* __ClientTimeoutError__: solicitud autenticada que ha superado el tiempo de espera y que devolvió un código de estado HTTP 500. Si el tiempo de expiración de la red del cliente o el tiempo de expiración de la solicitud se establece en un valor menor de lo que espera el servicio de almacenamiento, es un tiempo de expiración esperado. De lo contrario, se notifica como un error ServerTimeoutError.\n* __ClientOtherError__: todos los errores del lado cliente, excepto los descritos.\n* __Correcto__: solicitud correcta.\n\nLos siguientes recursos resultan útiles para entender los códigos de error y estado relacionados con el almacenamiento:\n\n* [Códigos de error comunes de las API REST](https://docs.microsoft.com/en-us/rest/api/storageservices/Common-REST-API-Error-Codes?redirectedfrom=MSDN)\n* [Códigos de error de Blob service](https://docs.microsoft.com/en-us/rest/api/storageservices/Blob-Service-Error-Codes?redirectedfrom=MSDN)\n* [Códigos de error de Queue service](https://docs.microsoft.com/en-us/rest/api/storageservices/Queue-Service-Error-Codes?redirectedfrom=MSDN)\n* [Códigos de error de Table service](https://docs.microsoft.com/en-us/rest/api/storageservices/Table-Service-Error-Codes?redirectedfrom=MSDN)\n* [Códigos de error de File service](https://docs.microsoft.com/en-us/rest/api/storageservices/File-Service-Error-Codes?redirectedfrom=MSDN)\n\n\n"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"common-issues\"></a>Problemas comunes"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"the-client-is-receiving-http-403-forbidden-messages\"></a>El cliente recibe mensajes HTTP 403 (prohibido)\nSi la aplicación cliente inicia errores HTTP 403 (prohibido), uno de los motivos más probables es que el cliente esté usando una Firma de acceso compartido (SAS) expirada al enviar una solicitud de almacenamiento (aunque hay otras causas posibles, como un sesgo del reloj, que las claves no sean válidas o que los encabezados estén vacíos). Si el motivo es que la clave SAS expiró, no verá ninguna entrada en los datos de registro del registro de Almacenamiento del lado servidor.\n\nSi el problema está relacionado con los tokens SAS, debe investigar el motivo por el que el token de SAS expira antes de que el cliente envíe el token al servidor:\n* Normalmente, cuando crea una SAS para que la use un cliente inmediatamente, no debe establecer la hora de inicio. Si existen pequeñas diferencias entre el reloj del host que genera la SAS y que usa la hora actual, por una parte, y el del servicio de almacenamiento, por otra, es posible que el servicio de almacenamiento reciba una SAS que todavía no es válida.\n* En las SAS, no establezca tiempos de expiración muy breves. También en este caso, si existen pequeñas diferencias entre el reloj del host que genera la SAS y el del servicio de almacenamiento, puede que la SAS expire, aparentemente, antes de lo que se esperaba.\n* ¿El parámetro de versión de la clave SAS (por ejemplo, sv=2015-04-05) coincide con la versión de la biblioteca de cliente de Almacenamiento que está utilizando? Recomendamos usar la última versión de la biblioteca de cliente de Storage.\n* Si vuelve a generar las claves de acceso de almacenamiento, esto puede invalidar todos los token de SAS existentes. Este problema puede producirse si genera tokens de SAS con un tiempo de expiración duradero para que los copien en caché las aplicaciones cliente.\n* Si utiliza la biblioteca de cliente de Almacenamiento para generar tokens de SAS, es fácil generar un token válido. Sin embargo, si usa la API REST de Storage y construye manualmente los tokens de SAS, consulte Delegar el acceso con una firma de acceso compartido."
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"the-client-is-receiving-http-404-not-found-messages\"></a>El cliente recibe mensajes HTTP 404 (no encontrado)\nSi la aplicación cliente recibe un mensaje HTTP 404 (no encontrado) del servidor, esto significa que el objeto que estaba tratando de usar el cliente (por ejemplo, una entidad, una tabla, un BLOB, un contenedor o una cola) no existe en el servicio de almacenamiento. Hay varios motivos posibles, por ejemplo:\n\n* [El cliente u otro proceso eliminaron anteriormente el objeto](https://docs.microsoft.com/en-us/azure/storage/common/storage-monitoring-diagnosing-troubleshooting?toc=%2fazure%2fstorage%2fqueues%2ftoc.json#client-previously-deleted-the-object)\n* [Un problema de autorización de Firma de acceso compartido (SAS)](https://docs.microsoft.com/en-us/azure/storage/common/storage-monitoring-diagnosing-troubleshooting?toc=%2fazure%2fstorage%2fqueues%2ftoc.json#SAS-authorization-issue)\n* [El código JavaScript del lado cliente no tiene permiso para acceder al objeto](https://docs.microsoft.com/en-us/azure/storage/common/storage-monitoring-diagnosing-troubleshooting?toc=%2fazure%2fstorage%2fqueues%2ftoc.json#JavaScript-code-does-not-have-permission)\n* [Error de red](https://docs.microsoft.com/en-us/azure/storage/common/storage-monitoring-diagnosing-troubleshooting?toc=%2fazure%2fstorage%2fqueues%2ftoc.json#network-failure)"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"the-client-is-receiving-http-409-conflict-messages\"></a>El cliente recibe mensajes HTTP 409 (conflicto)\nLa causa habitual de este error es una aplicación cliente que elimina y vuelve a crear inmediatamente una unidad de almacenamiento con el mismo nombre. Cuando un cliente elimina contenedores de BLOB, tablas o colas, transcurre un breve período hasta que el nombre vuelve a estar disponible.\n\nLa aplicación cliente debe usar nombres de contenedor únicos siempre que cree nuevos contenedores si el patrón eliminar / volver a crear es común."
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"troubleshooting-guidence\"></a>Guía de solución de problemas\nEncontrará más información sobre cómo diagnosticar y resolver problemas en este [documento](https://docs.microsoft.com/en-us/azure/storage/common/storage-monitoring-diagnosing-troubleshooting?toc=%2fazure%2fstorage%2fqueues%2ftoc.json#troubleshooting-guidance)."
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        }
+    ]
+}

@@ -1,0 +1,217 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
+    "version": "Notebook/1.0",
+    "items": [
+        {
+            "type": 1,
+            "content": {
+                "json": "# <a name=\"hypothesis---proposed-change-will-increase-active-users-by-expected-improvement\"></a>Hypothesis: _[cambio propuesto]_ aumentará los usuarios activos en _[mejora prevista]_\n---\nUna buena hipótesis es el corazón de la toma de decisiones basada en datos. Las hipótesis le ayudan a convertir la información sobre el uso de su aplicación por parte de sus clientes en una propuesta de mejora práctica. Use este libro para elaborar una hipótesis acerca de cómo mejorar el número de usuarios activos mensual (MAU), semanal (WAU) o diario (DAU) de la aplicación."
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"problem---problem-statement\"></a>Problema: _[declaración del problema]_\nAgregue un resumen del problema en la sección. El resumen debe ser conciso y no tener más de unas pocas frases. Indique claramente el problema y evite los detalles no esenciales. \n\n\n"
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"whats-the-active-usage-problem\"></a>¿Cuál es el problema de uso activo?\nModifique los siguientes parámetros para mostrar el uso activo de las actividades que está analizando. Su objetivo debe ser destacar un problema de uso activo en la aplicación."
+            }
+        },
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "query": "",
+                "crossComponentResources": [],
+                "parameters": [
+                    {
+                        "id": "e552c6ce-183d-4b5d-8405-d60313b3eb8e",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Activities",
+                        "type": 2,
+                        "description": "Conjunto de vistas de página o eventos, separados por coma, que se cuentan como actividades. O utilice \"*\" para incluir todos los eventos.",
+                        "isRequired": true,
+                        "multiSelect": true,
+                        "quote": "'",
+                        "delimiter": ",",
+                        "query": "union customEvents, pageViews\r\n| where timestamp >= ago(7d)\r\n| summarize count() by name\r\n| order by count_ desc\r\n| project Id=name, Title=name, Selected=false\r\n| union (\r\ndatatable(Id:string, Title:string, Selected:boolean)[\r\n'*', 'All Events and Page Views', true\r\n]\r\n)"
+                    },
+                    {
+                        "id": "68b8c1f5-9f24-401a-bea4-9739a7438069",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Metric",
+                        "type": 2,
+                        "description": null,
+                        "isRequired": true,
+                        "multiSelect": null,
+                        "query": "datatable(key:string, display:string) \r\n[ \r\n\"1d\", \"Daily Active Users\", \r\n\"7d\", \"Weekly Active Users\", \r\n\"28d\", \"Monthly Active Users (28 days)\", \r\n\"30d\", \"Monthly Active Users (30 days)\"\r\n] ",
+                        "value": "28d"
+                    },
+                    {
+                        "id": "7813b809-0b92-4531-ad05-90add0674de0",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "TimeRange",
+                        "type": 2,
+                        "description": null,
+                        "isRequired": true,
+                        "multiSelect": null,
+                        "query": "datatable(key:string, display:string) \r\n[ \r\n\"7d\", \"Last 7 days\", \r\n\"14d\", \"Last 14 days\", \r\n\"30d\", \"Last 30 days\", \r\n] ",
+                        "value": "30d"
+                    }
+                ]
+            }
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "let timeRange = {TimeRange};\r\nlet monthDefinition = {Metric};\r\nlet hlls = union customEvents, pageViews\r\n| where timestamp >= startofmonth(now() - timeRange - monthDefinition)\r\n| where name in ({Activities}) or '*' in ({Activities})\r\n| summarize Hlls = hll(user_Id) by bin(timestamp, 1d)\r\n| project DaysToMerge = timestamp, Hlls;\r\nrange d from 0d to timeRange step 1d\r\n| extend Day = startofday(now() - d)\r\n| extend R = range(0d, monthDefinition - 1d, 1d)\r\n| mvexpand R\r\n| extend DaysToMerge = Day - totimespan(R)\r\n| join kind= inner (hlls) on DaysToMerge \r\n| project Day, ThisMonthHlls = Hlls\r\n| summarize ThisMonth = hll_merge(ThisMonthHlls) by Day\r\n| project Day, [\"Monthly Active Users\"] = dcount_hll(ThisMonth) \r\n",
+                "showQuery": false,
+                "size": 0,
+                "aggregation": 5,
+                "showAnnotations": false,
+                "visualization": "timechart"
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"as-a-benchmark-whats-the-usage-of-a-similar-feature\"></a>Como referencia, ¿cuál es el uso de una característica similar?\nUtilice esta sección para comparar los usuarios activos de las actividades con otras similares. Esto ayudará a establecer el contexto de las mejoras que está tratando de hacer."
+            }
+        },
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "query": "",
+                "crossComponentResources": [],
+                "parameters": [
+                    {
+                        "id": "35df6f18-6009-4c8c-898a-3d47414ee7cd",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "RelatedActivities",
+                        "type": 2,
+                        "description": "Seleccione el conjunto personalizado de eventos y vistas de página que se usará como actividades de referencia.",
+                        "isRequired": true,
+                        "multiSelect": true,
+                        "quote": "'",
+                        "delimiter": ",",
+                        "query": "union customEvents, pageViews\r\n| where timestamp >= ago(7d)\r\n| summarize count() by name\r\n| order by count_ desc\r\n| project Id=name, Title=name, Selected=false\r\n| union (\r\ndatatable(Id:string, Title:string, Selected:boolean)[\r\n'*', 'All Events and Page Views', true\r\n]\r\n)"
+                    }
+                ]
+            }
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "let timeRange = {TimeRange};\r\nlet monthDefinition = {Metric};\r\nlet hlls = union customEvents, pageViews\r\n| where timestamp >= startofmonth(now() - timeRange - monthDefinition)\r\n| where name in ({RelatedActivities}) or '*' in ({RelatedActivities})\r\n| summarize Hlls = hll(user_Id) by bin(timestamp, 1d)\r\n| project DaysToMerge = timestamp, Hlls;\r\nrange d from 0d to timeRange step 1d\r\n| extend Day = startofday(now() - d)\r\n| extend R = range(0d, monthDefinition - 1d, 1d)\r\n| mvexpand R\r\n| extend DaysToMerge = Day - totimespan(R)\r\n| join kind= inner (hlls) on DaysToMerge \r\n| project Day, ThisMonthHlls = Hlls\r\n| summarize ThisMonth = hll_merge(ThisMonthHlls) by Day\r\n| project Day, [\"Monthly Active Users\"] = dcount_hll(ThisMonth) \r\n",
+                "showQuery": false,
+                "size": 0,
+                "aggregation": 5,
+                "showAnnotations": false,
+                "visualization": "timechart"
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"why-do-you-suspect-active-usage-of-this-feature-is-low\"></a>¿Por qué se sospecha que el uso activo de esta característica es bajo?\nEn esta sección se explica por qué el número de usuarios activos podría ser bajo. La solución que propone abordará algunos o todos los problemas identificados aquí."
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"what-customer-evidence-do-you-have\"></a>¿Qué pruebas tiene de los clientes?\nAgregue comentarios de los clientes que confirmen que la existencia del problema y que la solución propuesta realmente lo resolverá."
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"how-are-your-competitors-solving-this-problem\"></a>¿Cómo están resolviendo este problema sus competidores?\nUtilice esta sección para mostrar cómo sus competidores resuelven este problema en las aplicaciones.\n"
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"open-questions\"></a>Preguntas abiertas\nHaga una lista de todas las preguntas o conversaciones que aún no se han resuelto."
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"potential-solution---solution-description\"></a>Posible solución: _[descripción de la solución]_\nUtilice esta sección para describir la solución propuesta.\n"
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"why-it-will-work\"></a>¿Por qué va a funcionar?\nDescriba la teoría sobre el comportamiento de los usuarios que dará como resultado esta propuesta que conducirá a un mayor número de usuarios activos."
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"why-might-it-not-work\"></a>¿Por qué podría no funcionar?\nPiense y haga una lista de las razones por las que la solución puede no dar como resultado el cumplimiento de los objetivos que se ha fijado, por ejemplo, teorías alternativas para la causa del problema."
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"will-it-affect-other-scenarios\"></a>¿Afectará a otros escenarios?\nEnumere las otras características y escenarios que podrían verse afectados por la solución propuesta. "
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"expected-outcome---active-usage-hits-threshold\"></a>Resultado esperado: el uso activo llega a _[threshold]_\nEn esta sección se enumeran claramente los resultados medibles de la implementación de la solución propuesta.\n\n"
+            }
+        },
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "query": "",
+                "crossComponentResources": [],
+                "parameters": [
+                    {
+                        "id": "ed501437-ae26-454f-bc58-db07649f4c0c",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Goal",
+                        "type": 1,
+                        "description": null,
+                        "isRequired": true,
+                        "query": "let monthDefinition = {Metric};\r\nunion customEvents, pageViews\r\n| where timestamp >= startofday(now() - monthDefinition + 1d)\r\n| where name in ({Activities}) or '*' in ({Activities})\r\n| summarize MAU=dcount(user_Id)\r\n| extend Goal = round(MAU * 1.1), lg = exp10(bin(log10(MAU), 1) - 1)\r\n| project AdjustedGoal = case(lg <= 0.1, round(MAU * 1.5), round(round(Goal / lg) * lg))"
+                    }
+                ]
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"primary-goal---active-usage-hits-goal\"></a>Objetivo principal: el uso activo llega a {Goal}\nEl objetivo predeterminado elegido es aproximadamente el 10 % mayor que el valor de MAU actual. Cambie esto según el objetivo de la aplicación. "
+            }
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "let timeRange = {TimeRange};\nlet monthDefinition = {Metric};\nlet hlls = union customEvents, pageViews\n| where timestamp >= startofmonth(now() - timeRange - monthDefinition)\n| where name in ({Activities}) or '*' in ({Activities})\n| summarize Hlls = hll(user_Id) by bin(timestamp, 1d)\n| project DaysToMerge = timestamp, Hlls;\nrange d from 0d to timeRange step 1d\n| extend Day = startofday(now() - d)\n| extend R = range(0d, monthDefinition - 1d, 1d)\n| mvexpand R\n| extend DaysToMerge = Day - totimespan(R)\n| join kind= inner (hlls) on DaysToMerge \n| project Day, ThisMonthHlls = Hlls\n| summarize ThisMonth = hll_merge(ThisMonthHlls) by Day\n| project Day, [\"Monthly Active Users\"] = dcount_hll(ThisMonth), Goal = {Goal}\n",
+                "showQuery": false,
+                "size": 0,
+                "aggregation": 5,
+                "showAnnotations": false,
+                "visualization": "timechart"
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"other-goals\"></a>Otros objetivos\nEnumere los objetivos secundarios que pueda tener relacionados con este esfuerzo. "
+            }
+        }
+    ]
+}

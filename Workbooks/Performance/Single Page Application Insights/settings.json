@@ -1,0 +1,18 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Instancias de Application Insights de una sola página",
+    "description": "Visualización de la telemetría de aplicación de una sola página creada por la biblioteca Mezzurite Timing",
+    "author": "Microsoft",
+    "tags": [
+        "SPA",
+        "Angular",
+        "React"
+    ],
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "microsoft.insights/components",
+            "order": 300
+        }
+    ]
+}
