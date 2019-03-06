@@ -1,0 +1,346 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
+    "version": "Notebook/1.0",
+    "isLocked": true,
+    "items": [
+        {
+            "type": 1,
+            "content": {
+                "json": "# <a name=\"analysis-of-page-views\"></a><span data-ttu-id=\"f4ca9-101\">Análisis de las vistas de página</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-101\">Analysis of Page Views</span></span>\n<span data-ttu-id=\"f4ca9-102\">Las vistas de página se corresponden con la actividad del usuario en la aplicación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-102\">Page views correspond to user activity in your app.</span></span> <span data-ttu-id=\"f4ca9-103\">Comprender cómo los usuarios interactúan con las páginas le permitirá saber qué funciona en la aplicación y qué aspectos necesitan mejorar.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-103\">Understanding how your users interact with your pages will give you good insights into what is working in your app and what aspects need improvements.</span></span> \n\n<span data-ttu-id=\"f4ca9-104\">Este informe ayuda a comprender los comportamientos comunes en la vista de página, por ejemplo:</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-104\">This report will help you understand common page view behaviors like:</span></span>\n* <span data-ttu-id=\"f4ca9-105\">Uso</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-105\">Usage</span></span>\n* <span data-ttu-id=\"f4ca9-106\">Tiempo invertido en la página</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-106\">Time spent on page</span></span>\n* <span data-ttu-id=\"f4ca9-107\">Tiempo hasta la primera interacción</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-107\">Time to first interaction</span></span>\n* <span data-ttu-id=\"f4ca9-108\">Tasas de salida</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-108\">Exit rates</span></span> \n\n<span data-ttu-id=\"f4ca9-109\">Si los datos de telemetría no incluyen vistas de página, siga estas [instrucciones](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-javascript) para empezar a recopilarlas; es relativamente sencillo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-109\">If your telemetry does not include page views, then follow these [instructions](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-javascript) to begin collecting -- it is relatively straightforward.</span></span>"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "query": "",
+                "crossComponentResources": [],
+                "parameters": [
+                    {
+                        "id": "2006c356-d32b-4f16-a22c-6a76d0e84288",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Pages",
+                        "type": 2,
+                        "description": null,
+                        "isRequired": true,
+                        "multiSelect": true,
+                        "quote": "'",
+                        "delimiter": ",",
+                        "query": "let mostUsedEvent = union pageViews\n| where timestamp >= ago(7d)\n| summarize Count = count() by name\n| top 3 by Count desc\n| summarize makelist(name);\nunion pageViews\n| where timestamp >= ago(7d)\n| summarize Count = count() by name\n| extend IsSelected = iff(name in (mostUsedEvent), true, false)\n| order by Count desc\n| project v = name, t = name, IsSelected\n| union (\ndatatable(v:string, t:string, IsSelected:boolean)[\n'*', 'All Page Views', false\n]\n)"
+                    },
+                    {
+                        "id": "03ad1f6b-7d7c-4abc-8b8d-446621ad479e",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "OtherFilters",
+                        "type": 1,
+                        "description": null,
+                        "isRequired": false,
+                        "value": ""
+                    },
+                    {
+                        "id": "815b8c50-0d4a-4374-a073-bc9394103aed",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "TimeRange",
+                        "type": 2,
+                        "description": null,
+                        "isRequired": true,
+                        "multiSelect": null,
+                        "query": "datatable(key:string, display:string) \n[ \n\"1h\", \"Last Hour\", \n\"1d\", \"Last 24 hours\", \n\"2d\", \"Last 48 hours\", \n\"3d\", \"Last 3 days\", \n\"7d\", \"Last 7 days\", \n\"14d\", \"Last 14 days\", \n\"30d\", \"Last 30 days\", \n\"60d\", \"Last 60 days\", \n\"90d\", \"Last 90 days\"\n] ",
+                        "value": "30d"
+                    },
+                    {
+                        "id": "4548f4fe-0130-42c9-b796-385cd12ccb24",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "OptimizeCalculationsFor",
+                        "type": 2,
+                        "description": "<span data-ttu-id=\"f4ca9-110\">Utilice este parámetro para establecer el número de sesiones de usuario para usar en los cálculos (muestreo).</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-110\">Use this parameter to essentially set the number of user sessions to use in calculations (sampling).</span></span> <span data-ttu-id=\"f4ca9-111\">Esto permite buscar el equilibrio adecuado entre rendimiento y precisión en el análisis.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-111\">This allows you to find the right balance between performance and accuracy for your analysis.</span></span> <span data-ttu-id=\"f4ca9-112\">Optimizar para: Rendimiento = 10 000 sesiones, equilibrio = 100 000 muestras, precisión = 1 000 000 sesiones</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-112\">Optimize for: Performance = 10,000 sessions, Balance = 100,000 samples, Accuracy = 1,000,000 sessions</span></span>",
+                        "isRequired": true,
+                        "multiSelect": null,
+                        "query": "datatable(x:string, y:string)[\n'10000', 'Performance',\n'100000', 'Balance',\n'1000000', 'Accuracy'\n]",
+                        "value": "100000"
+                    }
+                ]
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "---\n## <a name=\"usage\"></a><span data-ttu-id=\"f4ca9-113\">Uso</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-113\">Usage</span></span>\n<span data-ttu-id=\"f4ca9-114\">En esta sección se describe cómo se usan las páginas de la aplicación, en términos de número de usuarios, sesiones y vistas.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-114\">This section helps you understand how the pages of your app are used -- in terms of # of users, sessions and views.</span></span> "
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "let timeRange = {TimeRange};\nlet allEvents = pageViews\n| where timestamp > ago(timeRange);\nlet interestingEvents = allEvents\n| where name in ({Pages}) or '*' in ({Pages}) \n{OtherFilters};\ninterestingEvents\n| summarize Users = dcount(user_Id), Sessions = dcount(session_Id), Instances = count() by name\n| extend rank = 2, name = strcat('🔷 ', name)\n| union (interestingEvents\n        | summarize Users = dcount(user_Id), Sessions = dcount(session_Id), Instances = count()\n        | extend name = '🔶 Overall', rank = 1)\n| extend jkey = 1\n| join kind = inner (allEvents \n                    | summarize AllUsers = dcount(user_Id), AllSessions = dcount(session_Id), AllInstances = count()\n                    | extend jkey = 1) on jkey \n| project ['Page Name'] = name, ['Unique Users'] = Users, ['As % of app Users'] = round(100.0 * Users / AllUsers, 2),\n          ['Unique Sessions'] = Sessions, ['As % of app Sessions'] = round(100.0 * Sessions / AllSessions, 2),\n          ['Total Page Views'] = Instances , ['As % of app Page Views'] = round(100.0 * Instances / AllInstances, 2), rank\n| order by rank asc, ['Unique Users'] desc\n| project-away rank",
+                "showQuery": false,
+                "size": 1,
+                "aggregation": 0,
+                "showAnnotations": false,
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "Unique Users",
+                            "formatter": 4,
+                            "formatOptions": {
+                                "min": 0,
+                                "max": null,
+                                "palette": "blue"
+                            }
+                        },
+                        {
+                            "columnMatch": "Unique Sessions",
+                            "formatter": 4,
+                            "formatOptions": {
+                                "min": 0,
+                                "max": null,
+                                "palette": "green"
+                            }
+                        },
+                        {
+                            "columnMatch": "Total Page Views",
+                            "formatter": 4,
+                            "formatOptions": {
+                                "min": 0,
+                                "max": null,
+                                "palette": "yellow"
+                            }
+                        }
+                    ]
+                }
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "- <span data-ttu-id=\"f4ca9-115\">Las columnas `As % of App Users/Sessions/Views` comparan el uso de la vista de página seleccionada con el de toda la aplicación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-115\">The `As % of App Users/Sessions/Views` columns compare the usage of the selected page view with that of the whole app.</span></span>\n"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "---\n## <a name=\"time-spent-on-page\"></a><span data-ttu-id=\"f4ca9-116\">Tiempo invertido en la página</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-116\">Time Spent on Page</span></span>\n<span data-ttu-id=\"f4ca9-117\">Este informe ayuda a comprender el tiempo que pasan los clientes en las páginas.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-117\">This report helps you understand the time spent by customers in your pages.</span></span> <span data-ttu-id=\"f4ca9-118\">Normalmente, más tiempo en una página indica una buena involucración y este suele ser el comportamiento deseado.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-118\">Longer time spent pages usually indicates good engagement and is generally the desired behavior.</span></span>"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "query": "",
+                "crossComponentResources": [],
+                "parameters": [
+                    {
+                        "id": "0411936a-4cb9-44dd-946d-b449ce3b284e",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "IgnoreDurationsOver",
+                        "type": 1,
+                        "description": "<span data-ttu-id=\"f4ca9-119\">Utilice este parámetro para filtrar las vistas de página que tardaron más tiempo del que es posible (por ejemplo, se quedaron abiertas en una pestaña no está activa).</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-119\">Use this parameter to filter our page views that took more time that is possible (for example left open in a non-active tab).</span></span> <span data-ttu-id=\"f4ca9-120\">El valor predeterminado es 1 hora.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-120\">The default is 1 hour.</span></span> ",
+                        "isRequired": true,
+                        "query": "datatable(x:string)[ '3600s' ]"
+                    }
+                ]
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "let timeRange = {TimeRange};\nlet samples = {OptimizeCalculationsFor};\nlet pageDurationThreshold = {IgnoreDurationsOver};\nlet allEvents = union pageViews\n| where timestamp > ago(timeRange);\nlet allInterestingEvents = allEvents\n| where name in ({Pages}) or '*' in ({Pages}) \n{OtherFilters};\nlet sampledSessions = materialize(allInterestingEvents\n| summarize by session_Id\n| sample samples\n| summarize makelist(session_Id, samples));\nlet data = allInterestingEvents\n| where session_Id in (sampledSessions)\n| project session_Id, timestamp, name\n| join kind= inner (allEvents\n        | where session_Id in (sampledSessions)\n        | project session_Id, timestamp\n        ) on session_Id \n| project session_Id, TimeDiff = timestamp  - timestamp1, name, timestamp\n| where TimeDiff > 0s and TimeDiff <= pageDurationThreshold\n| summarize SecondsSpentOnPage = min(TimeDiff) / 1s by session_Id, name, timestamp;\ndata\n| summarize Instances = count(), (Median, p75, p90) = percentiles(SecondsSpentOnPage, 50, 75, 90), Mean = avg(SecondsSpentOnPage) by name\n| extend rank = 2, name = strcat('🔷 ', name)\n| union (data\n        | summarize Instances = count(), (Median, p75, p90) = percentiles(SecondsSpentOnPage, 50, 75, 90), Mean = avg(SecondsSpentOnPage)\n        | extend name = '🔶 Overall', rank = 1)\n| order by rank asc, Median desc\n| project-away rank\n| project ['Page Name'] = name, ['Sampled Page Views'] = Instances, ['Median (seconds)'] = round(Median, 1), ['75th Percentile (seconds)'] = round(p75, 1), ['90th Percentile (seconds)'] = round(p90, 1), ['Mean (seconds)'] = round(Mean, 1)",
+                "showQuery": false,
+                "size": 1,
+                "aggregation": 0,
+                "showAnnotations": false,
+                "visualization": "table",
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "Sampled Page Views",
+                            "formatter": 4,
+                            "formatOptions": {
+                                "min": 0,
+                                "max": null,
+                                "palette": "blue"
+                            }
+                        },
+                        {
+                            "columnMatch": "Median (seconds)",
+                            "formatter": 4,
+                            "formatOptions": {
+                                "min": 0,
+                                "max": null,
+                                "palette": "yellow"
+                            }
+                        },
+                        {
+                            "columnMatch": "90th Percentile (seconds)",
+                            "formatter": 4,
+                            "formatOptions": {
+                                "min": 0,
+                                "max": null,
+                                "palette": "red"
+                            }
+                        }
+                    ]
+                }
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "- <span data-ttu-id=\"f4ca9-121\">Los cálculos pueden usar un muestreo basado en el parámetro `OptimizeCalculationsFor`.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-121\">The calculations may use sampling based on the `OptimizeCalculationsFor` parameter.</span></span> \n- <span data-ttu-id=\"f4ca9-122\">Para calcular el tiempo invertido en la página, no se tienen en cuenta las páginas de salida (última página de la sesión).</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-122\">Time Spent on Page does not consider exit pages (last page of the session) in this calculations.</span></span> <span data-ttu-id=\"f4ca9-123\">Por este motivo, la columna `Sampled Page Views` puede ser menor que el número de muestras de {OptimizeCalculationsFor}.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-123\">The `Sampled Page Views` column may be fewer than the sampling count of {OptimizeCalculationsFor} because of this.</span></span>\n"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "---\n## <a name=\"time-to-first-interaction\"></a><span data-ttu-id=\"f4ca9-124\">Tiempo hasta la primera interacción</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-124\">Time to First Interaction</span></span>\n<span data-ttu-id=\"f4ca9-125\">Este informe ayuda a comprender el tiempo dedicado por los clientes a interactuar con funcionalidades críticas de la aplicación por primera vez.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-125\">This report helps you understand the time taken by customers to first interact with critical features of your app.</span></span> <span data-ttu-id=\"f4ca9-126\">Puede ayudarle a descubrir problemas de detección de las características o de lo intuitiva que son la interfaz de usuario y el flujo de la aplicación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-126\">It can help you uncover issues with discoverability of your features or the intuitiveness of your app's UI/flow.</span></span>"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "query": "",
+                "crossComponentResources": [],
+                "parameters": [
+                    {
+                        "id": "65e9a492-2e89-477a-a041-e99a61481c65",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "TimeFrom",
+                        "type": 2,
+                        "description": "<span data-ttu-id=\"f4ca9-127\">Para los usuarios, el primer uso se calcula como el primer uso dentro del intervalo de tiempo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-127\">For users, the first use is calculated as the first use within the time range.</span></span> <span data-ttu-id=\"f4ca9-128\">Es posible que el usuario haya comenzando a usar la aplicación antes de ese intervalo de tiempo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-128\">It is possible that the user started using your app before the time range.</span></span>",
+                        "isRequired": true,
+                        "multiSelect": null,
+                        "query": "datatable(x:string, y:string)[\n'session_Id', 'Start of the Session',\n'user_Id', 'First use by Anonymous User ⚠️',\n'user_AuthenticatedId', 'First use by Authenticated User ⚠️',\n];",
+                        "value": "session_Id"
+                    }
+                ]
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "let samples = {OptimizeCalculationsFor};\nlet allEvents = union customEvents, pageViews\n| where timestamp > ago({TimeRange});\nlet allInterestingEvents = allEvents\n| where name in ({Pages}) or '*' in ({Pages})\n{OtherFilters};\nlet sampledSessions = materialize(allInterestingEvents\n| summarize by {TimeFrom}\n| sample samples\n| summarize makelist({TimeFrom}, samples));\nlet sessionStart = allEvents\n| where {TimeFrom} in (sampledSessions)\n| summarize Start = min(timestamp) by {TimeFrom};\nlet firstInterestingEvent = allInterestingEvents\n| where {TimeFrom} in (sampledSessions)\n| summarize Interaction = min(timestamp) by {TimeFrom}, name;\nlet segmentedFirstInteraction = firstInterestingEvent\n| join kind = inner (sessionStart) on {TimeFrom}\n| project FirstInteractionTime = Interaction - Start, name\n| summarize Sessions = count(), Mean = avg(FirstInteractionTime), (Median, p75, p90) = percentiles(FirstInteractionTime, 50, 75, 90) by name;\nsegmentedFirstInteraction\n| union (firstInterestingEvent\n| summarize Interaction = min(Interaction) by {TimeFrom}\n| join kind = inner (sessionStart) on {TimeFrom}\n| project FirstInteractionTime = Interaction - Start\n| summarize Sessions = count(), Mean = avg(FirstInteractionTime), (Median, p75, p90) = percentiles(FirstInteractionTime, 50, 75, 90)\n| extend name = '🔶 Overall', o = 0m)\n| extend Mean = round(Mean / 1m, 2), Median = round(Median / 1m, 2), p75 = round(p75 / 1m, 2), p90 = round(p90 / 1m, 2)\n| order by o asc, Median asc, Sessions desc\n| project [\"Page Name\"] = name, ['Sampled Views'] = Sessions, ['Median (in minutes)'] = Median, ['75th Percentile (in minutes)'] = p75, ['90th Percentile (in minutes)'] = p90, ['Mean (in minutes)'] = Mean\n",
+                "showQuery": false,
+                "size": 1,
+                "aggregation": 0,
+                "showAnnotations": false,
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "Sampled Views",
+                            "formatter": 4,
+                            "formatOptions": {
+                                "min": 0,
+                                "max": null,
+                                "palette": "blue"
+                            }
+                        },
+                        {
+                            "columnMatch": "Median (in minutes)",
+                            "formatter": 4,
+                            "formatOptions": {
+                                "min": 0,
+                                "max": null,
+                                "palette": "yellow"
+                            }
+                        },
+                        {
+                            "columnMatch": "90th Percentile (in minutes)",
+                            "formatter": 4,
+                            "formatOptions": {
+                                "min": 0,
+                                "max": null,
+                                "palette": "red"
+                            }
+                        }
+                    ]
+                }
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "- <span data-ttu-id=\"f4ca9-129\">El cálculo puede usar un muestreo basado en el parámetro `OptimizeCalculationsFor`.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-129\">The calculation may use sampling based on the `OptimizeCalculationsFor` parameter.</span></span> "
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "---\n## <a name=\"page-exit-rates\"></a><span data-ttu-id=\"f4ca9-130\">Tasas de salida de página</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-130\">Page Exit Rates</span></span>\n<span data-ttu-id=\"f4ca9-131\">Una vista de página se dice que ha contribuido a una _salida_ cuando es la última página que se ve en la sesión.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-131\">A page view is said to have contributed to an _exit_ when it is the last page viewed in the session.</span></span> <span data-ttu-id=\"f4ca9-132\">Se da por hecho que el usuario ha salido de la aplicación, ya sea porque ha navegado a otra aplicación o porque ha cerrado el explorador o la aplicación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-132\">The user is presumed to have exited your app -- either by navigating to another app or closing the app/browser.</span></span> \n\n<span data-ttu-id=\"f4ca9-133\">La _tasa de salida_ de una página es el porcentaje de últimas vistas en la sesión.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-133\">A page's _exit rate_ is the percentages of views that were the last in the session.</span></span> "
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "let samples = {OptimizeCalculationsFor};\nlet allEvents = pageViews\n| where timestamp > ago({TimeRange});\nlet allInterestingEvents = allEvents\n| where name in ({Pages}) or '*' in ({Pages})\n{OtherFilters};\nlet sampledSessions = materialize(allInterestingEvents\n| summarize by session_Id\n| sample samples\n| summarize makelist(session_Id, samples));\nlet bounces = allEvents\n| where session_Id in (sampledSessions)\n| summarize (timestamp, name) = argmax(timestamp, name) by session_Id;\nlet sessionsWithInterestingEvents = allInterestingEvents\n| where session_Id in (sampledSessions);\nlet allSessionData = sessionsWithInterestingEvents\n| summarize Sessions = dcount(session_Id) by name\n| union (sessionsWithInterestingEvents\n        | summarize Sessions = dcount(session_Id) | extend name = 'Overall');\nlet bouncesWithInterestingEvents = bounces\n| where name in ({Pages}) or '*' in ({Pages});\nbouncesWithInterestingEvents\n| summarize BouncedSessions = dcount(session_Id) by name\n| extend rank = 2\n| union (bouncesWithInterestingEvents\n        | summarize BouncedSessions = dcount(session_Id) | extend name = 'Overall', rank = 1)\n| join kind=inner\n(\n    allSessionData\n)\non name\n| extend BounceRate = round(100.0 * BouncedSessions / Sessions, 2)\n| order by rank asc, BounceRate desc\n| project ['Page Name'] = iff(name == 'Overall', '🔶 Overall', strcat('🔷 ', name)), ['Sampled Sessions with Page View'] = Sessions, ['Sampled Sessions Ended after Page View'] = BouncedSessions, ['Exit Rate (%)'] = BounceRate",
+                "showQuery": false,
+                "size": 1,
+                "aggregation": 0,
+                "showAnnotations": false,
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "Sampled Sessions",
+                            "formatter": 4,
+                            "formatOptions": {
+                                "min": 0,
+                                "max": null,
+                                "palette": "blue"
+                            }
+                        },
+                        {
+                            "columnMatch": "Exit Rate (%)",
+                            "formatter": 4,
+                            "formatOptions": {
+                                "min": 0,
+                                "max": 100,
+                                "palette": "red"
+                            }
+                        }
+                    ]
+                }
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "- <span data-ttu-id=\"f4ca9-134\">El cálculo puede usar un muestreo basado en el parámetro `OptimizeCalculationsFor`.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f4ca9-134\">The calculation may use sampling based on the `OptimizeCalculationsFor` parameter.</span></span> "
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        }
+    ]
+}

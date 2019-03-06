@@ -1,0 +1,229 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
+    "version": "Notebook/1.0",
+    "isLocked": true,
+    "items": [
+        {
+            "type": 1,
+            "content": {
+                "json": "# <a name=\"investigating-transaction-failures\"></a><span data-ttu-id=\"aafbb-101\">Investigación de errores de transacción</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-101\">Investigating Transaction Failures</span></span>"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "query": "",
+                "crossComponentResources": [],
+                "parameters": [
+                    {
+                        "id": "34ea9bf4-837f-48e4-b3fd-ade518019950",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "StorageAccount",
+                        "type": 5,
+                        "description": null,
+                        "isRequired": true,
+                        "multiSelect": null,
+                        "isHiddenWhenLocked": false,
+                        "typeSettings": {
+                            "resourceTypeFilter": {
+                                "microsoft.storage/storageaccounts": true
+                            },
+                            "additionalResourceOptions": [
+                                "value::1"
+                            ],
+                            "selectedAdditionalResourceOptions": [
+                                "value::1"
+                            ]
+                        },
+                        "value": [
+                            "value::1"
+                        ]
+                    },
+                    {
+                        "id": "031e0cf8-ad0d-4328-8a4e-cec21dd90dc8",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "TimeRange",
+                        "type": 4,
+                        "description": null,
+                        "isRequired": true,
+                        "isHiddenWhenLocked": false,
+                        "typeSettings": {
+                            "selectableValues": [
+                                {
+                                    "durationMs": 300000,
+                                    "createdTime": "2018-06-26T21:41:37.864Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 900000,
+                                    "createdTime": "2018-06-26T21:41:37.864Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 1800000,
+                                    "createdTime": "2018-06-26T21:41:37.865Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 3600000,
+                                    "createdTime": "2018-06-26T21:41:37.865Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 14400000,
+                                    "createdTime": "2018-06-26T21:41:37.865Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 43200000,
+                                    "createdTime": "2018-06-26T21:41:37.865Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 86400000,
+                                    "createdTime": "2018-06-26T21:41:37.865Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 172800000,
+                                    "createdTime": "2018-06-26T21:41:37.865Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 259200000,
+                                    "createdTime": "2018-06-26T21:41:37.866Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                },
+                                {
+                                    "durationMs": 604800000,
+                                    "createdTime": "2018-06-26T21:41:37.866Z",
+                                    "isInitialTime": false,
+                                    "grain": 1,
+                                    "useDashboardTimeRange": false
+                                }
+                            ],
+                            "allowCustom": null
+                        },
+                        "value": {
+                            "durationMs": 14400000,
+                            "createdTime": "2018-06-26T21:41:37.865Z",
+                            "isInitialTime": false,
+                            "grain": 1,
+                            "useDashboardTimeRange": false
+                        }
+                    }
+                ],
+                "resourceType": "microsoft.resourcegroup/resourcegroups"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"transactions-by-response-type\"></a><span data-ttu-id=\"aafbb-102\">Transacciones por tipo de respuesta</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-102\">Transactions by Response Type</span></span>"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbookeea84fcb-f288-4c8d-a901-9f0bebbb6c31",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 86400000,
+                    "endTime": null,
+                    "createdTime": "2018-07-12T23:05:28.336Z",
+                    "isInitialTime": false,
+                    "grain": 1,
+                    "useDashboardTimeRange": false
+                },
+                "resourceType": "microsoft.storage/storageaccounts",
+                "resourceParameter": "StorageAccount",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.storage/storageaccounts",
+                        "metric": "microsoft.storage/storageaccounts-Transaction-Transactions",
+                        "aggregation": 1,
+                        "chartType": 2,
+                        "splitBy": "ResponseType",
+                        "color": "blue"
+                    }
+                ]
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "<span data-ttu-id=\"aafbb-103\">*Transacciones*: número de solicitudes realizadas a un servicio de almacenamiento.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-103\">*Transactions* - the number of requests made to a storage service.</span></span> <span data-ttu-id=\"aafbb-104\">Este número incluye solicitudes correctas y con errores, así como las solicitudes que generaron errores.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-104\">This number includes successful and failed requests, as well as requests that produced errors.</span></span> \n\n<span data-ttu-id=\"aafbb-105\">*Tipo de respuesta*: tipo de respuesta de la transacción.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-105\">*Response type* - the transaction response type.</span></span> <span data-ttu-id=\"aafbb-106\">Los valores disponibles son:</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-106\">The available values include:</span></span> \n\n* <span data-ttu-id=\"aafbb-107\">__ServerOtherError__: todos los errores del servidor, excepto los descritos.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-107\">__ServerOtherError__: All other server-side errors except described ones</span></span>\n* <span data-ttu-id=\"aafbb-108\">__ServerBusyError__: solicitud autenticada que devolvió un código de estado HTTP 503.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-108\">__ServerBusyError__: Authenticated request that returned an HTTP 503 status code.</span></span>\n* <span data-ttu-id=\"aafbb-109\">__ServerTimeoutError__: solicitud autenticada que ha superado el tiempo de espera y que devolvió un código de estado HTTP 500.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-109\">__ServerTimeoutError__: Timed-out authenticated request that returned an HTTP 500 status code.</span></span> <span data-ttu-id=\"aafbb-110\">El tiempo de espera se superó debido a un error del servidor.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-110\">The timeout occurred due to a server error.</span></span>\n* <span data-ttu-id=\"aafbb-111\">__AuthorizationError__: solicitud autenticada errónea debido a un acceso no autorizado de los datos o a un error de autorización.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-111\">__AuthorizationError__: Authenticated request that failed due to unauthorized access of data or an authorization failure.</span></span>\n* <span data-ttu-id=\"aafbb-112\">__NetworkError__: solicitud autenticada errónea debido a errores de red.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-112\">__NetworkError__: Authenticated request that failed due to network errors.</span></span> <span data-ttu-id=\"aafbb-113\">Normalmente se produce cuando un cliente cierra prematuramente una conexión antes de que se haya superado el tiempo de expiración.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-113\">Most commonly occurs when a client prematurely closes a connection before timeout expiration.</span></span>\n* <span data-ttu-id=\"aafbb-114\">__ClientThrottlingError__: error de limitación del lado cliente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-114\">__ClientThrottlingError__: Client-side throttling error.</span></span>\n* <span data-ttu-id=\"aafbb-115\">__ClientTimeoutError__: solicitud autenticada que ha superado el tiempo de espera y que devolvió un código de estado HTTP 500.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-115\">__ClientTimeoutError__: Timed-out authenticated request that returned an HTTP 500 status code.</span></span> <span data-ttu-id=\"aafbb-116\">Si el tiempo de expiración de la red del cliente o el tiempo de expiración de la solicitud se establece en un valor menor de lo que espera el servicio de almacenamiento, es un tiempo de expiración esperado.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-116\">If the client's network timeout or the request timeout is set to a lower value than expected by the storage service, it is an expected timeout.</span></span> <span data-ttu-id=\"aafbb-117\">De lo contrario, se notifica como un error ServerTimeoutError.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-117\">Otherwise, it is reported as a ServerTimeoutError.</span></span>\n* <span data-ttu-id=\"aafbb-118\">__ClientOtherError__: todos los errores del lado cliente, excepto los descritos.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-118\">__ClientOtherError__: All other client-side errors except described ones.</span></span>\n* <span data-ttu-id=\"aafbb-119\">__Correcto__: solicitud correcta.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-119\">__Success__: Successful request</span></span>\n\n<span data-ttu-id=\"aafbb-120\">Los siguientes recursos resultan útiles para entender los códigos de error y estado relacionados con el almacenamiento:</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-120\">The following resources are useful for understanding storage-related status and error codes:</span></span>\n\n* <span data-ttu-id=\"aafbb-121\">[Códigos de error comunes de las API REST](https://docs.microsoft.com/en-us/rest/api/storageservices/Common-REST-API-Error-Codes?redirectedfrom=MSDN)</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-121\">[Common REST API Error Codes](https://docs.microsoft.com/en-us/rest/api/storageservices/Common-REST-API-Error-Codes?redirectedfrom=MSDN).</span></span>\n* <span data-ttu-id=\"aafbb-122\">[Códigos de error de Blob service](https://docs.microsoft.com/en-us/rest/api/storageservices/Blob-Service-Error-Codes?redirectedfrom=MSDN)</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-122\">[Blob Service Error Codes](https://docs.microsoft.com/en-us/rest/api/storageservices/Blob-Service-Error-Codes?redirectedfrom=MSDN).</span></span>\n* <span data-ttu-id=\"aafbb-123\">[Códigos de error de Queue service](https://docs.microsoft.com/en-us/rest/api/storageservices/Queue-Service-Error-Codes?redirectedfrom=MSDN)</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-123\">[Queue Service Error Codes](https://docs.microsoft.com/en-us/rest/api/storageservices/Queue-Service-Error-Codes?redirectedfrom=MSDN).</span></span>\n* <span data-ttu-id=\"aafbb-124\">[Códigos de error de Table service](https://docs.microsoft.com/en-us/rest/api/storageservices/Table-Service-Error-Codes?redirectedfrom=MSDN)</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-124\">[Table Service Error Codes](https://docs.microsoft.com/en-us/rest/api/storageservices/Table-Service-Error-Codes?redirectedfrom=MSDN).</span></span>\n* <span data-ttu-id=\"aafbb-125\">[Códigos de error de File service](https://docs.microsoft.com/en-us/rest/api/storageservices/File-Service-Error-Codes?redirectedfrom=MSDN)</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-125\">[File Service Error Codes](https://docs.microsoft.com/en-us/rest/api/storageservices/File-Service-Error-Codes?redirectedfrom=MSDN).</span></span>\n\n\n"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "## <a name=\"common-issues\"></a><span data-ttu-id=\"aafbb-126\">Problemas comunes</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-126\">Common Issues</span></span>"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"the-client-is-receiving-http-403-forbidden-messages\"></a><span data-ttu-id=\"aafbb-127\">El cliente recibe mensajes HTTP 403 (prohibido)</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-127\">The client is receiving HTTP 403 (Forbidden) messages</span></span>\n<span data-ttu-id=\"aafbb-128\">Si la aplicación cliente inicia errores HTTP 403 (prohibido), uno de los motivos más probables es que el cliente esté usando una Firma de acceso compartido (SAS) expirada al enviar una solicitud de almacenamiento (aunque hay otras causas posibles, como un sesgo del reloj, que las claves no sean válidas o que los encabezados estén vacíos).</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-128\">If your client application is throwing HTTP 403 (Forbidden) errors, a likely cause is that the client is using an expired Shared Access Signature (SAS) when it sends a storage request (although other possible causes include clock skew, invalid keys, and empty headers).</span></span> <span data-ttu-id=\"aafbb-129\">Si el motivo es que la clave SAS expiró, no verá ninguna entrada en los datos de registro del registro de Almacenamiento del lado servidor.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-129\">If an expired SAS key is the cause, you will not see any entries in the server-side Storage Logging log data.</span></span>\n\n<span data-ttu-id=\"aafbb-130\">Si el problema está relacionado con los tokens SAS, debe investigar el motivo por el que el token de SAS expira antes de que el cliente envíe el token al servidor:</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-130\">If the issue is related to SAS tokens, you should investigate why the SAS token is expiring before the client sends the token to the server:</span></span>\n* <span data-ttu-id=\"aafbb-131\">Normalmente, cuando crea una SAS para que la use un cliente inmediatamente, no debe establecer la hora de inicio.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-131\">Typically, you should not set a start time when you create a SAS for a client to use immediately.</span></span> <span data-ttu-id=\"aafbb-132\">Si existen pequeñas diferencias entre el reloj del host que genera la SAS y que usa la hora actual, por una parte, y el del servicio de almacenamiento, por otra, es posible que el servicio de almacenamiento reciba una SAS que todavía no es válida.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-132\">If there are small clock differences between the host generating the SAS using the current time and the storage service, then it is possible for the storage service to receive a SAS that is not yet valid.</span></span>\n* <span data-ttu-id=\"aafbb-133\">En las SAS, no establezca tiempos de expiración muy breves.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-133\">Do not set a very short expiry time on a SAS.</span></span> <span data-ttu-id=\"aafbb-134\">También en este caso, si existen pequeñas diferencias entre el reloj del host que genera la SAS y el del servicio de almacenamiento, puede que la SAS expire, aparentemente, antes de lo que se esperaba.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-134\">Again, small clock differences between the host generating the SAS and the storage service can lead to a SAS apparently expiring earlier than anticipated.</span></span>\n* <span data-ttu-id=\"aafbb-135\">¿El parámetro de versión de la clave SAS (por ejemplo, sv=2015-04-05) coincide con la versión de la biblioteca de cliente de Almacenamiento que está utilizando?</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-135\">Does the version parameter in the SAS key (for example sv=2015-04-05) match the version of the Storage Client Library you are using?</span></span> <span data-ttu-id=\"aafbb-136\">Recomendamos usar la última versión de la biblioteca de cliente de Storage.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-136\">We recommend that you always use the latest version of the Storage Client Library.</span></span>\n* <span data-ttu-id=\"aafbb-137\">Si vuelve a generar las claves de acceso de almacenamiento, esto puede invalidar todos los token de SAS existentes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-137\">If you regenerate your storage access keys, any existing SAS tokens may be invalidated.</span></span> <span data-ttu-id=\"aafbb-138\">Este problema puede producirse si genera tokens de SAS con un tiempo de expiración duradero para que los copien en caché las aplicaciones cliente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-138\">This issue may arise if you generate SAS tokens with a long expiry time for client applications to cache.</span></span>\n* <span data-ttu-id=\"aafbb-139\">Si utiliza la biblioteca de cliente de Almacenamiento para generar tokens de SAS, es fácil generar un token válido.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-139\">If you are using the Storage Client Library to generate SAS tokens, then it is easy to build a valid token.</span></span> <span data-ttu-id=\"aafbb-140\">Sin embargo, si usa la API REST de Storage y construye manualmente los tokens de SAS, consulte Delegar el acceso con una firma de acceso compartido.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-140\">However, if you are using the Storage REST API and constructing the SAS tokens by hand, see Delegating Access with a Shared Access Signature.</span></span>"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"the-client-is-receiving-http-404-not-found-messages\"></a><span data-ttu-id=\"aafbb-141\">El cliente recibe mensajes HTTP 404 (no encontrado)</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-141\">The client is receiving HTTP 404 (Not found) messages</span></span>\n<span data-ttu-id=\"aafbb-142\">Si la aplicación cliente recibe un mensaje HTTP 404 (no encontrado) del servidor, esto significa que el objeto que estaba tratando de usar el cliente (por ejemplo, una entidad, una tabla, un BLOB, un contenedor o una cola) no existe en el servicio de almacenamiento.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-142\">If the client application receives an HTTP 404 (Not found) message from the server, this implies that the object the client was attempting to use (such as an entity, table, blob, container, or queue) does not exist in the storage service.</span></span> <span data-ttu-id=\"aafbb-143\">Hay varios motivos posibles, por ejemplo:</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-143\">There are a number of possible reasons for this, such as:</span></span>\n\n* [<span data-ttu-id=\"aafbb-144\">El cliente u otro proceso eliminaron anteriormente el objeto</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-144\">The client or another process previously deleted the object</span></span>](https://docs.microsoft.com/en-us/azure/storage/common/storage-monitoring-diagnosing-troubleshooting?toc=%2fazure%2fstorage%2fqueues%2ftoc.json#client-previously-deleted-the-object)\n* [<span data-ttu-id=\"aafbb-145\">Un problema de autorización de Firma de acceso compartido (SAS)</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-145\">A Shared Access Signature (SAS) authorization issue</span></span>](https://docs.microsoft.com/en-us/azure/storage/common/storage-monitoring-diagnosing-troubleshooting?toc=%2fazure%2fstorage%2fqueues%2ftoc.json#SAS-authorization-issue)\n* [<span data-ttu-id=\"aafbb-146\">El código JavaScript del lado cliente no tiene permiso para acceder al objeto</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-146\">Client-side JavaScript code does not have permission to access the object</span></span>](https://docs.microsoft.com/en-us/azure/storage/common/storage-monitoring-diagnosing-troubleshooting?toc=%2fazure%2fstorage%2fqueues%2ftoc.json#JavaScript-code-does-not-have-permission)\n* [<span data-ttu-id=\"aafbb-147\">Error de red</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-147\">Network failure</span></span>](https://docs.microsoft.com/en-us/azure/storage/common/storage-monitoring-diagnosing-troubleshooting?toc=%2fazure%2fstorage%2fqueues%2ftoc.json#network-failure)"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"the-client-is-receiving-http-409-conflict-messages\"></a><span data-ttu-id=\"aafbb-148\">El cliente recibe mensajes HTTP 409 (conflicto)</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-148\">The client is receiving HTTP 409 (Conflict) messages</span></span>\n<span data-ttu-id=\"aafbb-149\">La causa habitual de este error es una aplicación cliente que elimina y vuelve a crear inmediatamente una unidad de almacenamiento con el mismo nombre.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-149\">The common cause of this error is a client application deleting and then immediately recreating a storage unit using the same name.</span></span> <span data-ttu-id=\"aafbb-150\">Cuando un cliente elimina contenedores de BLOB, tablas o colas, transcurre un breve período hasta que el nombre vuelve a estar disponible.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-150\">When a client deletes blob containers, tables, or queues there is a brief period before the name becomes available again.</span></span>\n\n<span data-ttu-id=\"aafbb-151\">La aplicación cliente debe usar nombres de contenedor únicos siempre que cree nuevos contenedores si el patrón eliminar / volver a crear es común.</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-151\">The client application should use unique container names whenever it creates new containers if the delete/recreate pattern is common.</span></span>"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"troubleshooting-guidence\"></a><span data-ttu-id=\"aafbb-152\">Guía de solución de problemas</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-152\">Troubleshooting guidence</span></span>\n<span data-ttu-id=\"aafbb-153\">Encontrará más información sobre cómo diagnosticar y resolver problemas en este [documento](https://docs.microsoft.com/en-us/azure/storage/common/storage-monitoring-diagnosing-troubleshooting?toc=%2fazure%2fstorage%2fqueues%2ftoc.json#troubleshooting-guidance).</span><span class=\"sxs-lookup\"><span data-stu-id=\"aafbb-153\">More information to diagnose and solves issues can be found in this [document](https://docs.microsoft.com/en-us/azure/storage/common/storage-monitoring-diagnosing-troubleshooting?toc=%2fazure%2fstorage%2fqueues%2ftoc.json#troubleshooting-guidance)</span></span>"
+            },
+            "conditionalVisibility": null,
+            "halfWidth": false
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"73994-101\">Errores de dependencia</span><span class=\"sxs-lookup\"><span data-stu-id=\"73994-101\">Dependency Failures</span></span>",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "tsg",
+            "resourceType": "microsoft.insights/components",
+            "order": 200
+        }
+    ]
+}

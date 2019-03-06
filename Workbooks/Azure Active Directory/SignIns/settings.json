@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"f43d8-101\">SignIns</span><span class=\"sxs-lookup\"><span data-stu-id=\"f43d8-101\">SignIns</span></span>",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "microsoft.aadiam/tenant",
+            "order": 100
+        }
+    ]
+}

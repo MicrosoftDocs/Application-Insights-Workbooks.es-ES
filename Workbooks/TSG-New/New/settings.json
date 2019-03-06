@@ -1,0 +1,14 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"c3ea0-101\">Nuevo</span><span class=\"sxs-lookup\"><span data-stu-id=\"c3ea0-101\">New</span></span>",
+    "description": "<span data-ttu-id=\"c3ea0-102\">Guía de solución de problemas (vacía)</span><span class=\"sxs-lookup\"><span data-stu-id=\"c3ea0-102\">Blank troubleshooting guide</span></span>",
+    "icon": "plus.svg",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "tsg",
+            "resourceType": "microsoft.insights/components",
+            "order": 200
+        }
+    ]
+}
