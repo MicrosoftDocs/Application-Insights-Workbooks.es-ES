@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"03d05-101\">Conexiones con errores</span><span class=\"sxs-lookup\"><span data-stu-id=\"03d05-101\">Failed Connections</span></span>",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "order": 200
+        }
+    ]
+}

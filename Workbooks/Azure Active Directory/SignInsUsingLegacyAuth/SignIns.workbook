@@ -1,12 +1,12 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
     "version": "Notebook/1.0",
-    "isLocked": false,
+    "isLocked": true,
     "items": [
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"sign-ins-using-legacy-auth\"></a><span data-ttu-id=\"09897-101\">Inicios de sesión que utilizan una autenticación heredada</span><span class=\"sxs-lookup\"><span data-stu-id=\"09897-101\">Sign-ins using Legacy Auth</span></span>"
+                "json": "# <a name=\"sign-ins-using-legacy-auth\"></a><span data-ttu-id=\"cfd9a-101\">Inicios de sesión que utilizan una autenticación heredada</span><span class=\"sxs-lookup\"><span data-stu-id=\"cfd9a-101\">Sign-ins using Legacy Auth</span></span>"
             },
             "conditionalVisibility": null
         },
@@ -148,7 +148,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"legacy-auth-based-sign-ins-by-status\"></a><span data-ttu-id=\"09897-102\">Inicios de sesión basados en la autenticación heredada por estado</span><span class=\"sxs-lookup\"><span data-stu-id=\"09897-102\">Legacy Auth based Sign-ins by Status</span></span>"
+                "json": "## <a name=\"legacy-auth-based-sign-ins-by-status\"></a><span data-ttu-id=\"cfd9a-102\">Inicios de sesión basados en la autenticación heredada por estado</span><span class=\"sxs-lookup\"><span data-stu-id=\"cfd9a-102\">Legacy Auth based Sign-ins by Status</span></span>"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -181,7 +181,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"sign-ins-by-legacy-auth-protocols\"></a><span data-ttu-id=\"09897-103\">Inicios de sesión por protocolos de autenticación heredada</span><span class=\"sxs-lookup\"><span data-stu-id=\"09897-103\">Sign-ins by Legacy Auth Protocols</span></span>"
+                "json": "## <a name=\"sign-ins-by-legacy-auth-protocols\"></a><span data-ttu-id=\"cfd9a-103\">Inicios de sesión por protocolos de autenticación heredada</span><span class=\"sxs-lookup\"><span data-stu-id=\"cfd9a-103\">Sign-ins by Legacy Auth Protocols</span></span>"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -189,7 +189,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"legacy-auth-status\"></a><span data-ttu-id=\"09897-104\">Estado de la autenticación heredada</span><span class=\"sxs-lookup\"><span data-stu-id=\"09897-104\">Legacy Auth Status</span></span>"
+                "json": "### <a name=\"legacy-auth-status\"></a><span data-ttu-id=\"cfd9a-104\">Estado de la autenticación heredada</span><span class=\"sxs-lookup\"><span data-stu-id=\"cfd9a-104\">Legacy Auth Status</span></span>"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -241,7 +241,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"legacy-auth-sign-ins-by-users\"></a><span data-ttu-id=\"09897-105\">Inicios de sesión de autenticación heredada por usuarios</span><span class=\"sxs-lookup\"><span data-stu-id=\"09897-105\">Legacy Auth Sign-ins by Users</span></span>"
+                "json": "### <a name=\"legacy-auth-sign-ins-by-users\"></a><span data-ttu-id=\"cfd9a-105\">Inicios de sesión de autenticación heredada por usuarios</span><span class=\"sxs-lookup\"><span data-stu-id=\"cfd9a-105\">Legacy Auth Sign-ins by Users</span></span>"
             },
             "conditionalVisibility": null
         },
@@ -322,7 +322,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"legacy-auth-sign-ins-by-apps\"></a><span data-ttu-id=\"09897-106\">Inicios de sesión de autenticación heredada por aplicaciones</span><span class=\"sxs-lookup\"><span data-stu-id=\"09897-106\">Legacy Auth Sign-ins by Apps</span></span>"
+                "json": "### <a name=\"legacy-auth-sign-ins-by-apps\"></a><span data-ttu-id=\"cfd9a-106\">Inicios de sesión de autenticación heredada por aplicaciones</span><span class=\"sxs-lookup\"><span data-stu-id=\"cfd9a-106\">Legacy Auth Sign-ins by Apps</span></span>"
             },
             "conditionalVisibility": null,
             "customWidth": "50"

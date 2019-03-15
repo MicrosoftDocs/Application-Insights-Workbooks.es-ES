@@ -1,12 +1,12 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
     "version": "Notebook/1.0",
-    "isLocked": false,
+    "isLocked": true,
     "items": [
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"sign-ins-using-conditional-access\"></a><span data-ttu-id=\"e8cf8-101\">Inicios de sesión con acceso condicional</span><span class=\"sxs-lookup\"><span data-stu-id=\"e8cf8-101\">Sign-ins using Conditional Access</span></span>"
+                "json": "# <a name=\"sign-ins-using-conditional-access\"></a><span data-ttu-id=\"59873-101\">Inicios de sesión con acceso condicional</span><span class=\"sxs-lookup\"><span data-stu-id=\"59873-101\">Sign-ins using Conditional Access</span></span>"
             },
             "conditionalVisibility": null
         },
@@ -148,7 +148,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"sign-ins-by-ca-status\"></a><span data-ttu-id=\"e8cf8-102\">Inicios de sesión por estado de acceso condicional</span><span class=\"sxs-lookup\"><span data-stu-id=\"e8cf8-102\">Sign-ins by CA Status</span></span>"
+                "json": "## <a name=\"sign-ins-by-ca-status\"></a><span data-ttu-id=\"59873-102\">Inicios de sesión por estado de acceso condicional</span><span class=\"sxs-lookup\"><span data-stu-id=\"59873-102\">Sign-ins by CA Status</span></span>"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -156,7 +156,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"sign-ins-by-grant-controls\"></a><span data-ttu-id=\"e8cf8-103\">Inicios de sesión por controles de concesión</span><span class=\"sxs-lookup\"><span data-stu-id=\"e8cf8-103\">Sign-ins by Grant Controls</span></span>"
+                "json": "## <a name=\"sign-ins-by-grant-controls\"></a><span data-ttu-id=\"59873-103\">Inicios de sesión por controles de concesión</span><span class=\"sxs-lookup\"><span data-stu-id=\"59873-103\">Sign-ins by Grant Controls</span></span>"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -214,7 +214,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"mfa-sign-ins-through-conditional-access\"></a><span data-ttu-id=\"e8cf8-104\">Inicios de sesión de MFA mediante el acceso condicional</span><span class=\"sxs-lookup\"><span data-stu-id=\"e8cf8-104\">MFA Sign-ins through Conditional Access</span></span>"
+                "json": "### <a name=\"mfa-sign-ins-through-conditional-access\"></a><span data-ttu-id=\"59873-104\">Inicios de sesión de MFA mediante el acceso condicional</span><span class=\"sxs-lookup\"><span data-stu-id=\"59873-104\">MFA Sign-ins through Conditional Access</span></span>"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -282,7 +282,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"apps-sign-ins-with-no-ca-policies\"></a><span data-ttu-id=\"e8cf8-105\">Inicios de sesión de aplicaciones con directivas que no sean de acceso condicional</span><span class=\"sxs-lookup\"><span data-stu-id=\"e8cf8-105\">Apps Sign-ins with No CA Policies</span></span>"
+                "json": "### <a name=\"apps-sign-ins-with-no-ca-policies\"></a><span data-ttu-id=\"59873-105\">Inicios de sesión de aplicaciones con directivas que no sean de acceso condicional</span><span class=\"sxs-lookup\"><span data-stu-id=\"59873-105\">Apps Sign-ins with No CA Policies</span></span>"
             },
             "conditionalVisibility": null
         },
@@ -325,7 +325,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"apps-sign-in-count-by-ca-policy-status\"></a><span data-ttu-id=\"e8cf8-106\">Número de inicios de sesión de aplicaciones por estado de directivas de acceso condicional</span><span class=\"sxs-lookup\"><span data-stu-id=\"e8cf8-106\">Apps Sign-in Count by CA Policy Status</span></span>"
+                "json": "### <a name=\"apps-sign-in-count-by-ca-policy-status\"></a><span data-ttu-id=\"59873-106\">Número de inicios de sesión de aplicaciones por estado de directivas de acceso condicional</span><span class=\"sxs-lookup\"><span data-stu-id=\"59873-106\">Apps Sign-in Count by CA Policy Status</span></span>"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
