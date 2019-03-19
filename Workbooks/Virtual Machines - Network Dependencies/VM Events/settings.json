@@ -1,0 +1,13 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"b96fe-101\">Eventos de máquina virtual (versión preliminar)</span><span class=\"sxs-lookup\"><span data-stu-id=\"b96fe-101\">VM Events (preview)</span></span>",
+    "author": "Microsoft",
+    "isPreview": true,
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "order": 200
+        }
+    ]
+}

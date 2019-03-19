@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"2d2a0-101\">Actividad de inscripción en Intune</span><span class=\"sxs-lookup\"><span data-stu-id=\"2d2a0-101\">Intune Enrollment Activity</span></span>",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "microsoft.intune/tenant",
+            "order": 100
+        }
+    ]
+}
