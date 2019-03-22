@@ -7,7 +7,7 @@
         {
             "type": "workbook",
             "resourceType": "microsoft.operationalinsights/workspaces",
-            "order": 200
+            "order": 300
         }
     ]
 }
