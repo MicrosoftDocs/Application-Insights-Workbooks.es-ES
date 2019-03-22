@@ -1,12 +1,12 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
     "version": "Notebook/1.0",
-    "isLocked": false,
+    "isLocked": true,
     "items": [
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"usage-calendar\"></a><span data-ttu-id=\"df243-101\">Calendario de uso</span><span class=\"sxs-lookup\"><span data-stu-id=\"df243-101\">Usage Calendar</span></span>\n<span data-ttu-id=\"df243-102\">Este informe le ayudará a comprender los patrones de uso de la aplicación durante todos los días de la semana.</span><span class=\"sxs-lookup\"><span data-stu-id=\"df243-102\">This report helps you understand the usage patterns of your application through the days of the week.</span></span> <span data-ttu-id=\"df243-103\">Le ayudará a identificar patrones, tales como:</span><span class=\"sxs-lookup\"><span data-stu-id=\"df243-103\">It should help you identify patterns like:</span></span>\n* <span data-ttu-id=\"df243-104\">Mi aplicación se suele usar los días laborables casi no tiene ninguna actividad durante el fin de semana. O bien,</span><span class=\"sxs-lookup\"><span data-stu-id=\"df243-104\">My app is primarly used on weekdays and has almost no activity over the weekend, or</span></span>\n* <span data-ttu-id=\"df243-105\">En general, la actividad ha aumentado semana a semana y especialmente los lunes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"df243-105\">Overall activity has increased week over week, and especially on Mondays.</span></span>\n\n<span data-ttu-id=\"df243-106\">Utilice los siguientes parámetros para seleccionar las actividades de la aplicación que le interesan, el período de tiempo de análisis y la métrica que desea analizar (número de usuarios, sesiones, eventos).</span><span class=\"sxs-lookup\"><span data-stu-id=\"df243-106\">Use the parameters below to select the app activities you are interested in, the analysis time window, and the metric you wish to analyze (count of users, sessions, events).</span></span>"
+                "json": "# <a name=\"usage-calendar\"></a><span data-ttu-id=\"2f228-101\">Calendario de uso</span><span class=\"sxs-lookup\"><span data-stu-id=\"2f228-101\">Usage Calendar</span></span>\n<span data-ttu-id=\"2f228-102\">Este informe le ayudará a comprender los patrones de uso de la aplicación durante todos los días de la semana.</span><span class=\"sxs-lookup\"><span data-stu-id=\"2f228-102\">This report helps you understand the usage patterns of your application through the days of the week.</span></span> <span data-ttu-id=\"2f228-103\">Le ayudará a identificar patrones, tales como:</span><span class=\"sxs-lookup\"><span data-stu-id=\"2f228-103\">It should help you identify patterns like:</span></span>\n* <span data-ttu-id=\"2f228-104\">Mi aplicación se suele usar los días laborables casi no tiene ninguna actividad durante el fin de semana. O bien,</span><span class=\"sxs-lookup\"><span data-stu-id=\"2f228-104\">My app is primarly used on weekdays and has almost no activity over the weekend, or</span></span>\n* <span data-ttu-id=\"2f228-105\">En general, la actividad ha aumentado semana a semana y especialmente los lunes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"2f228-105\">Overall activity has increased week over week, and especially on Mondays.</span></span>\n\n<span data-ttu-id=\"2f228-106\">Utilice los siguientes parámetros para seleccionar las actividades de la aplicación que le interesan, el período de tiempo de análisis y la métrica que desea analizar (número de usuarios, sesiones, eventos).</span><span class=\"sxs-lookup\"><span data-stu-id=\"2f228-106\">Use the parameters below to select the app activities you are interested in, the analysis time window, and the metric you wish to analyze (count of users, sessions, events).</span></span>"
             },
             "conditionalVisibility": null
         },
@@ -108,7 +108,7 @@
         {
             "type": 1,
             "content": {
-                "json": "##  <a name=\"usage\"></a><span data-ttu-id=\"df243-107\">Uso</span><span class=\"sxs-lookup\"><span data-stu-id=\"df243-107\">Usage</span></span>\n<span data-ttu-id=\"df243-108\">Muestra el uso de su aplicación medido por el parámetro `Metric` elegido anteriormente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"df243-108\">Shows your app usage measured by the `Metric` parameter chosen above.</span></span>"
+                "json": "##  <a name=\"usage\"></a><span data-ttu-id=\"2f228-107\">Uso</span><span class=\"sxs-lookup\"><span data-stu-id=\"2f228-107\">Usage</span></span>\n<span data-ttu-id=\"2f228-108\">Muestra el uso de su aplicación medido por el parámetro `Metric` elegido anteriormente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"2f228-108\">Shows your app usage measured by the `Metric` parameter chosen above.</span></span>"
             },
             "conditionalVisibility": null,
             "customWidth": "65"
@@ -116,7 +116,7 @@
         {
             "type": 1,
             "content": {
-                "json": "##  <a name=\"calendar\"></a><span data-ttu-id=\"df243-109\">Calendario</span><span class=\"sxs-lookup\"><span data-stu-id=\"df243-109\">Calendar</span></span>\n<span data-ttu-id=\"df243-110\">Calendario básico que se usará como referencia en el análisis.</span><span class=\"sxs-lookup\"><span data-stu-id=\"df243-110\">A basic calendar to use as reference in your analysis.</span></span>"
+                "json": "##  <a name=\"calendar\"></a><span data-ttu-id=\"2f228-109\">Calendario</span><span class=\"sxs-lookup\"><span data-stu-id=\"2f228-109\">Calendar</span></span>\n<span data-ttu-id=\"2f228-110\">Calendario básico que se usará como referencia en el análisis.</span><span class=\"sxs-lookup\"><span data-stu-id=\"2f228-110\">A basic calendar to use as reference in your analysis.</span></span>"
             },
             "conditionalVisibility": null,
             "customWidth": "35"
