@@ -1,15 +1,12 @@
 {
-    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
     "version": "Notebook/1.0",
-    "isLocked": true,
     "items": [
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"troubleshooting-issues-using-performance-counters\"></a><span data-ttu-id=\"3d788-101\">Solución de problemas con los contadores de rendimiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d788-101\">Troubleshooting Issues Using Performance Counters</span></span>"
+                "json": "# <a name=\"troubleshooting-issues-using-performance-counters\"></a><span data-ttu-id=\"55c10-101\">Solución de problemas con los contadores de rendimiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-101\">Troubleshooting Issues Using Performance Counters</span></span>"
             },
-            "conditionalVisibility": null,
-            "halfWidth": false
+            "conditionalVisibility": null
         },
         {
             "type": 9,
@@ -95,26 +92,22 @@
                             "allowCustom": null
                         },
                         "value": {
-                            "durationMs": 14400000,
-                            "createdTime": "2018-05-16T21:34:47.842Z",
-                            "isInitialTime": false,
-                            "grain": 1,
-                            "useDashboardTimeRange": false
+                            "durationMs": 14400000
                         }
                     }
                 ],
+                "style": "pills",
+                "queryType": 0,
                 "resourceType": "microsoft.insights/components"
             },
-            "conditionalVisibility": null,
-            "halfWidth": false
+            "conditionalVisibility": null
         },
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"problem---high-cpu-utilization\"></a><span data-ttu-id=\"3d788-102\">Problema: Uso elevado de CPU</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d788-102\">Problem - High CPU Utilization</span></span>\n<span data-ttu-id=\"3d788-103\">Un uso constantemente elevado de CPU puede provocar problemas de rendimiento y disponibilidad en la aplicación implementada.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d788-103\">Consistently high CPU utilization can performance and availability problems in your deployed application.</span></span> <span data-ttu-id=\"3d788-104\">Esta sección le ayudará a entender cuáles de los servidores se están ejecutando con la suficiente frecuencia como para afectar posiblemente la confiabilidad de la aplicación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d788-104\">This section will help you understand which of your servers are running hot enough to potentially affect the reliability of your application.</span></span> "
+                "json": "## <a name=\"problem---high-cpu-utilization\"></a><span data-ttu-id=\"55c10-102\">Problema: Uso elevado de CPU</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-102\">Problem - High CPU Utilization</span></span>\n<span data-ttu-id=\"55c10-103\">Un uso constantemente elevado de CPU puede provocar problemas de rendimiento y disponibilidad en la aplicación implementada.</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-103\">Consistently high CPU utilization can performance and availability problems in your deployed application.</span></span> <span data-ttu-id=\"55c10-104\">Esta sección le ayudará a entender cuáles de los servidores se están ejecutando con la suficiente frecuencia como para afectar posiblemente la confiabilidad de la aplicación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-104\">This section will help you understand which of your servers are running hot enough to potentially affect the reliability of your application.</span></span> "
             },
-            "conditionalVisibility": null,
-            "halfWidth": false
+            "conditionalVisibility": null
         },
         {
             "type": 9,
@@ -168,10 +161,11 @@
                         "value": ">"
                     }
                 ],
+                "style": "pills",
+                "queryType": 0,
                 "resourceType": "microsoft.insights/components"
             },
-            "conditionalVisibility": null,
-            "halfWidth": false
+            "conditionalVisibility": null
         },
         {
             "type": 3,
@@ -183,6 +177,9 @@
                 "aggregation": 0,
                 "showAnnotations": false,
                 "showAnalytics": false,
+                "noDataMessage": "Looks like this app is not collecting the specified performance counter. More info on collecting counters can be found at: https://docs.microsoft.com/en-us/azure/azure-monitor/app/performance-counters",
+                "timeContextFromParameter": null,
+                "queryType": 0,
                 "resourceType": "microsoft.insights/components",
                 "visualization": "table",
                 "gridSettings": {
@@ -208,24 +205,22 @@
                     ]
                 }
             },
-            "conditionalVisibility": null,
-            "halfWidth": false
+            "conditionalVisibility": null
         },
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"causes\"></a><span data-ttu-id=\"3d788-105\">Causas</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d788-105\">Causes</span></span>\n<span data-ttu-id=\"3d788-106\">El elevado uso de la CPU normalmente indica que la carga de su sistema es mayor de lo que los recursos de proceso aprovisionados pueden tratar.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d788-106\">High CPU utilization usually indicates that the load on your system is higher than the provisioned compute resources can handle.</span></span> <span data-ttu-id=\"3d788-107\">Esto puede suceder si el uso de la aplicación ha aumentado o debido a una regresión en el rendimiento de la aplicación en una implementación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d788-107\">This may happen if the usage of your application has increased or due to a regression in the performance of the app in a deployment.</span></span>\n\n<span data-ttu-id=\"3d788-108\">Otras posibles razones incluyen: trabajos frecuentes o tareas programadas en la máquina, módulos/complementos/extensiones excesivos, demasiadas aplicaciones web a las que se atiende desde el cuadro, arañas y bots de los motores de búsqueda, etc.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d788-108\">Other possible reasons include: frequent jobs or scheduled tasks on the machine, essessive modules/plugins/extensions, too many web apps being serviced from the box, search engine spiders and bots, etc.</span></span> "
+                "json": "## <a name=\"causes\"></a><span data-ttu-id=\"55c10-105\">Causas</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-105\">Causes</span></span>\n<span data-ttu-id=\"55c10-106\">El elevado uso de la CPU normalmente indica que la carga de su sistema es mayor de lo que los recursos de proceso aprovisionados pueden tratar.</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-106\">High CPU utilization usually indicates that the load on your system is higher than the provisioned compute resources can handle.</span></span> <span data-ttu-id=\"55c10-107\">Esto puede suceder si el uso de la aplicación ha aumentado o debido a una regresión en el rendimiento de la aplicación en una implementación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-107\">This may happen if the usage of your application has increased or due to a regression in the performance of the app in a deployment.</span></span>\n\n<span data-ttu-id=\"55c10-108\">Entre otras razones posibles se incluyen:</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-108\">Other possible reasons include:</span></span> \n1. <span data-ttu-id=\"55c10-109\">Tareas frecuentes o las tareas programadas en la máquina.</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-109\">Frequent jobs or scheduled tasks on the machine,</span></span> \n2. <span data-ttu-id=\"55c10-110\">Módulos, complementos o extensiones excesivos.</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-110\">Excessive modules/plugins/extensions,</span></span> \n3. <span data-ttu-id=\"55c10-111\">Demasiadas aplicaciones web que se ejecutan en los recursos de proceso subyacentes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-111\">Too many web apps running on the underlying compute resources,</span></span> \n4. <span data-ttu-id=\"55c10-112\">Arañas y bots del motor de búsqueda.</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-112\">Search engine spiders and bots.</span></span> "
             },
-            "conditionalVisibility": null,
-            "halfWidth": false
+            "conditionalVisibility": null
         },
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"solutions\"></a><span data-ttu-id=\"3d788-109\">Soluciones</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d788-109\">Solutions</span></span>\n<span data-ttu-id=\"3d788-110\">Si el uso de la CPU es realmente el resultado de una mayor carga, escale la respuesta más apropiada:</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d788-110\">If the CPU utilization is truly a result of increased load, then scaling the most appropriate response:</span></span>\n* <span data-ttu-id=\"3d788-111\">Escalado horizontal: para agregar más recursos de proceso.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d788-111\">Scale out - to add more compute resources.</span></span> <span data-ttu-id=\"3d788-112\">Si 10 máquinas virtuales solían servir a la aplicación, escale a 15 para aliviar la carga de las máquinas virtuales existentes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d788-112\">If 10 VMs used to serve the application, scale it to 15 to relieve the load off the existing VMs.</span></span>\n* <span data-ttu-id=\"3d788-113\">Escalado vertical: utilice una mayor calidad de los recursos (actualice de una CPU de dos núcleos a una CPU de ocho núcleos)</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d788-113\">Scale up - use higher quality of resources (upgrade from 2 core CPU to and 8-core CPU)</span></span>"
+                "json": "## <a name=\"solutions\"></a><span data-ttu-id=\"55c10-113\">Soluciones</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-113\">Solutions</span></span>\n<span data-ttu-id=\"55c10-114\">Si el uso de la CPU es realmente el resultado de una mayor carga, escale la respuesta más apropiada:</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-114\">If the CPU utilization is truly a result of increased load, then scaling the most appropriate response:</span></span>\n* <span data-ttu-id=\"55c10-115\">Escalado horizontal: para agregar más recursos de proceso.</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-115\">Scale out - to add more compute resources.</span></span> <span data-ttu-id=\"55c10-116\">Si 10 máquinas virtuales solían servir a la aplicación, escale a 15 para aliviar la carga de las máquinas virtuales existentes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-116\">If 10 VMs used to serve the application, scale it to 15 to relieve the load off the existing VMs.</span></span>\n* <span data-ttu-id=\"55c10-117\">Escalado vertical: utilice una mayor calidad de los recursos (actualice de una CPU de dos núcleos a una CPU de ocho núcleos)</span><span class=\"sxs-lookup\"><span data-stu-id=\"55c10-117\">Scale up - use higher quality of resources (upgrade from 2 core CPU to and 8-core CPU)</span></span>"
             },
-            "conditionalVisibility": null,
-            "halfWidth": false
+            "conditionalVisibility": null
         }
-    ]
+    ],
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
 }
