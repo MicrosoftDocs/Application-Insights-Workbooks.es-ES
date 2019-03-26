@@ -1,15 +1,12 @@
 {
-    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
     "version": "Notebook/1.0",
-    "isLocked": true,
     "items": [
         {
             "type": 1,
             "content": {
                 "json": "# <a name=\"troubleshooting-issues-using-performance-counters\"></a>Solución de problemas con los contadores de rendimiento"
             },
-            "conditionalVisibility": null,
-            "halfWidth": false
+            "conditionalVisibility": null
         },
         {
             "type": 9,
@@ -95,26 +92,22 @@
                             "allowCustom": null
                         },
                         "value": {
-                            "durationMs": 14400000,
-                            "createdTime": "2018-05-16T21:34:47.842Z",
-                            "isInitialTime": false,
-                            "grain": 1,
-                            "useDashboardTimeRange": false
+                            "durationMs": 14400000
                         }
                     }
                 ],
+                "style": "pills",
+                "queryType": 0,
                 "resourceType": "microsoft.insights/components"
             },
-            "conditionalVisibility": null,
-            "halfWidth": false
+            "conditionalVisibility": null
         },
         {
             "type": 1,
             "content": {
                 "json": "## <a name=\"problem---high-cpu-utilization\"></a>Problema: Uso elevado de CPU\nUn uso constantemente elevado de CPU puede provocar problemas de rendimiento y disponibilidad en la aplicación implementada. Esta sección le ayudará a entender cuáles de los servidores se están ejecutando con la suficiente frecuencia como para afectar posiblemente la confiabilidad de la aplicación. "
             },
-            "conditionalVisibility": null,
-            "halfWidth": false
+            "conditionalVisibility": null
         },
         {
             "type": 9,
@@ -168,10 +161,11 @@
                         "value": ">"
                     }
                 ],
+                "style": "pills",
+                "queryType": 0,
                 "resourceType": "microsoft.insights/components"
             },
-            "conditionalVisibility": null,
-            "halfWidth": false
+            "conditionalVisibility": null
         },
         {
             "type": 3,
@@ -183,6 +177,9 @@
                 "aggregation": 0,
                 "showAnnotations": false,
                 "showAnalytics": false,
+                "noDataMessage": "Looks like this app is not collecting the specified performance counter. More info on collecting counters can be found at: https://docs.microsoft.com/en-us/azure/azure-monitor/app/performance-counters",
+                "timeContextFromParameter": null,
+                "queryType": 0,
                 "resourceType": "microsoft.insights/components",
                 "visualization": "table",
                 "gridSettings": {
@@ -208,24 +205,22 @@
                     ]
                 }
             },
-            "conditionalVisibility": null,
-            "halfWidth": false
+            "conditionalVisibility": null
         },
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"causes\"></a>Causas\nEl elevado uso de la CPU normalmente indica que la carga de su sistema es mayor de lo que los recursos de proceso aprovisionados pueden tratar. Esto puede suceder si el uso de la aplicación ha aumentado o debido a una regresión en el rendimiento de la aplicación en una implementación.\n\nOtras posibles razones incluyen: trabajos frecuentes o tareas programadas en la máquina, módulos/complementos/extensiones excesivos, demasiadas aplicaciones web a las que se atiende desde el cuadro, arañas y bots de los motores de búsqueda, etc. "
+                "json": "## <a name=\"causes\"></a>Causas\nEl elevado uso de la CPU normalmente indica que la carga de su sistema es mayor de lo que los recursos de proceso aprovisionados pueden tratar. Esto puede suceder si el uso de la aplicación ha aumentado o debido a una regresión en el rendimiento de la aplicación en una implementación.\n\nEntre otras razones posibles se incluyen: \n1. Tareas frecuentes o las tareas programadas en la máquina. \n2. Módulos, complementos o extensiones excesivos. \n3. Demasiadas aplicaciones web que se ejecutan en los recursos de proceso subyacentes. \n4. Arañas y bots del motor de búsqueda. "
             },
-            "conditionalVisibility": null,
-            "halfWidth": false
+            "conditionalVisibility": null
         },
         {
             "type": 1,
             "content": {
                 "json": "## <a name=\"solutions\"></a>Soluciones\nSi el uso de la CPU es realmente el resultado de una mayor carga, escale la respuesta más apropiada:\n* Escalado horizontal: para agregar más recursos de proceso. Si 10 máquinas virtuales solían servir a la aplicación, escale a 15 para aliviar la carga de las máquinas virtuales existentes.\n* Escalado vertical: utilice una mayor calidad de los recursos (actualice de una CPU de dos núcleos a una CPU de ocho núcleos)"
             },
-            "conditionalVisibility": null,
-            "halfWidth": false
+            "conditionalVisibility": null
         }
-    ]
+    ],
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
 }
