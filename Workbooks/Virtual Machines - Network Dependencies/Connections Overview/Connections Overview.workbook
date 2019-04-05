@@ -65,14 +65,16 @@
                 "parameterName": "_",
                 "comparison": "isNotEqualTo",
                 "value": null
-            }
+            },
+            "name": "parameters - 0"
         },
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"3d16f-101\">{DisclaimerText}</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d16f-101\">{DisclaimerText}</span></span>\n\n---"
+                "json": "<span data-ttu-id=\"9cbe1-101\">{DisclaimerText}</span><span class=\"sxs-lookup\"><span data-stu-id=\"9cbe1-101\">{DisclaimerText}</span></span>\n\n---"
             },
-            "conditionalVisibility": null
+            "conditionalVisibility": null,
+            "name": "text - 1"
         },
         {
             "type": 9,
@@ -203,7 +205,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "Direction",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"3d16f-102\">Dirección de la conexión de red de las máquinas virtuales</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d16f-102\">Direction of the network connection from the VMs</span></span>",
+                        "description": "<span data-ttu-id=\"9cbe1-102\">Dirección de la conexión de red de las máquinas virtuales</span><span class=\"sxs-lookup\"><span data-stu-id=\"9cbe1-102\">Direction of the network connection from the VMs</span></span>",
                         "isRequired": true,
                         "value": "outbound",
                         "isHiddenWhenLocked": false,
@@ -266,7 +268,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "Hierarchy",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"3d16f-103\">Seleccione el nivel de detalle que se mostrará en la tabla siguiente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d16f-103\">Select the level of detail to be shown in the table below</span></span>",
+                        "description": "<span data-ttu-id=\"9cbe1-103\">Seleccione el nivel de detalle que se mostrará en la tabla siguiente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"9cbe1-103\">Select the level of detail to be shown in the table below</span></span>",
                         "isRequired": true,
                         "query": "let outboundTable = datatable (value:string, Display:string)\r\n    [\"0\", \"Computer -> Process -> Remote IP -> Port\",\r\n     \"1\", \"Computer -> Process -> Remote IP\",\r\n     \"2\", \"Computer -> Process\",\r\n     \"3\", \"Computer\"];\r\nlet outbound = outboundTable | extend type = 'outbound';\r\nlet inboundTable = datatable (value:string, Display:string)\r\n    [\"0\", \"Computer -> Process -> Port -> Remote IP\",\r\n     \"1\", \"Computer -> Process -> Port\",\r\n     \"2\", \"Computer -> Process\",\r\n     \"3\", \"Computer\"];\r\nlet inbound = inboundTable | extend type = 'inbound';\r\nlet table = outbound | union inbound;\r\ntable\r\n| where type == iif('{Direction}' == 'outbound', 'outbound', 'inbound')\r\n| project value, Display",
                         "value": "2",
@@ -282,7 +284,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "TableFilter",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"3d16f-104\">Filtre la tabla en función de la presencia de conexiones malintencionadas o al menos un error de vínculo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d16f-104\">Filter table based on presence of malicious connections or at least one link failing</span></span>",
+                        "description": "<span data-ttu-id=\"9cbe1-104\">Filtre la tabla en función de la presencia de conexiones malintencionadas o al menos un error de vínculo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"9cbe1-104\">Filter table based on presence of malicious connections or at least one link failing</span></span>",
                         "isRequired": false,
                         "multiSelect": true,
                         "quote": "",
@@ -300,7 +302,8 @@
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces"
             },
-            "conditionalVisibility": null
+            "conditionalVisibility": null,
+            "name": "parameters - 2"
         },
         {
             "type": 9,
@@ -576,26 +579,25 @@
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces"
             },
-            "conditionalVisibility": null
+            "conditionalVisibility": null,
+            "name": "parameters - 3"
         },
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"3d16f-105\">💡 <em>Seleccione una fila de la tabla siguiente para ver los detalles de conexión de esa entrada.</em></span><span class=\"sxs-lookup\"><span data-stu-id=\"3d16f-105\">💡 <em>Select a row from the table below to view connection details for that entry.</em></span></span>"
+                "json": "<span data-ttu-id=\"9cbe1-105\">💡 <em>Seleccione una fila de la tabla siguiente para ver los detalles de conexión de esa entrada.</em></span><span class=\"sxs-lookup\"><span data-stu-id=\"9cbe1-105\">💡 <em>Select a row from the table below to view connection details for that entry.</em></span></span>"
             },
-            "conditionalVisibility": null
+            "conditionalVisibility": null,
+            "name": "text - 4"
         },
         {
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
                 "query": "// {Workspace} {Test} {TimeRange} {Direction} {ComputerNameContains} {Computers} {ComputerFilter} {Hierarchy} {TableFilter} {ServiceMapComputers} {MaliciousIpData} {ComputerData} {RemoteIpDataInbound} {ProcessName} {RemoteIpData} {SourcePortData} {DestinationPortData} {QueryProject} {Computer_Process_IP_Port} {Computer_Process_IP} {Computer_Process} {Computer} {FinalQuery}\r\n{FinalQuery:value}",
-                "showQuery": false,
                 "size": 0,
-                "aggregation": 0,
-                "showAnnotations": false,
                 "exportParameterName": "ConnectionGrid",
-                "showAnalytics": false,
+                "showAnalytics": true,
                 "noDataMessage": "No data to be shown for this particular scope combination, please adjust the time range, table filters, etc.",
                 "timeContext": {
                     "durationMs": 0
@@ -769,7 +771,9 @@
                     }
                 }
             },
-            "conditionalVisibility": null
+            "conditionalVisibility": null,
+            "showPin": true,
+            "name": "query - 5"
         },
         {
             "type": 9,
@@ -880,78 +884,79 @@
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces"
             },
-            "conditionalVisibility": null
+            "conditionalVisibility": null,
+            "name": "parameters - 6"
         },
         {
             "type": 1,
             "content": {
-                "json": "<h2 style=\"font-weight:normal;\"><span data-ttu-id=\"3d16f-106\">{Heading}</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d16f-106\">{Heading}</span></span></h2>"
-            },
-            "conditionalVisibility": {
-                "parameterName": "ShowDetail",
-                "comparison": "isEqualTo",
-                "value": "True"
-            }
-        },
-        {
-            "type": 1,
-            "content": {
-                "json": "### <a name=\"responses\"></a><span data-ttu-id=\"3d16f-107\">Respuestas</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d16f-107\">Responses</span></span>"
+                "json": "<h2 style=\"font-weight:normal;\"><span data-ttu-id=\"9cbe1-106\">{Heading}</span><span class=\"sxs-lookup\"><span data-stu-id=\"9cbe1-106\">{Heading}</span></span></h2>"
             },
             "conditionalVisibility": {
                 "parameterName": "ShowDetail",
                 "comparison": "isEqualTo",
                 "value": "True"
             },
-            "customWidth": "25"
+            "name": "text - 7"
         },
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"latency\"></a><span data-ttu-id=\"3d16f-108\">Latencia</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d16f-108\">Latency</span></span>"
+                "json": "### <a name=\"responses\"></a><span data-ttu-id=\"9cbe1-107\">Respuestas</span><span class=\"sxs-lookup\"><span data-stu-id=\"9cbe1-107\">Responses</span></span>"
             },
             "conditionalVisibility": {
                 "parameterName": "ShowDetail",
                 "comparison": "isEqualTo",
                 "value": "True"
             },
-            "customWidth": "25"
+            "customWidth": "25",
+            "name": "text - 8"
         },
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"network\"></a><span data-ttu-id=\"3d16f-109\">Red</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d16f-109\">Network</span></span>"
+                "json": "### <a name=\"latency\"></a><span data-ttu-id=\"9cbe1-108\">Latencia</span><span class=\"sxs-lookup\"><span data-stu-id=\"9cbe1-108\">Latency</span></span>"
             },
             "conditionalVisibility": {
                 "parameterName": "ShowDetail",
                 "comparison": "isEqualTo",
                 "value": "True"
             },
-            "customWidth": "25"
+            "customWidth": "25",
+            "name": "text - 9"
         },
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"links\"></a><span data-ttu-id=\"3d16f-110\">Vínculos</span><span class=\"sxs-lookup\"><span data-stu-id=\"3d16f-110\">Links</span></span>"
+                "json": "### <a name=\"network\"></a><span data-ttu-id=\"9cbe1-109\">Red</span><span class=\"sxs-lookup\"><span data-stu-id=\"9cbe1-109\">Network</span></span>"
             },
             "conditionalVisibility": {
                 "parameterName": "ShowDetail",
                 "comparison": "isEqualTo",
                 "value": "True"
             },
-            "customWidth": "25"
+            "customWidth": "25",
+            "name": "text - 10"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"links\"></a><span data-ttu-id=\"9cbe1-110\">Vínculos</span><span class=\"sxs-lookup\"><span data-stu-id=\"9cbe1-110\">Links</span></span>"
+            },
+            "conditionalVisibility": {
+                "parameterName": "ShowDetail",
+                "comparison": "isEqualTo",
+                "value": "True"
+            },
+            "customWidth": "25",
+            "name": "text - 11"
         },
         {
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
                 "query": "// {Workspace:label}\r\nlet SourceMachineData = VMConnection\r\n| where TimeGenerated {TimeRange}\r\n| {QueryFilter}\r\n| where Direction == '{Direction}'\r\n| summarize Responses = sum(Responses) by bin(TimeGenerated, time('{TimeRange:grain}'));\r\nSourceMachineData",
-                "showQuery": false,
                 "size": 1,
-                "aggregation": 0,
-                "showAnnotations": false,
-                "showAnalytics": false,
-                "timeContextFromParameter": null,
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "crossComponentResources": [
@@ -964,19 +969,16 @@
                 "comparison": "isEqualTo",
                 "value": "True"
             },
-            "customWidth": "25"
+            "customWidth": "25",
+            "name": "query - 12"
         },
         {
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
                 "query": "// {Workspace:label}\r\nlet SourceMachineData = VMConnection\r\n| where TimeGenerated {TimeRange}\r\n| {QueryFilter}\r\n| where Direction == '{Direction}'\r\n| summarize P50 = percentiles(ResponseTimeSum, 50), P90 = percentiles(ResponseTimeSum, 90), P95 = percentiles(ResponseTimeSum, 95) by bin(TimeGenerated, time('{TimeRange:grain}'));\r\nSourceMachineData",
-                "showQuery": false,
                 "size": 1,
                 "aggregation": 3,
-                "showAnnotations": false,
-                "showAnalytics": false,
-                "timeContextFromParameter": null,
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "crossComponentResources": [
@@ -989,19 +991,15 @@
                 "comparison": "isEqualTo",
                 "value": "True"
             },
-            "customWidth": "25"
+            "customWidth": "25",
+            "name": "query - 13"
         },
         {
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
                 "query": "// {Workspace:label}\r\nlet SourceMachineData = VMConnection\r\n| where TimeGenerated {TimeRange}\r\n| {QueryFilter}\r\n| where Direction == '{Direction}'\r\n| summarize Sent = sum(BytesSent), Received = sum(BytesReceived) by bin(TimeGenerated, time('{TimeRange:grain}'));\r\nSourceMachineData",
-                "showQuery": false,
                 "size": 1,
-                "aggregation": 0,
-                "showAnnotations": false,
-                "showAnalytics": false,
-                "timeContextFromParameter": null,
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "crossComponentResources": [
@@ -1014,19 +1012,16 @@
                 "comparison": "isEqualTo",
                 "value": "True"
             },
-            "customWidth": "25"
+            "customWidth": "25",
+            "name": "query - 14"
         },
         {
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
                 "query": "// {Workspace:label}\r\nlet SourceMachineData = VMConnection\r\n| where TimeGenerated {TimeRange}\r\n| {QueryFilter}\r\n| where Direction == '{Direction}'\r\n| summarize MaxOpenPorts = max(LinksLive), SumFailed = sum(LinksFailed) by bin(TimeGenerated, time('{TimeRange:grain}'));\r\nSourceMachineData",
-                "showQuery": false,
                 "size": 1,
                 "aggregation": 3,
-                "showAnnotations": false,
-                "showAnalytics": false,
-                "timeContextFromParameter": null,
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "crossComponentResources": [
@@ -1039,7 +1034,8 @@
                 "comparison": "isEqualTo",
                 "value": "True"
             },
-            "customWidth": "25"
+            "customWidth": "25",
+            "name": "query - 15"
         }
     ],
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
