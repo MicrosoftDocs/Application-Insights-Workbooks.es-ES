@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"4b710-101\">Inicios de sesión por controles de concesión</span><span class=\"sxs-lookup\"><span data-stu-id=\"4b710-101\">Sign-ins by Grant Controls</span></span>",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "microsoft.aadiam/tenant",
+            "order": 200
+        }
+    ]
+}

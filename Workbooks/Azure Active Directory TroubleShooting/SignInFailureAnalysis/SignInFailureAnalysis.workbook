@@ -1,14 +1,13 @@
 {
-    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
     "version": "Notebook/1.0",
-    "isLocked": true,
     "items": [
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"troubleshooting-sign-ins\"></a><span data-ttu-id=\"3bde8-101\">Solución de problemas de inicios de sesión</span><span class=\"sxs-lookup\"><span data-stu-id=\"3bde8-101\">Troubleshooting Sign-ins</span></span>"
+                "json": "## <a name=\"troubleshooting-sign-ins\"></a><span data-ttu-id=\"d468f-101\">Solución de problemas de inicios de sesión</span><span class=\"sxs-lookup\"><span data-stu-id=\"d468f-101\">Troubleshooting Sign-ins</span></span>"
             },
-            "conditionalVisibility": null
+            "conditionalVisibility": null,
+            "name": "text - 0"
         },
         {
             "type": 9,
@@ -24,11 +23,7 @@
                         "type": 4,
                         "isRequired": true,
                         "value": {
-                            "durationMs": 2592000000,
-                            "createdTime": "2018-11-13T19:33:10.167Z",
-                            "isInitialTime": false,
-                            "grain": 1,
-                            "useDashboardTimeRange": false
+                            "durationMs": 1209600000
                         },
                         "isHiddenWhenLocked": false,
                         "typeSettings": {
@@ -131,95 +126,131 @@
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
-                        "query": "SigninLogs\r\n| summarize by AppDisplayName\r\n| order by AppDisplayName asc\r\n| project Value = AppDisplayName, Label = AppDisplayName, Selected = false\r\n| union (datatable(Value:string, Label:string, Selected:boolean)[\r\n'*', 'All Apps', true\r\n])",
-                        "isHiddenWhenLocked": false,
-                        "timeContextFromParameter": null,
-                        "resourceType": "microsoft.operationalinsights/workspaces",
+                        "query": "SigninLogs\r\n| summarize Count = count() by AppDisplayName\r\n| order by Count desc, AppDisplayName asc\r\n| project Value = AppDisplayName, Label = strcat(AppDisplayName, ' - ', Count, ' sign-ins'), Selected = false\r\n",
                         "value": [
-                            "*"
-                        ]
+                            "value::all"
+                        ],
+                        "isHiddenWhenLocked": false,
+                        "typeSettings": {
+                            "limitSelectTo": 20,
+                            "additionalResourceOptions": [
+                                "value::all"
+                            ],
+                            "selectAllValue": "*"
+                        },
+                        "timeContext": {
+                            "durationMs": 0
+                        },
+                        "timeContextFromParameter": "TimeRange",
+                        "queryType": 0,
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "3b5cc420-8ad8-4523-ba28-a54910756794",
                         "version": "KqlParameterItem/1.0",
                         "name": "Users",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"3bde8-102\">Filtrar por nombre de usuario</span><span class=\"sxs-lookup\"><span data-stu-id=\"3bde8-102\">Filter by User Name</span></span>",
+                        "description": "<span data-ttu-id=\"d468f-102\">Filtrar por nombre de usuario</span><span class=\"sxs-lookup\"><span data-stu-id=\"d468f-102\">Filter by User Name</span></span>",
                         "isRequired": true,
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
-                        "query": "SigninLogs\r\n| summarize by UserDisplayName\r\n| order by UserDisplayName asc\r\n| project Value = UserDisplayName, Label = UserDisplayName, Selected = false\r\n| union (datatable(Value:string, Label:string, Selected:boolean)[\r\n'*', 'All Users', true\r\n])",
+                        "query": "SigninLogs\r\n|where AppDisplayName in ({Apps}) or '*' in ({Apps})\r\n| summarize Count = count() by UserDisplayName\r\n| order by Count desc, UserDisplayName asc\r\n| project Value = UserDisplayName, Label = strcat(UserDisplayName, ' - ', Count, ' sign-ins'), Selected = false\r\n",
+                        "value": [
+                            "value::all"
+                        ],
                         "isHiddenWhenLocked": false,
                         "typeSettings": {
-                            "additionalResourceOptions": []
+                            "limitSelectTo": 20,
+                            "additionalResourceOptions": [
+                                "value::all"
+                            ],
+                            "selectAllValue": "*"
                         },
-                        "timeContextFromParameter": null,
+                        "timeContext": {
+                            "durationMs": 0
+                        },
+                        "timeContextFromParameter": "TimeRange",
+                        "queryType": 0,
                         "resourceType": "microsoft.operationalinsights/workspaces"
                     }
                 ],
                 "style": "pills",
+                "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces"
             },
-            "conditionalVisibility": null
-        },
-        {
-            "type": 1,
-            "content": {
-                "json": "## <a name=\"sign-ins-trend-by-status\"></a><span data-ttu-id=\"3bde8-103\">Tendencia de inicios de sesión por estado</span><span class=\"sxs-lookup\"><span data-stu-id=\"3bde8-103\">Sign-ins Trend by Status</span></span>"
-            },
-            "conditionalVisibility": null
+            "conditionalVisibility": null,
+            "name": "parameters - 1"
         },
         {
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "SigninLogs\r\n|where AppDisplayName in ({Apps}) or '*' in ({Apps})\r\n|extend errorCode = tostring(Status.errorCode)\r\n|extend SigninStatus = case(errorCode == 0, \"Success\", errorCode == 50058, \"Interrupt\",errorCode == 50140, \"Interrupt\", errorCode == 51006, \"Interrupt\", errorCode == 50059, \"Interrupt\",errorCode == 65001, \"Interrupt\", errorCode == 52004, \"Interrupt\", errorCode == 50055, \"Interrupt\", errorCode == 50144, \"Interrupt\", errorCode == 50072, \"Interrupt\", errorCode == 50074, \"Interrupt\", errorCode == 16000, \"Interrupt\", errorCode == 16001, \"Interrupt\", errorCode == 16003, \"Interrupt\", errorCode == 50127, \"Interrupt\", errorCode == 50125, \"Interrupt\", errorCode == 50129, \"Interrupt\", errorCode == 50143, \"Interrupt\", errorCode == 81010, \"Interrupt\", errorCode == 81014, \"Interrupt\", errorCode == 81012 ,\"Interrupt\", \"Failure\")\r\n| make-series ['Sign-ins'] = count() default = 0 on TimeGenerated in range({TimeRange:start}, {TimeRange:end}, {TimeRange:grain}) by  SigninStatus\r\n",
-                "showQuery": false,
+                "query": "let data = SigninLogs\r\n|where AppDisplayName in ({Apps}) or '*' in ({Apps})\r\n|where UserDisplayName in ({Users}) or '*' in ({Users})\r\n|extend errorCode = Status.errorCode\r\n|extend SigninStatus = case(errorCode == 0, \"Success\", errorCode == 50058, \"Pending action (Interrupts)\",errorCode == 50140, \"Pending action (Interrupts)\", errorCode == 51006, \"Pending action (Interrupts)\", errorCode == 50059, \"Pending action (Interrupts)\",errorCode == 65001, \"Pending action (Interrupts)\", errorCode == 52004, \"Pending action (Interrupts)\", errorCode == 50055, \"Pending action (Interrupts)\", errorCode == 50144, \"Pending action (Interrupts)\", errorCode == 50072, \"Pending action (Interrupts)\", errorCode == 50074, \"Pending action (Interrupts)\", errorCode == 16000, \"Pending action (Interrupts)\", errorCode == 16001, \"Pending action (Interrupts)\", errorCode == 16003, \"Pending action (Interrupts)\", errorCode == 50127, \"Pending action (Interrupts)\", errorCode == 50125, \"Pending action (Interrupts)\", errorCode == 50129, \"Pending action (Interrupts)\", errorCode == 50143, \"Pending action (Interrupts)\", errorCode == 81010, \"Pending action (Interrupts)\", errorCode == 81014, \"Pending action (Interrupts)\", errorCode == 81012 ,\"Pending action (Interrupts)\", \"Failure\");\r\ndata\r\n| summarize Count = count() by SigninStatus\r\n| join kind = fullouter (datatable(SigninStatus:string)['Success', 'Pending action (Interrupts)', 'Failure']) on SigninStatus\r\n| project SigninStatus = iff(SigninStatus == '', SigninStatus1, SigninStatus), Count = iff(SigninStatus == '', 0, Count)\r\n| join kind = inner (data\r\n    | make-series Trend = count() default = 0 on TimeGenerated from {TimeRange:start} to {TimeRange:end} step {TimeRange:grain} by SigninStatus)\r\n    on SigninStatus\r\n| project-away SigninStatus1, TimeGenerated\r\n| extend Status = SigninStatus\r\n| union (\r\n    data \r\n    | summarize Count = count() \r\n    | extend jkey = 1\r\n    | join kind=inner (data\r\n        | make-series Trend = count() default = 0 on TimeGenerated from {TimeRange:start} to {TimeRange:end} step {TimeRange:grain}\r\n        | extend jkey = 1) on jkey\r\n    | extend SigninStatus = 'All Sign-ins', Status = '*'    \r\n)\r\n| order by Count desc\r\n\r\n\r\n\r\n",
                 "size": 3,
-                "aggregation": 0,
-                "showAnnotations": false,
-                "showAnalytics": false,
+                "exportDefaultValue": "*",
                 "timeContext": {
-                    "durationMs": 0,
-                    "endTime": null,
-                    "createdTime": "2019-02-07T17:54:25.966Z",
-                    "isInitialTime": false,
-                    "grain": 1,
-                    "useDashboardTimeRange": false
+                    "durationMs": 0
                 },
                 "timeContextFromParameter": "TimeRange",
+                "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
-                "visualization": "barchart"
+                "visualization": "tiles",
+                "tileSettings": {
+                    "titleContent": {
+                        "columnMatch": "SigninStatus",
+                        "formatter": 1,
+                        "formatOptions": {
+                            "showIcon": true
+                        }
+                    },
+                    "leftContent": {
+                        "columnMatch": "Count",
+                        "formatter": 12,
+                        "formatOptions": {
+                            "palette": "blue",
+                            "showIcon": true
+                        },
+                        "numberFormat": {
+                            "unit": 17,
+                            "options": {
+                                "style": "decimal",
+                                "maximumFractionDigits": 2,
+                                "maximumSignificantDigits": 3
+                            }
+                        }
+                    },
+                    "secondaryContent": {
+                        "columnMatch": "Trend",
+                        "formatter": 9,
+                        "formatOptions": {
+                            "min": 0,
+                            "palette": "blue",
+                            "showIcon": true
+                        }
+                    },
+                    "showBorder": false
+                }
             },
-            "conditionalVisibility": null
-        },
-        {
-            "type": 1,
-            "content": {
-                "json": "## <a name=\"top-errors\"></a><span data-ttu-id=\"3bde8-104\">Principales errores</span><span class=\"sxs-lookup\"><span data-stu-id=\"3bde8-104\">Top Errors</span></span>"
-            },
-            "conditionalVisibility": null
+            "conditionalVisibility": null,
+            "name": "query - 5"
         },
         {
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "SigninLogs \r\n|where AppDisplayName in ({Apps}) or '*' in ({Apps})\r\n| extend ErrorCode = tostring(Status.errorCode) \r\n| extend FailureReason = tostring(Status.failureReason) \r\n| where ErrorCode !in (\"0\",\"50058\",\"50148\",\"50140\", \"51006\", \"50059\", \"65001\", \"52004\", \"50055\", \"50144\",\"50072\", \"50074\", \"16000\",\"16001\", \"16003\", \"50127\", \"50125\", \"50129\",\"50143\", \"81010\", \"81014\", \"81012\") \r\n|summarize errCount = count() by ErrorCode, tostring(FailureReason)| sort by errCount\r\n|project ['Error Code'] = ErrorCode, ['Reason']= FailureReason, ['Error Count'] = toint(errCount)",
-                "showQuery": false,
-                "size": 2,
-                "aggregation": 0,
-                "showAnnotations": false,
-                "showAnalytics": false,
+                "query": "SigninLogs \r\n|where AppDisplayName in ({Apps}) or '*' in ({Apps})\r\n|where UserDisplayName in ({Users}) or '*' in ({Users})\r\n| extend ErrorCode = tostring(Status.errorCode) \r\n| extend FailureReason = tostring(Status.failureReason) \r\n| where ErrorCode !in (\"0\",\"50058\",\"50148\",\"50140\", \"51006\", \"50059\", \"65001\", \"52004\", \"50055\", \"50144\",\"50072\", \"50074\", \"16000\",\"16001\", \"16003\", \"50127\", \"50125\", \"50129\",\"50143\", \"81010\", \"81014\", \"81012\") \r\n|summarize errCount = count() by ErrorCode, tostring(FailureReason)| sort by errCount\r\n|project ['❌ Error Code'] = ErrorCode, ['Reason']= FailureReason, ['Error Count'] = toint(errCount)",
+                "size": 1,
+                "exportFieldName": "❌ Error Code",
+                "exportParameterName": "ErrorCode",
+                "exportDefaultValue": "*",
+                "showAnalytics": true,
+                "title": "Summary of top errors",
                 "timeContext": {
-                    "durationMs": 0,
-                    "endTime": null,
-                    "createdTime": "2019-02-07T17:54:26.015Z",
-                    "isInitialTime": false,
-                    "grain": 1,
-                    "useDashboardTimeRange": false
+                    "durationMs": 0
                 },
                 "timeContextFromParameter": "TimeRange",
+                "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "visualization": "table",
                 "gridSettings": {
@@ -229,41 +260,173 @@
                             "formatter": 8,
                             "formatOptions": {
                                 "min": 0,
-                                "palette": "red"
+                                "palette": "orange",
+                                "showIcon": true
                             }
                         }
-                    ]
+                    ],
+                    "filter": true
                 }
             },
-            "conditionalVisibility": null
-        },
-        {
-            "type": 1,
-            "content": {
-                "json": "### <a name=\"-of-sign-ins-waiting-for-user-action\"></a><span data-ttu-id=\"3bde8-105\">Número de inicios de sesión en espera de una acción del usuario</span><span class=\"sxs-lookup\"><span data-stu-id=\"3bde8-105\"># of Sign-ins waiting for user action</span></span> "
-            },
             "conditionalVisibility": null,
-            "customWidth": "50"
+            "customWidth": "67",
+            "showPin": true,
+            "name": "query - 5"
         },
         {
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "SigninLogs \r\n|where AppDisplayName in ({Apps}) or '*' in ({Apps})\r\n| extend ErrorCode = tostring(Status.errorCode) \r\n| extend FailureReason = Status.failureReason | where ErrorCode in (\"50058\",\"50140\", \"51006\", \"50059\", \"65001\", \"52004\", \"50055\", \"50144\",\"50072\", \"50074\", \"16000\",\"16001\", \"16003\", \"50127\", \"50125\", \"50129\",\"50143\", \"81010\", \"81014\", \"81012\") \r\n|summarize errCount = count() by ErrorCode, tostring(FailureReason)| sort by errCount\r\n|project ['Error Code'] = ErrorCode, ['Reason'] = FailureReason, ['Interrupt Count'] = toint(errCount)",
-                "showQuery": false,
-                "size": 3,
-                "aggregation": 0,
-                "showAnnotations": false,
-                "showAnalytics": false,
+                "query": "SigninLogs \r\n|where AppDisplayName in ({Apps}) or '*' in ({Apps})\r\n|where UserDisplayName in ({Users}) or '*' in ({Users})\r\n| extend ErrorCode = tostring(Status.errorCode) \r\n| extend FailureReason = tostring(Status.failureReason) \r\n| where ErrorCode !in (\"0\",\"50058\",\"50148\",\"50140\", \"51006\", \"50059\", \"65001\", \"52004\", \"50055\", \"50144\",\"50072\", \"50074\", \"16000\",\"16001\", \"16003\", \"50127\", \"50125\", \"50129\",\"50143\", \"81010\", \"81014\", \"81012\") \r\n| where '{ErrorCode}' == '*' or '{ErrorCode}' == ErrorCode\r\n| top 200 by TimeGenerated desc\r\n| extend TimeFromNow = now() - TimeGenerated\r\n| extend TimeAgo = strcat(case(TimeFromNow < 2m, strcat(toint(TimeFromNow / 1m), ' seconds'), TimeFromNow < 2h, strcat(toint(TimeFromNow / 1m), ' minutes'), TimeFromNow < 2d, strcat(toint(TimeFromNow / 1h), ' hours'), strcat(toint(TimeFromNow / 1d), ' days')), ' ago')\r\n| project User = UserDisplayName, ['❌ Error Code'] = ErrorCode, ['Sign-in Time'] = TimeAgo, App = AppDisplayName, ['Error code'] = ErrorCode, ['Result type'] = ResultType, ['Result signature'] = ResultSignature, ['Result description'] = ResultDescription, ['Conditional access policies'] = ConditionalAccessPolicies, ['Conditional access status'] = ConditionalAccessStatus, ['Operating system'] = DeviceDetail.operatingSystem, Browser = DeviceDetail.browser, ['Country or region'] = LocationDetails.countryOrRegion, ['State'] = LocationDetails.state, ['City'] = LocationDetails.city, ['Time generated'] = TimeGenerated, Status, ['User principal name'] = UserPrincipalName\r\n\r\n\r\n",
+                "size": 1,
+                "showAnalytics": true,
+                "title": "Sign-ins with errors",
                 "timeContext": {
-                    "durationMs": 0,
-                    "endTime": null,
-                    "createdTime": "2019-02-07T17:54:26.048Z",
-                    "isInitialTime": false,
-                    "grain": 1,
-                    "useDashboardTimeRange": false
+                    "durationMs": 0
                 },
                 "timeContextFromParameter": "TimeRange",
+                "queryType": 0,
+                "resourceType": "microsoft.operationalinsights/workspaces",
+                "visualization": "table",
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "❌ Error Code",
+                            "formatter": 7,
+                            "formatOptions": {
+                                "linkTarget": "GenericDetails",
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "App",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Error code",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Result type",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Result signature",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Result description",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Conditional access policies",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Conditional access status",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Operating system",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Browser",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Country or region",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "State",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "City",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Time generated",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Status",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "User principal name",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        }
+                    ],
+                    "filter": true
+                }
+            },
+            "conditionalVisibility": null,
+            "customWidth": "33",
+            "name": "query - 5 - Copy"
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "SigninLogs \r\n|where AppDisplayName in ({Apps}) or '*' in ({Apps})\r\n|where UserDisplayName in ({Users}) or '*' in ({Users})\r\n| extend ErrorCode = tostring(Status.errorCode) \r\n| extend FailureReason = Status.failureReason \r\n| where ErrorCode in (\"50058\",\"50140\", \"51006\", \"50059\", \"65001\", \"52004\", \"50055\", \"50144\",\"50072\", \"50074\", \"16000\",\"16001\", \"16003\", \"50127\", \"50125\", \"50129\",\"50143\", \"81010\", \"81014\", \"81012\") \r\n|summarize errCount = count() by ErrorCode, tostring(FailureReason)\r\n| sort by errCount\r\n|project ['❌ Error Code'] = ErrorCode, ['Reason'] = FailureReason, ['Interrupt Count'] = toint(errCount)",
+                "size": 1,
+                "exportFieldName": "❌ Error Code",
+                "exportParameterName": "InterruptErrorCode",
+                "exportDefaultValue": "*",
+                "showAnalytics": true,
+                "title": "Summary of sign-ins waiting on user action",
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "gridSettings": {
                     "formatters": [
@@ -275,144 +438,153 @@
                                 "palette": "orange"
                             }
                         }
-                    ]
+                    ],
+                    "filter": true
                 }
             },
-            "conditionalVisibility": null
-        },
-        {
-            "type": 1,
-            "content": {
-                "json": "### <a name=\"sign-ins-failure-due-to-ca-policies\"></a><span data-ttu-id=\"3bde8-106\">Error de inicios de sesión debido a directivas de acceso condicional</span><span class=\"sxs-lookup\"><span data-stu-id=\"3bde8-106\">Sign-ins failure due to CA Policies</span></span>"
-            },
-            "conditionalVisibility": null
+            "conditionalVisibility": null,
+            "customWidth": "67",
+            "showPin": true,
+            "name": "query - 7"
         },
         {
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let data = SigninLogs\r\n|extend errorCode = toint(Status.errorCode)\r\n|extend Reason = tostring(Status.failureReason)\r\n|where AppDisplayName in ({Apps}) or '*' in ({Apps})\r\n|where UserDisplayName in ({Users}) or '*' in ({Users})\r\n|where ConditionalAccessStatus == 1;\r\nlet caData = data\r\n| summarize Count = count() by AppDisplayName, UserDisplayName, errorCode, Reason\r\n| join kind = inner\r\n(\r\n    data\r\n    | make-series Trend = count() default = 0 on TimeGenerated in range({TimeRange:start}, {TimeRange:end}, {TimeRange:grain}) by AppDisplayName\r\n    | project-away TimeGenerated\r\n)\r\non AppDisplayName \r\n| order by Count desc, AppDisplayName asc, UserDisplayName asc, errorCode asc, Reason asc\r\n| project AppDisplayName , UserDisplayName, errorCode, Reason, Count, Trend\r\n| serialize Id = row_number();\r\ndata\r\n| summarize Count = count() by AppDisplayName, UserDisplayName, errorCode, Reason\r\n| join kind=inner\r\n(\r\n    data\r\n    | make-series Trend = count() default = 0 on TimeGenerated in range({TimeRange:start}, {TimeRange:end}, {TimeRange:grain}) by AppDisplayName\r\n    | project-away TimeGenerated\r\n)\r\non  AppDisplayName\r\n| order by Count desc, AppDisplayName asc, UserDisplayName asc, errorCode asc, Reason asc\r\n| project AppDisplayName ,UserDisplayName,errorCode, Reason, Count, Trend\r\n| serialize Id = row_number(1000000)\r\n| join kind=inner\r\n(\r\n    caData\r\n)\r\non AppDisplayName \r\n| project Id, Name = AppDisplayName,  Type = '⚙️ App' , ['Error Code'] = errorCode, Reason, ['Sign-in Count'] = Count, Trend, ParentId = Id1\r\n| order by ['Sign-in Count'] desc, Name\r\n| union (caData\r\n| project Id, Name  = UserDisplayName, Type = '👤 User', ['Sign-in Count'] = Count, Trend, ParentId = -1)\r\n| order by ['Sign-in Count'] desc, Name",
-                "showQuery": false,
-                "size": 3,
-                "aggregation": 0,
-                "showAnnotations": false,
-                "showAnalytics": false,
+                "query": "SigninLogs \r\n|where AppDisplayName in ({Apps}) or '*' in ({Apps})\r\n|where UserDisplayName in ({Users}) or '*' in ({Users})\r\n| extend ErrorCode = tostring(Status.errorCode) \r\n| extend FailureReason = Status.failureReason \r\n| where ErrorCode in (\"50058\",\"50140\", \"51006\", \"50059\", \"65001\", \"52004\", \"50055\", \"50144\",\"50072\", \"50074\", \"16000\",\"16001\", \"16003\", \"50127\", \"50125\", \"50129\",\"50143\", \"81010\", \"81014\", \"81012\") \r\n| where '{InterruptErrorCode}' == '*' or '{InterruptErrorCode}' == ErrorCode\r\n| top 200 by TimeGenerated desc\r\n| extend TimeFromNow = now() - TimeGenerated\r\n| extend TimeAgo = strcat(case(TimeFromNow < 2m, strcat(toint(TimeFromNow / 1m), ' seconds'), TimeFromNow < 2h, strcat(toint(TimeFromNow / 1m), ' minutes'), TimeFromNow < 2d, strcat(toint(TimeFromNow / 1h), ' hours'), strcat(toint(TimeFromNow / 1d), ' days')), ' ago')\r\n| project User = UserDisplayName, ['❌ Error Code'] = ErrorCode, ['Sign-in Time'] = TimeAgo, App = AppDisplayName, ['Error code'] = ErrorCode, ['Result type'] = ResultType, ['Result signature'] = ResultSignature, ['Result description'] = ResultDescription, ['Conditional access policies'] = ConditionalAccessPolicies, ['Conditional access status'] = ConditionalAccessStatus, ['Operating system'] = DeviceDetail.operatingSystem, Browser = DeviceDetail.browser, ['Country or region'] = LocationDetails.countryOrRegion, ['State'] = LocationDetails.state, ['City'] = LocationDetails.city, ['Time generated'] = TimeGenerated, Status, ['User principal name'] = UserPrincipalName\r\n\r\n",
+                "size": 1,
+                "showAnalytics": true,
+                "title": "Sign-ins waiting on user action",
                 "timeContext": {
-                    "durationMs": 0,
-                    "endTime": null,
-                    "createdTime": "2019-02-07T17:54:26.062Z",
-                    "isInitialTime": false,
-                    "grain": 1,
-                    "useDashboardTimeRange": false
+                    "durationMs": 0
                 },
                 "timeContextFromParameter": "TimeRange",
+                "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "gridSettings": {
                     "formatters": [
                         {
-                            "columnMatch": "Id",
-                            "formatter": 5,
-                            "formatOptions": {}
-                        },
-                        {
-                            "columnMatch": "Sign-in Count",
-                            "formatter": 8,
+                            "columnMatch": "❌ Error Code",
+                            "formatter": 7,
                             "formatOptions": {
-                                "min": 0,
-                                "palette": "redGreen"
+                                "linkTarget": "GenericDetails",
+                                "showIcon": true
                             }
                         },
                         {
-                            "columnMatch": "Trend",
-                            "formatter": 9,
+                            "columnMatch": "App",
+                            "formatter": 5,
                             "formatOptions": {
-                                "min": 0,
-                                "palette": "green"
+                                "showIcon": true
                             }
                         },
                         {
-                            "columnMatch": "ParentId",
+                            "columnMatch": "Error code",
                             "formatter": 5,
-                            "formatOptions": {}
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Result type",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Result signature",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Result description",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Conditional access policies",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Conditional access status",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Operating system",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Browser",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Country or region",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "State",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "City",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Time generated",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Status",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "User principal name",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
                         }
                     ],
-                    "hierarchySettings": {
-                        "idColumn": "ParentId",
-                        "parentColumn": "Id",
-                        "treeType": 0,
-                        "expanderColumn": "Name",
-                        "expandTopLevel": true
-                    }
+                    "filter": true
                 }
             },
-            "conditionalVisibility": null
-        },
-        {
-            "type": 1,
-            "content": {
-                "json": "### <a name=\"legacy-authentications-sign-in-errors\"></a><span data-ttu-id=\"3bde8-107\">Errores de inicio de sesión de autenticaciones heredadas</span><span class=\"sxs-lookup\"><span data-stu-id=\"3bde8-107\">Legacy Authentications Sign-in Errors</span></span>"
-            },
-            "conditionalVisibility": null
-        },
-        {
-            "type": 3,
-            "content": {
-                "version": "KqlItem/1.0",
-                "query": "let data = SigninLogs \r\n|extend ClientAppUsed = iff(isempty(ClientAppUsed)==true,\"Unknown\" ,ClientAppUsed)  \r\n|extend isLegacyAuth = case(ClientAppUsed contains \"Browser\", \"No\", ClientAppUsed contains \"Mobile Apps and Desktop clients\", \"No\", ClientAppUsed contains \"Exchange ActiveSync\", \"No\", ClientAppUsed contains \"Other clients\", \"Yes\", \"Unknown\") \r\n| extend ErrorCode = tostring(Status.errorCode) \r\n| extend Reason = tostring(Status.failureReason) \r\n| where ErrorCode !in (\"0\",\"50058\",\"50148\",\"50140\", \"51006\", \"50059\", \"65001\", \"52004\", \"50055\", \"50144\",\"50072\", \"50074\", \"16000\",\"16001\", \"16003\", \"50127\", \"50125\", \"50129\",\"50143\", \"81010\", \"81014\", \"81012\")\r\n|where isLegacyAuth==\"Yes\"\r\n|where AppDisplayName in ({Apps}) or '*' in ({Apps})\r\n|where UserDisplayName in ({Users}) or '*' in ({Users});\r\n\r\nlet legacyData = data\r\n| summarize Count = count() by AppDisplayName, UserDisplayName, ErrorCode, Reason\r\n| join kind = inner\r\n(\r\n    data\r\n    | make-series Trend = count() default = 0 on TimeGenerated in range({TimeRange:start}, {TimeRange:end}, {TimeRange:grain}) by AppDisplayName\r\n    | project-away TimeGenerated\r\n)\r\non AppDisplayName \r\n| order by Count desc, AppDisplayName asc, UserDisplayName asc, ErrorCode asc, Reason asc\r\n| project AppDisplayName , UserDisplayName, ErrorCode, Reason, Count, Trend\r\n| serialize Id = row_number();\r\ndata\r\n| summarize Count = count() by AppDisplayName, UserDisplayName, ErrorCode, Reason\r\n| join kind=inner\r\n(\r\n    data\r\n    | make-series Trend = count() default = 0 on TimeGenerated in range({TimeRange:start}, {TimeRange:end}, {TimeRange:grain}) by AppDisplayName\r\n    | project-away TimeGenerated\r\n)\r\non  AppDisplayName\r\n| order by Count desc, AppDisplayName asc, UserDisplayName asc, ErrorCode asc, Reason asc\r\n| project AppDisplayName ,UserDisplayName,ErrorCode, Reason, Count, Trend\r\n| serialize Id = row_number(1000000)\r\n| join kind=inner\r\n(\r\n    legacyData\r\n)\r\non AppDisplayName \r\n| project Id, Name = AppDisplayName,  Type = '⚙️ App' ,  ['Sign-in Count'] = Count, Trend, ParentId = Id1\r\n| order by ['Sign-in Count'] desc, Name\r\n| union (legacyData\r\n| project Id, Name  = UserDisplayName, Type = '👤 User', ['Error Code'] = ErrorCode, Reason, ['Sign-in Count'] = Count, Trend, ParentId = -1)\r\n| order by ['Sign-in Count'] desc, Name\r\n",
-                "showQuery": false,
-                "size": 3,
-                "aggregation": 0,
-                "showAnnotations": false,
-                "showAnalytics": false,
-                "timeContext": {
-                    "durationMs": 0,
-                    "endTime": null,
-                    "createdTime": "2019-02-07T17:54:26.076Z",
-                    "isInitialTime": false,
-                    "grain": 1,
-                    "useDashboardTimeRange": false
-                },
-                "timeContextFromParameter": "TimeRange",
-                "resourceType": "microsoft.operationalinsights/workspaces",
-                "visualization": "table",
-                "gridSettings": {
-                    "formatters": [
-                        {
-                            "columnMatch": "Id",
-                            "formatter": 5,
-                            "formatOptions": {}
-                        },
-                        {
-                            "columnMatch": "Sign-in Count",
-                            "formatter": 8,
-                            "formatOptions": {
-                                "min": 0,
-                                "palette": "coldHot"
-                            }
-                        },
-                        {
-                            "columnMatch": "Trend",
-                            "formatter": 9,
-                            "formatOptions": {
-                                "min": 0,
-                                "palette": "coldHot"
-                            }
-                        },
-                        {
-                            "columnMatch": "ParentId",
-                            "formatter": 5,
-                            "formatOptions": {}
-                        }
-                    ],
-                    "hierarchySettings": {
-                        "idColumn": "ParentId",
-                        "parentColumn": "Id",
-                        "treeType": 0,
-                        "expanderColumn": "Name"
-                    }
-                }
-            },
-            "conditionalVisibility": null
+            "conditionalVisibility": null,
+            "customWidth": "33",
+            "showPin": true,
+            "name": "query - 7 - Copy"
         }
-    ]
+    ],
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
 }
