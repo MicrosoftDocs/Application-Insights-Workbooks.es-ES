@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Información de inicios de sesión por estado del acceso condicional",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "microsoft.aadiam/tenant",
+            "order": 100
+        }
+    ]
+}
