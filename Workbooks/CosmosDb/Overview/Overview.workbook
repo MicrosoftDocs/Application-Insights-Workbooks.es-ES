@@ -1,0 +1,704 @@
+{
+    "version": "Notebook/1.0",
+    "items": [
+        {
+            "type": 1,
+            "content": {
+                "json": "# <a name=\"cosmos-db-insights\"></a><span data-ttu-id=\"1edb6-101\">Información sobre Cosmos DB</span><span class=\"sxs-lookup\"><span data-stu-id=\"1edb6-101\">Cosmos DB Insights</span></span>"
+            },
+            "conditionalVisibility": null,
+            "name": "text - 0"
+        },
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "query": "",
+                "crossComponentResources": [
+                    "{Subscription}"
+                ],
+                "parameters": [
+                    {
+                        "id": "ccd5adcd-8d59-4cfe-99ec-98075de2e253",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "DefaultSubscription_Internal",
+                        "type": 1,
+                        "isRequired": true,
+                        "query": "where type =~ 'Microsoft.DocumentDB/databaseAccounts'\r\n| take 1\r\n| project subscriptionId",
+                        "crossComponentResources": [
+                            "value::selected"
+                        ],
+                        "isHiddenWhenLocked": true,
+                        "timeContextFromParameter": null,
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    },
+                    {
+                        "id": "1ca69445-60fc-4806-b43d-ac7e6aad630a",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Subscription",
+                        "type": 6,
+                        "isRequired": true,
+                        "multiSelect": true,
+                        "quote": "'",
+                        "delimiter": ",",
+                        "query": "summarize by subscriptionId\r\n| project value = strcat(\"/subscriptions/\", subscriptionId), label = subscriptionId, selected = iff(subscriptionId =~ '{DefaultSubscription_Internal}', true, false)\r\n",
+                        "crossComponentResources": [
+                            "value::all"
+                        ],
+                        "isHiddenWhenLocked": false,
+                        "typeSettings": {
+                            "limitSelectTo": 25,
+                            "additionalResourceOptions": []
+                        },
+                        "timeContextFromParameter": null,
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    },
+                    {
+                        "id": "e94aafa3-c5d9-4523-89f0-4e87aa754511",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "CosmosDB",
+                        "type": 5,
+                        "isRequired": true,
+                        "multiSelect": true,
+                        "quote": "'",
+                        "delimiter": ",",
+                        "query": "where type =~ 'Microsoft.DocumentDB/databaseAccounts'\n|project id",
+                        "crossComponentResources": [
+                            "{Subscription}"
+                        ],
+                        "value": [
+                            "value::all"
+                        ],
+                        "isHiddenWhenLocked": false,
+                        "typeSettings": {
+                            "resourceTypeFilter": {
+                                "microsoft.documentdb/databaseaccounts": true
+                            },
+                            "limitSelectTo": 100,
+                            "additionalResourceOptions": [
+                                "value::3",
+                                "value::10",
+                                "value::all"
+                            ]
+                        },
+                        "timeContextFromParameter": null,
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    },
+                    {
+                        "id": "c4b69c01-2263-4ada-8d9c-43433b739ff3",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "TimeRange",
+                        "type": 4,
+                        "isRequired": false,
+                        "value": {
+                            "durationMs": 14400000
+                        },
+                        "isHiddenWhenLocked": false,
+                        "typeSettings": {
+                            "selectableValues": [
+                                {
+                                    "durationMs": 14400000
+                                },
+                                {
+                                    "durationMs": 43200000
+                                },
+                                {
+                                    "durationMs": 86400000
+                                },
+                                {
+                                    "durationMs": 172800000
+                                },
+                                {
+                                    "durationMs": 259200000
+                                },
+                                {
+                                    "durationMs": 604800000
+                                }
+                            ],
+                            "allowCustom": null
+                        },
+                        "timeContextFromParameter": null
+                    }
+                ],
+                "style": "pills",
+                "queryType": 1,
+                "resourceType": "microsoft.resourcegraph/resources"
+            },
+            "conditionalVisibility": null,
+            "name": "parameters - 1"
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "where type =~ 'Microsoft.DocumentDB/databaseAccounts' | summarize count() by type",
+                "size": 3,
+                "queryType": 1,
+                "resourceType": "microsoft.resourcegraph/resources",
+                "crossComponentResources": [
+                    "{Subscription}"
+                ],
+                "visualization": "tiles",
+                "tileSettings": {
+                    "titleContent": {
+                        "columnMatch": "type",
+                        "formatter": 16,
+                        "formatOptions": {
+                            "showIcon": true
+                        }
+                    },
+                    "leftContent": {
+                        "columnMatch": "count_",
+                        "formatter": 12,
+                        "formatOptions": {
+                            "palette": "auto",
+                            "showIcon": true
+                        },
+                        "numberFormat": {
+                            "unit": 17,
+                            "options": {
+                                "maximumSignificantDigits": 3,
+                                "maximumFractionDigits": 2
+                            }
+                        }
+                    },
+                    "showBorder": false
+                }
+            },
+            "conditionalVisibility": null,
+            "customWidth": "20",
+            "name": "query - 18"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "<br />\n##### <a name=\"cosmos-db-performance--usage-summary\"></a><span data-ttu-id=\"1edb6-102\">Resumen sobre rendimiento y uso de COSMOS DB</span><span class=\"sxs-lookup\"><span data-stu-id=\"1edb6-102\">Cosmos DB Performance & Usage Summary</span></span>\n"
+            },
+            "conditionalVisibility": null,
+            "name": "text - 2"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbookdb19a8d8-91af-44ea-951d-5ffa133b2ebe",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.documentdb/databaseaccounts",
+                "resourceParameter": "CosmosDB",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-ProvisionedThroughput",
+                        "aggregation": 3,
+                        "chartType": 0,
+                        "splitBy": null
+                    },
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits",
+                        "aggregation": 1
+                    },
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
+                        "aggregation": 7
+                    },
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-DataUsage",
+                        "aggregation": 1
+                    },
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount",
+                        "aggregation": 1
+                    },
+                    {
+                        "resourceId": "{CosmosDB}"
+                    }
+                ],
+                "exportFieldName": "Name",
+                "exportParameterName": "ResourceId",
+                "gridFormatting": [
+                    {
+                        "columnMatch": "Subscription",
+                        "formatter": 5,
+                        "formatOptions": {
+                            "showIcon": true
+                        }
+                    },
+                    {
+                        "columnMatch": "Name",
+                        "formatter": 0,
+                        "formatOptions": {
+                            "showIcon": true
+                        }
+                    },
+                    {
+                        "columnMatch": "Provisioned Throughput (Max)",
+                        "formatter": 1,
+                        "formatOptions": {
+                            "showIcon": true
+                        },
+                        "numberFormat": {
+                            "unit": null,
+                            "options": null
+                        }
+                    },
+                    {
+                        "columnMatch": "Provisioned Throughput Timeline",
+                        "formatter": 5,
+                        "formatOptions": {
+                            "palette": "orange",
+                            "showIcon": true
+                        }
+                    },
+                    {
+                        "columnMatch": "Total Request Units (Sum)",
+                        "formatter": 8,
+                        "formatOptions": {
+                            "min": 0,
+                            "palette": "orange",
+                            "showIcon": true
+                        },
+                        "numberFormat": {
+                            "unit": 17,
+                            "options": {
+                                "style": "decimal",
+                                "maximumFractionDigits": 1
+                            }
+                        }
+                    },
+                    {
+                        "columnMatch": "Total Request Units Timeline",
+                        "formatter": 9,
+                        "formatOptions": {
+                            "palette": "orange",
+                            "showIcon": true
+                        },
+                        "numberFormat": {
+                            "unit": 1,
+                            "options": {
+                                "style": "decimal"
+                            }
+                        }
+                    },
+                    {
+                        "columnMatch": "Total Requests (Count)",
+                        "formatter": 8,
+                        "formatOptions": {
+                            "min": 0,
+                            "palette": "yellow",
+                            "showIcon": true
+                        },
+                        "numberFormat": {
+                            "unit": 17,
+                            "options": {
+                                "style": "decimal",
+                                "maximumFractionDigits": 1
+                            }
+                        }
+                    },
+                    {
+                        "columnMatch": "Total Requests Timeline",
+                        "formatter": 5,
+                        "formatOptions": {
+                            "showIcon": true
+                        }
+                    },
+                    {
+                        "columnMatch": "Data Usage (Sum)",
+                        "formatter": 8,
+                        "formatOptions": {
+                            "min": 0,
+                            "palette": "grayBlue",
+                            "showIcon": true
+                        },
+                        "numberFormat": {
+                            "unit": 2,
+                            "options": {
+                                "style": "decimal",
+                                "maximumFractionDigits": 1
+                            }
+                        }
+                    },
+                    {
+                        "columnMatch": "Data Usage Timeline",
+                        "formatter": 5,
+                        "formatOptions": {
+                            "showIcon": true
+                        }
+                    },
+                    {
+                        "columnMatch": "Document Count (Sum)",
+                        "formatter": 1,
+                        "formatOptions": {
+                            "showIcon": true
+                        },
+                        "numberFormat": {
+                            "unit": 0,
+                            "options": null
+                        }
+                    },
+                    {
+                        "columnMatch": "Document Count Timeline",
+                        "formatter": 9,
+                        "formatOptions": {
+                            "showIcon": true
+                        }
+                    }
+                ],
+                "sortBy": [
+                    {
+                        "itemKey": "$gen_heatmap_Total Request Units (Sum)_4",
+                        "sortOrder": 2
+                    }
+                ]
+            },
+            "conditionalVisibility": null,
+            "name": "metric - 3"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "<span data-ttu-id=\"1edb6-103\">💡 _Haga clic en una fila para más información acerca de una cuenta de Cosmos DB específica_</span><span class=\"sxs-lookup\"><span data-stu-id=\"1edb6-103\">💡 _Click on a row to see more details about a specific Cosmos DB account_</span></span>\n<br />\n<br />\n<br />"
+            },
+            "conditionalVisibility": null,
+            "name": "text - 4"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"cosmos-db-account-details--resourceidname\"></a><span data-ttu-id=\"1edb6-104\">Detalles de la cuenta de COSMOS DB: _{ResourceId:name}_</span><span class=\"sxs-lookup\"><span data-stu-id=\"1edb6-104\">Cosmos DB account details:  _{ResourceId:name}_</span></span> "
+            },
+            "conditionalVisibility": {
+                "parameterName": "ResourceId",
+                "comparison": "isNotEqualTo",
+                "value": null
+            },
+            "name": "text - 17"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook2d8fc4b8-3c85-44e4-8dd6-b99f7561ca13",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.documentdb/databaseaccounts",
+                "resourceParameter": "ResourceId",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
+                        "aggregation": 7,
+                        "chartType": 2,
+                        "splitBy": "StatusCode",
+                        "color": "green"
+                    },
+                    {
+                        "resourceId": "{ResourceId}"
+                    },
+                    {
+                        "resourceId": "{ResourceId}"
+                    }
+                ],
+                "title": "Requests by Status Code",
+                "gridFormatting": []
+            },
+            "conditionalVisibility": {
+                "parameterName": "ResourceId",
+                "comparison": "isNotEqualTo",
+                "value": null
+            },
+            "customWidth": "50",
+            "name": "metric - 5"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook2d8fc4b8-3c85-44e4-8dd6-b99f7561ca13",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 3600000
+                },
+                "resourceType": "microsoft.documentdb/databaseaccounts",
+                "resourceParameter": "ResourceId",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
+                        "aggregation": 7,
+                        "chartType": 2,
+                        "splitBy": "OperationType",
+                        "color": "orange"
+                    },
+                    {
+                        "resourceId": "{ResourceId}"
+                    },
+                    {
+                        "resourceId": "{ResourceId}"
+                    }
+                ],
+                "title": "Requests by Operation Type",
+                "gridFormatting": []
+            },
+            "conditionalVisibility": {
+                "parameterName": "ResourceId",
+                "comparison": "isNotEqualTo",
+                "value": null
+            },
+            "customWidth": "50",
+            "name": "metric - 6"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "<span data-ttu-id=\"1edb6-105\">*Código de estado*</span><span class=\"sxs-lookup\"><span data-stu-id=\"1edb6-105\">*Status Code*</span></span> <br/>\n<span data-ttu-id=\"1edb6-106\">200 - Correcto 400 - Solicitud incorrecta 408 - Se agotó el tiempo de espera de la solicitud 429 - Demasiadas solicitudes</span><span class=\"sxs-lookup\"><span data-stu-id=\"1edb6-106\">200 OK              400 Bad Request     408 Request Timeout         429 Too Many Request</span></span> <br />\n<span data-ttu-id=\"1edb6-107\">201 - Creado 401 - No autorizado 409 - Conflicto 449 - Nuevo intento con</span><span class=\"sxs-lookup\"><span data-stu-id=\"1edb6-107\">201 Created         401 Unauthorized    409 Conflict                449 Retry With</span></span>  \n<span data-ttu-id=\"1edb6-108\">204 - Sin contenido 403 - Prohibido 412 - Error de condición previa 500 - Error interno del servidor</span><span class=\"sxs-lookup\"><span data-stu-id=\"1edb6-108\">204 No Content      403 Forbidden       412 Precondition Failure    500 Internal Server Error</span></span><br />\n                    <span data-ttu-id=\"1edb6-109\">404 - No encontrado 413 - Entidad demasiado grande 503 - Servicio no disponible</span><span class=\"sxs-lookup\"><span data-stu-id=\"1edb6-109\">404 Not Found       413 Entity Too Large        503 Service Unavailable</span></span> <br /> \n     "
+            },
+            "conditionalVisibility": {
+                "parameterName": "ResourceId",
+                "comparison": "isNotEqualTo",
+                "value": null
+            },
+            "customWidth": "50",
+            "name": "text - 7"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "<span data-ttu-id=\"1edb6-110\">*Tipo de operación* - </span><span class=\"sxs-lookup\"><span data-stu-id=\"1edb6-110\">*Operation Type* - </span></span>  \n<br />\n<br />"
+            },
+            "conditionalVisibility": {
+                "parameterName": "ResourceId",
+                "comparison": "isNotEqualTo",
+                "value": null
+            },
+            "customWidth": "50",
+            "name": "text - 8"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook2d8fc4b8-3c85-44e4-8dd6-b99f7561ca13",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 3600000
+                },
+                "resourceType": "microsoft.documentdb/databaseaccounts",
+                "resourceParameter": "ResourceId",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
+                        "aggregation": 7,
+                        "chartType": 2,
+                        "splitBy": "CollectionName"
+                    },
+                    {
+                        "resourceId": "{ResourceId}"
+                    },
+                    {
+                        "resourceId": "{ResourceId}"
+                    }
+                ],
+                "title": "Requests by Collection Name",
+                "gridFormatting": []
+            },
+            "conditionalVisibility": {
+                "parameterName": "ResourceId",
+                "comparison": "isNotEqualTo",
+                "value": null
+            },
+            "customWidth": "50",
+            "name": "metric - 9"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook2d8fc4b8-3c85-44e4-8dd6-b99f7561ca13",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 3600000
+                },
+                "resourceType": "microsoft.documentdb/databaseaccounts",
+                "resourceParameter": "ResourceId",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
+                        "aggregation": 7,
+                        "chartType": 2,
+                        "splitBy": "Region",
+                        "color": "greenDark"
+                    },
+                    {
+                        "resourceId": "{ResourceId}"
+                    },
+                    {
+                        "resourceId": "{ResourceId}"
+                    }
+                ],
+                "title": "Requests by Region",
+                "gridFormatting": []
+            },
+            "conditionalVisibility": {
+                "parameterName": "ResourceId",
+                "comparison": "isNotEqualTo",
+                "value": null
+            },
+            "customWidth": "50",
+            "name": "metric - 10"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "<span data-ttu-id=\"1edb6-111\">Solicitudes por nombre de colección</span><span class=\"sxs-lookup\"><span data-stu-id=\"1edb6-111\">Requests by Collection Name</span></span>\n<br />\n<br />"
+            },
+            "conditionalVisibility": {
+                "parameterName": "ResourceId",
+                "comparison": "isNotEqualTo",
+                "value": null
+            },
+            "customWidth": "50",
+            "name": "text - 11"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "<span data-ttu-id=\"1edb6-112\">Solicitudes por región</span><span class=\"sxs-lookup\"><span data-stu-id=\"1edb6-112\">Requests by Region</span></span>\n<br />\n<br />"
+            },
+            "conditionalVisibility": {
+                "parameterName": "ResourceId",
+                "comparison": "isNotEqualTo",
+                "value": null
+            },
+            "customWidth": "50",
+            "name": "text - 12"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook2d8fc4b8-3c85-44e4-8dd6-b99f7561ca13",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 3600000
+                },
+                "resourceType": "microsoft.documentdb/databaseaccounts",
+                "resourceParameter": "ResourceId",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-IndexUsage",
+                        "aggregation": 1,
+                        "chartType": 2,
+                        "splitBy": null
+                    },
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-DataUsage",
+                        "aggregation": 1
+                    },
+                    {
+                        "resourceId": "{ResourceId}"
+                    },
+                    {
+                        "resourceId": "{ResourceId}"
+                    }
+                ],
+                "title": "Data and Index Usage",
+                "gridFormatting": []
+            },
+            "conditionalVisibility": {
+                "parameterName": "ResourceId",
+                "comparison": "isNotEqualTo",
+                "value": null
+            },
+            "customWidth": "50",
+            "name": "metric - 13"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook2d8fc4b8-3c85-44e4-8dd6-b99f7561ca13",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 3600000
+                },
+                "resourceType": "microsoft.documentdb/databaseaccounts",
+                "resourceParameter": "ResourceId",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount",
+                        "aggregation": 1,
+                        "chartType": 2,
+                        "splitBy": null
+                    },
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-DocumentQuota",
+                        "aggregation": 1
+                    },
+                    {
+                        "resourceId": "{ResourceId}"
+                    },
+                    {
+                        "resourceId": "{ResourceId}"
+                    }
+                ],
+                "title": "Document Count and Quota",
+                "gridFormatting": []
+            },
+            "conditionalVisibility": {
+                "parameterName": "ResourceId",
+                "comparison": "isNotEqualTo",
+                "value": null
+            },
+            "customWidth": "50",
+            "name": "metric - 14"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "<span data-ttu-id=\"1edb6-113\">*Uso de datos e índice* -</span><span class=\"sxs-lookup\"><span data-stu-id=\"1edb6-113\">*Data and Index Usage* -</span></span>  \n<br />\n<br />"
+            },
+            "conditionalVisibility": {
+                "parameterName": "ResourceId",
+                "comparison": "isNotEqualTo",
+                "value": null
+            },
+            "customWidth": "50",
+            "name": "text - 15"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "<span data-ttu-id=\"1edb6-114\">*Recuento de documentos y cuota* -</span><span class=\"sxs-lookup\"><span data-stu-id=\"1edb6-114\">*Document Count and Quota* -</span></span>  \n<br />\n<br />"
+            },
+            "conditionalVisibility": {
+                "parameterName": "ResourceId",
+                "comparison": "isNotEqualTo",
+                "value": null
+            },
+            "customWidth": "50",
+            "name": "text - 16"
+        }
+    ],
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
