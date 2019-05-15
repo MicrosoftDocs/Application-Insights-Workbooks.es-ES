@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"eb8a3-101\">Introducción sobre el almacenamiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"eb8a3-101\">Storage Overview</span></span>",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "microsoft.storage/storageaccounts",
+            "order": 100
+        }
+    ]
+}
