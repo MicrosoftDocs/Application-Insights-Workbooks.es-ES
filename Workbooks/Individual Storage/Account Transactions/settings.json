@@ -1,12 +1,12 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"22ad5-101\">Introducción a las cuentas de almacenamiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"22ad5-101\">Storage Account Overview</span></span>",
+    "name": "<span data-ttu-id=\"bfd40-101\">Transacciones de cuenta</span><span class=\"sxs-lookup\"><span data-stu-id=\"bfd40-101\">Account Transactions</span></span>",
     "author": "Microsoft",
     "galleries": [
         {
             "type": "workbook",
             "resourceType": "microsoft.storage/storageaccounts",
-            "order": 100
+            "order": 1100
         }
     ]
 }

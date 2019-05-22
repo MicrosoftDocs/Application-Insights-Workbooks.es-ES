@@ -41,7 +41,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"storage-account---storageaccountname\"></a><span data-ttu-id=\"da9a3-101\">Cuenta de almacenamiento: {StorageAccount:name}</span><span class=\"sxs-lookup\"><span data-stu-id=\"da9a3-101\">Storage account - {StorageAccount:name}</span></span>"
+                "json": "## <a name=\"storageaccountname-table-storage\"></a><span data-ttu-id=\"9120d-101\">Almacenamiento de tablas de {StorageAccount:name}</span><span class=\"sxs-lookup\"><span data-stu-id=\"9120d-101\">{StorageAccount:name} table storage</span></span>"
             },
             "conditionalVisibility": null,
             "name": "text - 6"
@@ -111,85 +111,6 @@
             "name": "parameters - 1"
         },
         {
-            "type": 1,
-            "content": {
-                "json": "<br />"
-            },
-            "conditionalVisibility": null,
-            "name": "text - 10"
-        },
-        {
-            "type": 11,
-            "content": {
-                "version": "LinkItem/1.0",
-                "style": "nav",
-                "links": [
-                    {
-                        "linkTarget": "WorkbookTemplate",
-                        "linkLabel": "Blobs",
-                        "preText": "",
-                        "style": "secondary",
-                        "workbookContext": {
-                            "componentIdSource": "workbook",
-                            "resourceIdsSource": "workbook",
-                            "templateIdSource": "static",
-                            "templateId": "Community-Workbooks/Individual Storage/Blob Overview",
-                            "typeSource": "workbook",
-                            "gallerySource": "workbook"
-                        }
-                    },
-                    {
-                        "linkTarget": "WorkbookTemplate",
-                        "linkLabel": "Tables",
-                        "style": "secondary",
-                        "workbookContext": {
-                            "componentIdSource": "workbook",
-                            "resourceIdsSource": "workbook",
-                            "templateIdSource": "static",
-                            "templateId": "Community-Workbooks/Individual Storage/Table Overview",
-                            "typeSource": "workbook",
-                            "gallerySource": "workbook"
-                        }
-                    },
-                    {
-                        "linkTarget": "WorkbookTemplate",
-                        "linkLabel": "Files",
-                        "style": "secondary",
-                        "workbookContext": {
-                            "componentIdSource": "workbook",
-                            "resourceIdsSource": "workbook",
-                            "templateIdSource": "static",
-                            "templateId": "Community-Workbooks/Individual Storage/File Overview",
-                            "typeSource": "workbook",
-                            "gallerySource": "workbook"
-                        }
-                    },
-                    {
-                        "linkTarget": "WorkbookTemplate",
-                        "linkLabel": "Queues",
-                        "style": "secondary",
-                        "workbookContext": {
-                            "componentIdSource": "workbook",
-                            "resourceIdsSource": "workbook",
-                            "templateIdSource": "static",
-                            "templateId": "Community-Workbooks/Individual Storage/Queue Overview",
-                            "typeSource": "workbook",
-                            "gallerySource": "workbook"
-                        }
-                    },
-                    {
-                        "cellValue": "{StorageAccount}",
-                        "linkTarget": "Resource",
-                        "linkLabel": "Manage",
-                        "subTarget": "",
-                        "style": "link"
-                    }
-                ]
-            },
-            "conditionalVisibility": null,
-            "name": "Unknown - 13"
-        },
-        {
             "type": 10,
             "content": {
                 "chartId": "workbook85d2d5d7-0e4c-4c24-8d42-47bf8300bdc0",
@@ -203,8 +124,8 @@
                 "resourceParameter": "StorageAccount",
                 "metrics": [
                     {
-                        "namespace": "microsoft.storage/storageaccounts",
-                        "metric": "microsoft.storage/storageaccounts-Transaction-Transactions",
+                        "namespace": "microsoft.storage/storageaccounts/tableservices",
+                        "metric": "microsoft.storage/storageaccounts/tableservices-Transaction-Transactions",
                         "aggregation": 1,
                         "chartType": 3,
                         "splitBy": null,
@@ -222,45 +143,6 @@
             "name": "metric - 0"
         },
         {
-            "type": 11,
-            "content": {
-                "version": "LinkItem/1.0",
-                "style": "nav",
-                "links": [
-                    {
-                        "linkTarget": "WorkbookTemplate",
-                        "linkLabel": "Transactions by storage type",
-                        "style": "link",
-                        "linkIsContextBlade": true,
-                        "workbookContext": {
-                            "componentIdSource": "workbook",
-                            "resourceIdsSource": "workbook",
-                            "templateIdSource": "static",
-                            "templateId": "Community-Workbooks/Individual Storage/Transactions by Storage Type",
-                            "typeSource": "workbook",
-                            "gallerySource": "workbook"
-                        }
-                    },
-                    {
-                        "linkTarget": "WorkbookTemplate",
-                        "linkLabel": "Transactions by response type & API name",
-                        "style": "link",
-                        "linkIsContextBlade": true,
-                        "workbookContext": {
-                            "componentIdSource": "workbook",
-                            "resourceIdsSource": "workbook",
-                            "templateIdSource": "static",
-                            "templateId": "Community-Workbooks/Individual Storage/Account Transactions",
-                            "typeSource": "workbook",
-                            "gallerySource": "workbook"
-                        }
-                    }
-                ]
-            },
-            "conditionalVisibility": null,
-            "name": "Unknown - 16"
-        },
-        {
             "type": 10,
             "content": {
                 "chartId": "workbook85d2d5d7-0e4c-4c24-8d42-47bf8300bdc0",
@@ -274,8 +156,8 @@
                 "resourceParameter": "StorageAccount",
                 "metrics": [
                     {
-                        "namespace": "microsoft.storage/storageaccounts",
-                        "metric": "microsoft.storage/storageaccounts-Transaction-Availability",
+                        "namespace": "microsoft.storage/storageaccounts/tableservices",
+                        "metric": "microsoft.storage/storageaccounts/tableservices-Transaction-Availability",
                         "aggregation": 4,
                         "chartType": 3,
                         "splitBy": null,
@@ -289,8 +171,8 @@
                 "gridFormatting": []
             },
             "conditionalVisibility": null,
-            "customWidth": "50",
             "showPin": true,
+            "customWidth": "50",
             "name": "metric - 1"
         },
         {
@@ -307,8 +189,8 @@
                 "resourceParameter": "StorageAccount",
                 "metrics": [
                     {
-                        "namespace": "microsoft.storage/storageaccounts",
-                        "metric": "microsoft.storage/storageaccounts-Capacity-UsedCapacity",
+                        "namespace": "microsoft.storage/storageaccounts/tableservices",
+                        "metric": "microsoft.storage/storageaccounts/tableservices-Capacity-TableCapacity",
                         "aggregation": 4,
                         "chartType": 3,
                         "splitBy": null,
@@ -318,12 +200,12 @@
                         "resourceId": "{StorageAccount}"
                     }
                 ],
-                "title": "Used capacity",
+                "title": "Table capacity",
                 "gridFormatting": []
             },
             "conditionalVisibility": null,
-            "customWidth": "50",
             "showPin": true,
+            "customWidth": "50",
             "name": "metric - 2"
         },
         {
@@ -340,27 +222,27 @@
                 "resourceParameter": "StorageAccount",
                 "metrics": [
                     {
-                        "namespace": "microsoft.storage/storageaccounts",
-                        "metric": "microsoft.storage/storageaccounts-Transaction-SuccessE2ELatency",
+                        "namespace": "microsoft.storage/storageaccounts/tableservices",
+                        "metric": "microsoft.storage/storageaccounts/tableservices-Transaction-SuccessE2ELatency",
                         "aggregation": 4,
                         "chartType": 2,
                         "splitBy": null
                     },
                     {
-                        "namespace": "microsoft.storage/storageaccounts",
-                        "metric": "microsoft.storage/storageaccounts-Transaction-SuccessServerLatency",
+                        "namespace": "microsoft.storage/storageaccounts/tableservices",
+                        "metric": "microsoft.storage/storageaccounts/tableservices-Transaction-SuccessServerLatency",
                         "aggregation": 4
                     },
                     {
                         "resourceId": "{StorageAccount}"
                     }
                 ],
-                "title": "Success latency -  End-to-end & Server",
+                "title": "Success latency - End-to-end & Server",
                 "gridFormatting": []
             },
             "conditionalVisibility": null,
-            "customWidth": "50",
             "showPin": true,
+            "customWidth": "50",
             "name": "metric - 4"
         },
         {
@@ -377,28 +259,94 @@
                 "resourceParameter": "StorageAccount",
                 "metrics": [
                     {
-                        "namespace": "microsoft.storage/storageaccounts",
-                        "metric": "microsoft.storage/storageaccounts-Transaction-Ingress",
+                        "namespace": "microsoft.storage/storageaccounts/tableservices",
+                        "metric": "microsoft.storage/storageaccounts/tableservices-Transaction-Ingress",
                         "aggregation": 1,
                         "chartType": 3,
                         "splitBy": null
                     },
                     {
-                        "namespace": "microsoft.storage/storageaccounts",
-                        "metric": "microsoft.storage/storageaccounts-Transaction-Egress",
+                        "namespace": "microsoft.storage/storageaccounts/tableservices",
+                        "metric": "microsoft.storage/storageaccounts/tableservices-Transaction-Egress",
                         "aggregation": 1
                     },
                     {
                         "resourceId": "{StorageAccount}"
                     }
                 ],
-                "title": "Ingress",
+                "title": "Ingress & Egress",
                 "gridFormatting": []
             },
             "conditionalVisibility": null,
-            "customWidth": "50",
             "showPin": true,
+            "customWidth": "50",
             "name": "metric - 7"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook85d2d5d7-0e4c-4c24-8d42-47bf8300bdc0",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.storage/storageaccounts",
+                "resourceParameter": "StorageAccount",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.storage/storageaccounts/tableservices",
+                        "metric": "microsoft.storage/storageaccounts/tableservices-Capacity-TableCount",
+                        "aggregation": 4,
+                        "chartType": 3,
+                        "splitBy": null,
+                        "color": "grayBlue"
+                    },
+                    {
+                        "resourceId": "{StorageAccount}"
+                    }
+                ],
+                "title": "Table count",
+                "gridFormatting": []
+            },
+            "conditionalVisibility": null,
+            "showPin": true,
+            "customWidth": "50",
+            "name": "metric - 2 - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook85d2d5d7-0e4c-4c24-8d42-47bf8300bdc0",
+                "version": "MetricsItem/1.0",
+                "size": 0,
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.storage/storageaccounts",
+                "resourceParameter": "StorageAccount",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.storage/storageaccounts/tableservices",
+                        "metric": "microsoft.storage/storageaccounts/tableservices-Capacity-TableEntityCount",
+                        "aggregation": 4,
+                        "chartType": 3,
+                        "splitBy": null,
+                        "color": "blueDark"
+                    },
+                    {
+                        "resourceId": "{StorageAccount}"
+                    }
+                ],
+                "title": "Table entity count",
+                "gridFormatting": []
+            },
+            "conditionalVisibility": null,
+            "showPin": true,
+            "customWidth": "50",
+            "name": "metric - 2 - Copy - Copy"
         }
     ],
     "defaultResourceIds": [],
