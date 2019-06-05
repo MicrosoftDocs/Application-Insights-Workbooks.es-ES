@@ -13,6 +13,11 @@
             "resourceType": "Azure Monitor",
             "categoryKey": "azureMonitorVirtualMachines",
             "order": 100
+        },
+        {
+            "type": "vm-insights",
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "order": 200
         }
     ]
 }

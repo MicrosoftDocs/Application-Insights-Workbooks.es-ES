@@ -8,6 +8,11 @@
             "type": "workbook",
             "resourceType": "microsoft.operationalinsights/workspaces",
             "order": 200
+        },
+        {
+            "type": "vm-insights",
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "order": 200
         }
     ]
 }
