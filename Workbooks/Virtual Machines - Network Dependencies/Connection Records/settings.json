@@ -1,11 +1,16 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"530b1-101\">Registros de conexiones (versión preliminar)</span><span class=\"sxs-lookup\"><span data-stu-id=\"530b1-101\">Connections Records (preview)</span></span>",
+    "name": "<span data-ttu-id=\"cd0f8-101\">Registros de conexiones (versión preliminar)</span><span class=\"sxs-lookup\"><span data-stu-id=\"cd0f8-101\">Connections Records (preview)</span></span>",
     "author": "Microsoft",
     "isPreview": true,
     "galleries": [
         {
             "type": "workbook",
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "order": 300
+        },
+        {
+            "type": "vm-insights",
             "resourceType": "microsoft.operationalinsights/workspaces",
             "order": 300
         }
