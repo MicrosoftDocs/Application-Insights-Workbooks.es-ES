@@ -64,7 +64,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"performance-analysis\"></a><span data-ttu-id=\"ac1d7-101\">Análisis de rendimiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-101\">Performance Analysis</span></span>"
+                "json": "# <a name=\"performance-analysis\"></a><span data-ttu-id=\"90e6d-101\">Análisis de rendimiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-101\">Performance Analysis</span></span>"
             },
             "conditionalVisibility": {
                 "parameterName": "ContextFree",
@@ -250,15 +250,15 @@
                     }
                 ],
                 "style": "above",
-                "queryType": 0,
-                "resourceType": "microsoft.insights/components"
+                "queryType": 1,
+                "resourceType": "microsoft.resourcegraph/resources"
             },
             "name": "parameters - 2"
         },
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"ac1d7-102\">⚠ Aún no se ha seleccionado una suscripción.</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-102\">⚠ A subscription has not yet been selected.</span></span> <span data-ttu-id=\"ac1d7-103\">Seleccione una suscripción en el menú desplegable `Subscriptions` o actualice el libro.</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-103\">Select a subscription under the `Subscriptions` dropdown or refresh the workbook.</span></span>"
+                "json": "<span data-ttu-id=\"90e6d-102\">⚠ Aún no se ha seleccionado una suscripción.</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-102\">⚠ A subscription has not yet been selected.</span></span> <span data-ttu-id=\"90e6d-103\">Seleccione una suscripción en el menú desplegable `Subscriptions` o actualice el libro.</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-103\">Select a subscription under the `Subscriptions` dropdown or refresh the workbook.</span></span>"
             },
             "conditionalVisibility": {
                 "parameterName": "Subscriptions",
@@ -270,7 +270,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"ac1d7-104\">⚠ No se han detectado contadores de rendimiento en el área de trabajo seleccionada durante el período de tiempo (`{TimeRange:label}`).</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-104\">⚠ No performance counters were detected in the selected workspace for the specified time period (`{TimeRange:label}`).</span></span> <span data-ttu-id=\"ac1d7-105\">Pruebe un intervalo de tiempo más amplio, seleccione otra área de trabajo o incorpore máquinas virtuales al área de trabajo seleccionada `{Workspaces:label}`.</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-105\">Either try a broader time range, select a different workspace, or onboard virtual machines to the selected workspace `{Workspaces:label}`.</span></span>\n\n<span data-ttu-id=\"ac1d7-106\">Si decide incorporar máquinas virtuales al área de trabajo `{Workspaces:label}`, siga las instrucciones del siguiente vínculo: [Azure Monitor para VM (versión preliminar)](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview).</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-106\">If you choose to onboard virtual machines to workspace `{Workspaces:label}`, follow the instruction in the following link: [Azure Monitor for VMs (preview)](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview).</span></span>"
+                "json": "<span data-ttu-id=\"90e6d-104\">⚠ No se han detectado contadores de rendimiento en el área de trabajo seleccionada durante el período de tiempo (`{TimeRange:label}`).</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-104\">⚠ No performance counters were detected in the selected workspace for the specified time period (`{TimeRange:label}`).</span></span> <span data-ttu-id=\"90e6d-105\">Pruebe un intervalo de tiempo más amplio, seleccione otra área de trabajo o incorpore máquinas virtuales al área de trabajo seleccionada `{Workspaces:label}`.</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-105\">Either try a broader time range, select a different workspace, or onboard virtual machines to the selected workspace `{Workspaces:label}`.</span></span>\n\n<span data-ttu-id=\"90e6d-106\">Si decide incorporar máquinas virtuales al área de trabajo `{Workspaces:label}`, siga las instrucciones del siguiente vínculo: [Azure Monitor para VM (versión preliminar)](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview).</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-106\">If you choose to onboard virtual machines to workspace `{Workspaces:label}`, follow the instruction in the following link: [Azure Monitor for VMs (preview)](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview).</span></span>"
             },
             "conditionalVisibility": {
                 "parameterName": "Test",
@@ -289,7 +289,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h2 style=\"margin-bottom:0;padding-bottom:0;\"><span data-ttu-id=\"ac1d7-107\">100 primeras máquinas</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-107\">Top 100 Machines</span></span></h2>"
+                "json": "<h2 style=\"margin-bottom:0;padding-bottom:0;\"><span data-ttu-id=\"90e6d-107\">100 primeras máquinas</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-107\">Top 100 Machines</span></span></h2>"
             },
             "name": "text - 5"
         },
@@ -303,21 +303,42 @@
                 ],
                 "parameters": [
                     {
+                        "id": "41bb3710-5e9e-4b66-91fd-e11435899880",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "ComputerNameContains",
+                        "label": "Computer Name Contains",
+                        "type": 1,
+                        "description": "<span data-ttu-id=\"90e6d-108\">Se filtrarán los equipos cuyo nombre contengan la palabra clave.</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-108\">This will filter the computers whose name contains the keyword.</span></span> <span data-ttu-id=\"90e6d-109\">Se volverán a consultar todas las máquinas en el área de trabajo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-109\">This will query all the machines in the workspace.</span></span>",
+                        "value": ""
+                    },
+                    {
+                        "id": "b533865a-3539-42b1-8dcd-33ca0d481c2a",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "ComputerFilter",
+                        "type": 1,
+                        "query": "{\"version\":\"1.0.0\",\"content\":\"{\\\"snippet\\\": \\\"| where Computer contains '{ComputerNameContains}'\\\"}\"}",
+                        "crossComponentResources": [
+                            "{Workspaces}"
+                        ],
+                        "isHiddenWhenLocked": true,
+                        "queryType": 8
+                    },
+                    {
                         "id": "aa2368fc-ad30-4608-b96a-72abf7b1e1af",
                         "version": "KqlParameterItem/1.0",
                         "name": "Counter",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"ac1d7-108\">Seleccione un contador de rendimiento de máquina virtual para la tabla siguiente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-108\">Select a VM performance counter for the table below</span></span>",
-                        "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| where ObjectName != 'Network' and ObjectName != 'Network Interface'\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
+                        "description": "<span data-ttu-id=\"90e6d-110\">Seleccione un contador de rendimiento de máquina virtual para la tabla siguiente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-110\">Select a VM performance counter for the table below</span></span>",
+                        "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
                         "crossComponentResources": [
                             "{Workspaces}"
                         ],
+                        "value": "{\"counter\":\"% Processor Time\",\"object\":\"Processor\"}",
                         "typeSettings": {
                             "additionalResourceOptions": []
                         },
                         "queryType": 0,
-                        "resourceType": "microsoft.operationalinsights/workspaces",
-                        "value": null
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "974d5ac2-4fc5-48e7-a8f7-16fc9dddc4ac",
@@ -330,43 +351,40 @@
                         ],
                         "isHiddenWhenLocked": true,
                         "queryType": 0,
-                        "resourceType": "microsoft.operationalinsights/workspaces",
-                        "value": null
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "ce228deb-88eb-4438-9dce-6c6d1972ff09",
                         "version": "KqlParameterItem/1.0",
                         "name": "IsNetworkCounter",
                         "type": 1,
-                        "query": "let counter = dynamic({Counter});\r\nprint tostring(counter.object == 'Network Adapter')",
+                        "query": "let metric = dynamic({Counter});\r\nprint tostring((metric.object == 'Network Adapter' and (metric.counter == 'Bytes Received/sec' or metric.counter == 'Bytes Sent/sec')) or (metric.object == 'Network' and (metric.counter == 'Total Bytes Received' or metric.counter == 'Total Bytes Transmitted')))",
                         "crossComponentResources": [
                             "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
                         "queryType": 0,
-                        "resourceType": "microsoft.operationalinsights/workspaces",
-                        "value": null
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "3b23aa7a-2afd-40ba-a710-0e2cc73c764b",
                         "version": "KqlParameterItem/1.0",
                         "name": "NetworkDirection",
                         "type": 1,
-                        "query": "let metric = dynamic({Counter});\r\nprint(iff(metric.counter == 'Bytes Received/sec', 'Received', 'Sent'))",
+                        "query": "let metric = dynamic({Counter});\r\nprint(iff(metric.counter == 'Bytes Received/sec' or metric.counter == 'Total Bytes Received', 'Received', 'Sent'))",
                         "crossComponentResources": [
                             "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
                         "queryType": 0,
-                        "resourceType": "microsoft.operationalinsights/workspaces",
-                        "value": null
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "9ad8858d-8ef3-4144-94b1-66a8bf9fa9c9",
                         "version": "KqlParameterItem/1.0",
                         "name": "Aggregators",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"ac1d7-109\">Seleccione uno o varios agregados diferentes para mostrar en la tabla siguiente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-109\">Select one or more different aggregates to display in the table below</span></span>",
+                        "description": "<span data-ttu-id=\"90e6d-111\">Seleccione uno o varios agregados diferentes para mostrar en la tabla siguiente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-111\">Select one or more different aggregates to display in the table below</span></span>",
                         "isRequired": true,
                         "multiSelect": true,
                         "quote": "",
@@ -381,7 +399,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "TableTrend",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"ac1d7-110\">Seleccione un percentil para mostrar en la columna de tendencia en la tabla siguiente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-110\">Select a percentile to display in the Trend column in the table below</span></span>",
+                        "description": "<span data-ttu-id=\"90e6d-112\">Seleccione un percentil para mostrar en la columna de tendencia en la tabla siguiente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-112\">Select a percentile to display in the Trend column in the table below</span></span>",
                         "isRequired": true,
                         "typeSettings": {
                             "additionalResourceOptions": []
@@ -419,28 +437,26 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "StandardQuery",
                         "type": 1,
-                        "query": "let metric = dynamic({Counter}); \r\nlet timeRangeStart = {TimeRange:start};\r\nlet timeRangeEnd = {TimeRange:end};\r\nlet timeRangeGrain = {TimeRange:grain};\r\nprint(iff({IsNetworkCounter} == 'False', strcat(\"let maxResultCount = 100; let metric = dynamic(\", metric, \"); let summaryPerComputer = totable(Perf      | where TimeGenerated {TimeRange}       | where ObjectName == metric.object and CounterName == metric.counter     | summarize hint.shufflekey = Computer Average = avg(CounterValue), Max = max(CounterValue), Min = min(CounterValue), percentiles(CounterValue, 5, 10, 50, 80, 90, 95) by Computer      | project Computer, Average, Max, Min, P5th = percentile_CounterValue_5, P10th = percentile_CounterValue_10, P50th = percentile_CounterValue_50, P80th = percentile_CounterValue_80, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95      | order by {TableTrend:label} {tableTrendOrder}, Computer      | limit maxResultCount);  let computerList = summaryPerComputer      | project Computer;  let MachineSummary = ServiceMapComputer_CL     | where TimeGenerated {TimeRange}     | where Computer in (computerList)     | summarize arg_max(TimeGenerated, *) by Computer     | project Computer, MachineSummary = pack('Fully Qualified Domain Name', Computer, 'OS Type', OperatingSystemFamily_s, 'Operating System', OperatingSystemFullName_s, 'Ipv4 Addresses', Ipv4Addresses_s,         'Ipv6 Addresses', Ipv6Addresses_s, 'Mac Addresses', MacAddresses_s, 'DNS Names', DnsNames_s, 'CPUs', strcat(Cpus_d, ' @ ', CpuSpeed_d, ' MHz'), 'Bitness', Bitness_s,         'Physcial Memory', strcat(PhysicalMemory_d, ' MB'), 'Virtualization State', VirtualizationState_s, 'VM Type', VirtualMachineType_s, 'OMS Agent', split(ResourceName_s, 'm-')[1]); let EmptyNodeIdentityAndProps = datatable(Computer:string, NodeId:string, NodeProps:dynamic, Priority: long) []; let OmsNodeIdentityAndProps = computerList     | extend NodeId = Computer     | extend Priority = 1     | extend NodeProps = pack('type', 'StandAloneNode', 'name', Computer); let ServiceMapNodeIdentityAndProps = ServiceMapComputer_CL     | where TimeGenerated {TimeRange}     | where Computer in (computerList)     | summarize arg_max(TimeGenerated, *) by Computer     | extend Computer = ComputerName_s, AzureCloudServiceNodeIdentity = iif(isnotempty(columnifexists('AzureCloudServiceName_s', '')), strcat(columnifexists('AzureCloudServiceInstanceId_s', ''), '|',                     columnifexists('AzureCloudServiceDeployment_g', '')), ''),          AzureScaleSetNodeIdentity = iif(isnotempty(columnifexists('AzureVmScaleSetName_s', '')),              strcat(columnifexists('AzureVmScaleSetInstanceId_s', ''), '|',                     columnifexists('AzureVmScaleSetDeployment_g', '')), ''),          ComputerProps =              pack('type', 'StandAloneNode',                   'name', ComputerName_s,                   'mappingResourceId', ResourceId,                   'subscriptionId', AzureSubscriptionId_g,                   'resourceGroup', AzureResourceGroup_s,                   'azureResourceId', columnifexists('AzureResourceId_s', '')),          AzureCloudServiceNodeProps =              pack('type', 'AzureCloudServiceNode',                   'cloudServiceInstanceId', columnifexists('AzureCloudServiceInstanceId_s', ''),                   'cloudServiceRoleName', columnifexists('AzureCloudServiceRoleName_s', ''),                   'cloudServiceDeploymentId', columnifexists('AzureCloudServiceDeployment_g', ''),                   'cloudServiceName', columnifexists('AzureCloudServiceName_s', ''),                   'mappingResourceId', ResourceId),          AzureScaleSetNodeProps =               pack('type', 'AzureScaleSetNode',                   'scaleSetInstanceId', columnifexists('AzureName_s', ''),                   'vmScaleSetDeploymentId', columnifexists('AzureVmScaleSetDeployment_g', ''),                   'vmScaleSetName', columnifexists('AzureVmScaleSetName_s', ''),                   'serviceFabricClusterName', columnifexists('AzureServiceFabricClusterName_s', ''),                   'vmScaleSetResourceId', columnifexists('AzureVmScaleSetResourceId_s', ''),                   'resourceGroupName', columnifexists('AzureResourceGroup_s', ''),                   'subscriptionId', columnifexists('AzureSubscriptionId_g', ''),                   'mappingResourceId', ResourceId)| project   Computer,            NodeId = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeIdentity,                       isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeIdentity, Computer),            NodeProps = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeProps,                          isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeProps, ComputerProps),            Priority = 2; let NodeIdentityAndProps = union kind=inner isfuzzy = true                                  EmptyNodeIdentityAndProps, OmsNodeIdentityAndProps, ServiceMapNodeIdentityAndProps                                 | summarize arg_max(Priority, *) by Computer;  let NodeIdentityAndPropsMin = NodeIdentityAndProps     | extend Type = iff(NodeProps.type == 'StandAloneNode', iff(NodeProps.azureResourceId == '', 'Non-Azure Virtual Machine', 'Azure Virtual Machine'), NodeProps.type),      ResourceId = iff(NodeProps.type == 'AzureScaleSetNode', NodeProps.vmScaleSetResourceId,          iff(NodeProps.type == 'AzureCloudServiceNode', NodeProps.cloudServiceDeploymentId, Computer)),     ResourceName = iff(NodeProps.type == 'AzureScaleSetNode', strcat(NodeProps.vmScaleSetName, ' | ', NodeProps.scaleSetInstanceId),          iff(NodeProps.type == 'AzureCloudServiceNode', strcat(NodeProps.cloudServiceRoleName, ' | ', NodeProps.cloudServiceInstanceId), Computer))     | project Computer, Type, ResourceId, ResourceName; let trend = Perf          | where TimeGenerated {TimeRange}         | where Computer in (computerList)          | where ObjectName == metric.object and CounterName == metric.counter        | make-series {TableTrend} default = 0 on TimeGenerated in range(datetime('\", timeRangeStart,\"'), datetime('\", timeRangeEnd ,\"'), totimespan('\", timeRangeGrain, \"')) by Computer     | project Computer, ['Trend ({TableTrend:label})'] = {TableTrend:label}; summaryPerComputer     | join kind=leftouter (trend) on Computer     | join kind=leftouter (NodeIdentityAndProps) on Computer     | join kind=leftouter (NodeIdentityAndPropsMin) on Computer     | join kind=leftouter (MachineSummary) on Computer     | project ResourceName, Type, {mergedAggregators}, ['Trend ({TableTrend:label})'], Properties = MachineSummary     | sort by {TableTrend:label} {tableTrendOrder}\"), ''));",
+                        "query": "let metric = dynamic({Counter}); \r\nlet timeRangeStart = {TimeRange:start};\r\nlet timeRangeEnd = {TimeRange:end};\r\nlet timeRangeGrain = {TimeRange:grain};\r\nprint(strcat(\"let maxResultCount = 100; let metric = dynamic(\", metric, \"); let summaryPerComputer = totable(Perf      | where TimeGenerated {TimeRange}   {ComputerFilter}    | where ObjectName == metric.object and CounterName == metric.counter     | summarize hint.shufflekey = Computer Average = avg(CounterValue), Max = max(CounterValue), Min = min(CounterValue), percentiles(CounterValue, 5, 10, 50, 80, 90, 95) by Computer      | project Computer, Average, Max, Min, P5th = percentile_CounterValue_5, P10th = percentile_CounterValue_10, P50th = percentile_CounterValue_50, P80th = percentile_CounterValue_80, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95      | order by {TableTrend:label} {tableTrendOrder}, Computer      | limit maxResultCount);  let computerList = summaryPerComputer      | project Computer;  let MachineSummary = ServiceMapComputer_CL     | where TimeGenerated {TimeRange}     | where Computer in (computerList)     | summarize arg_max(TimeGenerated, *) by Computer     | project Computer, MachineSummary = pack('Fully Qualified Domain Name', Computer, 'OS Type', OperatingSystemFamily_s, 'Operating System', OperatingSystemFullName_s, 'Ipv4 Addresses', Ipv4Addresses_s,         'Ipv6 Addresses', Ipv6Addresses_s, 'Mac Addresses', MacAddresses_s, 'DNS Names', DnsNames_s, 'CPUs', strcat(Cpus_d, ' @ ', CpuSpeed_d, ' MHz'), 'Bitness', Bitness_s,         'Physcial Memory', strcat(PhysicalMemory_d, ' MB'), 'Virtualization State', VirtualizationState_s, 'VM Type', VirtualMachineType_s, 'OMS Agent', split(ResourceName_s, 'm-')[1]); let EmptyNodeIdentityAndProps = datatable(Computer:string, NodeId:string, NodeProps:dynamic, Priority: long) []; let OmsNodeIdentityAndProps = computerList     | extend NodeId = Computer     | extend Priority = 1     | extend NodeProps = pack('type', 'StandAloneNode', 'name', Computer); let ServiceMapNodeIdentityAndProps = ServiceMapComputer_CL     | where TimeGenerated {TimeRange}     | where Computer in (computerList)     | summarize arg_max(TimeGenerated, *) by Computer     | extend Computer = ComputerName_s, AzureCloudServiceNodeIdentity = iif(isnotempty(columnifexists('AzureCloudServiceName_s', '')), strcat(columnifexists('AzureCloudServiceInstanceId_s', ''), '|',                     columnifexists('AzureCloudServiceDeployment_g', '')), ''),          AzureScaleSetNodeIdentity = iif(isnotempty(columnifexists('AzureVmScaleSetName_s', '')),              strcat(columnifexists('AzureVmScaleSetInstanceId_s', ''), '|',                     columnifexists('AzureVmScaleSetDeployment_g', '')), ''),          ComputerProps =              pack('type', 'StandAloneNode',                   'name', ComputerName_s,                   'mappingResourceId', ResourceId,                   'subscriptionId', AzureSubscriptionId_g,                   'resourceGroup', AzureResourceGroup_s,                   'azureResourceId', columnifexists('AzureResourceId_s', '')),          AzureCloudServiceNodeProps =              pack('type', 'AzureCloudServiceNode',                   'cloudServiceInstanceId', columnifexists('AzureCloudServiceInstanceId_s', ''),                   'cloudServiceRoleName', columnifexists('AzureCloudServiceRoleName_s', ''),                   'cloudServiceDeploymentId', columnifexists('AzureCloudServiceDeployment_g', ''),                   'cloudServiceName', columnifexists('AzureCloudServiceName_s', ''),                   'mappingResourceId', ResourceId),          AzureScaleSetNodeProps =               pack('type', 'AzureScaleSetNode',                   'scaleSetInstanceId', columnifexists('AzureName_s', ''),                   'vmScaleSetDeploymentId', columnifexists('AzureVmScaleSetDeployment_g', ''),                   'vmScaleSetName', columnifexists('AzureVmScaleSetName_s', ''),                   'serviceFabricClusterName', columnifexists('AzureServiceFabricClusterName_s', ''),                   'vmScaleSetResourceId', columnifexists('AzureVmScaleSetResourceId_s', ''),                   'resourceGroupName', columnifexists('AzureResourceGroup_s', ''),                   'subscriptionId', columnifexists('AzureSubscriptionId_g', ''),                   'mappingResourceId', ResourceId)| project   Computer,            NodeId = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeIdentity,                       isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeIdentity, Computer),            NodeProps = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeProps,                          isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeProps, ComputerProps),            Priority = 2; let NodeIdentityAndProps = union kind=inner isfuzzy = true                                  EmptyNodeIdentityAndProps, OmsNodeIdentityAndProps, ServiceMapNodeIdentityAndProps                                 | summarize arg_max(Priority, *) by Computer;  let NodeIdentityAndPropsMin = NodeIdentityAndProps     | extend Type = iff(NodeProps.type == 'StandAloneNode', iff(NodeProps.azureResourceId == '', 'Non-Azure Virtual Machine', 'Azure Virtual Machine'), NodeProps.type),      ResourceId = iff(NodeProps.type == 'AzureScaleSetNode', NodeProps.vmScaleSetResourceId,          iff(NodeProps.type == 'AzureCloudServiceNode', NodeProps.cloudServiceDeploymentId, Computer)),     ResourceName = iff(NodeProps.type == 'AzureScaleSetNode', strcat(NodeProps.vmScaleSetName, ' | ', NodeProps.scaleSetInstanceId),          iff(NodeProps.type == 'AzureCloudServiceNode', strcat(NodeProps.cloudServiceRoleName, ' | ', NodeProps.cloudServiceInstanceId), Computer))     | project Computer, Type, ResourceId, ResourceName; let trend = Perf          | where TimeGenerated {TimeRange}         | where Computer in (computerList)          | where ObjectName == metric.object and CounterName == metric.counter        | make-series {TableTrend} default = 0 on TimeGenerated in range(datetime('\", timeRangeStart,\"'), datetime('\", timeRangeEnd ,\"'), totimespan('\", timeRangeGrain, \"')) by Computer     | project Computer, ['Trend ({TableTrend:label})'] = {TableTrend:label}; summaryPerComputer     | join kind=leftouter (trend) on Computer     | join kind=leftouter (NodeIdentityAndProps) on Computer     | join kind=leftouter (NodeIdentityAndPropsMin) on Computer     | join kind=leftouter (MachineSummary) on Computer     | project ResourceName, Type, {mergedAggregators}, ['Trend ({TableTrend:label})'], Properties = MachineSummary     | sort by {TableTrend:label} {tableTrendOrder}\"));\r\n",
                         "crossComponentResources": [
                             "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
                         "queryType": 0,
-                        "resourceType": "microsoft.operationalinsights/workspaces",
-                        "value": null
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "6e392933-2f72-45a6-889b-90351f9130db",
                         "version": "KqlParameterItem/1.0",
                         "name": "NetworkQuery",
                         "type": 1,
-                        "query": "let metric = dynamic({Counter});\r\nlet timeRangeStart = {TimeRange:start};\r\nlet timeRangeEnd = {TimeRange:end};\r\nlet timeRangeGrain = {TimeRange:grain};\r\nprint(iff({IsNetworkCounter} == 'True', strcat(\"let metric = dynamic(\", metric, \"); let linux = iff(metric.counter == 'Bytes Received/sec', dynamic({'object': 'Network', 'counter': 'Total Bytes Received'}), dynamic({'object': 'Network', 'counter': 'Total Bytes Transmitted'})); let maxResultCount = 100; let windowsNetworkRaw = Perf | where TimeGenerated {TimeRange} | where ObjectName == metric.object and CounterName == metric.couter; let windowsNetworkSum = windowsNetworkRaw | summarize hint.shufflekey=Computer CounterValue=sum(CounterValue) by Computer, TimeGenerated; let windowsNetworkPctl = windowsNetworkRaw | summarize hint.shufflekey=Computer Average = avg(CounterValue), Max = max(CounterValue), Min = min(CounterValue), percentiles(CounterValue, 5, 10, 50, 80, 90, 95) by Computer, TimeGenerated | project TimeGenerated, Computer, Average, Max, Min, P5th = percentile_CounterValue_5, P10th = percentile_CounterValue_10, P50th = percentile_CounterValue_50, P80th = percentile_CounterValue_80, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95; let linuxNetworkRaw = Perf | where TimeGenerated {TimeRange} | where ObjectName == linux.object and CounterName == linux.counter | order by InstanceName, TimeGenerated asc | extend prev_Value = prev(CounterValue), prev_t = prev(TimeGenerated), prev_instance = prev(InstanceName) | project TimeGenerated, Computer, CounterValue = iff(prev_instance == InstanceName and CounterValue >= prev_Value and TimeGenerated > prev_t, (CounterValue - prev_Value) / ((TimeGenerated - prev_t) / 1s), real(0)); let linuxNetworkSum = linuxNetworkRaw | summarize hint.shufflekey=Computer CounterValue=sum(CounterValue) by Computer, TimeGenerated; let linuxNetworkPctl = linuxNetworkRaw | summarize hint.shufflekey=Computer Average = avg(CounterValue), Max = max(CounterValue), Min = min(CounterValue), percentiles(CounterValue, 5, 10, 50, 80, 90, 95) by Computer, TimeGenerated | project TimeGenerated, Computer, Average, Max, Min, P5th = percentile_CounterValue_5, P10th = percentile_CounterValue_10, P50th = percentile_CounterValue_50, P80th = percentile_CounterValue_80, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95; let networkDataSum = union windowsNetworkSum, linuxNetworkSum; let networkDataPctl = union windowsNetworkPctl, linuxNetworkPctl; let computerList = Perf  | project Computer; let EmptyNodeIdentityAndProps = datatable(Computer:string, NodeId:string, NodeProps:dynamic, Priority: long) []; let OmsNodeIdentityAndProps = computerList | extend NodeId = Computer | extend Priority = 1 | extend NodeProps = pack('type', 'StandAloneNode', 'name', Computer); let ServiceMapNodeIdentityAndProps = ServiceMapComputer_CL | where TimeGenerated {TimeRange} | where Computer in (computerList) | summarize hint.shufflekey=Computer arg_max(TimeGenerated, *) by Computer | extend Computer = ComputerName_s, AzureCloudServiceNodeIdentity = iif(isnotempty(columnifexists('AzureCloudServiceName_s', '')), strcat(columnifexists('AzureCloudServiceInstanceId_s', ''), '|', columnifexists('AzureCloudServiceDeployment_g', '')), ''), AzureScaleSetNodeIdentity = iif(isnotempty(columnifexists('AzureVmScaleSetName_s', '')), strcat(columnifexists('AzureVmScaleSetInstanceId_s', ''), '|', columnifexists('AzureVmScaleSetDeployment_g', '')), ''), ComputerProps = pack('type', 'StandAloneNode', 'name', ComputerName_s, 'mappingResourceId', ResourceId, 'subscriptionId', AzureSubscriptionId_g, 'resourceGroup', AzureResourceGroup_s, 'azureResourceId', columnifexists('AzureResourceId_s', '')), AzureCloudServiceNodeProps = pack('type', 'AzureCloudServiceNode', 'cloudServiceInstanceId', columnifexists('AzureCloudServiceInstanceId_s', ''), 'cloudServiceRoleName', columnifexists('AzureCloudServiceRoleName_s', ''), 'cloudServiceDeploymentId', columnifexists('AzureCloudServiceDeployment_g', ''), 'cloudServiceName', columnifexists('AzureCloudServiceName_s', ''), 'mappingResourceId', ResourceId), AzureScaleSetNodeProps = pack('type', 'AzureScaleSetNode', 'scaleSetInstanceId', columnifexists('AzureName_s', ''), 'vmScaleSetDeploymentId', columnifexists('AzureVmScaleSetDeployment_g', ''), 'vmScaleSetName', columnifexists('AzureVmScaleSetName_s', ''), 'serviceFabricClusterName', columnifexists('AzureServiceFabricClusterName_s', ''), 'vmScaleSetResourceId', columnifexists('AzureVmScaleSetResourceId_s', ''), 'resourceGroupName', columnifexists('AzureResourceGroup_s', ''), 'subscriptionId', columnifexists('AzureSubscriptionId_g', ''), 'mappingResourceId', ResourceId)| project   Computer, NodeId = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeIdentity, isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeIdentity, Computer), NodeProps = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeProps, isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeProps, ComputerProps), Priority = 2; let NodeIdentityAndProps = union kind=inner isfuzzy = true EmptyNodeIdentityAndProps, OmsNodeIdentityAndProps, ServiceMapNodeIdentityAndProps | summarize hint.shufflekey=Computer arg_max(Priority, *) by Computer; let NodeIdentityAndPropsMin = NodeIdentityAndProps | extend Type = iff(NodeProps.type == 'StandAloneNode', iff(NodeProps.azureResourceId == '', 'Non-Azure Virtual Machine', 'Azure Virtual Machine'), NodeProps.type), ResourceId = iff(NodeProps.type == 'AzureScaleSetNode', NodeProps.vmScaleSetResourceId, iff(NodeProps.type == 'AzureCloudServiceNode', NodeProps.cloudServiceDeploymentId, Computer)), ResourceName = iff(NodeProps.type == 'AzureScaleSetNode', strcat(NodeProps.vmScaleSetName, ' | ', NodeProps.scaleSetInstanceId), iff(NodeProps.type == 'AzureCloudServiceNode', strcat(NodeProps.cloudServiceRoleName, ' | ', NodeProps.cloudServiceInstanceId), Computer)) | project Computer, Type, ResourceId, ResourceName; let MachineSummary = ServiceMapComputer_CL | where TimeGenerated {TimeRange} | where Computer in (computerList) | summarize hint.shufflekey=Computer arg_max(TimeGenerated, *) by Computer | project Computer, MachineSummary = pack('Fully Qualified Domain Name', Computer, 'OS Type', OperatingSystemFamily_s, 'Operating System', OperatingSystemFullName_s, 'Ipv4 Addresses', Ipv4Addresses_s, 'Ipv6 Addresses', Ipv6Addresses_s, 'Mac Addresses', MacAddresses_s, 'DNS Names', DnsNames_s, 'CPUs', strcat(Cpus_d, ' @ ', CpuSpeed_d, ' MHz'), 'Bitness', Bitness_s, 'Physcial Memory', strcat(PhysicalMemory_d, ' MB'), 'Virtualization State', VirtualizationState_s, 'VM Type', VirtualMachineType_s, 'OMS Agent', split(ResourceName_s, 'm-')[1]); let trend = networkDataSum | make-series {TableTrend} default=0 on TimeGenerated in range(datetime('\", timeRangeStart,\"'), datetime('\", timeRangeEnd ,\"'), totimespan('\", timeRangeGrain, \"')) by Computer | project Computer, ['Trend ({TableTrend:label})'] = {TableTrend:label}; networkDataPctl | join kind=leftouter hint.shufflekey=Computer (trend) on Computer | join kind=leftouter hint.shufflekey=Computer (NodeIdentityAndPropsMin) on Computer | join kind=leftouter hint.shufflekey=Computer (MachineSummary) on Computer | project ResourceName, Type, {mergedAggregators}, ['Trend ({TableTrend:label})'], Properties = MachineSummary | sort by {TableTrend:label} {tableTrendOrder} | limit maxResultCount\"), ''));",
+                        "query": "let metric = dynamic({Counter});\r\nlet timeRangeStart = {TimeRange:start};\r\nlet timeRangeEnd = {TimeRange:end};\r\nlet timeRangeGrain = {TimeRange:grain};\r\nprint(iff({IsNetworkCounter} == 'True', strcat(\"let metric = dynamic(\", metric, \"); let linux = iff(metric.counter == 'Bytes Received/sec', dynamic({'object': 'Network', 'counter': 'Total Bytes Received'}), dynamic({'object': 'Network', 'counter': 'Total Bytes Transmitted'})); let maxResultCount = 100; let windowsNetworkRaw = Perf | where TimeGenerated {TimeRange} {ComputerFilter} | where ObjectName == metric.object and CounterName == metric.couter; let windowsNetworkSum = windowsNetworkRaw | summarize hint.shufflekey=Computer CounterValue=sum(CounterValue) by Computer, TimeGenerated; let windowsNetworkPctl = windowsNetworkRaw | summarize hint.shufflekey=Computer Average = avg(CounterValue), Max = max(CounterValue), Min = min(CounterValue), percentiles(CounterValue, 5, 10, 50, 80, 90, 95) by Computer, TimeGenerated | project TimeGenerated, Computer, Average, Max, Min, P5th = percentile_CounterValue_5, P10th = percentile_CounterValue_10, P50th = percentile_CounterValue_50, P80th = percentile_CounterValue_80, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95; let linuxNetworkRaw = Perf | where TimeGenerated {TimeRange} {ComputerFilter} | where ObjectName == linux.object and CounterName == linux.counter | order by InstanceName, TimeGenerated asc | extend prev_Value = prev(CounterValue), prev_t = prev(TimeGenerated), prev_instance = prev(InstanceName) | project TimeGenerated, Computer, CounterValue = iff(prev_instance == InstanceName and CounterValue >= prev_Value and TimeGenerated > prev_t, (CounterValue - prev_Value) / ((TimeGenerated - prev_t) / 1s), real(0)); let linuxNetworkSum = linuxNetworkRaw | summarize hint.shufflekey=Computer CounterValue=sum(CounterValue) by Computer, TimeGenerated; let linuxNetworkPctl = linuxNetworkRaw | summarize hint.shufflekey=Computer Average = avg(CounterValue), Max = max(CounterValue), Min = min(CounterValue), percentiles(CounterValue, 5, 10, 50, 80, 90, 95) by Computer, TimeGenerated | project TimeGenerated, Computer, Average, Max, Min, P5th = percentile_CounterValue_5, P10th = percentile_CounterValue_10, P50th = percentile_CounterValue_50, P80th = percentile_CounterValue_80, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95; let networkDataSum = union windowsNetworkSum, linuxNetworkSum; let networkDataPctl = union windowsNetworkPctl, linuxNetworkPctl; let computerList = Perf {ComputerFilter}  | summarize by Computer; let EmptyNodeIdentityAndProps = datatable(Computer:string, NodeId:string, NodeProps:dynamic, Priority: long) []; let OmsNodeIdentityAndProps = computerList | extend NodeId = Computer | extend Priority = 1 | extend NodeProps = pack('type', 'StandAloneNode', 'name', Computer); let ServiceMapNodeIdentityAndProps = ServiceMapComputer_CL | where TimeGenerated {TimeRange} | where Computer in (computerList) | summarize hint.shufflekey=Computer arg_max(TimeGenerated, *) by Computer | extend Computer = ComputerName_s, AzureCloudServiceNodeIdentity = iif(isnotempty(columnifexists('AzureCloudServiceName_s', '')), strcat(columnifexists('AzureCloudServiceInstanceId_s', ''), '|', columnifexists('AzureCloudServiceDeployment_g', '')), ''), AzureScaleSetNodeIdentity = iif(isnotempty(columnifexists('AzureVmScaleSetName_s', '')), strcat(columnifexists('AzureVmScaleSetInstanceId_s', ''), '|', columnifexists('AzureVmScaleSetDeployment_g', '')), ''), ComputerProps = pack('type', 'StandAloneNode', 'name', ComputerName_s, 'mappingResourceId', ResourceId, 'subscriptionId', AzureSubscriptionId_g, 'resourceGroup', AzureResourceGroup_s, 'azureResourceId', columnifexists('AzureResourceId_s', '')), AzureCloudServiceNodeProps = pack('type', 'AzureCloudServiceNode', 'cloudServiceInstanceId', columnifexists('AzureCloudServiceInstanceId_s', ''), 'cloudServiceRoleName', columnifexists('AzureCloudServiceRoleName_s', ''), 'cloudServiceDeploymentId', columnifexists('AzureCloudServiceDeployment_g', ''), 'cloudServiceName', columnifexists('AzureCloudServiceName_s', ''), 'mappingResourceId', ResourceId), AzureScaleSetNodeProps = pack('type', 'AzureScaleSetNode', 'scaleSetInstanceId', columnifexists('AzureName_s', ''), 'vmScaleSetDeploymentId', columnifexists('AzureVmScaleSetDeployment_g', ''), 'vmScaleSetName', columnifexists('AzureVmScaleSetName_s', ''), 'serviceFabricClusterName', columnifexists('AzureServiceFabricClusterName_s', ''), 'vmScaleSetResourceId', columnifexists('AzureVmScaleSetResourceId_s', ''), 'resourceGroupName', columnifexists('AzureResourceGroup_s', ''), 'subscriptionId', columnifexists('AzureSubscriptionId_g', ''), 'mappingResourceId', ResourceId)| project   Computer, NodeId = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeIdentity, isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeIdentity, Computer), NodeProps = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeProps, isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeProps, ComputerProps), Priority = 2; let NodeIdentityAndProps = union kind=inner isfuzzy = true EmptyNodeIdentityAndProps, OmsNodeIdentityAndProps, ServiceMapNodeIdentityAndProps | summarize hint.shufflekey=Computer arg_max(Priority, *) by Computer; let NodeIdentityAndPropsMin = NodeIdentityAndProps | extend Type = iff(NodeProps.type == 'StandAloneNode', iff(NodeProps.azureResourceId == '', 'Non-Azure Virtual Machine', 'Azure Virtual Machine'), NodeProps.type), ResourceId = iff(NodeProps.type == 'AzureScaleSetNode', NodeProps.vmScaleSetResourceId, iff(NodeProps.type == 'AzureCloudServiceNode', NodeProps.cloudServiceDeploymentId, Computer)), ResourceName = iff(NodeProps.type == 'AzureScaleSetNode', strcat(NodeProps.vmScaleSetName, ' | ', NodeProps.scaleSetInstanceId), iff(NodeProps.type == 'AzureCloudServiceNode', strcat(NodeProps.cloudServiceRoleName, ' | ', NodeProps.cloudServiceInstanceId), Computer)) | project Computer, Type, ResourceId, ResourceName; let MachineSummary = ServiceMapComputer_CL | where TimeGenerated {TimeRange} | where Computer in (computerList) | summarize hint.shufflekey=Computer arg_max(TimeGenerated, *) by Computer | project Computer, MachineSummary = pack('Fully Qualified Domain Name', Computer, 'OS Type', OperatingSystemFamily_s, 'Operating System', OperatingSystemFullName_s, 'Ipv4 Addresses', Ipv4Addresses_s, 'Ipv6 Addresses', Ipv6Addresses_s, 'Mac Addresses', MacAddresses_s, 'DNS Names', DnsNames_s, 'CPUs', strcat(Cpus_d, ' @ ', CpuSpeed_d, ' MHz'), 'Bitness', Bitness_s, 'Physcial Memory', strcat(PhysicalMemory_d, ' MB'), 'Virtualization State', VirtualizationState_s, 'VM Type', VirtualMachineType_s, 'OMS Agent', split(ResourceName_s, 'm-')[1]); let trend = networkDataSum | make-series {TableTrend} default=0 on TimeGenerated in range(datetime('\", timeRangeStart,\"'), datetime('\", timeRangeEnd ,\"'), totimespan('\", timeRangeGrain, \"')) by Computer | project Computer, ['Trend ({TableTrend:label})'] = {TableTrend:label}; networkDataPctl | join kind=leftouter hint.shufflekey=Computer (trend) on Computer | join kind=leftouter hint.shufflekey=Computer (NodeIdentityAndPropsMin) on Computer | join kind=leftouter hint.shufflekey=Computer (MachineSummary) on Computer | project ResourceName, Type, {mergedAggregators}, ['Trend ({TableTrend:label})'], Properties = MachineSummary | sort by {TableTrend:label} {tableTrendOrder} | limit maxResultCount\"), ''));",
                         "crossComponentResources": [
                             "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
                         "queryType": 0,
-                        "resourceType": "microsoft.operationalinsights/workspaces",
-                        "value": null
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "69c79551-68b9-4c84-bf57-202540482a02",
@@ -496,7 +512,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"ac1d7-111\">No hay contadores de rendimiento, ni máquinas incorporadas a esta área de trabajo ni contadores de rendimiento habilitados.</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-111\">There are no performance counters, either onboard machines to this workspace or enable performance counters.</span></span>"
+                "json": "<span data-ttu-id=\"90e6d-113\">No hay contadores de rendimiento, ni máquinas incorporadas a esta área de trabajo ni contadores de rendimiento habilitados.</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-113\">There are no performance counters, either onboard machines to this workspace or enable performance counters.</span></span>"
             },
             "conditionalVisibility": {
                 "parameterName": "CounterTest",
@@ -712,7 +728,7 @@
         {
             "type": 1,
             "content": {
-                "json": "#### <a name=\"-total-bytes-networkdirection-counters-are-also-being-utilized-to-display-the-network-table-the-delta-of-total-bytes-networkdirection-over-a-time-period-is-being-calculated-to-match-up-with-the-bytes-networkdirectionsec-counter-to-display-an-accurate-representation-of-network-activity-over-all-machines\"></a><span data-ttu-id=\"ac1d7-112\">Los contadores ℹ `Total Bytes {NetworkDirection}` también se utilizan para mostrar la tabla de la red.</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-112\">ℹ `Total Bytes {NetworkDirection}` counters are also being utilized to display the network table.</span></span> <span data-ttu-id=\"ac1d7-113\">Se calculan las diferencias de `Total Bytes {NetworkDirection}` durante un período de tiempo para que coincida con el contador `Bytes {NetworkDirection}/sec` y poder mostrar una representación precisa de la actividad de red en todas las máquinas.</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-113\">The delta of `Total Bytes {NetworkDirection}` over a time period is being calculated to match up with the `Bytes {NetworkDirection}/sec` counter to display an accurate representation of network activity over all machines</span></span>"
+                "json": "#### <a name=\"-total-bytes-networkdirection-and-bytes-networkdirectionsec-counters-are-both-being-utilized-to-display-the-network-table-the-delta-of-total-bytes-networkdirection-over-a-time-period-is-being-calculated-to-match-up-with-the-bytes-networkdirectionsec-counter-to-display-an-accurate-representation-of-network-activity-over-all-machines\"></a><span data-ttu-id=\"90e6d-114\">Los contadores ℹ `Total Bytes {NetworkDirection}` y `Bytes {NetworkDirection}/sec` también se utilizan para mostrar la tabla de la red.</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-114\">ℹ `Total Bytes {NetworkDirection}` and `Bytes {NetworkDirection}/sec` counters are both being utilized to display the network table.</span></span> <span data-ttu-id=\"90e6d-115\">Se calculan las diferencias de `Total Bytes {NetworkDirection}` durante un período de tiempo para que coincida con el contador `Bytes {NetworkDirection}/sec` y poder mostrar una representación precisa de la actividad de red en todas las máquinas.</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-115\">The delta of `Total Bytes {NetworkDirection}` over a time period is being calculated to match up with the `Bytes {NetworkDirection}/sec` counter to display an accurate representation of network activity over all machines</span></span>"
             },
             "conditionalVisibility": {
                 "parameterName": "ShowNetworkTable",
@@ -725,7 +741,7 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "{NetworkQuery}",
+                "query": "let timeRangeStart = {TimeRange:start};\r\nlet timeRangeEnd = {TimeRange:end};\r\nlet timeRangeGrain = {TimeRange:grain};    \r\nlet maxResultCount = 100; \r\nlet linuxMetric = iff('{NetworkDirection}' == 'Received', dynamic({'object': 'Network', 'counter': 'Total Bytes Received'}), dynamic({'object': 'Network', 'counter': 'Total Bytes Transmitted'}));\r\nlet windowsMetric = iff('{NetworkDirection}' == 'Received', dynamic({\"counter\":\"Bytes Received/sec\",\"object\":\"Network Adapter\"}), dynamic({\"counter\":\"Bytes Sent/sec\",\"object\":\"Network Adapter\"}));\r\nlet Network = materialize(Perf            \r\n| where TimeGenerated {TimeRange}   {ComputerFilter}            \r\n| where ObjectName == linuxMetric.object and CounterName == linuxMetric.counter            \r\n| extend ComputerId = iff(isempty(_ResourceId), Computer, _ResourceId)           \r\n| order by CounterName asc, InstanceName, ComputerId asc, TimeGenerated asc             \r\n| extend prev_ComputerId=prev(ComputerId), prev_Value=prev(CounterValue), prev_t=prev(TimeGenerated), prev_instance=prev(InstanceName)             \r\n| project   TimeGenerated, ComputerId, Computer, _ResourceId,                        cValue = iff(prev_ComputerId == ComputerId and prev_instance == InstanceName and CounterValue >= prev_Value and TimeGenerated > prev_t, (CounterValue-prev_Value)/((TimeGenerated-prev_t)/1s), real(0))            \r\n| summarize CounterValue = sum(cValue) by ComputerId, Computer, _ResourceId, bin(TimeGenerated, 2s)        \r\n| union (Perf            \r\n| where TimeGenerated {TimeRange}   {ComputerFilter}            \r\n| where ObjectName == windowsMetric.object and CounterName == windowsMetric.counter            \r\n| extend ComputerId = iff(isempty(_ResourceId), Computer, _ResourceId))            \r\n| summarize CounterValue = sum(CounterValue) by ComputerId, Computer, _ResourceId, bin(TimeGenerated, 2s));    \r\nlet summaryPerComputer = totable(Network            \r\n| summarize hint.shufflekey = ComputerId Average = avg(CounterValue), Max = max(CounterValue), percentiles(CounterValue, 50, 90, 95) by ComputerId, Computer, _ResourceId            \r\n| project ComputerId, Computer, Average, Max, P50th = percentile_CounterValue_50, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95, ResourceId = _ResourceId            \r\n| order by {TableTrend:label} {tableTrendOrder}, Computer            \r\n| limit maxResultCount);    \r\nlet computerList = summaryPerComputer \r\n| project ComputerId, Computer;\r\nlet MachineSummary = ServiceMapComputer_CL     | where TimeGenerated {TimeRange} | extend ComputerId = iff(isempty(_ResourceId), Computer, _ResourceId)    | where ComputerId in (computerList)     | summarize arg_max(TimeGenerated, *) by Computer     | project Computer, MachineSummary = pack('Fully Qualified Domain Name', Computer, 'OS Type', OperatingSystemFamily_s, 'Operating System', OperatingSystemFullName_s, 'Ipv4 Addresses', Ipv4Addresses_s,         'Ipv6 Addresses', Ipv6Addresses_s, 'Mac Addresses', MacAddresses_s, 'DNS Names', DnsNames_s, 'CPUs', strcat(Cpus_d, ' @ ', CpuSpeed_d, ' MHz'), 'Bitness', Bitness_s,         'Physcial Memory', strcat(PhysicalMemory_d, ' MB'), 'Virtualization State', VirtualizationState_s, 'VM Type', VirtualMachineType_s, 'OMS Agent', split(ResourceName_s, 'm-')[1]); let EmptyNodeIdentityAndProps = datatable(Computer:string, NodeId:string, NodeProps:dynamic, Priority: long) []; let OmsNodeIdentityAndProps = computerList     | extend NodeId = Computer     | extend Priority = 1     | extend NodeProps = pack('type', 'StandAloneNode', 'name', Computer); let ServiceMapNodeIdentityAndProps = ServiceMapComputer_CL     | where TimeGenerated {TimeRange}     | where Computer in (computerList)     | summarize arg_max(TimeGenerated, *) by Computer     | extend Computer = ComputerName_s, AzureCloudServiceNodeIdentity = iif(isnotempty(columnifexists('AzureCloudServiceName_s', '')), strcat(columnifexists('AzureCloudServiceInstanceId_s', ''), '|',                     columnifexists('AzureCloudServiceDeployment_g', '')), ''),          AzureScaleSetNodeIdentity = iif(isnotempty(columnifexists('AzureVmScaleSetName_s', '')),              strcat(columnifexists('AzureVmScaleSetInstanceId_s', ''), '|',                     columnifexists('AzureVmScaleSetDeployment_g', '')), ''),          ComputerProps =              pack('type', 'StandAloneNode',                   'name', ComputerName_s,                   'mappingResourceId', ResourceId,                   'subscriptionId', AzureSubscriptionId_g,                   'resourceGroup', AzureResourceGroup_s,                   'azureResourceId', columnifexists('AzureResourceId_s', '')),          AzureCloudServiceNodeProps =              pack('type', 'AzureCloudServiceNode',                   'cloudServiceInstanceId', columnifexists('AzureCloudServiceInstanceId_s', ''),                   'cloudServiceRoleName', columnifexists('AzureCloudServiceRoleName_s', ''),                   'cloudServiceDeploymentId', columnifexists('AzureCloudServiceDeployment_g', ''),                   'cloudServiceName', columnifexists('AzureCloudServiceName_s', ''),                   'mappingResourceId', ResourceId),          AzureScaleSetNodeProps =               pack('type', 'AzureScaleSetNode',                   'scaleSetInstanceId', columnifexists('AzureName_s', ''),                   'vmScaleSetDeploymentId', columnifexists('AzureVmScaleSetDeployment_g', ''),                   'vmScaleSetName', columnifexists('AzureVmScaleSetName_s', ''),                   'serviceFabricClusterName', columnifexists('AzureServiceFabricClusterName_s', ''),                   'vmScaleSetResourceId', columnifexists('AzureVmScaleSetResourceId_s', ''),                   'resourceGroupName', columnifexists('AzureResourceGroup_s', ''),                   'subscriptionId', columnifexists('AzureSubscriptionId_g', ''),                   'mappingResourceId', ResourceId)| project   Computer,            NodeId = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeIdentity,                       isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeIdentity, Computer),            NodeProps = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeProps,                          isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeProps, ComputerProps),            Priority = 2; let NodeIdentityAndProps = union kind=inner isfuzzy = true                                  EmptyNodeIdentityAndProps, OmsNodeIdentityAndProps, ServiceMapNodeIdentityAndProps                                 | summarize arg_max(Priority, *) by Computer;  let NodeIdentityAndPropsMin = NodeIdentityAndProps     | extend Type = iff(NodeProps.type == 'StandAloneNode', iff(NodeProps.azureResourceId == '', 'Non-Azure Virtual Machine', 'Azure Virtual Machine'), NodeProps.type),      ResourceId = iff(NodeProps.type == 'AzureScaleSetNode', NodeProps.vmScaleSetResourceId,          iff(NodeProps.type == 'AzureCloudServiceNode', NodeProps.cloudServiceDeploymentId, Computer)),     ResourceName = iff(NodeProps.type == 'AzureScaleSetNode', strcat(NodeProps.vmScaleSetName, ' | ', NodeProps.scaleSetInstanceId),          iff(NodeProps.type == 'AzureCloudServiceNode', strcat(NodeProps.cloudServiceRoleName, ' | ', NodeProps.cloudServiceInstanceId), Computer))     | project Computer, Type, ResourceId, ResourceName; \r\nlet trend = Network                \r\n| where ComputerId in (computerList)                \r\n| summarize hint.shufflekey = ComputerId {TableTrend} by ComputerId, Computer, bin(TimeGenerated, timeRangeGrain)    \r\n| project ComputerId, Computer, {TableTrend:label}                \r\n| summarize hint.shufflekey = ComputerId trendList = makelist({TableTrend:label}) by ComputerId, Computer;    \r\nsummaryPerComputer    \r\n| join (trend) on Computer    \r\n| join (NodeIdentityAndProps) on Computer  \r\n| join kind=leftouter (NodeIdentityAndPropsMin) on Computer \r\n| join kind=leftouter (MachineSummary) on Computer\r\n| project ResourceName, Type, {mergedAggregators}, ['Trend ({TableTrend:label})'] = trendList, Properties = MachineSummary\r\n| sort by {TableTrend:label} {tableTrendOrder}",
                 "size": 0,
                 "noDataMessage": "There is no data for this counter, either enable the counter or onboard machines to this workspace",
                 "queryType": 0,
@@ -737,28 +753,25 @@
                 "gridSettings": {
                     "formatters": [
                         {
-                            "columnMatch": "Type",
-                            "formatter": 1,
-                            "formatOptions": {}
+                            "columnMatch": "ResourceName",
+                            "formatter": 0,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
                         },
                         {
-                            "columnMatch": "P95th",
-                            "formatter": 8,
+                            "columnMatch": "Type",
+                            "formatter": 1,
                             "formatOptions": {
-                                "palette": "blue"
-                            },
-                            "numberFormat": {
-                                "unit": 2,
-                                "options": {
-                                    "style": "decimal"
-                                }
+                                "showIcon": true
                             }
                         },
                         {
                             "columnMatch": "Average",
                             "formatter": 1,
                             "formatOptions": {
-                                "palette": "greenRed"
+                                "palette": "greenRed",
+                                "showIcon": true
                             },
                             "numberFormat": {
                                 "unit": 2,
@@ -768,9 +781,56 @@
                             }
                         },
                         {
+                            "columnMatch": "P95th",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "palette": "blue",
+                                "showIcon": true
+                            },
+                            "numberFormat": {
+                                "unit": 2,
+                                "options": {
+                                    "style": "decimal"
+                                }
+                            }
+                        },
+                        {
+                            "columnMatch": "Max",
+                            "formatter": 1,
+                            "formatOptions": {
+                                "palette": "greenRed",
+                                "showIcon": true
+                            },
+                            "numberFormat": {
+                                "unit": 2,
+                                "options": {
+                                    "style": "decimal"
+                                }
+                            }
+                        },
+                        {
+                            "columnMatch": "Trend (Average)",
+                            "formatter": 10,
+                            "formatOptions": {
+                                "palette": "blue",
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Properties",
+                            "formatter": 7,
+                            "formatOptions": {
+                                "linkTarget": "CellDetails",
+                                "linkLabel": "️️️ℹ Info",
+                                "showIcon": true
+                            }
+                        },
+                        {
                             "columnMatch": "P10th",
                             "formatter": 1,
-                            "formatOptions": {},
+                            "formatOptions": {
+                                "showIcon": true
+                            },
                             "numberFormat": {
                                 "unit": 2,
                                 "options": {
@@ -782,7 +842,8 @@
                             "columnMatch": "P50th",
                             "formatter": 1,
                             "formatOptions": {
-                                "palette": "greenRed"
+                                "palette": "greenRed",
+                                "showIcon": true
                             },
                             "numberFormat": {
                                 "unit": 2,
@@ -795,22 +856,16 @@
                             "columnMatch": "Trend (P95th)",
                             "formatter": 10,
                             "formatOptions": {
-                                "palette": "blue"
-                            }
-                        },
-                        {
-                            "columnMatch": "Properties",
-                            "formatter": 7,
-                            "formatOptions": {
-                                "linkTarget": "CellDetails",
-                                "linkLabel": "️️️ℹ Info"
+                                "palette": "blue",
+                                "showIcon": true
                             }
                         },
                         {
                             "columnMatch": "P5th",
                             "formatter": 8,
                             "formatOptions": {
-                                "palette": "blue"
+                                "palette": "blue",
+                                "showIcon": true
                             },
                             "numberFormat": {
                                 "unit": 2,
@@ -823,7 +878,8 @@
                             "columnMatch": "P80th",
                             "formatter": 1,
                             "formatOptions": {
-                                "palette": "greenRed"
+                                "palette": "greenRed",
+                                "showIcon": true
                             },
                             "numberFormat": {
                                 "unit": 2,
@@ -836,7 +892,8 @@
                             "columnMatch": "P90th",
                             "formatter": 1,
                             "formatOptions": {
-                                "palette": "greenRed"
+                                "palette": "greenRed",
+                                "showIcon": true
                             },
                             "numberFormat": {
                                 "unit": 2,
@@ -848,19 +905,8 @@
                         {
                             "columnMatch": "Min",
                             "formatter": 1,
-                            "formatOptions": {},
-                            "numberFormat": {
-                                "unit": 2,
-                                "options": {
-                                    "style": "decimal"
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "Max",
-                            "formatter": 1,
                             "formatOptions": {
-                                "palette": "greenRed"
+                                "showIcon": true
                             },
                             "numberFormat": {
                                 "unit": 2,
@@ -873,42 +919,40 @@
                             "columnMatch": "Trend (P5th)",
                             "formatter": 10,
                             "formatOptions": {
-                                "palette": "blue"
+                                "palette": "blue",
+                                "showIcon": true
                             }
                         },
                         {
                             "columnMatch": "Trend (P90th)",
                             "formatter": 10,
                             "formatOptions": {
-                                "palette": "blue"
+                                "palette": "blue",
+                                "showIcon": true
                             }
                         },
                         {
                             "columnMatch": "Trend (P80th)",
                             "formatter": 10,
                             "formatOptions": {
-                                "palette": "blue"
+                                "palette": "blue",
+                                "showIcon": true
                             }
                         },
                         {
                             "columnMatch": "Trend (P50th)",
                             "formatter": 10,
                             "formatOptions": {
-                                "palette": "blue"
+                                "palette": "blue",
+                                "showIcon": true
                             }
                         },
                         {
                             "columnMatch": "Trend (P10th)",
                             "formatter": 10,
                             "formatOptions": {
-                                "palette": "blue"
-                            }
-                        },
-                        {
-                            "columnMatch": "Trend (Average)",
-                            "formatter": 10,
-                            "formatOptions": {
-                                "palette": "blue"
+                                "palette": "blue",
+                                "showIcon": true
                             }
                         }
                     ]
@@ -924,14 +968,14 @@
         {
             "type": 1,
             "content": {
-                "json": "---\n## <a name=\"top-10-machines\"></a><span data-ttu-id=\"ac1d7-114\">10 primeras máquinas</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-114\">Top 10 Machines</span></span>"
+                "json": "---\n## <a name=\"top-10-machines\"></a><span data-ttu-id=\"90e6d-116\">10 primeras máquinas</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-116\">Top 10 Machines</span></span>"
             },
             "name": "text - 11"
         },
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"cpu-utilization-\"></a><span data-ttu-id=\"ac1d7-115\">% de uso de CPU</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-115\">CPU Utilization %</span></span>"
+                "json": "### <a name=\"cpu-utilization-\"></a><span data-ttu-id=\"90e6d-117\">% de uso de CPU</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-117\">CPU Utilization %</span></span>"
             },
             "customWidth": "50",
             "name": "text - 12"
@@ -939,7 +983,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"available-memory\"></a><span data-ttu-id=\"ac1d7-116\">Memoria disponible</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-116\">Available Memory</span></span>"
+                "json": "### <a name=\"available-memory\"></a><span data-ttu-id=\"90e6d-118\">Memoria disponible</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-118\">Available Memory</span></span>"
             },
             "customWidth": "50",
             "name": "text - 13"
@@ -1167,7 +1211,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"bytes-sent-rate\"></a><span data-ttu-id=\"ac1d7-117\">Tasa de bytes enviados</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-117\">Bytes Sent Rate</span></span>"
+                "json": "### <a name=\"bytes-sent-rate\"></a><span data-ttu-id=\"90e6d-119\">Tasa de bytes enviados</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-119\">Bytes Sent Rate</span></span>"
             },
             "customWidth": "50",
             "name": "text - 18"
@@ -1175,7 +1219,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"bytes-received-rate\"></a><span data-ttu-id=\"ac1d7-118\">Tasa de bytes recibidos</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-118\">Bytes Received Rate</span></span>"
+                "json": "### <a name=\"bytes-received-rate\"></a><span data-ttu-id=\"90e6d-120\">Tasa de bytes recibidos</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-120\">Bytes Received Rate</span></span>"
             },
             "customWidth": "50",
             "name": "text - 19"
@@ -1401,7 +1445,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"logical-disk-space-used-\"></a><span data-ttu-id=\"ac1d7-119\">Porcentaje de espacio usado del disco lógico</span><span class=\"sxs-lookup\"><span data-stu-id=\"ac1d7-119\">Logical Disk Space Used %</span></span>"
+                "json": "### <a name=\"logical-disk-space-used-\"></a><span data-ttu-id=\"90e6d-121\">Porcentaje de espacio usado del disco lógico</span><span class=\"sxs-lookup\"><span data-stu-id=\"90e6d-121\">Logical Disk Space Used %</span></span>"
             },
             "customWidth": "50",
             "name": "text - 24"
