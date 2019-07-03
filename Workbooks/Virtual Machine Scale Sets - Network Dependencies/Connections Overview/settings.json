@@ -7,6 +7,11 @@
             "type": "workbook",
             "resourceType": "microsoft.compute/virtualmachinescalesets",
             "order": 175
+        },
+        {
+            "type": "vm-insights",
+            "resourceType": "microsoft.compute/virtualmachinescalesets",
+            "order": 175
         }
     ]
 }
