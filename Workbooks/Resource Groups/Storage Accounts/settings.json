@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"8d48e-101\">Cuentas de almacenamiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"8d48e-101\">Storage accounts</span></span>",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "microsoft.resources/resourcegroups",
+            "order": 200
+        }
+    ]
+}
