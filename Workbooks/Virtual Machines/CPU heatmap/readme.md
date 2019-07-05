@@ -1,0 +1,19 @@
+# <a name="cpu-heatmap"></a><span data-ttu-id="21247-101">Mapa térmico de la CPU</span><span class="sxs-lookup"><span data-stu-id="21247-101">CPU heatmap</span></span>
+
+<span data-ttu-id="21247-102">Este libro es una buena forma de visualizar las zonas activas de uso de la CPU de las máquinas virtuales.</span><span class="sxs-lookup"><span data-stu-id="21247-102">This workbook is a good way to visualize hot spots in the CPU utilization of your virtual machines.</span></span>
+
+![Imagen de un mapa térmico de CPU](cpu-heatmap.png)
+
+## <a name="changing-the-cpu-threshold"></a><span data-ttu-id="21247-104">Cambio del umbral de CPU</span><span class="sxs-lookup"><span data-stu-id="21247-104">Changing the CPU threshold</span></span>
+<span data-ttu-id="21247-105">De forma predeterminada, este libro destaca las máquinas virtuales con un promedio de `Percentage CPU` superior al 75 %.</span><span class="sxs-lookup"><span data-stu-id="21247-105">By default, this workbook highlights virtual machines with average `Percentage CPU` greater than 75%.</span></span> <span data-ttu-id="21247-106">Si desea aumentar o disminuir este umbral, siga estos pasos:</span><span class="sxs-lookup"><span data-stu-id="21247-106">If you wish for this threshold to be higher or lower, these are the steps for follow:</span></span>
+
+1. <span data-ttu-id="21247-107">Haga clic en el elemento `Edit` de la barra de herramientas.</span><span class="sxs-lookup"><span data-stu-id="21247-107">Click the `Edit` item in the toolbar.</span></span>
+2. <span data-ttu-id="21247-108">Haga clic en el botón `↑ Edit` de la esquina inferior derecha del control Hive.</span><span class="sxs-lookup"><span data-stu-id="21247-108">Click on the `↑ Edit` button to the bottom-right of the hive control.</span></span>
+3. <span data-ttu-id="21247-109">En la lista `Columns Available After Merge`, desplácese hacia abajo y seleccione el elemento `[Added column] - Cell Color`.</span><span class="sxs-lookup"><span data-stu-id="21247-109">In the `Columns Available After Merge` list, scroll down and select the `[Added column] - Cell Color` item.</span></span>
+4. <span data-ttu-id="21247-110">Haga clic en el botón `Edit added item` de la barra de herramientas de controles Hive.</span><span class="sxs-lookup"><span data-stu-id="21247-110">Click on the `Edit added item` button in the hive controls toolbar.</span></span>
+5. <span data-ttu-id="21247-111">En el panel que se abre, haga clic en `Edit` en el elemento que dice `Percentage CPU > 75 Result is E8976A` para ver una ventana emergente de configuración.</span><span class="sxs-lookup"><span data-stu-id="21247-111">In the pane tha opens up, click `Edit` on the item that says `Percentage CPU > 75 Result is E8976A` to see a settings pop up</span></span>
+    1. <span data-ttu-id="21247-112">Establezca el campo `Second operand` en el umbral que desea, por ejemplo, 90.</span><span class="sxs-lookup"><span data-stu-id="21247-112">Set the `Second operand` field to the threshold you want - say 90.</span></span>
+        <span data-ttu-id="21247-113">![Imagen de un mapa térmico de CPU](cpu-heatmap-column-settings.png)</span><span class="sxs-lookup"><span data-stu-id="21247-113">![Image a CPU heatmap](cpu-heatmap-column-settings.png)</span></span>
+    2. <span data-ttu-id="21247-114">Haga clic en op en el menú emergente.</span><span class="sxs-lookup"><span data-stu-id="21247-114">Click op in the popup.</span></span>
+6. <span data-ttu-id="21247-115">Haga clic en "Guardar y cerrar".</span><span class="sxs-lookup"><span data-stu-id="21247-115">Click 'Save and close'</span></span>
+7. <span data-ttu-id="21247-116">Elija `Done Editing` en la barra de herramientas del libro.</span><span class="sxs-lookup"><span data-stu-id="21247-116">Choose `Done Editing` in the workbook toolbar.</span></span>

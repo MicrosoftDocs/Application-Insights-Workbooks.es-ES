@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"bbb78-101\">Capacidad de disco</span><span class=\"sxs-lookup\"><span data-stu-id=\"bbb78-101\">Disk Capacity</span></span>",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "Microsoft.ContainerService/managedClusters",
+            "order": 100
+        }
+    ]
+}

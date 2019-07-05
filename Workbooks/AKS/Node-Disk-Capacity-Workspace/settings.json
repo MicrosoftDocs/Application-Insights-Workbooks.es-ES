@@ -1,0 +1,13 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"e3c82-101\">Capacidad de disco (área de trabajo)</span><span class=\"sxs-lookup\"><span data-stu-id=\"e3c82-101\">Disk Capacity (Workspace)</span></span>",
+    "author": "Microsoft",
+    "isPreview": true,
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "order": 100
+        }
+    ]
+}

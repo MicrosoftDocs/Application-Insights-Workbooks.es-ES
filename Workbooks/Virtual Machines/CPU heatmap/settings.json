@@ -1,0 +1,6 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"7b955-101\">Mapa térmico de la CPU</span><span class=\"sxs-lookup\"><span data-stu-id=\"7b955-101\">CPU Heatmap</span></span>",
+    "author": "Microsoft",
+    "galleries": []
+}

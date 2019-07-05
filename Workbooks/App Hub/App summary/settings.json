@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"a5f4b-101\">Resumen de la aplicación</span><span class=\"sxs-lookup\"><span data-stu-id=\"a5f4b-101\">Application summary</span></span>",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "microsoft.resourcegraph/queries",
+            "order": 100
+        }
+    ]
+}

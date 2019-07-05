@@ -16,7 +16,7 @@
                         "name": "Subscription",
                         "label": "Subscriptions",
                         "type": 6,
-                        "description": "<span data-ttu-id=\"bc3a0-101\">Todas las suscripciones y cuentas de almacenamiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"bc3a0-101\">All subscriptions with storage accounts</span></span>",
+                        "description": "<span data-ttu-id=\"f20b1-101\">Todas las suscripciones y cuentas de almacenamiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"f20b1-101\">All subscriptions with storage accounts</span></span>",
                         "isRequired": true,
                         "multiSelect": true,
                         "quote": "'",
@@ -164,7 +164,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"bc3a0-102\">{Message} _Cuentas de almacenamiento_</span><span class=\"sxs-lookup\"><span data-stu-id=\"bc3a0-102\">{Message} _Storage accounts_</span></span>\n<br />\n<br />"
+                "json": "<span data-ttu-id=\"f20b1-102\">{Message} _Cuentas de almacenamiento_</span><span class=\"sxs-lookup\"><span data-stu-id=\"f20b1-102\">{Message} _Storage accounts_</span></span>\n<br />\n<br />"
             },
             "name": "text - 3"
         },
@@ -177,7 +177,7 @@
                     {
                         "linkTarget": "WorkbookTemplate",
                         "linkLabel": "Overview",
-                        "style": "primary",
+                        "style": "secondary",
                         "workbookContext": {
                             "componentIdSource": "workbook",
                             "resourceIdsSource": "workbook",
@@ -192,7 +192,7 @@
                     {
                         "linkTarget": "WorkbookTemplate",
                         "linkLabel": "Capacity",
-                        "style": "secondary",
+                        "style": "primary",
                         "workbookContext": {
                             "componentIdSource": "workbook",
                             "resourceIdsSource": "workbook",
@@ -227,50 +227,58 @@
                 "metrics": [
                     {
                         "namespace": "microsoft.storage/storageaccounts",
-                        "metric": "microsoft.storage/storageaccounts-Transaction-Transactions",
-                        "aggregation": 1,
+                        "metric": "microsoft.storage/storageaccounts-Capacity-UsedCapacity",
+                        "aggregation": 4,
                         "splitBy": null,
-                        "splitByLimit": null,
-                        "columnName": "Transactions"
-                    },
-                    {
-                        "namespace": "microsoft.storage/storageaccounts",
-                        "metric": "microsoft.storage/storageaccounts-Transaction-Availability",
-                        "aggregation": 4,
-                        "splitByLimit": null,
-                        "columnName": "Availability"
-                    },
-                    {
-                        "namespace": "microsoft.storage/storageaccounts",
-                        "metric": "microsoft.storage/storageaccounts-Transaction-SuccessE2ELatency",
-                        "aggregation": 4,
-                        "splitByLimit": null,
-                        "columnName": "E2E Latency"
-                    },
-                    {
-                        "namespace": "microsoft.storage/storageaccounts",
-                        "metric": "microsoft.storage/storageaccounts-Transaction-SuccessServerLatency",
-                        "aggregation": 4,
-                        "splitByLimit": null,
-                        "columnName": "Server Latency"
-                    },
-                    {
-                        "namespace": "microsoft.storage/storageaccounts",
-                        "metric": "microsoft.storage/storageaccounts-Transaction-Transactions",
-                        "aggregation": 1,
-                        "splitBy": "ResponseType",
                         "splitBySortOrder": -1,
                         "splitByLimit": 4,
-                        "columnName": "Errors"
+                        "columnName": "Account used capacity"
+                    },
+                    {
+                        "namespace": "microsoft.storage/storageaccounts/blobservices",
+                        "metric": "microsoft.storage/storageaccounts/blobservices-Capacity-BlobCapacity",
+                        "aggregation": 4,
+                        "splitBy": null,
+                        "splitBySortOrder": -1,
+                        "splitByLimit": 5,
+                        "columnName": "Blob capacity"
+                    },
+                    {
+                        "namespace": "microsoft.storage/storageaccounts/fileservices",
+                        "metric": "microsoft.storage/storageaccounts/fileservices-Capacity-FileCapacity",
+                        "aggregation": 4,
+                        "splitBy": null,
+                        "splitBySortOrder": -1,
+                        "splitByLimit": 5,
+                        "columnName": "File capacity"
+                    },
+                    {
+                        "namespace": "microsoft.storage/storageaccounts/queueservices",
+                        "metric": "microsoft.storage/storageaccounts/queueservices-Capacity-QueueCapacity",
+                        "aggregation": 4,
+                        "splitBy": null,
+                        "splitBySortOrder": -1,
+                        "splitByLimit": 5,
+                        "columnName": "Queue capacity"
+                    },
+                    {
+                        "namespace": "microsoft.storage/storageaccounts/tableservices",
+                        "metric": "microsoft.storage/storageaccounts/tableservices-Capacity-TableCapacity",
+                        "aggregation": 4,
+                        "splitBy": null,
+                        "splitBySortOrder": -1,
+                        "splitByLimit": 5,
+                        "columnName": "Table capacity"
                     }
                 ],
+                "title": "Used capacity",
                 "gridSettings": {
                     "formatters": [
                         {
                             "columnMatch": "$gen_group",
                             "formatter": 13,
                             "formatOptions": {
-                                "linkTarget": "Resource",
+                                "linkTarget": null,
                                 "showIcon": true
                             }
                         },
@@ -289,92 +297,7 @@
                             }
                         },
                         {
-                            "columnMatch": "Transactions",
-                            "formatter": 8,
-                            "formatOptions": {
-                                "min": 0,
-                                "palette": "yellow",
-                                "showIcon": true,
-                                "aggregation": "Sum"
-                            },
-                            "numberFormat": {
-                                "unit": 17,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 1
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "Transactions Timeline",
-                            "formatter": 9,
-                            "formatOptions": {
-                                "min": 0,
-                                "palette": "yellow",
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "Availability",
-                            "formatter": 18,
-                            "formatOptions": {
-                                "linkTarget": "WorkbookTemplate",
-                                "showIcon": true,
-                                "thresholdsOptions": "icons",
-                                "thresholdsGrid": [
-                                    {
-                                        "operator": "is Empty",
-                                        "text": ""
-                                    },
-                                    {
-                                        "operator": "<",
-                                        "thresholdValue": "90",
-                                        "representation": "4",
-                                        "text": "{0}{1}"
-                                    },
-                                    {
-                                        "operator": "<",
-                                        "thresholdValue": "99",
-                                        "representation": "2",
-                                        "text": "{0}{1}"
-                                    },
-                                    {
-                                        "operator": "Default",
-                                        "thresholdValue": null,
-                                        "representation": "success",
-                                        "text": "{0}{1}"
-                                    }
-                                ],
-                                "workbookContext": {
-                                    "componentIdSource": "column",
-                                    "componentId": "Name",
-                                    "resourceIdsSource": "column",
-                                    "resourceIds": "Name",
-                                    "templateIdSource": "static",
-                                    "templateId": "Community-Workbooks/Individual Storage/Availability",
-                                    "typeSource": "static",
-                                    "type": "workbook",
-                                    "gallerySource": "static",
-                                    "gallery": "microsoft.storage/storageaccounts"
-                                }
-                            },
-                            "numberFormat": {
-                                "unit": 1,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 2
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "Availability Timeline",
-                            "formatter": 5,
-                            "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "E2E Latency|Server Latency",
+                            "columnMatch": "Account used capacity|Blob capacity|File capacity|Table capacity|Queue capacity",
                             "formatter": 8,
                             "formatOptions": {
                                 "min": 0,
@@ -387,7 +310,7 @@
                                     "resourceIdsSource": "column",
                                     "resourceIds": "Name",
                                     "templateIdSource": "static",
-                                    "templateId": "Community-Workbooks/Individual Storage/Performance",
+                                    "templateId": "Community-Workbooks/Individual Storage/Capacity",
                                     "typeSource": "static",
                                     "type": "workbook",
                                     "gallerySource": "static",
@@ -395,68 +318,48 @@
                                 }
                             },
                             "numberFormat": {
-                                "unit": 23,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 2
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "E2E Latency Timeline",
-                            "formatter": 5,
-                            "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "Server Latency Timeline",
-                            "formatter": 5,
-                            "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "Success/Errors",
-                            "formatter": 5,
-                            "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": ".*\\/Errors$",
-                            "formatter": 18,
-                            "formatOptions": {
-                                "linkTarget": "WorkbookTemplate",
-                                "showIcon": true,
-                                "thresholdsOptions": "icons",
-                                "thresholdsGrid": [
-                                    {
-                                        "operator": "Default",
-                                        "thresholdValue": null,
-                                        "representation": "3",
-                                        "text": "{0}{1}"
-                                    }
-                                ],
-                                "workbookContext": {
-                                    "componentIdSource": "column",
-                                    "componentId": "Name",
-                                    "resourceIdsSource": "column",
-                                    "resourceIds": "Name",
-                                    "templateIdSource": "static",
-                                    "templateId": "Community-Workbooks/Individual Storage/Failures",
-                                    "typeSource": "static",
-                                    "type": "workbook",
-                                    "gallerySource": "static",
-                                    "gallery": "microsoft.storage/storageaccounts"
-                                }
-                            },
-                            "numberFormat": {
-                                "unit": 17,
+                                "unit": 2,
                                 "options": {
                                     "style": "decimal",
                                     "maximumFractionDigits": 1
                                 }
+                            }
+                        },
+                        {
+                            "columnMatch": "Account used capacity Timeline",
+                            "formatter": 21,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "blue",
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Blob capacity Timeline",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "File capacity Timeline",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Queue capacity Timeline",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Table capacity Timeline",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
                             }
                         }
                     ],
@@ -471,14 +374,14 @@
                     },
                     "sortBy": [
                         {
-                            "itemKey": "$gen_heatmap_Transactions_3",
+                            "itemKey": "$gen_heatmap_Account used capacity|Blob capacity|File capacity|Table capacity|Queue capacity_3",
                             "sortOrder": 2
                         }
                     ]
                 },
                 "sortBy": [
                     {
-                        "itemKey": "$gen_heatmap_Transactions_3",
+                        "itemKey": "$gen_heatmap_Account used capacity|Blob capacity|File capacity|Table capacity|Queue capacity_3",
                         "sortOrder": 2
                     }
                 ]
