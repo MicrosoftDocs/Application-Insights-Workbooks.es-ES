@@ -1,12 +1,13 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Kubelet",
+    "name": "Capacidad de disco",
     "author": "Microsoft",
+    "isPreview": true,
     "galleries": [
         {
             "type": "workbook",
-            "resourceType": "Microsoft.ContainerService/managedClusters",
-            "order": 300
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "order": 100
         }
     ]
 }
