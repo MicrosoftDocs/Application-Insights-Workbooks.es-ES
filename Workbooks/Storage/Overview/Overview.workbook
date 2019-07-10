@@ -16,7 +16,7 @@
                         "name": "Subscription",
                         "label": "Subscriptions",
                         "type": 6,
-                        "description": "<span data-ttu-id=\"bc3a0-101\">Todas las suscripciones y cuentas de almacenamiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"bc3a0-101\">All subscriptions with storage accounts</span></span>",
+                        "description": "<span data-ttu-id=\"27ded-101\">Todas las suscripciones y cuentas de almacenamiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"27ded-101\">All subscriptions with storage accounts</span></span>",
                         "isRequired": true,
                         "multiSelect": true,
                         "quote": "'",
@@ -146,7 +146,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "Message",
                         "type": 1,
-                        "query": "where type == 'microsoft.storage/storageaccounts' \n| summarize Selected = countif(id in ({StorageAccounts:value})), Total = count()\n| extend Selected = iff(Selected > 100, 100, Selected)\n| project Message = strcat('# ', Selected, ' / ', Total)",
+                        "query": "where type == 'microsoft.storage/storageaccounts' \n| summarize Selected = countif(id in ({StorageAccounts:value})), Total = count()\n| extend Selected = iff(Selected > 200, 200, Selected)\n| project Message = strcat('# ', Selected, ' / ', Total)",
                         "crossComponentResources": [
                             "{Subscription}"
                         ],
@@ -164,7 +164,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"bc3a0-102\">{Message} _Cuentas de almacenamiento_</span><span class=\"sxs-lookup\"><span data-stu-id=\"bc3a0-102\">{Message} _Storage accounts_</span></span>\n<br />\n<br />"
+                "json": "<span data-ttu-id=\"27ded-102\">{Message} _Cuentas de almacenamiento_</span><span class=\"sxs-lookup\"><span data-stu-id=\"27ded-102\">{Message} _Storage accounts_</span></span>\n<br />\n<br />"
             },
             "name": "text - 3"
         },
@@ -271,6 +271,7 @@
                             "formatter": 13,
                             "formatOptions": {
                                 "linkTarget": "Resource",
+                                "subTarget": "insights",
                                 "showIcon": true
                             }
                         },
@@ -293,7 +294,7 @@
                             "formatter": 8,
                             "formatOptions": {
                                 "min": 0,
-                                "palette": "yellow",
+                                "palette": "blue",
                                 "showIcon": true,
                                 "aggregation": "Sum"
                             },
@@ -310,7 +311,7 @@
                             "formatter": 9,
                             "formatOptions": {
                                 "min": 0,
-                                "palette": "yellow",
+                                "palette": "blue",
                                 "showIcon": true
                             }
                         },
@@ -425,19 +426,12 @@
                         },
                         {
                             "columnMatch": ".*\\/Errors$",
-                            "formatter": 18,
+                            "formatter": 8,
                             "formatOptions": {
+                                "min": 0,
+                                "palette": "red",
                                 "linkTarget": "WorkbookTemplate",
                                 "showIcon": true,
-                                "thresholdsOptions": "icons",
-                                "thresholdsGrid": [
-                                    {
-                                        "operator": "Default",
-                                        "thresholdValue": null,
-                                        "representation": "3",
-                                        "text": "{0}{1}"
-                                    }
-                                ],
                                 "workbookContext": {
                                     "componentIdSource": "column",
                                     "componentId": "Name",
@@ -481,7 +475,8 @@
                         "itemKey": "$gen_heatmap_Transactions_3",
                         "sortOrder": 2
                     }
-                ]
+                ],
+                "filters": []
             },
             "showPin": true,
             "name": "storage account metrics"
