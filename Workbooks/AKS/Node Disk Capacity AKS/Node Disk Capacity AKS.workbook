@@ -4,7 +4,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"60e53-101\">_Hay más información acerca de las métricas de este libro está disponible <a href='https://github.com/influxdata/telegraf/tree/master/plugins/inputs/disk'>aquí</a>_</span><span class=\"sxs-lookup\"><span data-stu-id=\"60e53-101\">_More information about the metrics in this workbook is available <a href='https://github.com/influxdata/telegraf/tree/master/plugins/inputs/disk'>here</a>_</span></span>"
+                "json": "<span data-ttu-id=\"3c980-101\">_Hay más información acerca de las métricas de este libro está disponible <a href='https://github.com/influxdata/telegraf/tree/master/plugins/inputs/disk'>aquí</a>_</span><span class=\"sxs-lookup\"><span data-stu-id=\"3c980-101\">_More information about the metrics in this workbook is available <a href='https://github.com/influxdata/telegraf/tree/master/plugins/inputs/disk'>here</a>_</span></span>"
             },
             "name": "text - 15"
         },
@@ -21,10 +21,10 @@
                         "name": "timeRange",
                         "label": "Time Range",
                         "type": 4,
-                        "description": "<span data-ttu-id=\"60e53-102\">Filtrar por intervalo de tiempo</span><span class=\"sxs-lookup\"><span data-stu-id=\"60e53-102\">Filter by time range</span></span>",
+                        "description": "<span data-ttu-id=\"3c980-102\">Filtrar por intervalo de tiempo</span><span class=\"sxs-lookup\"><span data-stu-id=\"3c980-102\">Filter by time range</span></span>",
                         "isRequired": true,
                         "value": {
-                            "durationMs": 86400000
+                            "durationMs": 21600000
                         },
                         "typeSettings": {
                             "selectableValues": [
@@ -78,28 +78,12 @@
                         }
                     },
                     {
-                        "id": "533ff915-2a03-4da9-8b95-1d743db17e2b",
-                        "version": "KqlParameterItem/1.0",
-                        "name": "bin",
-                        "label": "Chart Granularity",
-                        "type": 2,
-                        "description": "<span data-ttu-id=\"60e53-103\">Acotar datos de ubicación por un intervalo de tiempo (min)</span><span class=\"sxs-lookup\"><span data-stu-id=\"60e53-103\">Bin data points by some time interval (min)</span></span>",
-                        "isRequired": true,
-                        "query": "let durationMs = datetime_diff('millisecond',{timeRange:end},{timeRange:start});\r\nlet idealNumberofDataPoints = 100;\r\nlet GranularityOptions = datatable(\r\nGranularityOptionsValue: long, \r\nGranularityOptionsLabel: string\r\n) [\r\n    5, '5 minutes', \r\n    15, '15 minutes', \r\n    30, '30 minutes', \r\n    60, '1 hour', \r\n    360, '6 hours', \r\n    720, '12 hours', \r\n    1440, '24 hours'\r\n];\r\nlet GranularityOptionsExtended = \r\nGranularityOptions\r\n| extend DataPointCount = (durationMs/(1000*60))/GranularityOptionsValue\r\n| extend Distance = abs(idealNumberofDataPoints - DataPointCount);\r\nlet idealGranularityOptionsValue = toscalar(\r\n    GranularityOptionsExtended\r\n    | summarize arg_min(Distance, *)\r\n    | project GranularityOptionsValue\r\n);\r\nGranularityOptionsExtended\r\n| project value = GranularityOptionsValue, label = GranularityOptionsLabel, selected = (GranularityOptionsValue == idealGranularityOptionsValue)\r\n\r\n\r\n\r\n",
-                        "typeSettings": {
-                            "additionalResourceOptions": []
-                        },
-                        "queryType": 0,
-                        "resourceType": "microsoft.containerservice/managedclusters"
-                    },
-                    {
                         "id": "a9d18789-a7eb-4fe4-b679-a26a835615a8",
                         "version": "KqlParameterItem/1.0",
                         "name": "selectedNodes1",
                         "label": "Nodes",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"60e53-104\">Filtrar por nodo</span><span class=\"sxs-lookup\"><span data-stu-id=\"60e53-104\">Filter by node</span></span>",
-                        "isRequired": true,
+                        "description": "<span data-ttu-id=\"3c980-103\">Filtrar por nodo</span><span class=\"sxs-lookup\"><span data-stu-id=\"3c980-103\">Filter by node</span></span>",
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
@@ -126,8 +110,7 @@
                         "name": "selectedDevices1",
                         "label": "Devices",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"60e53-105\">Filtrar por dispositivo</span><span class=\"sxs-lookup\"><span data-stu-id=\"60e53-105\">Filter by device</span></span>",
-                        "isRequired": true,
+                        "description": "<span data-ttu-id=\"3c980-104\">Filtrar por dispositivo</span><span class=\"sxs-lookup\"><span data-stu-id=\"3c980-104\">Filter by device</span></span>",
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
@@ -153,7 +136,7 @@
                 "queryType": 0,
                 "resourceType": "microsoft.containerservice/managedclusters"
             },
-            "name": "parameters - 10"
+            "name": "dropdowns"
         },
         {
             "type": 1,
@@ -166,7 +149,7 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let usedDiskUnhealthyThreshold = 90;\r\nlet usedDiskCriticalThreshold = 99;\r\nlet data = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'disk' or Namespace =~ 'container.azm.ms/disk'\r\n| where Name == 'used_percent'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.device))\r\n| extend NodeDisk = strcat(HostName, '/', Device)\r\n| where \"*\" in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where \"*\" in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| summarize UsedDisk = max(Val) by NodeDisk\r\n| extend State = iff(UsedDisk >= usedDiskCriticalThreshold, 'Critical disks', iif((UsedDisk >= usedDiskUnhealthyThreshold and UsedDisk < usedDiskCriticalThreshold), 'Unhealthy disks', 'Healthy disks'));\r\ndata\r\n| summarize Count = count(), Disks = makeset(NodeDisk) by State\r\n| union (\r\n    data\r\n    | summarize Count = count(), Disks = dynamic([\"*\"])\r\n    | extend State = 'All disks'\r\n)\r\n| join kind = fullouter (datatable (State: string) ['All disks', 'Critical disks', 'Unhealthy disks', 'Healthy disks']) on State\r\n| extend Count = iff(State == '', 0, Count), Disks = iff(State == '', dynamic([]), Disks)\r\n| order by Count desc\r\n",
+                "query": "let usedDiskUnhealthyThreshold = 90;\r\nlet usedDiskCriticalThreshold = 99;\r\nlet data = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'disk' or Namespace == 'container.azm.ms/disk'\r\n| where Name == 'used_percent'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.device))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where \"*\" in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where \"*\" in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| summarize UsedDisk = max(Val) by NodeDisk\r\n| extend State = iff(UsedDisk >= usedDiskCriticalThreshold, 'Critical disks', iif((UsedDisk >= usedDiskUnhealthyThreshold and UsedDisk < usedDiskCriticalThreshold), 'Unhealthy disks', 'Healthy disks'));\r\ndata\r\n| summarize Count = count(), Disks = makeset(NodeDisk) by State\r\n| union (\r\n    data\r\n    | summarize Count = count(), Disks = dynamic([\"*\"])\r\n    | extend State = 'All disks'\r\n)\r\n| join kind = fullouter (datatable (State: string) ['All disks', 'Critical disks', 'Unhealthy disks', 'Healthy disks']) on State\r\n| extend Count = iff(State == '', 0, Count), Disks = iff(State == '', dynamic([]), Disks)\r\n| order by Count desc\r\n",
                 "size": 4,
                 "aggregation": 2,
                 "exportFieldName": "Disks",
@@ -208,7 +191,7 @@
                     "showBorder": false
                 }
             },
-            "name": "query - 7"
+            "name": "tiles"
         },
         {
             "type": 1,
@@ -230,7 +213,7 @@
                         "name": "topN",
                         "label": "Show",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"60e53-106\">Mostrar los primeros N discos por % de disco usado en el gráfico siguiente</span><span class=\"sxs-lookup\"><span data-stu-id=\"60e53-106\">Show the top N disks by used disk % in the chart below</span></span>",
+                        "description": "<span data-ttu-id=\"3c980-105\">Mostrar los primeros N discos por % de disco usado en el gráfico siguiente</span><span class=\"sxs-lookup\"><span data-stu-id=\"3c980-105\">Show the top N disks by used disk % in the chart below</span></span>",
                         "isRequired": true,
                         "typeSettings": {
                             "additionalResourceOptions": []
@@ -247,7 +230,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"60e53-107\">{topN:label} discos por % de disco usado</span><span class=\"sxs-lookup\"><span data-stu-id=\"60e53-107\">{topN:label} Disks by Used Disk %</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"3c980-106\">{topN:label} discos por % de disco usado</span><span class=\"sxs-lookup\"><span data-stu-id=\"3c980-106\">{topN:label} Disks by Used Disk %</span></span></h3>"
             },
             "name": "text - 12"
         },
@@ -255,7 +238,7 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let selectedStateDisks = dynamic({DisksOfSelectedState});\r\nlet data = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'disk' or Namespace =~ 'container.azm.ms/disk'\r\n| where Name == 'used_percent'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.device))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where \"*\" in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where \"*\" in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| where NodeDisk in (selectedStateDisks) or '*' in (selectedStateDisks);\r\nlet mostUsedDisks = data\r\n| top-nested {topN} of NodeDisk by MaxVal = max(Val);\r\ndata\r\n| where NodeDisk in (mostUsedDisks)\r\n| make-series ['Used Disk %'] = max(Val) default = 0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {bin}m by NodeDisk\r\n",
+                "query": "let selectedStateDisks = dynamic({DisksOfSelectedState});\r\nlet data = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'disk' or Namespace =~ 'container.azm.ms/disk'\r\n| where Name == 'used_percent'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.device))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where \"*\" in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where \"*\" in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| where NodeDisk in (selectedStateDisks) or '*' in (selectedStateDisks);\r\nlet mostUsedDisks = data\r\n| top-nested {topN} of NodeDisk by MaxVal = max(Val);\r\ndata\r\n| where NodeDisk in (mostUsedDisks)\r\n| make-series ['Used Disk %'] = max(Val) default = 0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by NodeDisk\r\n",
                 "size": 0,
                 "aggregation": 2,
                 "showAnalytics": true,
@@ -268,7 +251,7 @@
                 "visualization": "timechart"
             },
             "showPin": true,
-            "name": "query - 7 - Copy"
+            "name": "top-used-disk-grid"
         },
         {
             "type": 1,
@@ -280,7 +263,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"60e53-108\">Detalles de capacidad de disco</span><span class=\"sxs-lookup\"><span data-stu-id=\"60e53-108\">Disk Capacity Details</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"3c980-107\">Información general de la capacidad de disco</span><span class=\"sxs-lookup\"><span data-stu-id=\"3c980-107\">Disk Capacity Overview</span></span></h3>"
             },
             "name": "text - 13"
         },
@@ -288,7 +271,7 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let selectedStateDisks = dynamic({DisksOfSelectedState});\r\nlet data = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'disk' or Namespace =~ 'container.azm.ms/disk'\r\n| where Name == 'used_percent' or Name == 'free'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.device))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where \"*\" in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where \"*\" in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| where NodeDisk in (selectedStateDisks) or '*' in (selectedStateDisks);\r\nlet usedPercent = data\r\n| where Name == 'used_percent';\r\nlet free = data\r\n| where Name == 'free';\r\nlet worstDisksPerNode = usedPercent\r\n| partition by HostName (\r\n    summarize UsedPercent = max(Val) by HostName, Device, NodeDisk\r\n    | top 1 by UsedPercent desc\r\n);\r\nusedPercent // used percent for devices\r\n| summarize UsedPercent = max(Val) by HostName, Device\r\n| join kind = inner (\r\n    usedPercent \r\n    | make-series UsedPercentTrend = max(Val) default = 0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {bin}m by HostName, Device\r\n) on HostName\r\n| where Device == Device1\r\n| project Id = strcat(HostName, Device), Name = strcat('🔹 ', Device), ParentId = HostName, Kind = 'Device', UsedPercent, UsedPercentTrend\r\n| union ( // used percent for nodes\r\n    usedPercent\r\n    | summarize UsedPercent = max(Val) by HostName\r\n    | join kind = inner (\r\n        usedPercent \r\n        | make-series UsedPercentTrend = max(Val) default = 0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {bin}m by HostName\r\n    ) on HostName\r\n    | project Id = HostName, Name = strcat('🖥️ ', HostName), ParentId = '', Kind = 'Node', UsedPercent, UsedPercentTrend\r\n)\r\n| join kind = inner (\r\n    free // free space for devices\r\n    | summarize Free = min(Val) by HostName, Device\r\n    | join kind = inner (\r\n        free    \r\n        | make-series FreeTrend = min(Val) default = 0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {bin}m by HostName, Device\r\n    ) on HostName\r\n    | where Device == Device1\r\n    | project Id = strcat(HostName, Device), Name = Device, ParentId = HostName, Kind = 'Device', Free, FreeTrend\r\n    | union ( // free space for nodes\r\n        free\r\n        | summarize Free = min(Val) by HostName, Device\r\n        | join kind = inner ( // match the set of node-disk free space data to the nodes with the worst used percent data for setting the data in the node rows\r\n            worstDisksPerNode\r\n        ) on HostName, Device\r\n        | join kind = inner (\r\n            free \r\n            | make-series FreeTrend = min(Val) default = 0 on TimeGenerated from {timeRange:start} to {timeRange:end} step  {bin}m by HostName, Device\r\n            | join kind = inner (\r\n                worstDisksPerNode\r\n            ) on HostName, Device\r\n        ) on HostName\r\n        | project Id = HostName, Name = HostName, ParentId = '', Kind = 'Node', Free, FreeTrend\r\n    )\r\n) on Id\r\n| project-away Id1, Name1, ParentId1, Kind1\r\n| project-rename ['Used Disk % (Max)'] = UsedPercent, ['Used Disk % Trend (Max)'] = UsedPercentTrend, ['Free Disk Space (Min)'] = Free, ['Free Disk Space Trend (Min)'] = FreeTrend\r\n| order by ['Used Disk % (Max)'] desc, Name asc",
+                "query": "let selectedStateDisks = dynamic({DisksOfSelectedState});\r\nlet data = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'disk' or Namespace =~ 'container.azm.ms/disk'\r\n| where Name == 'used_percent' or Name == 'free'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.device))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where \"*\" in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where \"*\" in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| where NodeDisk in (selectedStateDisks) or '*' in (selectedStateDisks);\r\nlet usedPercent = data\r\n| where Name == 'used_percent';\r\nlet free = data\r\n| where Name == 'free';\r\nlet worstDisksPerNode = usedPercent\r\n| partition by HostName (\r\n    summarize UsedPercent = max(Val) by HostName, Device, NodeDisk\r\n    | top 1 by UsedPercent desc\r\n);\r\nusedPercent // used percent for devices\r\n| summarize UsedPercent = max(Val) by HostName, Device\r\n| join kind = inner (\r\n    usedPercent \r\n    | make-series UsedPercentTrend = max(Val) default = 0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by HostName, Device\r\n) on HostName\r\n| where Device == Device1\r\n| project Id = strcat(HostName, Device), Name = strcat('🔹 ', Device), ParentId = HostName, Kind = 'Device', UsedPercent, UsedPercentTrend\r\n| union ( // used percent for nodes\r\n    usedPercent\r\n    | summarize UsedPercent = max(Val) by HostName\r\n    | join kind = inner (\r\n        usedPercent \r\n        | make-series UsedPercentTrend = max(Val) default = 0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by HostName\r\n    ) on HostName\r\n    | project Id = HostName, Name = strcat('🖥️ ', HostName), ParentId = '', Kind = 'Node', UsedPercent, UsedPercentTrend\r\n)\r\n| join kind = inner (\r\n    free // free space for devices\r\n    | summarize Free = min(Val) by HostName, Device\r\n    | join kind = inner (\r\n        free    \r\n        | make-series FreeTrend = min(Val) default = 0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by HostName, Device\r\n    ) on HostName\r\n    | where Device == Device1\r\n    | project Id = strcat(HostName, Device), Name = Device, ParentId = HostName, Kind = 'Device', Free, FreeTrend\r\n    | union ( // free space for nodes\r\n        free\r\n        | summarize Free = min(Val) by HostName, Device\r\n        | join kind = inner ( // match the set of node-disk free space data to the nodes with the worst used percent data for setting the data in the node rows\r\n            worstDisksPerNode\r\n        ) on HostName, Device\r\n        | join kind = inner (\r\n            free \r\n            | make-series FreeTrend = min(Val) default = 0 on TimeGenerated from {timeRange:start} to {timeRange:end} step  {timeRange:grain} by HostName, Device\r\n            | join kind = inner (\r\n                worstDisksPerNode\r\n            ) on HostName, Device\r\n        ) on HostName\r\n        | project Id = HostName, Name = HostName, ParentId = '', Kind = 'Node', Free, FreeTrend\r\n    )\r\n) on Id\r\n| project-away Id1, Name1, ParentId1, Kind1\r\n| project-rename ['Used Disk % (Max)'] = UsedPercent, ['Used Disk % Trend (Max)'] = UsedPercentTrend, ['Free Disk Space (Min)'] = Free, ['Free Disk Space Trend (Min)'] = FreeTrend\r\n| order by ['Used Disk % (Max)'] desc, Name asc",
                 "size": 0,
                 "exportFieldName": "",
                 "exportParameterName": "selectedRow",
@@ -430,7 +413,7 @@
                 }
             },
             "showPin": true,
-            "name": "query - 9"
+            "name": "overview-grid"
         },
         {
             "type": 9,
@@ -444,7 +427,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "selectedRowId",
                         "type": 1,
-                        "description": "<span data-ttu-id=\"60e53-109\">Identificador de la fila seleccionada en la cuadrícula</span><span class=\"sxs-lookup\"><span data-stu-id=\"60e53-109\">The Id of the row selected in the grid</span></span>",
+                        "description": "<span data-ttu-id=\"3c980-108\">Identificador de la fila seleccionada en la cuadrícula</span><span class=\"sxs-lookup\"><span data-stu-id=\"3c980-108\">The Id of the row selected in the grid</span></span>",
                         "isRequired": true,
                         "query": "let row = dynamic({selectedRow}).Id;\r\nlet usedPercent = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'disk' or Namespace =~ 'container.azm.ms/disk'\r\n| where Name == 'used_percent'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.device))\r\n| extend NodeDisk = strcat(HostName, Device);\r\nlet worstDiskAcrossNodes = toscalar(\r\n    usedPercent\r\n    | summarize UsedPercent = max(Val) by NodeDisk\r\n    | top 1 by UsedPercent desc\r\n    | project NodeDisk\r\n); \r\nprint(iif(isempty(row), worstDiskAcrossNodes, row))",
                         "isHiddenWhenLocked": true,
@@ -465,7 +448,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"60e53-110\">Detalles de <span style=\"text-decoration: underline\">{selectedRowId}</span></span><span class=\"sxs-lookup\"><span data-stu-id=\"60e53-110\">Details for <span style=\"text-decoration: underline\">{selectedRowId}</span>:</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"3c980-109\">Detalles de <span style=\"text-decoration: underline\">{selectedRowId}</span></span><span class=\"sxs-lookup\"><span data-stu-id=\"3c980-109\">Details for <span style=\"text-decoration: underline\">{selectedRowId}</span>:</span></span></h3>"
             },
             "name": "text - 13 - Copy"
         },
@@ -473,7 +456,7 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let usedPercent = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'disk' or Namespace =~ 'container.azm.ms/disk'\r\n| where Name == 'used_percent'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.device))\r\n| extend NodeDisk = strcat(HostName, Device);\r\nlet row = dynamic({selectedRow});\r\nlet worstDiskAcrossNodes = usedPercent\r\n| summarize UsedPercent = max(Val) by NodeDisk\r\n| top 1 by UsedPercent desc;\r\nusedPercent\r\n| where (row.Kind == 'Unselected') or (row.Kind == 'Node' and row.Id == HostName) or (row.Kind == 'Device' and row.Id == NodeDisk)\r\n| make-series ['Used Disk %'] = max(Val) default = 0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {bin}m by NodeDisk\r\n| where NodeDisk contains iff(row.Kind == 'Unselected', toscalar(worstDiskAcrossNodes | project NodeDisk), '')",
+                "query": "let usedPercent = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'disk' or Namespace =~ 'container.azm.ms/disk'\r\n| where Name == 'used_percent'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.device))\r\n| extend NodeDisk = strcat(HostName, Device);\r\nlet row = dynamic({selectedRow});\r\nlet worstDiskAcrossNodes = usedPercent\r\n| summarize UsedPercent = max(Val) by NodeDisk\r\n| top 1 by UsedPercent desc;\r\nusedPercent\r\n| where (row.Kind == 'Unselected') or (row.Kind == 'Node' and row.Id == HostName) or (row.Kind == 'Device' and row.Id == NodeDisk)\r\n| make-series ['Used Disk %'] = max(Val) default = 0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by NodeDisk\r\n| where NodeDisk contains iff(row.Kind == 'Unselected', toscalar(worstDiskAcrossNodes | project NodeDisk), '')",
                 "size": 0,
                 "aggregation": 2,
                 "showAnalytics": true,
@@ -489,13 +472,13 @@
             },
             "customWidth": "50",
             "showPin": true,
-            "name": "query - 11"
+            "name": "used-disk-space-chart"
         },
         {
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let data = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'disk' or Namespace =~ 'container.azm.ms/disk'\r\n| where Name == 'used_percent' or Name == 'free'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.device))\r\n| extend NodeDisk = strcat(HostName, Device);\r\nlet usedPercent = data\r\n| where Name == 'used_percent';\r\nlet free = data\r\n| where Name == 'free'\r\n| extend Val = Val / 1073741824;\r\nlet row = dynamic({selectedRow});\r\nlet worstDiskAcrossNodes = usedPercent\r\n| summarize UsedPercent = max(Val) by NodeDisk\r\n| top 1 by UsedPercent desc;\r\nfree\r\n| where (row.Kind == 'Unselected') or (row.Kind == 'Node' and row.Id == HostName) or (row.Kind == 'Device' and row.Id == NodeDisk)\r\n| make-series ['Free Disk Space'] = min(Val) default = 0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {bin}m by NodeDisk\r\n| where NodeDisk contains iff(row.Kind == 'Unselected', toscalar(worstDiskAcrossNodes | project NodeDisk), '')",
+                "query": "let data = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'disk' or Namespace =~ 'container.azm.ms/disk'\r\n| where Name == 'used_percent' or Name == 'free'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.device))\r\n| extend NodeDisk = strcat(HostName, Device);\r\nlet usedPercent = data\r\n| where Name == 'used_percent';\r\nlet free = data\r\n| where Name == 'free'\r\n| extend Val = Val / 1073741824;\r\nlet row = dynamic({selectedRow});\r\nlet worstDiskAcrossNodes = usedPercent\r\n| summarize UsedPercent = max(Val) by NodeDisk\r\n| top 1 by UsedPercent desc;\r\nfree\r\n| where (row.Kind == 'Unselected') or (row.Kind == 'Node' and row.Id == HostName) or (row.Kind == 'Device' and row.Id == NodeDisk)\r\n| make-series ['Free Disk Space'] = min(Val) default = 0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by NodeDisk\r\n| where NodeDisk contains iff(row.Kind == 'Unselected', toscalar(worstDiskAcrossNodes | project NodeDisk), '')",
                 "size": 0,
                 "aggregation": 1,
                 "showAnalytics": true,
@@ -511,7 +494,7 @@
             },
             "customWidth": "50",
             "showPin": true,
-            "name": "query - 12"
+            "name": "free-disk-space-chart"
         }
     ],
     "fallbackResourceIds": [],
