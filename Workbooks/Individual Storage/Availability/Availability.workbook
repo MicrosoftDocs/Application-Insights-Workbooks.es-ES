@@ -49,7 +49,7 @@
                         "name": "TimeRange",
                         "label": "Time Range",
                         "type": 4,
-                        "description": "<span data-ttu-id=\"84931-101\">Intervalo de tiempo para analizar</span><span class=\"sxs-lookup\"><span data-stu-id=\"84931-101\">The time range to analyze</span></span>",
+                        "description": "<span data-ttu-id=\"b9322-101\">Intervalo de tiempo para analizar</span><span class=\"sxs-lookup\"><span data-stu-id=\"b9322-101\">The time range to analyze</span></span>",
                         "isRequired": true,
                         "value": {
                             "durationMs": 14400000
@@ -179,6 +179,12 @@
                             "typeSource": "workbook",
                             "gallerySource": "workbook"
                         }
+                    },
+                    {
+                        "cellValue": "https://aka.ms/saidoc",
+                        "linkTarget": "Url",
+                        "linkLabel": "Learn more",
+                        "style": "link"
                     }
                 ]
             },
@@ -279,8 +285,16 @@
                         {
                             "columnMatch": "Timeline",
                             "formatter": 9
+                        },
+                        {
+                            "columnMatch": "Name",
+                            "formatter": 13,
+                            "formatOptions": {
+                                "linkTarget": "Resource"
+                            }
                         }
-                    ]
+                    ],
+                    "labelSettings": []
                 },
                 "gridFormatType": 1,
                 "filters": []
@@ -344,7 +358,7 @@
                 "version": "KqlItem/1.0",
                 "query": "{\"version\":\"AzureHealthQuery/1.0\",\"queryType\":\"Detailed\"}",
                 "size": 4,
-                "title": "Azure resource health",
+                "title": "Storage health",
                 "queryType": 4,
                 "resourceType": "microsoft.storage/storageaccounts",
                 "gridSettings": {
@@ -428,7 +442,8 @@
                                 "showIcon": true
                             }
                         }
-                    ]
+                    ],
+                    "labelSettings": []
                 }
             },
             "name": "Health data"
@@ -555,7 +570,8 @@
                                 "showIcon": true
                             }
                         }
-                    ]
+                    ],
+                    "labelSettings": []
                 },
                 "gridFormatType": 1,
                 "filters": []
@@ -696,7 +712,8 @@
                         ],
                         "expandTopLevel": true,
                         "finalBy": "Segment"
-                    }
+                    },
+                    "labelSettings": []
                 }
             },
             "customWidth": "50",
