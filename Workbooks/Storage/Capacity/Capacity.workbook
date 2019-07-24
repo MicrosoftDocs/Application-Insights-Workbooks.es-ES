@@ -203,6 +203,12 @@
                             "gallerySource": "static",
                             "gallery": "Azure Monitor"
                         }
+                    },
+                    {
+                        "cellValue": "https://aka.ms/azmonsaidoc",
+                        "linkTarget": "Url",
+                        "linkLabel": "Learn more",
+                        "style": "link"
                     }
                 ]
             },
@@ -279,7 +285,7 @@
                             "formatter": 13,
                             "formatOptions": {
                                 "linkTarget": "Resource",
-                                "subTarget": "insights",
+                                "subTarget": "",
                                 "showIcon": true
                             }
                         },
@@ -390,8 +396,9 @@
                 "filters": []
             },
             "showPin": true,
-            "name": "storage account metrics"
+            "name": "storage account capacity metrics"
         }
     ],
+    "styleSettings": {},
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
 }

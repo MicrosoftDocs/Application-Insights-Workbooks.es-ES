@@ -203,6 +203,12 @@
                             "gallerySource": "static",
                             "gallery": "Azure Monitor"
                         }
+                    },
+                    {
+                        "cellValue": "https://aka.ms/azmonsaidoc",
+                        "linkTarget": "Url",
+                        "linkLabel": "Learn more",
+                        "style": "link"
                     }
                 ]
             },
@@ -271,7 +277,7 @@
                             "formatter": 13,
                             "formatOptions": {
                                 "linkTarget": "Resource",
-                                "subTarget": "insights",
+                                "subTarget": "",
                                 "showIcon": true
                             }
                         },
@@ -412,7 +418,7 @@
                             }
                         },
                         {
-                            "columnMatch": "microsoft.storage/storageaccounts-Transaction-SuccessServerLatency Timeline",
+                            "columnMatch": "Server Latency Timeline",
                             "formatter": 5,
                             "formatOptions": {
                                 "showIcon": true
@@ -452,6 +458,13 @@
                                     "style": "decimal",
                                     "maximumFractionDigits": 1
                                 }
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.storage/storageaccounts-Transaction-SuccessServerLatency Timeline",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
                             }
                         }
                     ],
