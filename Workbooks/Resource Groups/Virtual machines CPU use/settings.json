@@ -1,0 +1,6 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Uso de CPU de las máquinas virtuales",
+    "author": "Microsoft",
+    "galleries": []
+}
