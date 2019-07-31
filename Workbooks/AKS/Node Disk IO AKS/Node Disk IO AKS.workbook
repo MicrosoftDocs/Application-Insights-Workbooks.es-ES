@@ -4,7 +4,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"48a79-101\">_Hay más información acerca de las métricas de este libro está disponible <a href='https://github.com/influxdata/telegraf/tree/master/plugins/inputs/diskio'>aquí</a>_</span><span class=\"sxs-lookup\"><span data-stu-id=\"48a79-101\">_More information about the metrics in this workbook is available <a href='https://github.com/influxdata/telegraf/tree/master/plugins/inputs/diskio'>here</a>_</span></span>"
+                "json": "<span data-ttu-id=\"c57cc-101\">_Hay más información acerca de las métricas de este libro está disponible <a href='https://github.com/influxdata/telegraf/tree/master/plugins/inputs/diskio'>aquí</a>_</span><span class=\"sxs-lookup\"><span data-stu-id=\"c57cc-101\">_More information about the metrics in this workbook is available <a href='https://github.com/influxdata/telegraf/tree/master/plugins/inputs/diskio'>here</a>_</span></span>"
             },
             "name": "text - 18"
         },
@@ -21,7 +21,7 @@
                         "name": "timeRange",
                         "label": "Time Range",
                         "type": 4,
-                        "description": "<span data-ttu-id=\"48a79-102\">Filtrar datos por intervalo de tiempo</span><span class=\"sxs-lookup\"><span data-stu-id=\"48a79-102\">Filter data by time range</span></span>",
+                        "description": "<span data-ttu-id=\"c57cc-102\">Filtrar datos por intervalo de tiempo</span><span class=\"sxs-lookup\"><span data-stu-id=\"c57cc-102\">Filter data by time range</span></span>",
                         "isRequired": true,
                         "typeSettings": {
                             "selectableValues": [
@@ -83,7 +83,7 @@
                         "name": "unit",
                         "label": "Unit",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"48a79-103\">Las unidades que se usarán para los datos</span><span class=\"sxs-lookup\"><span data-stu-id=\"48a79-103\">The units to use for the data</span></span>",
+                        "description": "<span data-ttu-id=\"c57cc-103\">Las unidades que se usarán para los datos</span><span class=\"sxs-lookup\"><span data-stu-id=\"c57cc-103\">The units to use for the data</span></span>",
                         "typeSettings": {
                             "additionalResourceOptions": []
                         },
@@ -95,7 +95,7 @@
                         "name": "aggregation1",
                         "label": "Aggregation",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"48a79-104\">Elija qué agregación de datos desea visualizar en el gráfico temporal</span><span class=\"sxs-lookup\"><span data-stu-id=\"48a79-104\">Choose which data aggregation you want to visualize on the time chart</span></span>",
+                        "description": "<span data-ttu-id=\"c57cc-104\">Elija qué agregación de datos desea visualizar en el gráfico temporal</span><span class=\"sxs-lookup\"><span data-stu-id=\"c57cc-104\">Choose which data aggregation you want to visualize on the time chart</span></span>",
                         "value": "Average",
                         "typeSettings": {
                             "additionalResourceOptions": []
@@ -112,7 +112,7 @@
                         "name": "selectedNodes1",
                         "label": "Node",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"48a79-105\">Filtrar por nodo</span><span class=\"sxs-lookup\"><span data-stu-id=\"48a79-105\">Filter by node</span></span>",
+                        "description": "<span data-ttu-id=\"c57cc-105\">Filtrar por nodo</span><span class=\"sxs-lookup\"><span data-stu-id=\"c57cc-105\">Filter by node</span></span>",
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
@@ -139,7 +139,7 @@
                         "name": "selectedDevices1",
                         "label": "Device",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"48a79-106\">Filtrar por dispositivo</span><span class=\"sxs-lookup\"><span data-stu-id=\"48a79-106\">Filter by device</span></span>",
+                        "description": "<span data-ttu-id=\"c57cc-106\">Filtrar por dispositivo</span><span class=\"sxs-lookup\"><span data-stu-id=\"c57cc-106\">Filter by device</span></span>",
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
@@ -177,7 +177,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"48a79-107\">Información general de E/S de disco</span><span class=\"sxs-lookup\"><span data-stu-id=\"48a79-107\">Disk IO Overview</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"c57cc-107\">Información general de E/S de disco</span><span class=\"sxs-lookup\"><span data-stu-id=\"c57cc-107\">Disk IO Overview</span></span></h3>"
             },
             "name": "text - 24"
         },
@@ -351,7 +351,8 @@
                         ],
                         "expandTopLevel": true,
                         "finalBy": "GridId"
-                    }
+                    },
+                    "labelSettings": []
                 }
             },
             "showPin": true,
@@ -367,7 +368,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"48a79-108\">Leer {unit:label}/s</span><span class=\"sxs-lookup\"><span data-stu-id=\"48a79-108\">Read {unit:label}/sec</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"c57cc-108\">Leer {unit:label}/s</span><span class=\"sxs-lookup\"><span data-stu-id=\"c57cc-108\">Read {unit:label}/sec</span></span></h3>"
             },
             "customWidth": "50",
             "name": "text - 5"
@@ -375,7 +376,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"48a79-109\">Escribir {unit:label}/s</span><span class=\"sxs-lookup\"><span data-stu-id=\"48a79-109\">Write {unit:label}/sec</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"c57cc-109\">Escribir {unit:label}/s</span><span class=\"sxs-lookup\"><span data-stu-id=\"c57cc-109\">Write {unit:label}/sec</span></span></h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy"
@@ -384,7 +385,7 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let bytesReadPerSec = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'container.azm.ms/diskio'\r\n| where Name == 'read_bytes'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.name))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where '*' in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where '*' in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| order by NodeDisk asc, TimeGenerated asc\r\n| serialize\r\n| extend PrevVal = iif(prev(NodeDisk) != NodeDisk, 0.0, prev(Val)), PrevTimeGenerated = iif(prev(NodeDisk) != NodeDisk, datetime(null), prev(TimeGenerated))\r\n| where isnotnull(PrevTimeGenerated) and PrevTimeGenerated != TimeGenerated\r\n| extend Rate = iif(PrevVal > Val, Val / (datetime_diff('Second', TimeGenerated, PrevTimeGenerated) * {unit}), (Val - PrevVal) / (datetime_diff('Second', TimeGenerated, PrevTimeGenerated) * {unit}))\r\n| where isnotnull(Rate)\r\n| project TimeGenerated, HostName, Device, Rate;\r\nlet maxOn = indexof(\"{aggregation1}\", 'Max');\r\nlet avgOn = indexof(\"{aggregation1}\", 'Average');\r\nlet minOn = indexof(\"{aggregation1}\", 'Min');\r\nbytesReadPerSec\r\n| make-series Val = iif(avgOn != -1, avg(Rate), iif(maxOn != -1, max(Rate), min(Rate))) default=0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by HostName, Device\r\n| extend Name = strcat(HostName, Device)\r\n| project-away HostName, Device",
+                "query": "let bytesReadPerSec = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'container.azm.ms/diskio'\r\n| where Name == 'read_bytes'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.name))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where '*' in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where '*' in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| order by NodeDisk asc, TimeGenerated asc\r\n| serialize\r\n| extend PrevVal = iif(prev(NodeDisk) != NodeDisk, 0.0, prev(Val)), PrevTimeGenerated = iif(prev(NodeDisk) != NodeDisk, datetime(null), prev(TimeGenerated))\r\n| where isnotnull(PrevTimeGenerated) and PrevTimeGenerated != TimeGenerated\r\n| extend Rate = iif(PrevVal > Val, Val / (datetime_diff('Second', TimeGenerated, PrevTimeGenerated) * {unit}), iif(PrevVal == Val, 0.0, (Val - PrevVal) / (datetime_diff('Second', TimeGenerated, PrevTimeGenerated) * {unit})))\r\n| where isnotnull(Rate)\r\n| project TimeGenerated, HostName, Device, Rate;\r\nlet maxOn = indexof(\"{aggregation1}\", 'Max');\r\nlet avgOn = indexof(\"{aggregation1}\", 'Average');\r\nlet minOn = indexof(\"{aggregation1}\", 'Min');\r\nbytesReadPerSec\r\n| make-series Val = iif(avgOn != -1, avg(Rate), iif(maxOn != -1, max(Rate), min(Rate))) default=0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by HostName, Device\r\n| extend Name = strcat(HostName, Device)\r\n| project-away HostName, Device",
                 "size": 0,
                 "aggregation": 1,
                 "showAnalytics": true,
@@ -407,7 +408,7 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let bytesWritePerSec = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'container.azm.ms/diskio'\r\n| where Name == 'write_bytes'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.name))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where '*' in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where '*' in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| order by NodeDisk asc, TimeGenerated asc\r\n| serialize\r\n| extend PrevVal = iif(prev(NodeDisk) != NodeDisk, 0.0, prev(Val)), PrevTimeGenerated = iif(prev(NodeDisk) != NodeDisk, datetime(null), prev(TimeGenerated))\r\n| where isnotnull(PrevTimeGenerated) and PrevTimeGenerated != TimeGenerated\r\n| extend Rate = iif(PrevVal > Val, Val / (datetime_diff('Second', TimeGenerated, PrevTimeGenerated) * {unit}), (Val - PrevVal) / (datetime_diff('Second', TimeGenerated, PrevTimeGenerated) * {unit}))\r\n| where isnotnull(Rate)\r\n| project TimeGenerated, HostName, Device, Rate;\r\nlet maxOn = indexof(\"{aggregation1}\", 'Max');\r\nlet avgOn = indexof(\"{aggregation1}\", 'Average');\r\nlet minOn = indexof(\"{aggregation1}\", 'Min');\r\nbytesWritePerSec\r\n| make-series Val = iif(avgOn != -1, avg(Rate), iif(maxOn != -1, max(Rate), min(Rate))) default=0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by HostName, Device\r\n| extend Name = strcat(HostName, Device)\r\n| project-away HostName, Device",
+                "query": "let bytesWritePerSec = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'container.azm.ms/diskio'\r\n| where Name == 'write_bytes'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.name))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where '*' in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where '*' in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| order by NodeDisk asc, TimeGenerated asc\r\n| serialize\r\n| extend PrevVal = iif(prev(NodeDisk) != NodeDisk, 0.0, prev(Val)), PrevTimeGenerated = iif(prev(NodeDisk) != NodeDisk, datetime(null), prev(TimeGenerated))\r\n| where isnotnull(PrevTimeGenerated) and PrevTimeGenerated != TimeGenerated\r\n| extend Rate = iif(PrevVal > Val, Val / (datetime_diff('Second', TimeGenerated, PrevTimeGenerated) * {unit}), iif(PrevVal == Val, 0.0, (Val - PrevVal) / (datetime_diff('Second', TimeGenerated, PrevTimeGenerated) * {unit})))\r\n| where isnotnull(Rate)\r\n| project TimeGenerated, HostName, Device, Rate;\r\nlet maxOn = indexof(\"{aggregation1}\", 'Max');\r\nlet avgOn = indexof(\"{aggregation1}\", 'Average');\r\nlet minOn = indexof(\"{aggregation1}\", 'Min');\r\nbytesWritePerSec\r\n| make-series Val = iif(avgOn != -1, avg(Rate), iif(maxOn != -1, max(Rate), min(Rate))) default=0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by HostName, Device\r\n| extend Name = strcat(HostName, Device)\r\n| project-away HostName, Device",
                 "size": 0,
                 "aggregation": 1,
                 "showAnalytics": true,
@@ -433,7 +434,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"48a79-110\">Leído en total: {unit:label} ({timeRange:grain} intervalos)</span><span class=\"sxs-lookup\"><span data-stu-id=\"48a79-110\">Total {unit:label} Read ({timeRange:grain} intervals)</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"c57cc-110\">Leído en total: {unit:label} ({timeRange:grain} intervalos)</span><span class=\"sxs-lookup\"><span data-stu-id=\"c57cc-110\">Total {unit:label} Read ({timeRange:grain} intervals)</span></span></h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy"
@@ -441,7 +442,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"48a79-111\">Escrito en total: {unit:label} ({timeRange:grain} intervalos)</span><span class=\"sxs-lookup\"><span data-stu-id=\"48a79-111\">Total {unit:label} Written ({timeRange:grain} intervals)</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"c57cc-111\">Escrito en total: {unit:label} ({timeRange:grain} intervalos)</span><span class=\"sxs-lookup\"><span data-stu-id=\"c57cc-111\">Total {unit:label} Written ({timeRange:grain} intervals)</span></span></h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy"
@@ -450,7 +451,7 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let bytesReadTotal = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'container.azm.ms/diskio'\r\n| where Name == 'read_bytes'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.name))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where '*' in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where '*' in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| order by NodeDisk asc, TimeGenerated asc\r\n| serialize\r\n| extend PrevVal = iif(prev(NodeDisk) != NodeDisk, 0.0, prev(Val)), PrevTimeGenerated = iif(prev(NodeDisk) != NodeDisk, datetime(null), prev(TimeGenerated))\r\n| where isnotnull(PrevTimeGenerated) and PrevTimeGenerated != TimeGenerated\r\n| extend Rate = iif(PrevVal > Val, Val / {unit}, (Val - PrevVal) / {unit})\r\n| where isnotnull(Rate)\r\n| project TimeGenerated, HostName, Device, Rate;\r\nlet sum = bytesReadTotal\r\n| make-series Val = sum(Rate) default=0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by HostName, Device\r\n| extend Name = strcat(HostName, Device)\r\n| project-away HostName, Device;\r\nsum",
+                "query": "let bytesReadTotal = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'container.azm.ms/diskio'\r\n| where Name == 'read_bytes'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.name))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where '*' in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where '*' in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| order by NodeDisk asc, TimeGenerated asc\r\n| serialize\r\n| extend PrevVal = iif(prev(NodeDisk) != NodeDisk, 0.0, prev(Val)), PrevTimeGenerated = iif(prev(NodeDisk) != NodeDisk, datetime(null), prev(TimeGenerated))\r\n| where isnotnull(PrevTimeGenerated) and PrevTimeGenerated != TimeGenerated\r\n| extend Rate = iif(PrevVal > Val, Val / {unit}, iif(PrevVal == Val, 0.0, (Val - PrevVal) / {unit}))\r\n| where isnotnull(Rate)\r\n| project TimeGenerated, HostName, Device, Rate;\r\nlet sum = bytesReadTotal\r\n| make-series Val = sum(Rate) default=0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by HostName, Device\r\n| extend Name = strcat(HostName, Device)\r\n| project-away HostName, Device;\r\nsum",
                 "size": 0,
                 "aggregation": 1,
                 "showAnalytics": true,
@@ -470,7 +471,7 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let bytesWrittenTotal = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'container.azm.ms/diskio'\r\n| where Name == 'write_bytes'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.name))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where '*' in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where '*' in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| order by NodeDisk asc, TimeGenerated asc\r\n| serialize\r\n| extend PrevVal = iif(prev(NodeDisk) != NodeDisk, 0.0, prev(Val)), PrevTimeGenerated = iif(prev(NodeDisk) != NodeDisk, datetime(null), prev(TimeGenerated))\r\n| where isnotnull(PrevTimeGenerated) and PrevTimeGenerated != TimeGenerated\r\n| extend Rate = iif(TimeGenerated == PrevTimeGenerated, 0.0, iif(PrevVal > Val, Val / {unit}, (Val - PrevVal) / {unit}))\r\n| where isnotnull(Rate)\r\n| project TimeGenerated, HostName, Device, Rate;\r\nlet sum = bytesWrittenTotal\r\n| make-series Val = sum(Rate) default=0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by HostName, Device\r\n| extend Name = strcat(HostName, Device)\r\n| project-away HostName, Device;\r\nsum",
+                "query": "let bytesWrittenTotal = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'container.azm.ms/diskio'\r\n| where Name == 'write_bytes'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.name))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where '*' in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where '*' in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| order by NodeDisk asc, TimeGenerated asc\r\n| serialize\r\n| extend PrevVal = iif(prev(NodeDisk) != NodeDisk, 0.0, prev(Val)), PrevTimeGenerated = iif(prev(NodeDisk) != NodeDisk, datetime(null), prev(TimeGenerated))\r\n| where isnotnull(PrevTimeGenerated) and PrevTimeGenerated != TimeGenerated\r\n| extend Rate = iif(PrevVal > Val, Val / {unit}, iif(PrevVal == Val, 0.0, (Val - PrevVal) / {unit}))\r\n| where isnotnull(Rate)\r\n| project TimeGenerated, HostName, Device, Rate;\r\nlet sum = bytesWrittenTotal\r\n| make-series Val = sum(Rate) default=0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by HostName, Device\r\n| extend Name = strcat(HostName, Device)\r\n| project-away HostName, Device;\r\nsum",
                 "size": 0,
                 "aggregation": 1,
                 "showAnalytics": true,
@@ -496,7 +497,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"48a79-112\">Milisegundos por {unit:label} leído</span><span class=\"sxs-lookup\"><span data-stu-id=\"48a79-112\">Milliseconds Per {unit:label} Read</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"c57cc-112\">Milisegundos por {unit:label} leído</span><span class=\"sxs-lookup\"><span data-stu-id=\"c57cc-112\">Milliseconds Per {unit:label} Read</span></span></h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy - Copy"
@@ -504,7 +505,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"48a79-113\">Milisegundos por {unit:label} escrito</span><span class=\"sxs-lookup\"><span data-stu-id=\"48a79-113\">Milliseconds Per {unit:label} Written</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"c57cc-113\">Milisegundos por {unit:label} escrito</span><span class=\"sxs-lookup\"><span data-stu-id=\"c57cc-113\">Milliseconds Per {unit:label} Written</span></span></h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy - Copy - Copy"
@@ -513,7 +514,7 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let msPerByteRead = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'container.azm.ms/diskio'\r\n| where Name == 'read_bytes'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.name))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where '*' in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where '*' in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| order by NodeDisk asc, TimeGenerated asc\r\n| serialize\r\n| extend PrevVal = iif(prev(NodeDisk) != NodeDisk, 0.0, prev(Val)), PrevTimeGenerated = iif(prev(NodeDisk) != NodeDisk, datetime(null), prev(TimeGenerated))\r\n| where isnotnull(PrevTimeGenerated) and PrevTimeGenerated != TimeGenerated\r\n| extend Rate = iif(PrevVal > Val, pow(Val / (datetime_diff('Second', TimeGenerated, PrevTimeGenerated) * 1000 * {unit}), -1), pow((Val - PrevVal) / (datetime_diff('Second', TimeGenerated, PrevTimeGenerated) * 1000 * {unit}), -1))\r\n| where isnotnull(Rate)\r\n| project TimeGenerated, HostName, Device, Rate;\r\nlet maxOn = indexof(\"{aggregation1}\", 'Max');\r\nlet avgOn = indexof(\"{aggregation1}\", 'Average');\r\nlet minOn = indexof(\"{aggregation1}\", 'Min');\r\nmsPerByteRead\r\n| make-series Val = iif(avgOn != -1, avg(Rate), iif(maxOn != -1, max(Rate), min(Rate))) default=0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by HostName, Device\r\n| extend Name = strcat(HostName, Device)\r\n| project-away HostName, Device",
+                "query": "let msPerByteRead = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'container.azm.ms/diskio'\r\n| where Name == 'read_bytes'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.name))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where '*' in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where '*' in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| order by NodeDisk asc, TimeGenerated asc\r\n| serialize\r\n| extend PrevVal = iif(prev(NodeDisk) != NodeDisk, 0.0, prev(Val)), PrevTimeGenerated = iif(prev(NodeDisk) != NodeDisk, datetime(null), prev(TimeGenerated))\r\n| where isnotnull(PrevTimeGenerated) and PrevTimeGenerated != TimeGenerated and PrevVal != Val\r\n| extend Rate = iif(PrevVal > Val, pow(Val / (datetime_diff('Second', TimeGenerated, PrevTimeGenerated) * 1000 * {unit}), -1), pow((Val - PrevVal) / (datetime_diff('Second', TimeGenerated, PrevTimeGenerated) * 1000 * {unit}), -1))\r\n| where isnotnull(Rate)\r\n| project TimeGenerated, HostName, Device, Rate;\r\nlet maxOn = indexof(\"{aggregation1}\", 'Max');\r\nlet avgOn = indexof(\"{aggregation1}\", 'Average');\r\nlet minOn = indexof(\"{aggregation1}\", 'Min');\r\nmsPerByteRead\r\n| make-series Val = iif(avgOn != -1, avg(Rate), iif(maxOn != -1, max(Rate), min(Rate))) default=0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by HostName, Device\r\n| extend Name = strcat(HostName, Device)\r\n| project-away HostName, Device",
                 "size": 0,
                 "aggregation": 2,
                 "showAnalytics": true,
@@ -533,7 +534,7 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let msPerByteWritten = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'container.azm.ms/diskio'\r\n| where Name == 'write_bytes'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.name))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where '*' in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where '*' in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| order by NodeDisk asc, TimeGenerated asc\r\n| serialize\r\n| extend PrevVal = iif(prev(NodeDisk) != NodeDisk, 0.0, prev(Val)), PrevTimeGenerated = iif(prev(NodeDisk) != NodeDisk, datetime(null), prev(TimeGenerated))\r\n| where isnotnull(PrevTimeGenerated) and PrevTimeGenerated != TimeGenerated\r\n| extend Rate = iif(TimeGenerated == PrevTimeGenerated or (Val - PrevVal) == 0, 0.0, iif(PrevVal > Val, pow(Val / (datetime_diff('Second', TimeGenerated, PrevTimeGenerated) * 1000 * {unit}), -1), pow((Val - PrevVal) / (datetime_diff('Second', TimeGenerated, PrevTimeGenerated) * 1000 * {unit}), -1)))\r\n| where isnotnull(Rate)\r\n| project TimeGenerated, HostName, Device, Rate;\r\nlet maxOn = indexof(\"{aggregation1}\", 'Max');\r\nlet avgOn = indexof(\"{aggregation1}\", 'Average');\r\nlet minOn = indexof(\"{aggregation1}\", 'Min');\r\nmsPerByteWritten\r\n| make-series Val = iif(avgOn != -1, avg(Rate), iif(maxOn != -1, max(Rate), min(Rate))) default=0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by HostName, Device\r\n| extend Name = strcat(HostName, Device)\r\n| project-away HostName, Device",
+                "query": "let msPerByteWritten = InsightsMetrics\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| where Namespace == 'container.azm.ms/diskio'\r\n| where Name == 'write_bytes'\r\n| extend Tags = todynamic(Tags)\r\n| extend HostName = tostring(Tags.hostName), Device = strcat('/dev/', tostring(Tags.name))\r\n| extend NodeDisk = strcat(HostName, Device)\r\n| where '*' in ({selectedNodes1}) or HostName in ({selectedNodes1})\r\n| where '*' in ({selectedDevices1}) or Device in ({selectedDevices1})\r\n| order by NodeDisk asc, TimeGenerated asc\r\n| serialize\r\n| extend PrevVal = iif(prev(NodeDisk) != NodeDisk, 0.0, prev(Val)), PrevTimeGenerated = iif(prev(NodeDisk) != NodeDisk, datetime(null), prev(TimeGenerated))\r\n| where isnotnull(PrevTimeGenerated) and PrevTimeGenerated != TimeGenerated and PrevVal != Val\r\n| extend Rate = iif(TimeGenerated == PrevTimeGenerated or (Val - PrevVal) == 0, 0.0, iif(PrevVal > Val, pow(Val / (datetime_diff('Second', TimeGenerated, PrevTimeGenerated) * 1000 * {unit}), -1), pow((Val - PrevVal) / (datetime_diff('Second', TimeGenerated, PrevTimeGenerated) * 1000 * {unit}), -1)))\r\n| where isnotnull(Rate)\r\n| project TimeGenerated, HostName, Device, Rate;\r\nlet maxOn = indexof(\"{aggregation1}\", 'Max');\r\nlet avgOn = indexof(\"{aggregation1}\", 'Average');\r\nlet minOn = indexof(\"{aggregation1}\", 'Min');\r\nmsPerByteWritten\r\n| make-series Val = iif(avgOn != -1, avg(Rate), iif(maxOn != -1, max(Rate), min(Rate))) default=0 on TimeGenerated from {timeRange:start} to {timeRange:end} step {timeRange:grain} by HostName, Device\r\n| extend Name = strcat(HostName, Device)\r\n| project-away HostName, Device",
                 "size": 0,
                 "aggregation": 2,
                 "showAnalytics": true,
@@ -559,7 +560,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"48a79-114\">IOPS en curso</span><span class=\"sxs-lookup\"><span data-stu-id=\"48a79-114\">IOPS In Progress</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"c57cc-114\">IOPS en curso</span><span class=\"sxs-lookup\"><span data-stu-id=\"c57cc-114\">IOPS In Progress</span></span></h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy - Copy - Copy"
@@ -567,7 +568,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"48a79-115\">% de disco ocupado</span><span class=\"sxs-lookup\"><span data-stu-id=\"48a79-115\">% Disk Busy</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"c57cc-115\">% de disco ocupado</span><span class=\"sxs-lookup\"><span data-stu-id=\"c57cc-115\">% Disk Busy</span></span></h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy - Copy - Copy - Copy"
@@ -614,5 +615,6 @@
         }
     ],
     "fallbackResourceIds": [],
+    "styleSettings": {},
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
 }
