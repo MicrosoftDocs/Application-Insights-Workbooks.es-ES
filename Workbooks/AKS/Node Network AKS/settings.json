@@ -1,8 +1,13 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"cf397-101\">Red del nodo</span><span class=\"sxs-lookup\"><span data-stu-id=\"cf397-101\">Node Network</span></span>",
+    "name": "<span data-ttu-id=\"6e3c5-101\">Red del nodo</span><span class=\"sxs-lookup\"><span data-stu-id=\"6e3c5-101\">Node Network</span></span>",
     "author": "Microsoft",
     "galleries": [
+        {
+            "type": "container-insights",
+            "resourceType": "Microsoft.ContainerService/managedClusters",
+            "order": 400
+        },
         {
             "type": "workbook",
             "resourceType": "Microsoft.ContainerService/managedClusters",

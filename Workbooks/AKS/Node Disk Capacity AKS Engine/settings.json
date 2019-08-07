@@ -1,8 +1,13 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"4fa48-101\">Capacidad de disco del nodo</span><span class=\"sxs-lookup\"><span data-stu-id=\"4fa48-101\">Node Disk Capacity</span></span>",
+    "name": "<span data-ttu-id=\"e30de-101\">Capacidad de disco del nodo</span><span class=\"sxs-lookup\"><span data-stu-id=\"e30de-101\">Node Disk Capacity</span></span>",
     "author": "Microsoft",
     "galleries": [
+        {
+            "type": "container-insights",
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "order": 100
+        },
         {
             "type": "workbook",
             "resourceType": "microsoft.operationalinsights/workspaces",

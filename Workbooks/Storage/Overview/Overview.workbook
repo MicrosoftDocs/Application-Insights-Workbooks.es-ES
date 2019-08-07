@@ -168,7 +168,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"2cde0-101\">{Message} _Cuentas de almacenamiento_</span><span class=\"sxs-lookup\"><span data-stu-id=\"2cde0-101\">{Message} _Storage accounts_</span></span>"
+                "json": "<span data-ttu-id=\"a6084-101\">{Message} _Cuentas de almacenamiento_</span><span class=\"sxs-lookup\"><span data-stu-id=\"a6084-101\">{Message} _Storage accounts_</span></span>"
             },
             "name": "text - 3",
             "styleSettings": {
@@ -436,6 +436,13 @@
                         },
                         {
                             "columnMatch": "Success/Errors",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "success/Errors",
                             "formatter": 5,
                             "formatOptions": {
                                 "showIcon": true
