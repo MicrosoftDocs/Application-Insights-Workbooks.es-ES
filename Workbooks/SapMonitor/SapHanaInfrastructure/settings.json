@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"79e39-101\">Infraestructura de SAP HANA</span><span class=\"sxs-lookup\"><span data-stu-id=\"79e39-101\">SAP HANA Infrastructure</span></span>",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "Microsoft.HanaOnAzure/sapMonitors",
+            "order": 100
+        }
+    ]
+}
