@@ -7,7 +7,7 @@
                 "version": "KqlParameterItem/1.0",
                 "query": "",
                 "crossComponentResources": [
-                    "value::all"
+                    "value::selected"
                 ],
                 "parameters": [
                     {
@@ -20,9 +20,9 @@
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
-                        "query": "where type =~ 'microsoft.storage/storageaccounts'\r\n| summarize by subscriptionId\r\n| order by subscriptionId\r\n| summarize SelectedSub = makelist(subscriptionId, 1), Sub = makelist(subscriptionId, 100000)\r\n| mvexpand Sub limit 100000\r\n| mvexpand SelectedSub\r\n| project value = strcat(\"/subscriptions/\", Sub), label = Sub, selected = iff(tostring(Sub) == tostring(SelectedSub), true, false)\r\n",
+                        "query": "where type =~ 'microsoft.storage/storageaccounts'\r\n| summarize Count = count() by subscriptionId\r\n| order by Count desc\r\n| summarize SelectedSub = makelist(subscriptionId, 1), Sub = makelist(subscriptionId, 100000)\r\n| mvexpand Sub limit 100000\r\n| mvexpand SelectedSub\r\n| project value = strcat(\"/subscriptions/\", Sub), label = Sub, selected = iff(tostring(Sub) == tostring(SelectedSub), true, false)\r\n",
                         "crossComponentResources": [
-                            "value::all"
+                            "value::selected"
                         ],
                         "typeSettings": {
                             "additionalResourceOptions": [],
@@ -168,7 +168,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"a6084-101\">{Message} _Cuentas de almacenamiento_</span><span class=\"sxs-lookup\"><span data-stu-id=\"a6084-101\">{Message} _Storage accounts_</span></span>"
+                "json": "<span data-ttu-id=\"6835f-101\">{Message} _Cuentas de almacenamiento_</span><span class=\"sxs-lookup\"><span data-stu-id=\"6835f-101\">{Message} _Storage accounts_</span></span>"
             },
             "name": "text - 3",
             "styleSettings": {
@@ -377,7 +377,7 @@
                                 }
                             },
                             "numberFormat": {
-                                "unit": 0,
+                                "unit": 1,
                                 "options": {
                                     "style": "decimal",
                                     "maximumFractionDigits": 2
