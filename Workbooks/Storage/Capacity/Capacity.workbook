@@ -63,6 +63,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "TimeRange",
                         "type": 4,
+                        "isRequired": true,
                         "typeSettings": {
                             "selectableValues": [
                                 {
@@ -280,7 +281,7 @@
                             "formatter": 13,
                             "formatOptions": {
                                 "linkTarget": "Resource",
-                                "subTarget": "",
+                                "subTarget": "insights",
                                 "showIcon": true
                             }
                         },
