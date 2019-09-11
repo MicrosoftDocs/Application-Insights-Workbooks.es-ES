@@ -13,12 +13,11 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "testDataExist",
                         "type": 1,
-                        "query": "SapHana_LoadHistory_CL\r\n| where TimeGenerated  {TimeRange}\r\n|project HOST_s\r\n| take 1",
+                        "query": "SapHana_LoadHistory_CL\r\n| project HOST_s\r\n| take 1",
                         "isHiddenWhenLocked": true,
                         "timeContext": {
-                            "durationMs": 0
+                            "durationMs": 1800000
                         },
-                        "timeContextFromParameter": "TimeRange",
                         "queryType": 0,
                         "resourceType": "microsoft.operationalinsights/workspaces"
                     }
@@ -192,7 +191,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"c3a95-101\">⚠ La ingesta de métricas aún está en curso; los datos pueden tardar hasta 30 minutos en aparecer.</span><span class=\"sxs-lookup\"><span data-stu-id=\"c3a95-101\">⚠ Metrics ingestion is still in progress; please note that it may take up to 30 minutes for data to appear.</span></span>\n"
+                "json": "<span data-ttu-id=\"dbc71-101\">⚠ La ingesta de métricas aún está en curso; los datos pueden tardar hasta 30 minutos en aparecer.</span><span class=\"sxs-lookup\"><span data-stu-id=\"dbc71-101\">⚠ Metrics ingestion is still in progress; please note that it may take up to 30 minutes for data to appear.</span></span>\n"
             },
             "conditionalVisibility": {
                 "parameterName": "testDataExist",
@@ -1319,7 +1318,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"c3a95-102\">La detección de anomalías usa funcionalidades de aprendizaje automático integradas para encontrar la **línea de base** y los **patrones diarios** del uso de la CPU y la memoria, y extrae los puntos **anómalos**.</span><span class=\"sxs-lookup\"><span data-stu-id=\"c3a95-102\">Anomaly detection uses built in  machine learning capabilities to find  the **baseline** , **daily patterns** in CPU / Memory usage and  extracts **anomalous** points.</span></span>  <span data-ttu-id=\"c3a95-103\">El monitor de SAP debe recopilar como mínimo los datos de 2 días para comprobar los patrones diarios.</span><span class=\"sxs-lookup\"><span data-stu-id=\"c3a95-103\">Minimum 2 days of data should be collected by SAP Monitor for cheking the daily patterns.</span></span>"
+                "json": "<span data-ttu-id=\"dbc71-102\">La detección de anomalías usa funcionalidades de aprendizaje automático integradas para encontrar la **línea de base** y los **patrones diarios** del uso de la CPU y la memoria, y extrae los puntos **anómalos**.</span><span class=\"sxs-lookup\"><span data-stu-id=\"dbc71-102\">Anomaly detection uses built in  machine learning capabilities to find  the **baseline** , **daily patterns** in CPU / Memory usage and  extracts **anomalous** points.</span></span>  <span data-ttu-id=\"dbc71-103\">El monitor de SAP debe recopilar como mínimo los datos de 2 días para comprobar los patrones diarios.</span><span class=\"sxs-lookup\"><span data-stu-id=\"dbc71-103\">Minimum 2 days of data should be collected by SAP Monitor for cheking the daily patterns.</span></span>"
             },
             "conditionalVisibility": {
                 "parameterName": "selectedTab",
