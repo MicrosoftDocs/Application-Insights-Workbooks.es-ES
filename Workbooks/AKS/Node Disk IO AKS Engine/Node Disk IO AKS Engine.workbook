@@ -4,7 +4,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"ab3fc-101\">_Hay más información acerca de las métricas de este libro está disponible <a href='https://github.com/influxdata/telegraf/tree/master/plugins/inputs/diskio'>aquí</a>_</span><span class=\"sxs-lookup\"><span data-stu-id=\"ab3fc-101\">_More information about the metrics in this workbook is available <a href='https://github.com/influxdata/telegraf/tree/master/plugins/inputs/diskio'>here</a>_</span></span>"
+                "json": "<span data-ttu-id=\"45793-101\">_Hay más información acerca de las métricas de este libro está disponible <a href='https://github.com/influxdata/telegraf/tree/master/plugins/inputs/diskio'>aquí</a>_</span><span class=\"sxs-lookup\"><span data-stu-id=\"45793-101\">_More information about the metrics in this workbook is available <a href='https://github.com/influxdata/telegraf/tree/master/plugins/inputs/diskio'>here</a>_</span></span>"
             },
             "name": "text - 18"
         },
@@ -21,7 +21,7 @@
                         "name": "timeRange",
                         "label": "Time Range",
                         "type": 4,
-                        "description": "<span data-ttu-id=\"ab3fc-102\">Filtrar datos por intervalo de tiempo</span><span class=\"sxs-lookup\"><span data-stu-id=\"ab3fc-102\">Filter data by time range</span></span>",
+                        "description": "<span data-ttu-id=\"45793-102\">Filtrar datos por intervalo de tiempo</span><span class=\"sxs-lookup\"><span data-stu-id=\"45793-102\">Filter data by time range</span></span>",
                         "isRequired": true,
                         "typeSettings": {
                             "selectableValues": [
@@ -83,11 +83,11 @@
                         "name": "unit",
                         "label": "Unit",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"ab3fc-103\">Las unidades que se usarán para los datos</span><span class=\"sxs-lookup\"><span data-stu-id=\"ab3fc-103\">The units to use for the data</span></span>",
+                        "description": "<span data-ttu-id=\"45793-103\">Las unidades que se usarán para los datos</span><span class=\"sxs-lookup\"><span data-stu-id=\"45793-103\">The units to use for the data</span></span>",
                         "typeSettings": {
                             "additionalResourceOptions": []
                         },
-                        "jsonData": "[\r\n    { \"label\": \"Bytes\", \"value\": \"1\", \"selected\": \"true\" },\r\n    { \"label\": \"Kilobytes\", \"value\": \"1024\", \"selected\": \"false\" },\r\n    { \"label\": \"Megabytes\", \"value\": \"1048576\", \"selected\": \"false\" },\r\n    { \"label\": \"Gigabytes\", \"value\": \"1073741824\", \"selected\": \"false\" }\r\n]"
+                        "jsonData": "[\r\n    { \"label\": \"Bytes\", \"value\": \"1\", \"selected\": \"true\" },\r\n    { \"label\": \"Kilobytes\", \"value\": \"1000\", \"selected\": \"false\" },\r\n    { \"label\": \"Megabytes\", \"value\": \"1000000\", \"selected\": \"false\" },\r\n    { \"label\": \"Gigabytes\", \"value\": \"1000000000\", \"selected\": \"false\" }\r\n]"
                     },
                     {
                         "id": "164c1cb5-5587-47de-994b-4b3251526f73",
@@ -95,7 +95,7 @@
                         "name": "aggregation1",
                         "label": "Aggregation",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"ab3fc-104\">Elija qué agregación de datos desea visualizar en el gráfico temporal</span><span class=\"sxs-lookup\"><span data-stu-id=\"ab3fc-104\">Choose which data aggregation you want to visualize on the time chart</span></span>",
+                        "description": "<span data-ttu-id=\"45793-104\">Elija qué agregación de datos desea visualizar en el gráfico temporal</span><span class=\"sxs-lookup\"><span data-stu-id=\"45793-104\">Choose which data aggregation you want to visualize on the time chart</span></span>",
                         "value": "Average",
                         "typeSettings": {
                             "additionalResourceOptions": []
@@ -112,7 +112,7 @@
                         "name": "selectedNodes1",
                         "label": "Node",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"ab3fc-105\">Filtrar por nodo</span><span class=\"sxs-lookup\"><span data-stu-id=\"ab3fc-105\">Filter by node</span></span>",
+                        "description": "<span data-ttu-id=\"45793-105\">Filtrar por nodo</span><span class=\"sxs-lookup\"><span data-stu-id=\"45793-105\">Filter by node</span></span>",
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
@@ -139,7 +139,7 @@
                         "name": "selectedDevices1",
                         "label": "Device",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"ab3fc-106\">Filtrar por dispositivo</span><span class=\"sxs-lookup\"><span data-stu-id=\"ab3fc-106\">Filter by device</span></span>",
+                        "description": "<span data-ttu-id=\"45793-106\">Filtrar por dispositivo</span><span class=\"sxs-lookup\"><span data-stu-id=\"45793-106\">Filter by device</span></span>",
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
@@ -165,7 +165,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "clusterId",
                         "type": 1,
-                        "description": "<span data-ttu-id=\"ab3fc-107\">Filtrar el área de trabajo seleccionada por identificador de clúster</span><span class=\"sxs-lookup\"><span data-stu-id=\"ab3fc-107\">Filter the selected workspace by clusterId</span></span>",
+                        "description": "<span data-ttu-id=\"45793-107\">Filtrar el área de trabajo seleccionada por identificador de clúster</span><span class=\"sxs-lookup\"><span data-stu-id=\"45793-107\">Filter the selected workspace by clusterId</span></span>",
                         "isHiddenWhenLocked": true,
                         "value": "david-aks-engine-test"
                     }
@@ -186,7 +186,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"ab3fc-108\">Información general de E/S de disco</span><span class=\"sxs-lookup\"><span data-stu-id=\"ab3fc-108\">Disk IO Overview</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"45793-108\">Información general de E/S de disco</span><span class=\"sxs-lookup\"><span data-stu-id=\"45793-108\">Disk IO Overview</span></span></h3>"
             },
             "name": "text - 24"
         },
@@ -376,7 +376,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"ab3fc-109\">Leer {unit:label}/s</span><span class=\"sxs-lookup\"><span data-stu-id=\"ab3fc-109\">Read {unit:label}/sec</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"45793-109\">Leer {unit:label}/s</span><span class=\"sxs-lookup\"><span data-stu-id=\"45793-109\">Read {unit:label}/sec</span></span></h3>"
             },
             "customWidth": "50",
             "name": "text - 5"
@@ -384,7 +384,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"ab3fc-110\">Escribir {unit:label}/s</span><span class=\"sxs-lookup\"><span data-stu-id=\"ab3fc-110\">Write {unit:label}/sec</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"45793-110\">Escribir {unit:label}/s</span><span class=\"sxs-lookup\"><span data-stu-id=\"45793-110\">Write {unit:label}/sec</span></span></h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy"
@@ -442,7 +442,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"ab3fc-111\">Leído en total: {unit:label} ({timeRange:grain} intervalos)</span><span class=\"sxs-lookup\"><span data-stu-id=\"ab3fc-111\">Total {unit:label} Read ({timeRange:grain} intervals)</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"45793-111\">Leído en total: {unit:label} ({timeRange:grain} intervalos)</span><span class=\"sxs-lookup\"><span data-stu-id=\"45793-111\">Total {unit:label} Read ({timeRange:grain} intervals)</span></span></h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy"
@@ -450,7 +450,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"ab3fc-112\">Escrito en total: {unit:label} ({timeRange:grain} intervalos)</span><span class=\"sxs-lookup\"><span data-stu-id=\"ab3fc-112\">Total {unit:label} Written ({timeRange:grain} intervals)</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"45793-112\">Escrito en total: {unit:label} ({timeRange:grain} intervalos)</span><span class=\"sxs-lookup\"><span data-stu-id=\"45793-112\">Total {unit:label} Written ({timeRange:grain} intervals)</span></span></h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy"
@@ -505,7 +505,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"ab3fc-113\">Milisegundos por {unit:label} leído</span><span class=\"sxs-lookup\"><span data-stu-id=\"ab3fc-113\">Milliseconds Per {unit:label} Read</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"45793-113\">Milisegundos por {unit:label} leído</span><span class=\"sxs-lookup\"><span data-stu-id=\"45793-113\">Milliseconds Per {unit:label} Read</span></span></h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy - Copy"
@@ -513,7 +513,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"ab3fc-114\">Milisegundos por {unit:label} escrito</span><span class=\"sxs-lookup\"><span data-stu-id=\"ab3fc-114\">Milliseconds Per {unit:label} Written</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"45793-114\">Milisegundos por {unit:label} escrito</span><span class=\"sxs-lookup\"><span data-stu-id=\"45793-114\">Milliseconds Per {unit:label} Written</span></span></h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy - Copy - Copy"
@@ -568,7 +568,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"ab3fc-115\">IOPS en curso</span><span class=\"sxs-lookup\"><span data-stu-id=\"ab3fc-115\">IOPS In Progress</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"45793-115\">IOPS en curso</span><span class=\"sxs-lookup\"><span data-stu-id=\"45793-115\">IOPS In Progress</span></span></h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy - Copy - Copy"
@@ -576,7 +576,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"ab3fc-116\">% de disco ocupado</span><span class=\"sxs-lookup\"><span data-stu-id=\"ab3fc-116\">% Disk Busy</span></span></h3>"
+                "json": "<h3><span data-ttu-id=\"45793-116\">% de disco ocupado</span><span class=\"sxs-lookup\"><span data-stu-id=\"45793-116\">% Disk Busy</span></span></h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy - Copy - Copy - Copy"
