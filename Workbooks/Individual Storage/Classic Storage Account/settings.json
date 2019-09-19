@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"abf3d-101\">Cuenta de almacenamiento clásica</span><span class=\"sxs-lookup\"><span data-stu-id=\"abf3d-101\">Classic Storage Account</span></span>",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "microsoft.classicstorage/storageaccounts",
+            "order": 100
+        }
+    ]
+}
