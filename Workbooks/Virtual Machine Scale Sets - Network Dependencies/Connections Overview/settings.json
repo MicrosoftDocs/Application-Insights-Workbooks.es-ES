@@ -9,7 +9,7 @@
             "order": 175
         },
         {
-            "type": "vm-insights",
+            "type": "insights",
             "resourceType": "microsoft.compute/virtualmachinescalesets",
             "order": 175
         }

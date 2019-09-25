@@ -9,7 +9,7 @@
             "order": 200
         },
         {
-            "type": "vm-insights",
+            "type": "insights",
             "resourceType": "microsoft.compute/virtualmachines",
             "order": 200
         }

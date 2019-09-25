@@ -4,13 +4,8 @@
     "author": "Microsoft",
     "galleries": [
         {
-            "type": "workbook",
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "order": 300
-        },
-        {
             "type": "vm-insights",
-            "resourceType": "microsoft.operationalinsights/workspaces",
+            "resourceType": "Azure Monitor",
             "order": 300
         }
     ]
