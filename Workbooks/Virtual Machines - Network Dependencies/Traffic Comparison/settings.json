@@ -1,16 +1,11 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"a28b3-101\">Comparación de tráfico</span><span class=\"sxs-lookup\"><span data-stu-id=\"a28b3-101\">Traffic Comparison</span></span>",
+    "name": "<span data-ttu-id=\"43117-101\">Comparación de tráfico</span><span class=\"sxs-lookup\"><span data-stu-id=\"43117-101\">Traffic Comparison</span></span>",
     "author": "Microsoft",
     "galleries": [
         {
-            "type": "workbook",
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "order": 200
-        },
-        {
             "type": "vm-insights",
-            "resourceType": "microsoft.operationalinsights/workspaces",
+            "resourceType": "Azure Monitor",
             "order": 200
         }
     ]

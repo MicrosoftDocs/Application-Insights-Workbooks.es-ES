@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"49dcd-101\">Rendimiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"49dcd-101\">Performance</span></span>",
+    "name": "<span data-ttu-id=\"42270-101\">Rendimiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"42270-101\">Performance</span></span>",
     "author": "Microsoft",
     "galleries": [
         {
@@ -9,7 +9,7 @@
             "order": 175
         },
         {
-            "type": "vm-insights",
+            "type": "insights",
             "resourceType": "microsoft.compute/virtualmachinescalesets",
             "order": 175
         }

@@ -1,16 +1,11 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"272c2-101\">Introducción a las conexiones</span><span class=\"sxs-lookup\"><span data-stu-id=\"272c2-101\">Connections Overview</span></span>",
+    "name": "<span data-ttu-id=\"cfc73-101\">Introducción a las conexiones</span><span class=\"sxs-lookup\"><span data-stu-id=\"cfc73-101\">Connections Overview</span></span>",
     "author": "Microsoft",
     "galleries": [
         {
-            "type": "workbook",
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "order": 100
-        },
-        {
             "type": "vm-insights",
-            "resourceType": "microsoft.operationalinsights/workspaces",
+            "resourceType": "Azure Monitor",
             "order": 100
         }
     ]

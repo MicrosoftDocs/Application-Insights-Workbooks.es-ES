@@ -16,7 +16,7 @@
                         "name": "Subscription",
                         "label": "Subscriptions",
                         "type": 6,
-                        "description": "<span data-ttu-id=\"d9d35-101\">Todas las suscripciones con cuentas de CosmosDB</span><span class=\"sxs-lookup\"><span data-stu-id=\"d9d35-101\">All subscriptions with cosmosDB accounts</span></span>",
+                        "description": "<span data-ttu-id=\"f5753-101\">Todas las suscripciones con cuentas de CosmosDB</span><span class=\"sxs-lookup\"><span data-stu-id=\"f5753-101\">All subscriptions with cosmosDB accounts</span></span>",
                         "isRequired": true,
                         "multiSelect": true,
                         "quote": "'",
@@ -26,7 +26,8 @@
                             "value::selected"
                         ],
                         "typeSettings": {
-                            "additionalResourceOptions": []
+                            "additionalResourceOptions": [],
+                            "showDefault": false
                         },
                         "queryType": 1,
                         "resourceType": "microsoft.resourcegraph/resources"
@@ -48,7 +49,8 @@
                         "typeSettings": {
                             "additionalResourceOptions": [
                                 "value::all"
-                            ]
+                            ],
+                            "showDefault": false
                         },
                         "queryType": 1,
                         "resourceType": "microsoft.resourcegraph/resources"
@@ -162,7 +164,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"d9d35-102\">{Message} _Cuentas de Azure Cosmos DB_</span><span class=\"sxs-lookup\"><span data-stu-id=\"d9d35-102\">{Message} _Cosmos DB accounts_</span></span>\n<br />\n<br />"
+                "json": "<span data-ttu-id=\"f5753-102\">{Message} _Cuentas de Azure Cosmos DB_</span><span class=\"sxs-lookup\"><span data-stu-id=\"f5753-102\">{Message} _Cosmos DB accounts_</span></span>\n<br />\n<br />"
             },
             "name": "CosmosDBAccounts"
         },
@@ -188,15 +190,12 @@
                     }
                 ]
             },
-            "name": "links-tabs",
-            "styleSettings": {
-                "margin": "20px"
-            }
+            "name": "links-tabs"
         },
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"start-editing-overview-section-from-here\"></a><span data-ttu-id=\"d9d35-103\">Empezar a editar la sección Información general aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"d9d35-103\">Start editing Overview section from here</span></span>"
+                "json": "# <a name=\"start-editing-overview-section-from-here\"></a><span data-ttu-id=\"f5753-103\">Empezar a editar la sección Información general aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"f5753-103\">Start editing Overview section from here</span></span>"
             },
             "conditionalVisibility": {
                 "parameterName": "dummy",
@@ -244,12 +243,6 @@
                         "namespace": "microsoft.documentdb/databaseaccounts",
                         "metric": "microsoft.documentdb/databaseaccounts-Requests-MetadataRequests",
                         "aggregation": 7,
-                        "splitBy": null
-                    },
-                    {
-                        "namespace": "microsoft.documentdb/databaseaccounts",
-                        "metric": "microsoft.documentdb/databaseaccounts-Requests-DataUsage",
-                        "aggregation": 1,
                         "splitBy": null
                     },
                     {
@@ -331,7 +324,7 @@
                             "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
                             "formatter": 8,
                             "formatOptions": {
-                                "palette": "yellow",
+                                "palette": "grayBlue",
                                 "showIcon": true
                             },
                             "numberFormat": {
@@ -354,7 +347,7 @@
                             "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-MetadataRequests",
                             "formatter": 8,
                             "formatOptions": {
-                                "palette": "orange",
+                                "palette": "blueDark",
                                 "showIcon": true
                             },
                             "numberFormat": {
@@ -464,7 +457,9 @@
                         "itemKey": "$gen_heatmap_microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits_5",
                         "sortOrder": 2
                     }
-                ]
+                ],
+                "showExportToExcel": true,
+                "exportToExcelOptions": "visible"
             },
             "conditionalVisibility": {
                 "parameterName": "selectedTab",
@@ -477,7 +472,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"overview-section-ends-here\"></a><span data-ttu-id=\"d9d35-104\">La sección Información general termina aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"d9d35-104\">Overview section ends here</span></span>\n <br />  <br />"
+                "json": "# <a name=\"overview-section-ends-here\"></a><span data-ttu-id=\"f5753-104\">La sección Información general termina aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"f5753-104\">Overview section ends here</span></span>\n <br />  <br />"
             },
             "conditionalVisibility": {
                 "parameterName": "dummy",
@@ -489,7 +484,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"start-editing-capacity-section-from-here\"></a><span data-ttu-id=\"d9d35-105\">Empezar a editar la sección Capacidad aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"d9d35-105\">Start editing Capacity section from here</span></span>\n\n <br />  <br />"
+                "json": "# <a name=\"start-editing-capacity-section-from-here\"></a><span data-ttu-id=\"f5753-105\">Empezar a editar la sección Capacidad aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"f5753-105\">Start editing Capacity section from here</span></span>\n\n <br />  <br />"
             },
             "conditionalVisibility": {
                 "parameterName": "dummy",
@@ -503,7 +498,7 @@
             "content": {
                 "chartId": "workbookdb19a8d8-91af-44ea-951d-5ffa133b2ebe",
                 "version": "MetricsItem/2.0",
-                "size": 2,
+                "size": 0,
                 "chartType": 0,
                 "resourceIds": [
                     "{CosmosDB}"
@@ -515,12 +510,6 @@
                 "resourceType": "microsoft.documentdb/databaseaccounts",
                 "resourceParameter": "CosmosDB",
                 "metrics": [
-                    {
-                        "namespace": "microsoft.documentdb/databaseaccounts",
-                        "metric": "microsoft.documentdb/databaseaccounts-Requests-DataUsage",
-                        "aggregation": 1,
-                        "splitBy": null
-                    },
                     {
                         "namespace": "microsoft.documentdb/databaseaccounts",
                         "metric": "microsoft.documentdb/databaseaccounts-Requests-DataUsage",
@@ -555,273 +544,53 @@
                             }
                         },
                         {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DataUsage",
-                            "formatter": 8,
+                            "columnMatch": "Metric",
+                            "formatter": 5,
                             "formatOptions": {
                                 "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Aggregation",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Segment Field",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Segment",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Value",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "blue",
+                                "showIcon": true,
+                                "aggregation": "Sum"
                             },
                             "numberFormat": {
                                 "unit": 36,
                                 "options": {
                                     "style": "decimal",
-                                    "maximumFractionDigits": 0
+                                    "maximumFractionDigits": 1
                                 }
                             }
                         },
                         {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DataUsage Timeline",
+                            "columnMatch": "Timeline",
                             "formatter": 21,
-                            "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "nexus/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "billingint/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "fusion/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "billingtest/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "pcs-iothub-stream/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "DB/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "nexus-test/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "RunnerWorkload/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "fusion-test/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "graph/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "topology-tenant-query-store/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "__Empty/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "pets/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "razzle_telemetry/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "azmondeploy/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "Other/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": ".*\\/Data Usage$",
-                            "formatter": 8,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal"
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "test/Data Usage",
-                            "formatter": 0,
-                            "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "todolist/Data Usage",
-                            "formatter": 0,
                             "formatOptions": {
                                 "showIcon": true
                             }
@@ -832,14 +601,29 @@
                     "hierarchySettings": {
                         "treeType": 1,
                         "groupBy": [
-                            "Subscription"
+                            "Subscription",
+                            "Name"
                         ],
                         "expandTopLevel": true,
-                        "finalBy": "Name"
+                        "finalBy": "Segment"
                     },
+                    "sortBy": [
+                        {
+                            "itemKey": "$gen_heatmap_Value_9",
+                            "sortOrder": 2
+                        }
+                    ],
                     "labelSettings": []
                 },
-                "sortBy": []
+                "sortBy": [
+                    {
+                        "itemKey": "$gen_heatmap_Value_9",
+                        "sortOrder": 2
+                    }
+                ],
+                "gridFormatType": 1,
+                "showExportToExcel": true,
+                "exportToExcelOptions": "visible"
             },
             "conditionalVisibility": {
                 "parameterName": "selectedTab",
@@ -852,7 +636,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"capacity-section-ends-here\"></a><span data-ttu-id=\"d9d35-106\">La sección Capacidad termina aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"d9d35-106\">Capacity section ends here</span></span>\n"
+                "json": "# <a name=\"capacity-section-ends-here\"></a><span data-ttu-id=\"f5753-106\">La sección Capacidad termina aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"f5753-106\">Capacity section ends here</span></span>\n"
             },
             "conditionalVisibility": {
                 "parameterName": "dummy",

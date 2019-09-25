@@ -1,16 +1,11 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"c25dc-101\">Puertos activos</span><span class=\"sxs-lookup\"><span data-stu-id=\"c25dc-101\">Active Ports</span></span>",
+    "name": "<span data-ttu-id=\"a2adf-101\">Puertos activos</span><span class=\"sxs-lookup\"><span data-stu-id=\"a2adf-101\">Active Ports</span></span>",
     "author": "Microsoft",
     "galleries": [
         {
-            "type": "workbook",
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "order": 175
-        },
-        {
             "type": "vm-insights",
-            "resourceType": "microsoft.operationalinsights/workspaces",
+            "resourceType": "Azure Monitor",
             "order": 175
         }
     ]

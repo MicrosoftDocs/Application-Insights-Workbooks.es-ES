@@ -1,16 +1,11 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"56f4a-101\">Seguridad y auditoría</span><span class=\"sxs-lookup\"><span data-stu-id=\"56f4a-101\">Security and Audit</span></span>",
+    "name": "<span data-ttu-id=\"e7629-101\">Seguridad y auditoría</span><span class=\"sxs-lookup\"><span data-stu-id=\"e7629-101\">Security and Audit</span></span>",
     "author": "Microsoft",
     "galleries": [
         {
-            "type": "workbook",
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "order": 300
-        },
-        {
             "type": "vm-insights",
-            "resourceType": "microsoft.operationalinsights/workspaces",
+            "resourceType": "Azure Monitor",
             "order": 300
         }
     ]

@@ -1,17 +1,12 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"1a671-101\">Monitor de recursos (versión preliminar)</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a671-101\">Resource Monitor (preview)</span></span>",
+    "name": "<span data-ttu-id=\"c8cb7-101\">Monitor de recursos (versión preliminar)</span><span class=\"sxs-lookup\"><span data-stu-id=\"c8cb7-101\">Resource Monitor (preview)</span></span>",
     "author": "Microsoft",
     "isPreview": true,
     "galleries": [
         {
-            "type": "workbook",
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "order": 200
-        },
-        {
             "type": "vm-insights",
-            "resourceType": "microsoft.operationalinsights/workspaces",
+            "resourceType": "Azure Monitor",
             "order": 200
         }
     ]
