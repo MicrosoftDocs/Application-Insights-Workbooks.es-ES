@@ -1,15 +1,10 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"0dc72-101\">E/S de disco del nodo</span><span class=\"sxs-lookup\"><span data-stu-id=\"0dc72-101\">Node Disk IO</span></span>",
+    "name": "<span data-ttu-id=\"92b77-101\">E/S de disco del nodo</span><span class=\"sxs-lookup\"><span data-stu-id=\"92b77-101\">Node Disk IO</span></span>",
     "author": "Microsoft",
     "galleries": [
         {
             "type": "container-insights",
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "order": 200
-        },
-        {
-            "type": "workbook",
             "resourceType": "microsoft.operationalinsights/workspaces",
             "order": 200
         }
