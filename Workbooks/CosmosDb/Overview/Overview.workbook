@@ -16,7 +16,7 @@
                         "name": "Subscription",
                         "label": "Subscriptions",
                         "type": 6,
-                        "description": "<span data-ttu-id=\"f5753-101\">Todas las suscripciones con cuentas de CosmosDB</span><span class=\"sxs-lookup\"><span data-stu-id=\"f5753-101\">All subscriptions with cosmosDB accounts</span></span>",
+                        "description": "<span data-ttu-id=\"7d962-101\">Todas las suscripciones con cuentas de CosmosDB</span><span class=\"sxs-lookup\"><span data-stu-id=\"7d962-101\">All subscriptions with cosmosDB accounts</span></span>",
                         "isRequired": true,
                         "multiSelect": true,
                         "quote": "'",
@@ -164,7 +164,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"f5753-102\">{Message} _Cuentas de Azure Cosmos DB_</span><span class=\"sxs-lookup\"><span data-stu-id=\"f5753-102\">{Message} _Cosmos DB accounts_</span></span>\n<br />\n<br />"
+                "json": "<span data-ttu-id=\"7d962-102\">{Message} _Cuentas de Azure Cosmos DB_</span><span class=\"sxs-lookup\"><span data-stu-id=\"7d962-102\">{Message} _Cosmos DB accounts_</span></span>\n<br />\n<br />"
             },
             "name": "CosmosDBAccounts"
         },
@@ -187,15 +187,25 @@
                         "linkLabel": "Capacity",
                         "subTarget": "Capacity",
                         "style": "link"
+                    },
+                    {
+                        "cellValue": "selectedTab",
+                        "linkTarget": "parameter",
+                        "linkLabel": "Operation",
+                        "subTarget": "Operation",
+                        "style": "link"
                     }
                 ]
             },
-            "name": "links-tabs"
+            "name": "links-tabs",
+            "styleSettings": {
+                "margin": "-15px 0px -15px 0px"
+            }
         },
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"start-editing-overview-section-from-here\"></a><span data-ttu-id=\"f5753-103\">Empezar a editar la sección Información general aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"f5753-103\">Start editing Overview section from here</span></span>"
+                "json": "# <a name=\"start-editing-overview-section-from-here\"></a><span data-ttu-id=\"7d962-103\">Empezar a editar la sección Información general aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"7d962-103\">Start editing Overview section from here</span></span>"
             },
             "conditionalVisibility": {
                 "parameterName": "dummy",
@@ -472,7 +482,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"overview-section-ends-here\"></a><span data-ttu-id=\"f5753-104\">La sección Información general termina aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"f5753-104\">Overview section ends here</span></span>\n <br />  <br />"
+                "json": "# <a name=\"overview-section-ends-here\"></a><span data-ttu-id=\"7d962-104\">La sección Información general termina aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"7d962-104\">Overview section ends here</span></span>\n <br />  <br />"
             },
             "conditionalVisibility": {
                 "parameterName": "dummy",
@@ -484,7 +494,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"start-editing-capacity-section-from-here\"></a><span data-ttu-id=\"f5753-105\">Empezar a editar la sección Capacidad aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"f5753-105\">Start editing Capacity section from here</span></span>\n\n <br />  <br />"
+                "json": "# <a name=\"start-editing-capacity-section-from-here\"></a><span data-ttu-id=\"7d962-105\">Empezar a editar la sección Capacidad aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"7d962-105\">Start editing Capacity section from here</span></span>\n\n <br />  <br />"
             },
             "conditionalVisibility": {
                 "parameterName": "dummy",
@@ -613,7 +623,42 @@
                             "sortOrder": 2
                         }
                     ],
-                    "labelSettings": []
+                    "labelSettings": [
+                        {
+                            "columnId": "Subscription"
+                        },
+                        {
+                            "columnId": "Name"
+                        },
+                        {
+                            "columnId": "Namespace"
+                        },
+                        {
+                            "columnId": "Metric"
+                        },
+                        {
+                            "columnId": "Metric ID"
+                        },
+                        {
+                            "columnId": "Aggregation"
+                        },
+                        {
+                            "columnId": "Segment Field"
+                        },
+                        {
+                            "columnId": "Segment"
+                        },
+                        {
+                            "columnId": "Value",
+                            "label": "Data Usage",
+                            "comment": "Current column name is Value. It doesn't tell anything about the type of data in the column"
+                        },
+                        {
+                            "columnId": "Timeline",
+                            "label": "Data Usage Timeline",
+                            "comment": "Current column name is Timeline. It doesn't tell anything about the type of data in the column"
+                        }
+                    ]
                 },
                 "sortBy": [
                     {
@@ -636,7 +681,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"capacity-section-ends-here\"></a><span data-ttu-id=\"f5753-106\">La sección Capacidad termina aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"f5753-106\">Capacity section ends here</span></span>\n"
+                "json": "# <a name=\"capacity-section-ends-here\"></a><span data-ttu-id=\"7d962-106\">La sección Capacidad termina aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"7d962-106\">Capacity section ends here</span></span>\n"
             },
             "conditionalVisibility": {
                 "parameterName": "dummy",
@@ -644,6 +689,202 @@
                 "value": "blah"
             },
             "name": "CapacitySectionEditEnds"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "# <a name=\"start-editing-operation-section-from-here\"></a><span data-ttu-id=\"7d962-107\">Empezar a editar la sección Operación desde aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"7d962-107\">Start editing Operation section from here</span></span>\n\n <br />"
+            },
+            "conditionalVisibility": {
+                "parameterName": "dummy",
+                "comparison": "isEqualTo",
+                "value": "blah"
+            },
+            "name": "OperationSectionEditStarts"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbookdb19a8d8-91af-44ea-951d-5ffa133b2ebe",
+                "version": "MetricsItem/2.0",
+                "size": 0,
+                "chartType": 0,
+                "resourceIds": [
+                    "{CosmosDB}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.documentdb/databaseaccounts",
+                "resourceParameter": "CosmosDB",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
+                        "aggregation": 7,
+                        "splitBy": "OperationType",
+                        "splitBySortOrder": -1,
+                        "splitByLimit": 10
+                    },
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
+                        "aggregation": 7,
+                        "splitBy": null
+                    }
+                ],
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "$gen_group",
+                            "formatter": 13,
+                            "formatOptions": {
+                                "linkTarget": null,
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Subscription",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Name",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": ".*\\/Total Requests$",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "showIcon": true
+                            },
+                            "numberFormat": {
+                                "unit": 17,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "showIcon": true
+                            },
+                            "numberFormat": {
+                                "unit": 17,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
+                            }
+                        },
+                        {
+                            "columnMatch": "Timeline",
+                            "formatter": 9,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Namespace",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Metric",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Metric ID",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Aggregation",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Segment Field",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Segment",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Value",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            },
+                            "numberFormat": {
+                                "unit": 17,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
+                            }
+                        }
+                    ],
+                    "rowLimit": 10000,
+                    "filter": true,
+                    "hierarchySettings": {
+                        "treeType": 1,
+                        "groupBy": [
+                            "Subscription"
+                        ],
+                        "expandTopLevel": true,
+                        "finalBy": "Name"
+                    },
+                    "labelSettings": []
+                },
+                "sortBy": [],
+                "exportToExcelOptions": "visible"
+            },
+            "conditionalVisibility": {
+                "parameterName": "selectedTab",
+                "comparison": "isEqualTo",
+                "value": "Operation"
+            },
+            "showPin": true,
+            "name": "cosmosDB account metrics"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "# <a name=\"operation-section-ends-here\"></a><span data-ttu-id=\"7d962-108\">La sección Operación termina aquí</span><span class=\"sxs-lookup\"><span data-stu-id=\"7d962-108\">Operation section ends here</span></span>\n"
+            },
+            "conditionalVisibility": {
+                "parameterName": "dummy",
+                "comparison": "isEqualTo",
+                "value": "blah"
+            },
+            "name": "OperationSectionEditEnds"
         }
     ],
     "styleSettings": {},

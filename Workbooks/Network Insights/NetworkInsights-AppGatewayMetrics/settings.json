@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"c2c1c-101\">Network Insights AppGateways</span><span class=\"sxs-lookup\"><span data-stu-id=\"c2c1c-101\">Network Insights AppGateways</span></span>",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "microsoft.network/applicationGateways",
+            "order": 100
+        }
+    ]
+}

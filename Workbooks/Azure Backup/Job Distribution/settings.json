@@ -1,0 +1,13 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "<span data-ttu-id=\"ba5e1-101\">Distribución de trabajos</span><span class=\"sxs-lookup\"><span data-stu-id=\"ba5e1-101\">Job Distribution</span></span>",
+    "author": "Microsoft",
+    "isPreview": true,
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "Azure Monitor",
+            "order": 400
+        }
+    ]
+}
