@@ -1,13 +1,18 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"76db8-101\">Explorador de Backup</span><span class=\"sxs-lookup\"><span data-stu-id=\"76db8-101\">Backup Explorer</span></span>",
+    "name": "Explorador de Backup",
     "author": "Microsoft",
     "isPreview": true,
     "galleries": [
         {
             "type": "workbook",
             "resourceType": "Azure Monitor",
-            "order": 100
+            "order": 200
+        },
+        {
+            "type": "backup-insights",
+            "resourceType": "Azure Monitor",
+            "order": 200
         }
     ]
 }
