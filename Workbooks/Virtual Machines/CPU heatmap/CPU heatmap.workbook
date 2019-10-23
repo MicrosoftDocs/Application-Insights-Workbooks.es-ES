@@ -19,7 +19,7 @@
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
-                        "query": "where type =~ 'microsoft.compute/virtualmachines'\r\n| summarize by subscriptionId\r\n| order by subscriptionId\r\n| summarize SelectedSub = makelist(subscriptionId, 1), Sub = makelist(subscriptionId, 100000)\r\n| mvexpand Sub limit 100000\r\n| mvexpand SelectedSub\r\n| project value = strcat(\"/subscriptions/\", Sub), label = Sub, selected = iff(tostring(Sub) == tostring(SelectedSub), true, false)\r\n",
+                        "query": "where type =~ 'microsoft.compute/virtualmachines'\r\n\t| summarize Count = count() by subscriptionId\r\n\t| order by Count desc\r\n\t| extend Rank = row_number()\r\n\t| project value = subscriptionId, label = subscriptionId, selected = Rank == 1",
                         "crossComponentResources": [
                             "value::all"
                         ],
@@ -40,7 +40,7 @@
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
-                        "query": "where type =~ 'microsoft.compute/virtualmachines'\n| order by name asc\n| summarize Selected = makelist(id, 25), All = makelist(id, 1000)\n| mvexpand All limit 10000\n| project value = tostring(All), label = tostring(All), selected = iff(Selected contains All, true, false)\n",
+                        "query": "where type =~ 'microsoft.compute/virtualmachines'\n\t| order by name asc\n\t| extend Rank = row_number()\n\t| project value = id, label = id, selected = Rank <= 25",
                         "crossComponentResources": [
                             "{Subscription}"
                         ],
@@ -164,7 +164,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"5aaab-101\">{Message} _Máquinas virtuales_</span><span class=\"sxs-lookup\"><span data-stu-id=\"5aaab-101\">{Message} _Virtual machines_</span></span>"
+                "json": "{Message} _Máquinas virtuales_"
             },
             "name": "text - 5",
             "styleSettings": {
@@ -324,7 +324,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"5aaab-102\">💡 _Haga clic en la métrica de uso de la CPU en una celda para ver más información acerca de la máquina virtual_</span><span class=\"sxs-lookup\"><span data-stu-id=\"5aaab-102\">💡 _Click on the CPU usage metric in a cell to see more details about the virtual machine_</span></span>\n<br />"
+                "json": "💡 _Haga clic en la métrica de uso de la CPU en una celda para ver más información acerca de la máquina virtual_\n<br />"
             },
             "name": "text - 4"
         },

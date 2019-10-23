@@ -5,6 +5,7 @@
             "type": 9,
             "content": {
                 "version": "KqlParameterItem/1.0",
+                "query": "",
                 "crossComponentResources": [
                     "value::selected"
                 ],
@@ -20,7 +21,7 @@
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
-                        "query": "where type =~ 'Microsoft.DocumentDB/databaseAccounts'\r\n| summarize Count = count() by subscriptionId\r\n| order by Count desc\r\n| summarize SelectedSub = makelist(subscriptionId, 1), Sub = makelist(subscriptionId, 100000)\r\n| mvexpand Sub limit 100000\r\n| mvexpand SelectedSub\r\n| project value = strcat(\"/subscriptions/\", Sub), label = Sub, selected = iff(tostring(Sub) == tostring(SelectedSub), true, false)\r\n",
+                        "query": "where type =~ 'Microsoft.DocumentDB/databaseAccounts'\r\n\t| summarize Count = count() by subscriptionId\r\n\t| order by Count desc\r\n\t| extend Rank = row_number()\r\n\t| project value = subscriptionId, label = subscriptionId, selected = Rank == 1",
                         "crossComponentResources": [
                             "value::selected"
                         ],
@@ -41,7 +42,7 @@
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
-                        "query": "where type =~ 'Microsoft.DocumentDB/databaseAccounts'\r\n| order by name asc\r\n| summarize Selected = makelist(id, 10), All = makelist(id, 1000)\r\n| mvexpand All limit 10000\r\n| project value = tostring(All), label = tostring(All), selected = iff(Selected contains All, true, false)\r\n",
+                        "query": "where type =~ 'Microsoft.DocumentDB/databaseAccounts'\r\n\t| order by name asc\r\n\t| extend Rank = row_number()\r\n\t| project value = id, label = id, selected = Rank <= 5\r\n",
                         "crossComponentResources": [
                             "{Subscription}"
                         ],
@@ -158,14 +159,20 @@
                 "queryType": 1,
                 "resourceType": "microsoft.resourcegraph/resources"
             },
-            "name": "parameters - 1"
+            "name": "cosmosDB account parameters",
+            "styleSettings": {
+                "margin": "15px 0 0 0"
+            }
         },
         {
             "type": 1,
             "content": {
                 "json": "{Message} _Cuentas de Azure Cosmos DB_\n<br />\n<br />"
             },
-            "name": "CosmosDBAccounts"
+            "name": "CosmosDBAccounts",
+            "styleSettings": {
+                "margin": "15px 0 10px 10px"
+            }
         },
         {
             "type": 11,
@@ -183,6 +190,13 @@
                     {
                         "cellValue": "selectedTab",
                         "linkTarget": "parameter",
+                        "linkLabel": "Failures",
+                        "subTarget": "Failures",
+                        "style": "link"
+                    },
+                    {
+                        "cellValue": "selectedTab",
+                        "linkTarget": "parameter",
                         "linkLabel": "Capacity",
                         "subTarget": "Capacity",
                         "style": "link"
@@ -190,7 +204,7 @@
                     {
                         "cellValue": "selectedTab",
                         "linkTarget": "parameter",
-                        "linkLabel": "Operation",
+                        "linkLabel": "Operations",
                         "subTarget": "Operation",
                         "style": "link"
                     }
@@ -204,7 +218,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"start-editing-overview-section-from-here\"></a>Empezar a editar la sección Información general aquí"
+                "json": "### <a name=\"start-editing-the-overview-section-here\"></a>Empezar a editar la sección Información general aquí"
             },
             "conditionalVisibility": {
                 "parameterName": "dummy",
@@ -232,43 +246,38 @@
                 "metrics": [
                     {
                         "namespace": "microsoft.documentdb/databaseaccounts",
-                        "metric": "microsoft.documentdb/databaseaccounts-Requests-ProvisionedThroughput",
-                        "aggregation": 3,
-                        "splitBy": null
-                    },
-                    {
-                        "namespace": "microsoft.documentdb/databaseaccounts",
-                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits",
-                        "aggregation": 1,
-                        "splitBy": null
-                    },
-                    {
-                        "namespace": "microsoft.documentdb/databaseaccounts",
                         "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
                         "aggregation": 7,
-                        "splitBy": null
-                    },
-                    {
-                        "namespace": "microsoft.documentdb/databaseaccounts",
-                        "metric": "microsoft.documentdb/databaseaccounts-Requests-MetadataRequests",
-                        "aggregation": 7,
-                        "splitBy": null
+                        "splitBy": "CollectionName",
+                        "splitBySortOrder": -1,
+                        "splitByLimit": 5
                     },
                     {
                         "namespace": "microsoft.documentdb/databaseaccounts",
                         "metric": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount",
-                        "aggregation": 1,
-                        "splitBy": null
+                        "aggregation": 4,
+                        "splitBy": "CollectionName",
+                        "splitBySortOrder": -1,
+                        "splitByLimit": 5
                     },
                     {
                         "namespace": "microsoft.documentdb/databaseaccounts",
-                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
-                        "aggregation": 7,
-                        "splitBy": "StatusCode",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-DataUsage",
+                        "aggregation": 4,
+                        "splitBy": "CollectionName",
                         "splitBySortOrder": -1,
-                        "splitByLimit": 10
+                        "splitByLimit": 5
+                    },
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-ProvisionedThroughput",
+                        "aggregation": 3,
+                        "splitBy": "CollectionName",
+                        "splitBySortOrder": -1,
+                        "splitByLimit": 5
                     }
                 ],
+                "showExpandCollapseGrid": true,
                 "gridSettings": {
                     "formatters": [
                         {
@@ -294,10 +303,102 @@
                             }
                         },
                         {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-ProvisionedThroughput",
-                            "formatter": 4,
+                            "columnMatch": "Segment",
+                            "formatter": 5,
                             "formatOptions": {
                                 "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests$|microsoft.documentdb/databaseaccounts-Requests-MetadataRequests$",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "blue",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            },
+                            "numberFormat": {
+                                "unit": 17,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests Timeline",
+                            "formatter": 21,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "blue",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "yellow",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            },
+                            "numberFormat": {
+                                "unit": 17,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount Timeline",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DataUsage",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "yellow",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            },
+                            "numberFormat": {
+                                "unit": 2,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DataUsage Timeline",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-ProvisionedThroughput",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "gray",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            },
+                            "numberFormat": {
+                                "unit": 17,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
                             }
                         },
                         {
@@ -311,8 +412,10 @@
                             "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits",
                             "formatter": 8,
                             "formatOptions": {
+                                "min": 0,
                                 "palette": "blue",
-                                "showIcon": true
+                                "showIcon": true,
+                                "aggregation": "Sum"
                             },
                             "numberFormat": {
                                 "unit": 17,
@@ -324,20 +427,39 @@
                         },
                         {
                             "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits Timeline",
+                            "formatter": 21,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "blue",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-MetadataRequests Timeline",
                             "formatter": 5,
                             "formatOptions": {
                                 "showIcon": true
                             }
                         },
                         {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-IndexUsage Timeline",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-AvailableStorage",
                             "formatter": 8,
                             "formatOptions": {
-                                "palette": "grayBlue",
-                                "showIcon": true
+                                "min": 0,
+                                "palette": "gray",
+                                "showIcon": true,
+                                "aggregation": "Sum"
                             },
                             "numberFormat": {
-                                "unit": 17,
+                                "unit": 2,
                                 "options": {
                                     "style": "decimal",
                                     "maximumFractionDigits": 1
@@ -345,78 +467,11 @@
                             }
                         },
                         {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests Timeline",
-                            "formatter": 9,
-                            "formatOptions": {
-                                "palette": "yellow",
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-MetadataRequests",
-                            "formatter": 8,
-                            "formatOptions": {
-                                "palette": "blueDark",
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 17,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-MetadataRequests Timeline",
-                            "formatter": 9,
-                            "formatOptions": {
-                                "palette": "orange",
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DataUsage",
-                            "formatter": 8,
-                            "formatOptions": {
-                                "palette": "grayBlue",
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 36,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DataUsage Timeline",
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-AvailableStorage Timeline",
                             "formatter": 5,
                             "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount",
-                            "formatter": 8,
-                            "formatOptions": {
-                                "palette": "gray",
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 17,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 0
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount Timeline",
-                            "formatter": 5,
-                            "formatOptions": {
-                                "showIcon": true
+                                "showIcon": true,
+                                "aggregation": "Sum"
                             }
                         },
                         {
@@ -448,17 +503,12 @@
                     "hierarchySettings": {
                         "treeType": 1,
                         "groupBy": [
-                            "Subscription"
+                            "Subscription",
+                            "Name"
                         ],
                         "expandTopLevel": true,
-                        "finalBy": "Name"
+                        "finalBy": "Segment"
                     },
-                    "sortBy": [
-                        {
-                            "itemKey": "$gen_heatmap_microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits_5",
-                            "sortOrder": 2
-                        }
-                    ],
                     "labelSettings": [
                         {
                             "columnId": "Subscription",
@@ -469,83 +519,58 @@
                             "label": "Name"
                         },
                         {
-                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-ProvisionedThroughput",
-                            "label": "Provisioned Throughput (Max)"
-                        },
-                        {
-                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-ProvisionedThroughput Timeline",
-                            "label": "Provisioned Throughput Timeline"
-                        },
-                        {
-                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits",
-                            "label": "Total Request Units (Sum)"
-                        },
-                        {
-                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits Timeline",
-                            "label": "Total Request Units Timeline"
+                            "columnId": "Segment",
+                            "label": "Segment"
                         },
                         {
                             "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
-                            "label": "Total Requests (Count)"
+                            "label": "Requests"
                         },
                         {
                             "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests Timeline",
-                            "label": "Total Requests Timeline"
-                        },
-                        {
-                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-MetadataRequests",
-                            "label": "Metadata Requests (Count)"
-                        },
-                        {
-                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-MetadataRequests Timeline",
-                            "label": "Metadata Requests Timeline"
+                            "label": "Requests Timeline"
                         },
                         {
                             "columnId": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount",
-                            "label": "Document Count (Sum)"
+                            "label": "Documents"
                         },
                         {
                             "columnId": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount Timeline",
-                            "label": "Document Count Timeline"
+                            "label": "Document Count (Average) Timeline"
                         },
                         {
-                            "columnId": "200/Total Requests",
-                            "label": "200/Total Requests"
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-DataUsage",
+                            "label": "Data Usage"
                         },
                         {
-                            "columnId": "404/Total Requests",
-                            "label": "404/Total Requests"
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-DataUsage Timeline",
+                            "label": "Data Usage (Average) Timeline"
                         },
                         {
-                            "columnId": "201/Total Requests",
-                            "label": "201/Total Requests"
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-ProvisionedThroughput",
+                            "label": "Provisioned throughput (RUs/5m)"
                         },
                         {
-                            "columnId": "204/Total Requests",
-                            "label": "204/Total Requests"
-                        },
-                        {
-                            "columnId": "412/Total Requests",
-                            "label": "412/Total Requests"
-                        },
-                        {
-                            "columnId": "429/Total Requests",
-                            "label": "429/Total Requests"
-                        },
-                        {
-                            "columnId": "449/Total Requests",
-                            "label": "449/Total Requests"
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-ProvisionedThroughput Timeline",
+                            "label": "Provisioned Throughput (Max) Timeline"
                         }
                     ]
                 },
-                "sortBy": [
-                    {
-                        "itemKey": "$gen_heatmap_microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits_5",
-                        "sortOrder": 2
-                    }
-                ],
+                "sortBy": [],
+                "gridFormatType": 2,
                 "showExportToExcel": true,
-                "exportToExcelOptions": "visible"
+                "exportToExcelOptions": "visible",
+                "filters": [
+                    {
+                        "id": "1",
+                        "key": "CollectionName",
+                        "operator": 1,
+                        "values": [
+                            "<empty>"
+                        ],
+                        "valueParam": null
+                    }
+                ]
             },
             "conditionalVisibility": {
                 "parameterName": "selectedTab",
@@ -558,33 +583,21 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"overview-section-ends-here\"></a>La sección Información general termina aquí\n <br />  <br />"
+                "json": "### <a name=\"start-editing-the-failures-section-here\"></a>Empezar a editar la sección Errores aquí"
             },
             "conditionalVisibility": {
                 "parameterName": "dummy",
                 "comparison": "isEqualTo",
                 "value": "blah"
             },
-            "name": "OverviewSectionEditEnds"
-        },
-        {
-            "type": 1,
-            "content": {
-                "json": "# <a name=\"start-editing-capacity-section-from-here\"></a>Empezar a editar la sección Capacidad aquí\n\n <br />  <br />"
-            },
-            "conditionalVisibility": {
-                "parameterName": "dummy",
-                "comparison": "isEqualTo",
-                "value": "blah"
-            },
-            "name": "CapacitySectionEditStart"
+            "name": "FailureSectionEditStart"
         },
         {
             "type": 10,
             "content": {
-                "chartId": "workbookdb19a8d8-91af-44ea-951d-5ffa133b2ebe",
+                "chartId": "workbook0efdd8cd-3252-4cee-9fc3-948f48df25af",
                 "version": "MetricsItem/2.0",
-                "size": 0,
+                "size": 2,
                 "chartType": 0,
                 "resourceIds": [
                     "{CosmosDB}"
@@ -598,11 +611,18 @@
                 "metrics": [
                     {
                         "namespace": "microsoft.documentdb/databaseaccounts",
-                        "metric": "microsoft.documentdb/databaseaccounts-Requests-DataUsage",
-                        "aggregation": 1,
-                        "splitBy": "DatabaseName",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
+                        "aggregation": 7,
+                        "splitBy": null
+                    },
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
+                        "aggregation": 7,
+                        "splitBy": "StatusCode",
                         "splitBySortOrder": -1,
-                        "splitByLimit": 5
+                        "splitByLimit": 10,
+                        "columnName": "Errors"
                     }
                 ],
                 "gridSettings": {
@@ -611,7 +631,7 @@
                             "columnMatch": "$gen_group",
                             "formatter": 13,
                             "formatOptions": {
-                                "linkTarget": null,
+                                "linkTarget": "Resource",
                                 "showIcon": true
                             }
                         },
@@ -630,21 +650,224 @@
                             }
                         },
                         {
-                            "columnMatch": "Metric",
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "blue",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            },
+                            "numberFormat": {
+                                "unit": 17,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests Timeline",
+                            "formatter": 21,
+                            "formatOptions": {
+                                "palette": "blue",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            }
+                        },
+                        {
+                            "columnMatch": "200\\/Errors$|201\\/Errors$|204\\/Errors$",
                             "formatter": 5,
                             "formatOptions": {
                                 "showIcon": true
                             }
                         },
                         {
-                            "columnMatch": "Aggregation",
+                            "columnMatch": "404/Errors|400/Errors",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "gray",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            },
+                            "numberFormat": {
+                                "unit": 17,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
+                            }
+                        },
+                        {
+                            "columnMatch": ".*\\/Errors$",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "red",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            },
+                            "numberFormat": {
+                                "unit": 17,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
+                            }
+                        }
+                    ],
+                    "rowLimit": 10000,
+                    "hierarchySettings": {
+                        "treeType": 1,
+                        "groupBy": [
+                            "Subscription"
+                        ],
+                        "expandTopLevel": true,
+                        "finalBy": "Name"
+                    },
+                    "sortBy": [
+                        {
+                            "itemKey": "$gen_heatmap_microsoft.documentdb/databaseaccounts-Requests-TotalRequests_3",
+                            "sortOrder": 2
+                        }
+                    ],
+                    "labelSettings": [
+                        {
+                            "columnId": "Subscription",
+                            "label": "Subscription"
+                        },
+                        {
+                            "columnId": "Name",
+                            "label": "Name"
+                        },
+                        {
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
+                            "label": "Total Requests (Count)"
+                        },
+                        {
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests Timeline",
+                            "label": "Total Requests Timeline"
+                        },
+                        {
+                            "columnId": "200/Errors",
+                            "label": "200/Errors"
+                        },
+                        {
+                            "columnId": "404/Errors",
+                            "label": "404/Errors"
+                        },
+                        {
+                            "columnId": "201/Errors",
+                            "label": "201/Errors"
+                        }
+                    ]
+                },
+                "sortBy": [
+                    {
+                        "itemKey": "$gen_heatmap_microsoft.documentdb/databaseaccounts-Requests-TotalRequests_3",
+                        "sortOrder": 2
+                    }
+                ],
+                "exportToExcelOptions": "visible"
+            },
+            "conditionalVisibility": {
+                "parameterName": "selectedTab",
+                "comparison": "isEqualTo",
+                "value": "Failures"
+            },
+            "name": "cosmosDB account failures"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"start-editing-the-capacity-section-here\"></a>Empezar a editar la sección Capacidad aquí\n"
+            },
+            "conditionalVisibility": {
+                "parameterName": "dummy",
+                "comparison": "isEqualTo",
+                "value": "blah"
+            },
+            "name": "CapacitySectionEditStart"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbookdb19a8d8-91af-44ea-951d-5ffa133b2ebe",
+                "version": "MetricsItem/2.0",
+                "size": 2,
+                "chartType": 0,
+                "resourceIds": [
+                    "{CosmosDB}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.documentdb/databaseaccounts",
+                "resourceParameter": "CosmosDB",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount",
+                        "aggregation": 4,
+                        "splitBy": "CollectionName",
+                        "splitBySortOrder": -1,
+                        "splitByLimit": 5
+                    },
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-DocumentQuota",
+                        "aggregation": 4,
+                        "splitBy": "CollectionName",
+                        "splitBySortOrder": -1,
+                        "splitByLimit": 5
+                    },
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-DataUsage",
+                        "aggregation": 4,
+                        "splitBy": "CollectionName",
+                        "splitBySortOrder": -1,
+                        "splitByLimit": 5
+                    },
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-IndexUsage",
+                        "aggregation": 4,
+                        "splitBy": "CollectionName",
+                        "splitBySortOrder": -1,
+                        "splitByLimit": 5
+                    },
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-AvailableStorage",
+                        "aggregation": 4,
+                        "splitBy": "CollectionName",
+                        "splitBySortOrder": -1,
+                        "splitByLimit": 5
+                    }
+                ],
+                "showExpandCollapseGrid": true,
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "$gen_group",
+                            "formatter": 13,
+                            "formatOptions": {
+                                "linkTarget": "Resource",
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Subscription",
                             "formatter": 5,
                             "formatOptions": {
                                 "showIcon": true
                             }
                         },
                         {
-                            "columnMatch": "Segment Field",
+                            "columnMatch": "Name",
                             "formatter": 5,
                             "formatOptions": {
                                 "showIcon": true
@@ -658,7 +881,7 @@
                             }
                         },
                         {
-                            "columnMatch": "Value",
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount",
                             "formatter": 8,
                             "formatOptions": {
                                 "min": 0,
@@ -667,7 +890,7 @@
                                 "aggregation": "Sum"
                             },
                             "numberFormat": {
-                                "unit": 36,
+                                "unit": 17,
                                 "options": {
                                     "style": "decimal",
                                     "maximumFractionDigits": 1
@@ -675,8 +898,93 @@
                             }
                         },
                         {
-                            "columnMatch": "Timeline",
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount Timeline",
                             "formatter": 21,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "blue",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DocumentQuota",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "gray",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            },
+                            "numberFormat": {
+                                "unit": 2,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DocumentQuota Timeline",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DataUsage|microsoft.documentdb/databaseaccounts-Requests-IndexUsage",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "blue",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            },
+                            "numberFormat": {
+                                "unit": 17,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DataUsage Timeline",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "blue",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-IndexUsage Timeline",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-AvailableStorage",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "gray",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            },
+                            "numberFormat": {
+                                "unit": 2,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-AvailableStorage Timeline",
+                            "formatter": 5,
                             "formatOptions": {
                                 "showIcon": true
                             }
@@ -695,7 +1003,7 @@
                     },
                     "sortBy": [
                         {
-                            "itemKey": "$gen_heatmap_Value_9",
+                            "itemKey": "$gen_heatmap_microsoft.documentdb/databaseaccounts-Requests-DocumentCount_4",
                             "sortOrder": 2
                         }
                     ],
@@ -707,44 +1015,70 @@
                             "columnId": "Name"
                         },
                         {
-                            "columnId": "Namespace"
-                        },
-                        {
-                            "columnId": "Metric"
-                        },
-                        {
-                            "columnId": "Metric ID"
-                        },
-                        {
-                            "columnId": "Aggregation"
-                        },
-                        {
-                            "columnId": "Segment Field"
-                        },
-                        {
                             "columnId": "Segment"
                         },
                         {
-                            "columnId": "Value",
-                            "label": "Data Usage",
-                            "comment": "Current column name is Value. It doesn't tell anything about the type of data in the column"
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount",
+                            "label": "Documents"
                         },
                         {
-                            "columnId": "Timeline",
-                            "label": "Data Usage Timeline",
-                            "comment": "Current column name is Timeline. It doesn't tell anything about the type of data in the column"
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount Timeline",
+                            "label": "Documents Timeline"
+                        },
+                        {
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-DocumentQuota",
+                            "label": "Document Quota"
+                        },
+                        {
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-DocumentQuota Timeline",
+                            "label": "Document Quota (Sum) Timeline"
+                        },
+                        {
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-DataUsage",
+                            "label": "Data Usage"
+                        },
+                        {
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-DataUsage Timeline",
+                            "label": "Data Usage (Sum) Timeline"
+                        },
+                        {
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-IndexUsage",
+                            "label": "Index Usage"
+                        },
+                        {
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-IndexUsage Timeline",
+                            "label": "Index Usage (Sum) Timeline"
+                        },
+                        {
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-AvailableStorage",
+                            "label": "Available Storage"
+                        },
+                        {
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-AvailableStorage Timeline",
+                            "label": "Available Storage (Sum) Timeline"
                         }
                     ]
                 },
                 "sortBy": [
                     {
-                        "itemKey": "$gen_heatmap_Value_9",
+                        "itemKey": "$gen_heatmap_microsoft.documentdb/databaseaccounts-Requests-DocumentCount_4",
                         "sortOrder": 2
                     }
                 ],
-                "gridFormatType": 1,
+                "gridFormatType": 2,
                 "showExportToExcel": true,
-                "exportToExcelOptions": "visible"
+                "exportToExcelOptions": "visible",
+                "filters": [
+                    {
+                        "id": "1",
+                        "key": "CollectionName",
+                        "operator": 1,
+                        "values": [
+                            "<empty>"
+                        ],
+                        "valueParam": null
+                    }
+                ]
             },
             "conditionalVisibility": {
                 "parameterName": "selectedTab",
@@ -752,24 +1086,12 @@
                 "value": "Capacity"
             },
             "showPin": true,
-            "name": "cosmosDB account metrics"
+            "name": "cosmosDB account capacity"
         },
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"capacity-section-ends-here\"></a>La sección Capacidad termina aquí\n"
-            },
-            "conditionalVisibility": {
-                "parameterName": "dummy",
-                "comparison": "isEqualTo",
-                "value": "blah"
-            },
-            "name": "CapacitySectionEditEnds"
-        },
-        {
-            "type": 1,
-            "content": {
-                "json": "# <a name=\"start-editing-operation-section-from-here\"></a>Empezar a editar la sección Operación desde aquí\n\n <br />"
+                "json": "### <a name=\"start-editing-the-operations-section-here\"></a>Empezar a editar la sección Operaciones aquí\n"
             },
             "conditionalVisibility": {
                 "parameterName": "dummy",
@@ -783,7 +1105,7 @@
             "content": {
                 "chartId": "workbookdb19a8d8-91af-44ea-951d-5ffa133b2ebe",
                 "version": "MetricsItem/2.0",
-                "size": 0,
+                "size": 2,
                 "chartType": 0,
                 "resourceIds": [
                     "{CosmosDB}"
@@ -797,8 +1119,8 @@
                 "metrics": [
                     {
                         "namespace": "microsoft.documentdb/databaseaccounts",
-                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
-                        "aggregation": 7,
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits",
+                        "aggregation": 1,
                         "splitBy": "OperationType",
                         "splitBySortOrder": -1,
                         "splitByLimit": 10
@@ -807,16 +1129,19 @@
                         "namespace": "microsoft.documentdb/databaseaccounts",
                         "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
                         "aggregation": 7,
-                        "splitBy": null
+                        "splitBy": "OperationType",
+                        "splitBySortOrder": -1,
+                        "splitByLimit": 5
                     }
                 ],
+                "showExpandCollapseGrid": true,
                 "gridSettings": {
                     "formatters": [
                         {
                             "columnMatch": "$gen_group",
                             "formatter": 13,
                             "formatOptions": {
-                                "linkTarget": null,
+                                "linkTarget": "Resource",
                                 "showIcon": true
                             }
                         },
@@ -835,76 +1160,6 @@
                             }
                         },
                         {
-                            "columnMatch": ".*\\/Total Requests$",
-                            "formatter": 8,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 17,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 1
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
-                            "formatter": 8,
-                            "formatOptions": {
-                                "showIcon": true
-                            },
-                            "numberFormat": {
-                                "unit": 17,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 1
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "Timeline",
-                            "formatter": 9,
-                            "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "Namespace",
-                            "formatter": 5,
-                            "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "Metric",
-                            "formatter": 5,
-                            "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "Metric ID",
-                            "formatter": 5,
-                            "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "Aggregation",
-                            "formatter": 5,
-                            "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "Segment Field",
-                            "formatter": 5,
-                            "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
                             "columnMatch": "Segment",
                             "formatter": 5,
                             "formatOptions": {
@@ -912,9 +1167,11 @@
                             }
                         },
                         {
-                            "columnMatch": "Value",
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits",
                             "formatter": 8,
                             "formatOptions": {
+                                "min": 0,
+                                "palette": "blue",
                                 "showIcon": true,
                                 "aggregation": "Sum"
                             },
@@ -925,6 +1182,43 @@
                                     "maximumFractionDigits": 1
                                 }
                             }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits Timeline",
+                            "formatter": 21,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "blue",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "blue",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            },
+                            "numberFormat": {
+                                "unit": 17,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests Timeline",
+                            "formatter": 21,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "blue",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            }
                         }
                     ],
                     "rowLimit": 10000,
@@ -932,11 +1226,18 @@
                     "hierarchySettings": {
                         "treeType": 1,
                         "groupBy": [
-                            "Subscription"
+                            "Subscription",
+                            "Name"
                         ],
                         "expandTopLevel": true,
-                        "finalBy": "Name"
+                        "finalBy": "Segment"
                     },
+                    "sortBy": [
+                        {
+                            "itemKey": "$gen_heatmap_microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits_4",
+                            "sortOrder": 2
+                        }
+                    ],
                     "labelSettings": [
                         {
                             "columnId": "Subscription",
@@ -947,52 +1248,34 @@
                             "label": "Name"
                         },
                         {
-                            "columnId": "read/Total Requests",
-                            "label": "read/Total Requests"
+                            "columnId": "Segment",
+                            "label": "Segment"
                         },
                         {
-                            "columnId": "upsert/Total Requests",
-                            "label": "upsert/Total Requests"
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits",
+                            "label": "Usage (request units)"
                         },
                         {
-                            "columnId": "ReadFeed/Total Requests",
-                            "label": "ReadFeed/Total Requests"
-                        },
-                        {
-                            "columnId": "query/Total Requests",
-                            "label": "query/Total Requests"
-                        },
-                        {
-                            "columnId": "create/Total Requests",
-                            "label": "create/Total Requests"
-                        },
-                        {
-                            "columnId": "Delete/Total Requests",
-                            "label": "Delete/Total Requests"
-                        },
-                        {
-                            "columnId": "Replace/Total Requests",
-                            "label": "Replace/Total Requests"
-                        },
-                        {
-                            "columnId": "delete/Total Requests",
-                            "label": "delete/Total Requests"
-                        },
-                        {
-                            "columnId": "other/Total Requests",
-                            "label": "other/Total Requests"
+                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits Timeline",
+                            "label": "Usage timeline"
                         },
                         {
                             "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
-                            "label": "Total Requests (Count)"
+                            "label": "Requests"
                         },
                         {
                             "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests Timeline",
-                            "label": "Total Requests Timeline"
+                            "label": "Requests timeline"
                         }
                     ]
                 },
-                "sortBy": [],
+                "sortBy": [
+                    {
+                        "itemKey": "$gen_heatmap_microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits_4",
+                        "sortOrder": 2
+                    }
+                ],
+                "gridFormatType": 2,
                 "exportToExcelOptions": "visible"
             },
             "conditionalVisibility": {
@@ -1001,19 +1284,7 @@
                 "value": "Operation"
             },
             "showPin": true,
-            "name": "cosmosDB account metrics"
-        },
-        {
-            "type": 1,
-            "content": {
-                "json": "# <a name=\"operation-section-ends-here\"></a>La sección Operación termina aquí\n"
-            },
-            "conditionalVisibility": {
-                "parameterName": "dummy",
-                "comparison": "isEqualTo",
-                "value": "blah"
-            },
-            "name": "OperationSectionEditEnds"
+            "name": "cosmosDB account operations"
         }
     ],
     "styleSettings": {},
