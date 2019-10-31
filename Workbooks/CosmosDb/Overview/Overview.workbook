@@ -138,7 +138,7 @@
                                     "useDashboardTimeRange": false
                                 }
                             ],
-                            "allowCustom": null
+                            "allowCustom": true
                         }
                     },
                     {
@@ -254,6 +254,27 @@
                     },
                     {
                         "namespace": "microsoft.documentdb/databaseaccounts",
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
+                        "aggregation": 7,
+                        "splitBy": "CollectionName",
+                        "splitBySortOrder": -1,
+                        "splitByLimit": 5,
+                        "columnName": "Request failures",
+                        "filters": [
+                            {
+                                "key": "StatusCode",
+                                "operator": 1,
+                                "values": [
+                                    "200",
+                                    "201",
+                                    "204",
+                                    "404"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "namespace": "microsoft.documentdb/databaseaccounts",
                         "metric": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount",
                         "aggregation": 4,
                         "splitBy": "CollectionName",
@@ -275,6 +296,18 @@
                         "splitBy": "CollectionName",
                         "splitBySortOrder": -1,
                         "splitByLimit": 5
+                    }
+                ],
+                "gridFormatType": 2,
+                "filters": [
+                    {
+                        "id": "1",
+                        "key": "CollectionName",
+                        "operator": 1,
+                        "values": [
+                            "<empty>"
+                        ],
+                        "valueParam": null
                     }
                 ],
                 "showExpandCollapseGrid": true,
@@ -334,6 +367,30 @@
                                 "palette": "blue",
                                 "showIcon": true,
                                 "aggregation": "Sum"
+                            }
+                        },
+                        {
+                            "columnMatch": "Request failures",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "red",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            },
+                            "numberFormat": {
+                                "unit": 17,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
+                            }
+                        },
+                        {
+                            "columnMatch": "Request failures Timeline",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
                             }
                         },
                         {
@@ -436,45 +493,6 @@
                             }
                         },
                         {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-MetadataRequests Timeline",
-                            "formatter": 5,
-                            "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-IndexUsage Timeline",
-                            "formatter": 5,
-                            "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-AvailableStorage",
-                            "formatter": 8,
-                            "formatOptions": {
-                                "min": 0,
-                                "palette": "gray",
-                                "showIcon": true,
-                                "aggregation": "Sum"
-                            },
-                            "numberFormat": {
-                                "unit": 2,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 1
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-AvailableStorage Timeline",
-                            "formatter": 5,
-                            "formatOptions": {
-                                "showIcon": true,
-                                "aggregation": "Sum"
-                            }
-                        },
-                        {
                             "columnMatch": ".*\\/Total Requests$",
                             "formatter": 5,
                             "formatOptions": {
@@ -509,6 +527,12 @@
                         "expandTopLevel": true,
                         "finalBy": "Segment"
                     },
+                    "sortBy": [
+                        {
+                            "itemKey": "$gen_heatmap_microsoft.documentdb/databaseaccounts-Requests-TotalRequests$|microsoft.documentdb/databaseaccounts-Requests-MetadataRequests$_4",
+                            "sortOrder": 2
+                        }
+                    ],
                     "labelSettings": [
                         {
                             "columnId": "Subscription",
@@ -520,7 +544,7 @@
                         },
                         {
                             "columnId": "Segment",
-                            "label": "Segment"
+                            "label": "CollectionName"
                         },
                         {
                             "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
@@ -529,6 +553,14 @@
                         {
                             "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests Timeline",
                             "label": "Requests Timeline"
+                        },
+                        {
+                            "columnId": "Request failures",
+                            "label": "Failures (excludes 404s)"
+                        },
+                        {
+                            "columnId": "Request failures Timeline",
+                            "label": "Request failures Timeline"
                         },
                         {
                             "columnId": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount",
@@ -556,21 +588,14 @@
                         }
                     ]
                 },
-                "sortBy": [],
-                "gridFormatType": 2,
-                "showExportToExcel": true,
-                "exportToExcelOptions": "visible",
-                "filters": [
+                "sortBy": [
                     {
-                        "id": "1",
-                        "key": "CollectionName",
-                        "operator": 1,
-                        "values": [
-                            "<empty>"
-                        ],
-                        "valueParam": null
+                        "itemKey": "$gen_heatmap_microsoft.documentdb/databaseaccounts-Requests-TotalRequests$|microsoft.documentdb/databaseaccounts-Requests-MetadataRequests$_4",
+                        "sortOrder": 2
                     }
-                ]
+                ],
+                "showExportToExcel": true,
+                "exportToExcelOptions": "visible"
             },
             "conditionalVisibility": {
                 "parameterName": "selectedTab",
@@ -622,9 +647,10 @@
                         "splitBy": "StatusCode",
                         "splitBySortOrder": -1,
                         "splitByLimit": 10,
-                        "columnName": "Errors"
+                        "columnName": "response"
                     }
                 ],
+                "showExpandCollapseGrid": true,
                 "gridSettings": {
                     "formatters": [
                         {
@@ -670,20 +696,31 @@
                             "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests Timeline",
                             "formatter": 21,
                             "formatOptions": {
+                                "min": 0,
                                 "palette": "blue",
                                 "showIcon": true,
                                 "aggregation": "Sum"
                             }
                         },
                         {
-                            "columnMatch": "200\\/Errors$|201\\/Errors$|204\\/Errors$",
-                            "formatter": 5,
+                            "columnMatch": "(20|30).*\\/response",
+                            "formatter": 8,
                             "formatOptions": {
-                                "showIcon": true
+                                "min": 0,
+                                "palette": "green",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            },
+                            "numberFormat": {
+                                "unit": 17,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
                             }
                         },
                         {
-                            "columnMatch": "404/Errors|400/Errors",
+                            "columnMatch": "(401|404)/response",
                             "formatter": 8,
                             "formatOptions": {
                                 "min": 0,
@@ -700,7 +737,7 @@
                             }
                         },
                         {
-                            "columnMatch": ".*\\/Errors$",
+                            "columnMatch": ".*\\/response$",
                             "formatter": 8,
                             "formatOptions": {
                                 "min": 0,
@@ -718,6 +755,7 @@
                         }
                     ],
                     "rowLimit": 10000,
+                    "filter": true,
                     "hierarchySettings": {
                         "treeType": 1,
                         "groupBy": [
@@ -750,16 +788,8 @@
                             "label": "Total Requests Timeline"
                         },
                         {
-                            "columnId": "200/Errors",
-                            "label": "200/Errors"
-                        },
-                        {
-                            "columnId": "404/Errors",
-                            "label": "404/Errors"
-                        },
-                        {
-                            "columnId": "201/Errors",
-                            "label": "201/Errors"
+                            "columnId": "200/response",
+                            "label": "200/response"
                         }
                     ]
                 },
@@ -769,6 +799,7 @@
                         "sortOrder": 2
                     }
                 ],
+                "showExportToExcel": true,
                 "exportToExcelOptions": "visible"
             },
             "conditionalVisibility": {
@@ -776,6 +807,7 @@
                 "comparison": "isEqualTo",
                 "value": "Failures"
             },
+            "showPin": true,
             "name": "cosmosDB account failures"
         },
         {
@@ -817,14 +849,6 @@
                     },
                     {
                         "namespace": "microsoft.documentdb/databaseaccounts",
-                        "metric": "microsoft.documentdb/databaseaccounts-Requests-DocumentQuota",
-                        "aggregation": 4,
-                        "splitBy": "CollectionName",
-                        "splitBySortOrder": -1,
-                        "splitByLimit": 5
-                    },
-                    {
-                        "namespace": "microsoft.documentdb/databaseaccounts",
                         "metric": "microsoft.documentdb/databaseaccounts-Requests-DataUsage",
                         "aggregation": 4,
                         "splitBy": "CollectionName",
@@ -846,6 +870,18 @@
                         "splitBy": "CollectionName",
                         "splitBySortOrder": -1,
                         "splitByLimit": 5
+                    }
+                ],
+                "gridFormatType": 2,
+                "filters": [
+                    {
+                        "id": "1",
+                        "key": "CollectionName",
+                        "operator": 1,
+                        "values": [
+                            "<empty>"
+                        ],
+                        "valueParam": null
                     }
                 ],
                 "showExpandCollapseGrid": true,
@@ -908,30 +944,6 @@
                             }
                         },
                         {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DocumentQuota",
-                            "formatter": 8,
-                            "formatOptions": {
-                                "min": 0,
-                                "palette": "gray",
-                                "showIcon": true,
-                                "aggregation": "Sum"
-                            },
-                            "numberFormat": {
-                                "unit": 2,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 1
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DocumentQuota Timeline",
-                            "formatter": 5,
-                            "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
                             "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-DataUsage|microsoft.documentdb/databaseaccounts-Requests-IndexUsage",
                             "formatter": 8,
                             "formatOptions": {
@@ -941,7 +953,7 @@
                                 "aggregation": "Sum"
                             },
                             "numberFormat": {
-                                "unit": 17,
+                                "unit": 2,
                                 "options": {
                                     "style": "decimal",
                                     "maximumFractionDigits": 1
@@ -1015,7 +1027,8 @@
                             "columnId": "Name"
                         },
                         {
-                            "columnId": "Segment"
+                            "columnId": "Segment",
+                            "label": "CollectionName"
                         },
                         {
                             "columnId": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount",
@@ -1024,14 +1037,6 @@
                         {
                             "columnId": "microsoft.documentdb/databaseaccounts-Requests-DocumentCount Timeline",
                             "label": "Documents Timeline"
-                        },
-                        {
-                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-DocumentQuota",
-                            "label": "Document Quota"
-                        },
-                        {
-                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-DocumentQuota Timeline",
-                            "label": "Document Quota (Sum) Timeline"
                         },
                         {
                             "columnId": "microsoft.documentdb/databaseaccounts-Requests-DataUsage",
@@ -1065,20 +1070,8 @@
                         "sortOrder": 2
                     }
                 ],
-                "gridFormatType": 2,
                 "showExportToExcel": true,
-                "exportToExcelOptions": "visible",
-                "filters": [
-                    {
-                        "id": "1",
-                        "key": "CollectionName",
-                        "operator": 1,
-                        "values": [
-                            "<empty>"
-                        ],
-                        "valueParam": null
-                    }
-                ]
+                "exportToExcelOptions": "visible"
             },
             "conditionalVisibility": {
                 "parameterName": "selectedTab",
@@ -1103,7 +1096,7 @@
         {
             "type": 10,
             "content": {
-                "chartId": "workbookdb19a8d8-91af-44ea-951d-5ffa133b2ebe",
+                "chartId": "workbook31d87d8f-2f6e-4f40-b780-a06fbf7c2967",
                 "version": "MetricsItem/2.0",
                 "size": 2,
                 "chartType": 0,
@@ -1119,11 +1112,9 @@
                 "metrics": [
                     {
                         "namespace": "microsoft.documentdb/databaseaccounts",
-                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits",
-                        "aggregation": 1,
-                        "splitBy": "OperationType",
-                        "splitBySortOrder": -1,
-                        "splitByLimit": 10
+                        "metric": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
+                        "aggregation": 7,
+                        "splitBy": null
                     },
                     {
                         "namespace": "microsoft.documentdb/databaseaccounts",
@@ -1131,7 +1122,8 @@
                         "aggregation": 7,
                         "splitBy": "OperationType",
                         "splitBySortOrder": -1,
-                        "splitByLimit": 5
+                        "splitByLimit": 3,
+                        "columnName": "operation"
                     }
                 ],
                 "showExpandCollapseGrid": true,
@@ -1160,40 +1152,6 @@
                             }
                         },
                         {
-                            "columnMatch": "Segment",
-                            "formatter": 5,
-                            "formatOptions": {
-                                "showIcon": true
-                            }
-                        },
-                        {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits",
-                            "formatter": 8,
-                            "formatOptions": {
-                                "min": 0,
-                                "palette": "blue",
-                                "showIcon": true,
-                                "aggregation": "Sum"
-                            },
-                            "numberFormat": {
-                                "unit": 17,
-                                "options": {
-                                    "style": "decimal",
-                                    "maximumFractionDigits": 1
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits Timeline",
-                            "formatter": 21,
-                            "formatOptions": {
-                                "min": 0,
-                                "palette": "blue",
-                                "showIcon": true,
-                                "aggregation": "Sum"
-                            }
-                        },
-                        {
                             "columnMatch": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
                             "formatter": 8,
                             "formatOptions": {
@@ -1219,6 +1177,23 @@
                                 "showIcon": true,
                                 "aggregation": "Sum"
                             }
+                        },
+                        {
+                            "columnMatch": ".*\\/operation",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "min": 0,
+                                "palette": "blue",
+                                "showIcon": true,
+                                "aggregation": "Sum"
+                            },
+                            "numberFormat": {
+                                "unit": 17,
+                                "options": {
+                                    "style": "decimal",
+                                    "maximumFractionDigits": 1
+                                }
+                            }
                         }
                     ],
                     "rowLimit": 10000,
@@ -1226,15 +1201,14 @@
                     "hierarchySettings": {
                         "treeType": 1,
                         "groupBy": [
-                            "Subscription",
-                            "Name"
+                            "Subscription"
                         ],
                         "expandTopLevel": true,
-                        "finalBy": "Segment"
+                        "finalBy": "Name"
                     },
                     "sortBy": [
                         {
-                            "itemKey": "$gen_heatmap_microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits_4",
+                            "itemKey": "$gen_heatmap_microsoft.documentdb/databaseaccounts-Requests-TotalRequests_3",
                             "sortOrder": 2
                         }
                     ],
@@ -1248,34 +1222,38 @@
                             "label": "Name"
                         },
                         {
-                            "columnId": "Segment",
-                            "label": "Segment"
-                        },
-                        {
-                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits",
-                            "label": "Usage (request units)"
-                        },
-                        {
-                            "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits Timeline",
-                            "label": "Usage timeline"
-                        },
-                        {
                             "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
                             "label": "Requests"
                         },
                         {
                             "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests Timeline",
-                            "label": "Requests timeline"
+                            "label": "Requests Timeline"
+                        },
+                        {
+                            "columnId": "read/operation",
+                            "label": "read/operation"
+                        },
+                        {
+                            "columnId": "upsert/operation",
+                            "label": "upsert/operation"
+                        },
+                        {
+                            "columnId": "ReadFeed/operation",
+                            "label": "ReadFeed/operation"
+                        },
+                        {
+                            "columnId": "Other/operation",
+                            "label": "Other/operation"
                         }
                     ]
                 },
                 "sortBy": [
                     {
-                        "itemKey": "$gen_heatmap_microsoft.documentdb/databaseaccounts-Requests-TotalRequestUnits_4",
+                        "itemKey": "$gen_heatmap_microsoft.documentdb/databaseaccounts-Requests-TotalRequests_3",
                         "sortOrder": 2
                     }
                 ],
-                "gridFormatType": 2,
+                "showExportToExcel": true,
                 "exportToExcelOptions": "visible"
             },
             "conditionalVisibility": {

@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Incorporación de registros de diagnóstico",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "keyvaults-insights",
+            "resourceType": "Azure Monitor",
+            "order": 500
+        }
+    ]
+}
