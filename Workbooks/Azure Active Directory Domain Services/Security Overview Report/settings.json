@@ -1,0 +1,19 @@
+{
+    "name": "Informe general sobre seguridad",
+    "description": "Un resumen de los intentos de inicio de sesión y una lista de algunas cuentas que es necesario comprobar",
+    "icon": "aadds-logo",
+    "tags": [
+        "AADDS",
+        "Audit logs"
+    ],
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "Microsoft.AAD/domainServices",
+            "order": 100
+        }
+    ],
+    "order": 100,
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json"
+}
