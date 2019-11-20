@@ -84,7 +84,7 @@
         {
             "type": 1,
             "content": {
-                "json": "⚠️ No se seleccionó ninguna operación o no hay datos de registro de Key Vault para este recurso.\n\nPara aprender a configurar el registro, consulte:<br>\n[https://login.microsoftonline.com/tfp/00000000-0000-0000-0000-000000000000/b2c_1a_tp_sign-up-or-sign-in/v2.0/](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/azure-key-vault#enable-key-vault-diagnostics-in-the-portal)"
+                "json": "⚠️ No se seleccionó ninguna operación o no hay datos de registro de Key Vault para este recurso.\n\nPara aprender a configurar el registro, consulte:<br>\nhttps://docs.microsoft.com/en-us/azure/azure-monitor/insights/azure-key-vault#enable-key-vault-diagnostics-in-the-portal"
             },
             "conditionalVisibility": {
                 "parameterName": "Operations",
