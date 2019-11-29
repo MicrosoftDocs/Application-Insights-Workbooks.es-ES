@@ -1,0 +1,18 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Introducción a las conexiones (versión preliminar)",
+    "author": "Microsoft",
+    "isPreview": true,
+    "galleries": [
+        {
+            "type": "performance-vm",
+            "resourceType": "microsoft.compute/virtualmachines",
+            "order": 200
+        },
+        {
+            "type": "insights",
+            "resourceType": "microsoft.compute/virtualmachines",
+            "order": 200
+        }
+    ]
+}
