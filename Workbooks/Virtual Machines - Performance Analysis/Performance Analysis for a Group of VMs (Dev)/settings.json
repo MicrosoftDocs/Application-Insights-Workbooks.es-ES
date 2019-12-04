@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Rendimiento",
+    "name": "Rendimiento (des.)",
     "author": "Microsoft",
     "isPreview": true,
     "galleries": [
