@@ -43,7 +43,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"performance-analysis\"></a><span data-ttu-id=\"3191f-101\">Análisis de rendimiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"3191f-101\">Performance Analysis</span></span>"
+                "json": "# <a name=\"performance-analysis\"></a>Análisis de rendimiento"
             },
             "conditionalVisibility": {
                 "parameterName": "ContextFree",
@@ -201,7 +201,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"3191f-102\">⚠ Este libro requiere que se habilite [Azure Monitor para VM (versión preliminar)](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview) para mostrar información precisa y completa de las máquinas virtuales.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3191f-102\">⚠ This workbook requires [Azure Monitor for VMs (preview)](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview) enabled in order to show accurate and complete information for your VMs.</span></span> <span data-ttu-id=\"3191f-103\">Siga el vínculo para incorporar las máquinas o seleccione otra área de trabajo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3191f-103\">Follow the link to onboard machines or select a different workspace.</span></span>"
+                "json": "⚠ Este libro requiere que se habilite [Azure Monitor para VM (versión preliminar)](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview) para mostrar información precisa y completa de las máquinas virtuales. Siga el vínculo para incorporar las máquinas o seleccione otra área de trabajo."
             },
             "conditionalVisibility": {
                 "parameterName": "Test",
@@ -221,7 +221,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h2 style=\"margin-bottom:0;padding-bottom:0;\"><span data-ttu-id=\"3191f-104\">100 primeras máquinas</span><span class=\"sxs-lookup\"><span data-stu-id=\"3191f-104\">Top 100 Machines</span></span></h2>"
+                "json": "<h2 style=\"margin-bottom:0;padding-bottom:0;\">100 primeras máquinas</h2>"
             },
             "conditionalVisibility": null,
             "name": "text - 5"
@@ -240,7 +240,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "Counter",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"3191f-105\">Seleccione un contador de rendimiento de máquina virtual para la tabla siguiente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3191f-105\">Select a VM performance counter for the table below</span></span>",
+                        "description": "Seleccione un contador de rendimiento de máquina virtual para la tabla siguiente.",
                         "isRequired": false,
                         "query": "// {Resource} {Test}\r\nPerf\r\n| where TimeGenerated {TimeRange}\r\n| where ObjectName != 'Network' and ObjectName != 'Network Interface'\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
                         "crossComponentResources": [
@@ -304,7 +304,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "Aggregators",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"3191f-106\">Seleccione uno o varios agregados diferentes para mostrar en la tabla siguiente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3191f-106\">Select one or more different aggregates to display in the table below</span></span>",
+                        "description": "Seleccione uno o varios agregados diferentes para mostrar en la tabla siguiente.",
                         "isRequired": true,
                         "multiSelect": true,
                         "quote": "",
@@ -321,7 +321,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "TableTrend",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"3191f-107\">Seleccione un percentil para mostrar en la columna de tendencia en la tabla siguiente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3191f-107\">Select a percentile to display in the Trend column in the table below</span></span>",
+                        "description": "Seleccione un percentil para mostrar en la columna de tendencia en la tabla siguiente.",
                         "isRequired": true,
                         "isHiddenWhenLocked": false,
                         "typeSettings": {
@@ -450,7 +450,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"3191f-108\">No hay contadores de rendimiento, ni máquinas incorporadas a esta área de trabajo ni contadores de rendimiento habilitados.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3191f-108\">There are no performance counters, either onboard machines to this workspace or enable performance counters.</span></span>"
+                "json": "No hay contadores de rendimiento, ni máquinas incorporadas a esta área de trabajo ni contadores de rendimiento habilitados."
             },
             "conditionalVisibility": {
                 "parameterName": "CounterTest",
@@ -666,7 +666,7 @@
         {
             "type": 1,
             "content": {
-                "json": "#### <a name=\"-total-bytes-networkdirection-counters-are-also-being-utilized-to-display-the-network-table-the-delta-of-total-bytes-networkdirection-over-a-time-period-is-being-calculated-to-match-up-with-the-bytes-networkdirectionsec-counter-to-display-an-accurate-representation-of-network-activity-over-all-machines\"></a><span data-ttu-id=\"3191f-109\">Los contadores ℹ `Total Bytes {NetworkDirection}` también se utilizan para mostrar la tabla de la red.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3191f-109\">ℹ `Total Bytes {NetworkDirection}` counters are also being utilized to display the network table.</span></span> <span data-ttu-id=\"3191f-110\">Se calculan las diferencias de `Total Bytes {NetworkDirection}` durante un período de tiempo para que coincida con el contador `Bytes {NetworkDirection}/sec` y poder mostrar una representación precisa de la actividad de red en todas las máquinas.</span><span class=\"sxs-lookup\"><span data-stu-id=\"3191f-110\">The delta of `Total Bytes {NetworkDirection}` over a time period is being calculated to match up with the `Bytes {NetworkDirection}/sec` counter to display an accurate representation of network activity over all machines</span></span>"
+                "json": "#### <a name=\"-total-bytes-no_loc_phnetworkdirectionno_loc_ph-counters-are-also-being-utilized-to-display-the-network-table-the-delta-of-total-bytes-no_loc_phnetworkdirectionno_loc_ph-over-a-time-period-is-being-calculated-to-match-up-with-the-bytes-no_loc_phnetworkdirectionno_loc_phsec-counter-to-display-an-accurate-representation-of-network-activity-over-all-machines\"></a>Los contadores ℹ `Total Bytes {NetworkDirection}` también se utilizan para mostrar la tabla de la red. Se calculan las diferencias de `Total Bytes {NetworkDirection}` durante un período de tiempo para que coincida con el contador `Bytes {NetworkDirection}/sec` y poder mostrar una representación precisa de la actividad de red en todas las máquinas."
             },
             "conditionalVisibility": {
                 "parameterName": "ShowNetworkTable",
@@ -878,7 +878,7 @@
         {
             "type": 1,
             "content": {
-                "json": "---\n## <a name=\"top-10-machines\"></a><span data-ttu-id=\"3191f-111\">10 primeras máquinas</span><span class=\"sxs-lookup\"><span data-stu-id=\"3191f-111\">Top 10 Machines</span></span>"
+                "json": "---\n## <a name=\"top-10-machines\"></a>10 primeras máquinas"
             },
             "conditionalVisibility": null,
             "name": "text - 11"
@@ -886,7 +886,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"cpu-utilization-\"></a><span data-ttu-id=\"3191f-112\">% de uso de CPU</span><span class=\"sxs-lookup\"><span data-stu-id=\"3191f-112\">CPU Utilization %</span></span>"
+                "json": "### <a name=\"cpu-utilization-\"></a>% de uso de CPU"
             },
             "conditionalVisibility": null,
             "customWidth": "50",
@@ -895,7 +895,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"available-memory\"></a><span data-ttu-id=\"3191f-113\">Memoria disponible</span><span class=\"sxs-lookup\"><span data-stu-id=\"3191f-113\">Available Memory</span></span>"
+                "json": "### <a name=\"available-memory\"></a>Memoria disponible"
             },
             "conditionalVisibility": null,
             "customWidth": "50",
@@ -1140,7 +1140,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"bytes-sent-rate\"></a><span data-ttu-id=\"3191f-114\">Tasa de bytes enviados</span><span class=\"sxs-lookup\"><span data-stu-id=\"3191f-114\">Bytes Sent Rate</span></span>"
+                "json": "### <a name=\"bytes-sent-rate\"></a>Tasa de bytes enviados"
             },
             "conditionalVisibility": null,
             "customWidth": "50",
@@ -1149,7 +1149,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"bytes-received-rate\"></a><span data-ttu-id=\"3191f-115\">Tasa de bytes recibidos</span><span class=\"sxs-lookup\"><span data-stu-id=\"3191f-115\">Bytes Received Rate</span></span>"
+                "json": "### <a name=\"bytes-received-rate\"></a>Tasa de bytes recibidos"
             },
             "conditionalVisibility": null,
             "customWidth": "50",
@@ -1392,7 +1392,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"logical-disk-space-used-\"></a><span data-ttu-id=\"3191f-116\">Porcentaje de espacio usado del disco lógico</span><span class=\"sxs-lookup\"><span data-stu-id=\"3191f-116\">Logical Disk Space Used %</span></span>"
+                "json": "### <a name=\"logical-disk-space-used-\"></a>Porcentaje de espacio usado del disco lógico"
             },
             "conditionalVisibility": null,
             "customWidth": "50",

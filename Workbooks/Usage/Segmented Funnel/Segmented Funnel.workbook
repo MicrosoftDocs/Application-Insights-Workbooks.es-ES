@@ -6,7 +6,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"segmented-funnel\"></a><span data-ttu-id=\"f7ee1-101\">Embudo segmentado</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-101\">Segmented Funnel</span></span>\n---\n<span data-ttu-id=\"f7ee1-102\">Los embudos son una herramienta eficaz para calcular las tasas de conversión de comportamientos de usuario específicos en la aplicación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-102\">Funnels are an effective tool in calculating conversions rates of specific user behaviors in your app.</span></span> <span data-ttu-id=\"f7ee1-103\">Por ejemplo, podría medir la velocidad a la que los usuarios que llegan a la aplicación realizan un evento interesante, como hacer una compra desde la aplicación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-103\">For instance, it could measure the rate at which users who come to your app perform an interesting event -- like make a purchase from within your app.</span></span>\n\n<span data-ttu-id=\"f7ee1-104\">Segmentar un embudo permite analizar las tasas de conversión en una dimensión interesante; por ejemplo, entre países, versiones de la aplicación o tipos de dispositivo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-104\">Segmenting a funnel allows the analysis of conversion rates across an interesting dimension -- say across countries, app versions or device type.</span></span> <span data-ttu-id=\"f7ee1-105\">Esto le permite identificar posibles problemas de conversión, como:</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-105\">This allows you to identify potential conversions issues like:</span></span>\n* <span data-ttu-id=\"f7ee1-106\">La conversión en Canadá es un 10 % menor que en Estados Unidos.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-106\">Conversion in Canada is 10% lower than in the United States, or</span></span> \n* <span data-ttu-id=\"f7ee1-107\">No parece que muchos usuarios compren dispositivos Android.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-107\">Not many users seem to be purchasing on Android devices.</span></span>\n\n<span data-ttu-id=\"f7ee1-108\">Use este informe para analizar las tasas de conversión en una dimensión _estándar_ o _personalizado_ de su elección.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-108\">Use this report to create analyze conversion rates across a _standard_ or _custom_ dimension of your choice.</span></span>"
+                "json": "## <a name=\"segmented-funnel\"></a>Embudo segmentado\n---\nLos embudos son una herramienta eficaz para calcular las tasas de conversión de comportamientos de usuario específicos en la aplicación. Por ejemplo, podría medir la velocidad a la que los usuarios que llegan a la aplicación realizan un evento interesante, como hacer una compra desde la aplicación.\n\nSegmentar un embudo permite analizar las tasas de conversión en una dimensión interesante; por ejemplo, entre países, versiones de la aplicación o tipos de dispositivo. Esto le permite identificar posibles problemas de conversión, como:\n* La conversión en Canadá es un 10 % menor que en Estados Unidos. \n* No parece que muchos usuarios compren dispositivos Android.\n\nUse este informe para analizar las tasas de conversión en una dimensión _estándar_ o _personalizado_ de su elección."
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -34,7 +34,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "ConversionScope",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"f7ee1-109\">Seleccione el ámbito de los cálculos de conversión.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-109\">Select the scope for your conversion calculations.</span></span> <span data-ttu-id=\"f7ee1-110\">En el ámbito de la sesión, las actividades de la parte superior e inferior deben ocurrir en la misma sesión para que contabilicen en la conversión.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-110\">In the Session scope, both the top and bottom activities need to happen in the same session to count towards conversion.</span></span> <span data-ttu-id=\"f7ee1-111\">En ambos ámbitos de usuario, el usuario puede hacer ambas actividades en sesiones diferentes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-111\">For both User scopes, the user is allowed to have done both activities in different sessions.</span></span>",
+                        "description": "Seleccione el ámbito de los cálculos de conversión. En el ámbito de la sesión, las actividades de la parte superior e inferior deben ocurrir en la misma sesión para que contabilicen en la conversión. En ambos ámbitos de usuario, el usuario puede hacer ambas actividades en sesiones diferentes.",
                         "isRequired": true,
                         "multiSelect": null,
                         "query": "datatable(key:string, display:string)\n[\n\"user_Id\", \"Anonymous Users\", \n\"user_AuthenticatedId\", \"Authenticated Users\",\"session_Id\", \"Sessions\",\n]",
@@ -48,7 +48,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"set-the-top-of-the-funnel\"></a><span data-ttu-id=\"f7ee1-112\">Establezca la parte superior del embudo</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-112\">Set the Top of the Funnel</span></span>"
+                "json": "### <a name=\"set-the-top-of-the-funnel\"></a>Establezca la parte superior del embudo"
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -65,7 +65,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "TopStep",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"f7ee1-113\">Seleccione las actividades que forman la parte superior de un embudo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-113\">Select the activities that form the top of your funnel.</span></span>",
+                        "description": "Seleccione las actividades que forman la parte superior de un embudo.",
                         "isRequired": true,
                         "multiSelect": true,
                         "quote": "'",
@@ -77,7 +77,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "TopFilters",
                         "type": 1,
-                        "description": "<span data-ttu-id=\"f7ee1-114\">Un fragmento de consulta de análisis para filtrar aún más el paso superior.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-114\">An analytics query snippet to further filter the top step.</span></span> <span data-ttu-id=\"f7ee1-115\">Ejemplo: | donde application_Version = '1.0'</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-115\">Example: | where application_Version = '1.0'</span></span>",
+                        "description": "Un fragmento de consulta de análisis para filtrar aún más el paso superior. Ejemplo: | donde application_Version = '1.0'",
                         "isRequired": false
                     },
                     {
@@ -99,7 +99,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"set-the-bottom-of-the-funnel\"></a><span data-ttu-id=\"f7ee1-116\">Establezca la parte inferior del embudo</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-116\">Set the Bottom of the Funnel</span></span>"
+                "json": "### <a name=\"set-the-bottom-of-the-funnel\"></a>Establezca la parte inferior del embudo"
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -116,7 +116,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "BottomStep",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"f7ee1-117\">Seleccione las actividades que forman la parte inferior de un embudo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-117\">Select the activities that form the bottom of your funnel</span></span>",
+                        "description": "Seleccione las actividades que forman la parte inferior de un embudo.",
                         "isRequired": true,
                         "multiSelect": true,
                         "quote": "'",
@@ -128,7 +128,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "BottomFilters",
                         "type": 1,
-                        "description": "<span data-ttu-id=\"f7ee1-118\">Un fragmento de consulta de análisis para filtrar aún más el paso inferior.</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-118\">An analytics query snippet to further filter the bottom step.</span></span> <span data-ttu-id=\"f7ee1-119\">Ejemplo: | donde application_Version = '1.0'</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-119\">Example: | where application_Version = '1.0'</span></span>",
+                        "description": "Un fragmento de consulta de análisis para filtrar aún más el paso inferior. Ejemplo: | donde application_Version = '1.0'",
                         "isRequired": false
                     }
                 ]
@@ -139,7 +139,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"funnels\"></a><span data-ttu-id=\"f7ee1-120\">Embudos</span><span class=\"sxs-lookup\"><span data-stu-id=\"f7ee1-120\">Funnels</span></span>"
+                "json": "# <a name=\"funnels\"></a>Embudos"
             },
             "conditionalVisibility": null,
             "halfWidth": false

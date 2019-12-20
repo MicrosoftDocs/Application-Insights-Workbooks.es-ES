@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"7dca0-101\">Inicios de sesión</span><span class=\"sxs-lookup\"><span data-stu-id=\"7dca0-101\">Sign-ins</span></span>",
+    "name": "Inicios de sesión",
     "author": "Microsoft",
     "galleries": [
         {

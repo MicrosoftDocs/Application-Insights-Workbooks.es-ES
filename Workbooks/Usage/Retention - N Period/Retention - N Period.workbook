@@ -6,7 +6,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"n-period-retention\"></a><span data-ttu-id=\"e78ca-101\">Retención a N períodos</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-101\">N-Period Retention</span></span>\n\n<span data-ttu-id=\"e78ca-102\">La retención a N períodos mide cuántos de sus usuarios regresan para realizar una de las `RetainingActivities` en un período en particular después de haber realizado una de las `CohortingActivities` en la aplicación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-102\">N-period retention measures how many of your users come back to perform one of the `RetainingActivities` in a particular period after they perform one of the `CohortingActivities` in your app.</span></span> <span data-ttu-id=\"e78ca-103\">Por ejemplo, podría estar midiendo el número de usuarios que volvieron a usar la aplicación el décimo día a partir del día en que la descargaron por primera vez.</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-103\">For instance, you could be measuring the number of users who returned to use your app on the 10th day from the day they first downloaded it.</span></span> <span data-ttu-id=\"e78ca-104\">Si ve la tendencia de retención durante los días 1 a 10, le dará una indicación de la adherencia de la aplicación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-104\">Seeing the retention trend for days 1-10 will give you an indication of the stickiness of your app.</span></span> \n\n<span data-ttu-id=\"e78ca-105\">La retención a N días es muy adecuada para aplicaciones de juego u otros tipos de aplicaciones en las que se intenta que los usuarios desarrollen un hábito diario.</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-105\">N-day retention is well-suited for gaming apps, or other kinds of app where you are trying to get users to develop a daily habit.</span></span>"
+                "json": "# <a name=\"n-period-retention\"></a>Retención a N períodos\n\nLa retención a N períodos mide cuántos de sus usuarios regresan para realizar una de las `RetainingActivities` en un período en particular después de haber realizado una de las `CohortingActivities` en la aplicación. Por ejemplo, podría estar midiendo el número de usuarios que volvieron a usar la aplicación el décimo día a partir del día en que la descargaron por primera vez. Si ve la tendencia de retención durante los días 1 a 10, le dará una indicación de la adherencia de la aplicación. \n\nLa retención a N días es muy adecuada para aplicaciones de juego u otros tipos de aplicaciones en las que se intenta que los usuarios desarrollen un hábito diario."
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -14,7 +14,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"activity-selection\"></a><span data-ttu-id=\"e78ca-106\">Selección de actividad</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-106\">Activity Selection</span></span>\n<span data-ttu-id=\"e78ca-107\">Utilice estos campos para establecer eventos que correspondan a actividades de usuario interesantes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-107\">Use these fields to set events that that correspond to interesting user activities.</span></span> <span data-ttu-id=\"e78ca-108\">La sección `Understanding Retention Parameter` en la parte inferior describe estos parámetros con detalle.</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-108\">The `Understanding Retention Parameter` section at the bottom describes these parameters in detail.</span></span>"
+                "json": "## <a name=\"activity-selection\"></a>Selección de actividad\nUtilice estos campos para establecer eventos que correspondan a actividades de usuario interesantes. La sección `Understanding Retention Parameter` en la parte inferior describe estos parámetros con detalle."
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -71,7 +71,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"retention-parameters\"></a><span data-ttu-id=\"e78ca-109\">Parámetros de retención</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-109\">Retention Parameters</span></span>\n<span data-ttu-id=\"e78ca-110\">Use estos campos para personalizar la configuración de retención.</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-110\">Use these fields to customize your retention settings.</span></span> "
+                "json": "## <a name=\"retention-parameters\"></a>Parámetros de retención\nUse estos campos para personalizar la configuración de retención. "
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -88,7 +88,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "RetentionPeriod",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"e78ca-111\">1d: Todos los días, 7d: Semanalmente, 30/28d: Mensual</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-111\">1d: Daily, 7d: Weekly, 30/28d: Monthly</span></span>",
+                        "description": "1d: todos los días, 7d: semanalmente, 30/28d: Mensual",
                         "isRequired": true,
                         "multiSelect": null,
                         "query": "datatable(id:string, text:string)[\n'1d', 'Daily',\n'7d', 'Weekly',\n'28d', 'Monthly (28 days)', \n'30d', 'Monthly (30 days)'\n]",
@@ -99,7 +99,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "CohortsToAnalyze",
                         "type": 1,
-                        "description": "<span data-ttu-id=\"e78ca-112\">Número de períodos de cohortes para analizar</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-112\">Number of cohort periods to analyze</span></span>",
+                        "description": "Número de períodos de cohortes para analizar",
                         "isRequired": true,
                         "value": "6"
                     }
@@ -124,7 +124,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"understanding-retention-parameters\"></a><span data-ttu-id=\"e78ca-113\">Descripción de los parámetros de retención</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-113\">Understanding Retention Parameters</span></span>\n| <span data-ttu-id=\"e78ca-114\">Parámetro</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-114\">Parameter</span></span> | <span data-ttu-id=\"e78ca-115\">Usado para</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-115\">Used for</span></span> |\n| ----- | ----- |\n| <span data-ttu-id=\"e78ca-116\">Período de retención</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-116\">Retention Period</span></span> | <span data-ttu-id=\"e78ca-117\">Período que se va a utilizar en el cálculo de la retención.</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-117\">The period to use in retention calculation.</span></span> <span data-ttu-id=\"e78ca-118\">Puede ser diario, semanal o mensual.</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-118\">Can be Daily, Weekly or Monthly</span></span> |\n| <span data-ttu-id=\"e78ca-119\">Cohortes para analizar</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-119\">Cohorts To Analyze</span></span>  | <span data-ttu-id=\"e78ca-120\">Número de cohortes que se va a analizar.</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-120\">The number of cohorts to analyze.</span></span> <span data-ttu-id=\"e78ca-121\">Se corresponde a la N en la retención de N períodos.</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-121\">This corresponds to the N in N-period retention</span></span> |\n| <span data-ttu-id=\"e78ca-122\">Actividades de cohorte</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-122\">Cohorting Activities</span></span>  | <span data-ttu-id=\"e78ca-123\">Las actividades que seleccionan una cohorte de usuarios.</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-123\">The activities that selects a cohort of users.</span></span> <span data-ttu-id=\"e78ca-124\">Ejemplo: Usuarios que utilizan el evento *Read Product Review* (Leer reseña del producto) (Actividad de cohorte).</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-124\">Example: Users who used event *Read Product Review* (cohorting activity).</span></span> |\n| <span data-ttu-id=\"e78ca-125\">Actividades de retención</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-125\">Retaining Activities</span></span>  | <span data-ttu-id=\"e78ca-126\">Las actividades que indican la retención de un usuario de la cohorte seleccionado anteriormente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-126\">The activities that indicates retention of a cohorted user selected above.</span></span> <span data-ttu-id=\"e78ca-127\">Ejemplo: Usuarios que usaron el evento *Read Product Review* (Leer reseña del producto) (Actividad de cohorte) y volvieron a usar *Purchase Product* (Comprar producto) (Actividad de retención).</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-127\">Example: Users who used event *Read Product Review* (cohorting activity) and returned to use *Purchase Product* (retaining activity).</span></span> |\n| <span data-ttu-id=\"e78ca-128\">Filtros de cohorte/retención</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-128\">Cohorting/Retaining Filters</span></span>  | <span data-ttu-id=\"e78ca-129\">Un fragmento de consulta de análisis para filtrar aún más la actividad de cohorte.</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-129\">An analytics query snippet to further filter the cohorting activity.</span></span> <span data-ttu-id=\"e78ca-130\">Ejemplo: *&#124; where application_Version = '1.0'*</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-130\">Example: *&#124; where application_Version = '1.0'*</span></span> |\n"
+                "json": "## <a name=\"understanding-retention-parameters\"></a>Descripción de los parámetros de retención\n| Parámetro | Usado para |\n| ----- | ----- |\n| Período de retención | Período que se va a utilizar en el cálculo de la retención. Puede ser diario, semanal o mensual. |\n| Cohortes para analizar  | Número de cohortes que se va a analizar. Se corresponde a la N en la retención de N períodos. |\n| Actividades de cohorte  | Las actividades que seleccionan una cohorte de usuarios. Ejemplo: Usuarios que utilizan el evento *Read Product Review* (Leer reseña del producto) (actividad de cohorte). |\n| Actividades de retención  | Las actividades que indican la retención de un usuario de la cohorte seleccionado anteriormente. Ejemplo: Usuarios que usaron el evento *Read Product Review* (Leer reseña del producto) (actividad de cohorte) y volvieron a usar *Purchase Product* (Comprar producto) (actividad de retención). |\n| Filtros de cohorte/retención  | Un fragmento de consulta de análisis para filtrar aún más la actividad de cohorte. Ejemplo: *&#124; where application_Version = '1.0'* |\n"
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -132,7 +132,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"related-workbook-templates\"></a><span data-ttu-id=\"e78ca-131\">Plantillas de libro relacionadas</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-131\">Related Workbook Templates</span></span>\n* <span data-ttu-id=\"e78ca-132\">Retención: durante un intervalo</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-132\">Retention - Bracket</span></span>\n* <span data-ttu-id=\"e78ca-133\">Retención: no vinculada</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-133\">Retention - Unbounded</span></span>\n* <span data-ttu-id=\"e78ca-134\">Análisis de cohortes</span><span class=\"sxs-lookup\"><span data-stu-id=\"e78ca-134\">Cohort Analysis</span></span>"
+                "json": "## <a name=\"related-workbook-templates\"></a>Plantillas de libro relacionadas\n* Retención: durante un intervalo\n* Retención: no vinculada\n* Análisis de cohortes"
             },
             "conditionalVisibility": null,
             "halfWidth": false

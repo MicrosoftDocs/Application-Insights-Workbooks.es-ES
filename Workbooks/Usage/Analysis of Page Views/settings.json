@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"6fcaa-101\">Análisis de las vistas de página</span><span class=\"sxs-lookup\"><span data-stu-id=\"6fcaa-101\">Analysis of Page Views</span></span>",
+    "name": "Análisis de las vistas de página",
     "author": "Microsoft",
     "galleries": [
         {

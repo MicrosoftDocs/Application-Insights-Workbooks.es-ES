@@ -4,7 +4,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"75aab-101\">💡 Deberá instalar el [agente MMA](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/agent-windows) en la máquina Windows para poder ver _reinicios de máquinas virtuales inesperados_ o _bloqueos de máquinas virtuales_ desde la tabla `Events`.</span><span class=\"sxs-lookup\"><span data-stu-id=\"75aab-101\">💡 You will need to install [MMA Agent](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/agent-windows) on your Windows machine in order to view _Unexpected VM Reboots_ or _VM Crashes_ from the `Events` table</span></span>"
+                "json": "💡 Deberá instalar el [agente MMA](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/agent-windows) en la máquina Windows para poder ver _reinicios de máquinas virtuales inesperados_ o _bloqueos de máquinas virtuales_ desde la tabla `Events`."
             },
             "conditionalVisibility": null
         },
@@ -162,7 +162,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"unexpected-vm-reboots\"></a><span data-ttu-id=\"75aab-102\">Reinicios de máquinas virtuales inesperados</span><span class=\"sxs-lookup\"><span data-stu-id=\"75aab-102\">Unexpected VM Reboots</span></span>"
+                "json": "## <a name=\"unexpected-vm-reboots\"></a>Reinicios de máquinas virtuales inesperados"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -170,7 +170,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"vm-crashes\"></a><span data-ttu-id=\"75aab-103\">Bloqueos de máquinas virtuales</span><span class=\"sxs-lookup\"><span data-stu-id=\"75aab-103\">VM Crashes</span></span>"
+                "json": "## <a name=\"vm-crashes\"></a>Bloqueos de máquinas virtuales"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -264,7 +264,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"outbound-connection-failures\"></a><span data-ttu-id=\"75aab-104\">Errores de conexión de salida</span><span class=\"sxs-lookup\"><span data-stu-id=\"75aab-104\">Outbound Connection Failures</span></span> "
+                "json": "## <a name=\"outbound-connection-failures\"></a>Errores de conexión de salida "
             },
             "conditionalVisibility": null
         },
@@ -340,7 +340,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"vpn-tunnel-stats\"></a><span data-ttu-id=\"75aab-105\">Estadísticas de túnel VPN</span><span class=\"sxs-lookup\"><span data-stu-id=\"75aab-105\">VPN Tunnel Stats</span></span>"
+                "json": "## <a name=\"vpn-tunnel-stats\"></a>Estadísticas de túnel VPN"
             },
             "conditionalVisibility": null
         },
@@ -389,7 +389,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"successful-activities\"></a><span data-ttu-id=\"75aab-106\">Actividades correctas</span><span class=\"sxs-lookup\"><span data-stu-id=\"75aab-106\">Successful Activities</span></span>"
+                "json": "## <a name=\"successful-activities\"></a>Actividades correctas"
             },
             "conditionalVisibility": null,
             "customWidth": "33"
@@ -397,7 +397,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"failed-activities\"></a><span data-ttu-id=\"75aab-107\">Actividades erróneas</span><span class=\"sxs-lookup\"><span data-stu-id=\"75aab-107\">Failed Activities</span></span>"
+                "json": "## <a name=\"failed-activities\"></a>Actividades erróneas"
             },
             "conditionalVisibility": null,
             "customWidth": "33"
@@ -405,7 +405,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"remaining-activities\"></a><span data-ttu-id=\"75aab-108\">Actividades restantes</span><span class=\"sxs-lookup\"><span data-stu-id=\"75aab-108\">Remaining Activities</span></span>"
+                "json": "## <a name=\"remaining-activities\"></a>Actividades restantes"
             },
             "conditionalVisibility": null,
             "customWidth": "33"

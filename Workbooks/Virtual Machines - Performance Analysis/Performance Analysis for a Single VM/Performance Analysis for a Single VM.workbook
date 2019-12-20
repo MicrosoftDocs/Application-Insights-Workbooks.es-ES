@@ -5,7 +5,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"performance-analysis\"></a><span data-ttu-id=\"1a74d-101\">Análisis de rendimiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a74d-101\">Performance Analysis</span></span>"
+                "json": "# <a name=\"performance-analysis\"></a>Análisis de rendimiento"
             },
             "conditionalVisibility": null
         },
@@ -162,7 +162,7 @@
         {
             "type": 1,
             "content": {
-                "json": "---\n## <a name=\"trend\"></a><span data-ttu-id=\"1a74d-102\">Tendencia</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a74d-102\">Trend</span></span>\n<span data-ttu-id=\"1a74d-103\">💡 En el gráfico de abajo se ha seleccionado un contador predeterminado (`Counter`); seleccione la lista desplegable para elegir otro contador.</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a74d-103\">💡 In the graph below a default counter (`Counter`) has been selected, select the dropdown to choose a different counter.</span></span>"
+                "json": "---\n## <a name=\"trend\"></a>Tendencia\n💡 En el gráfico de abajo se ha seleccionado un contador predeterminado (`Counter`); seleccione la lista desplegable para elegir otro contador."
             },
             "conditionalVisibility": null
         },
@@ -180,7 +180,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "Counter",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"1a74d-104\">Seleccione un contador de rendimiento de la máquina virtual para que se muestre en el siguiente gráfico.</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a74d-104\">Select a virtual machine performance counter to display in the chart below</span></span>",
+                        "description": "Seleccione un contador de rendimiento de la máquina virtual para que se muestre en el siguiente gráfico.",
                         "isRequired": true,
                         "query": "// {Computer:label}\r\nPerf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
                         "crossComponentResources": [
@@ -221,7 +221,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "Aggregates",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"1a74d-105\">Seleccione uno o más agregados para que el contador de rendimiento se muestre en la siguiente tabla.</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a74d-105\">Select one or more aggregates for the performance counter to display in the chart below</span></span>",
+                        "description": "Seleccione uno o más agregados para que el contador de rendimiento se muestre en la siguiente tabla.",
                         "isRequired": true,
                         "multiSelect": true,
                         "quote": "",
@@ -262,14 +262,14 @@
         {
             "type": 1,
             "content": {
-                "json": "---\n## <a name=\"performance-charts\"></a><span data-ttu-id=\"1a74d-106\">Gráficos de rendimiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a74d-106\">Performance Charts</span></span>\n<span data-ttu-id=\"1a74d-107\">💡 *Personalice o agregue sus propios gráficos en modo edición o mediante el editor avanzado*.</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a74d-107\">💡 *Customize or add your own charts below in edit mode or by using the advanced editor*</span></span>"
+                "json": "---\n## <a name=\"performance-charts\"></a>Gráficos de rendimiento\n💡 *Personalice o agregue sus propios gráficos en modo edición o mediante el editor avanzado*."
             },
             "conditionalVisibility": null
         },
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"cpu-utilization-\"></a><span data-ttu-id=\"1a74d-108\">% de uso de CPU</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a74d-108\">CPU Utilization %</span></span>"
+                "json": "### <a name=\"cpu-utilization-\"></a>% de uso de CPU"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -277,7 +277,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"available-memory-mb\"></a><span data-ttu-id=\"1a74d-109\">MB de memoria disponible</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a74d-109\">Available Memory MB</span></span>"
+                "json": "### <a name=\"available-memory-mb\"></a>MB de memoria disponible"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -409,7 +409,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"logical-disk-iops\"></a><span data-ttu-id=\"1a74d-110\">IOPS del disco lógico</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a74d-110\">Logical Disk IOPS</span></span>"
+                "json": "### <a name=\"logical-disk-iops\"></a>IOPS del disco lógico"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -417,7 +417,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"logical-disk-mbs\"></a><span data-ttu-id=\"1a74d-111\">MB/s del disco lógico</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a74d-111\">Logical Disk MB/s</span></span>"
+                "json": "### <a name=\"logical-disk-mbs\"></a>MB/s del disco lógico"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -549,7 +549,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"max-logical-disk-used-\"></a><span data-ttu-id=\"1a74d-112\">Porcentaje máximo usado de disco lógico</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a74d-112\">Max Logical Disk Used %</span></span>"
+                "json": "### <a name=\"max-logical-disk-used-\"></a>Porcentaje máximo usado de disco lógico"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -557,7 +557,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"bytes-sent-rate-bs\"></a><span data-ttu-id=\"1a74d-113\">Velocidad en B/s de bytes enviados</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a74d-113\">Bytes Sent Rate B/s</span></span>"
+                "json": "### <a name=\"bytes-sent-rate-bs\"></a>Velocidad en B/s de bytes enviados"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -661,7 +661,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"bytes-received-rate-bs\"></a><span data-ttu-id=\"1a74d-114\">Velocidad en B/s de bytes recibidos</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a74d-114\">Bytes Received Rate B/s</span></span>"
+                "json": "### <a name=\"bytes-received-rate-bs\"></a>Velocidad en B/s de bytes recibidos"
             },
             "conditionalVisibility": null,
             "customWidth": "50"

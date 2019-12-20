@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"5e83b-101\">Conclusiones de directiva única (versión preliminar)</span><span class=\"sxs-lookup\"><span data-stu-id=\"5e83b-101\">Single Policy Insights (Preview)</span></span>",
+    "name": "Conclusiones de directiva única (versión preliminar)",
     "author": "Microsoft",
     "isPreview": true,
     "galleries": [

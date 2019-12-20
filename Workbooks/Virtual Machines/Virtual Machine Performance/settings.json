@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"01c8f-101\">Rendimiento de la máquina virtual</span><span class=\"sxs-lookup\"><span data-stu-id=\"01c8f-101\">Virtual Machine Performance</span></span>",
+    "name": "Rendimiento de la máquina virtual",
     "author": "Microsoft",
     "galleries": []
 }

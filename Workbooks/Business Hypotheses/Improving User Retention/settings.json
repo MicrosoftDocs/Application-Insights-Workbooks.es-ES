@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"8d669-101\">Mejora de la retención de usuarios</span><span class=\"sxs-lookup\"><span data-stu-id=\"8d669-101\">Improving User Retention</span></span>",
+    "name": "Mejora de la retención de usuarios",
     "author": "Microsoft",
     "order": 100,
     "galleries": [

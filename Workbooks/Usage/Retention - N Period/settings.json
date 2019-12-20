@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"44844-101\">Retención a N períodos</span><span class=\"sxs-lookup\"><span data-stu-id=\"44844-101\">N-Period Retention</span></span>",
+    "name": "Retención a N períodos",
     "author": "Microsoft",
     "galleries": []
 }

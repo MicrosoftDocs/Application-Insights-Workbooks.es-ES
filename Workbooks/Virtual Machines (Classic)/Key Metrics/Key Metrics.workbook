@@ -6,7 +6,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"virtual-machines-classic-metrics\"></a><span data-ttu-id=\"58f28-101\">Métricas de máquinas virtuales (clásico)</span><span class=\"sxs-lookup\"><span data-stu-id=\"58f28-101\">Virtual Machines (Classic) Metrics</span></span>"
+                "json": "# <a name=\"virtual-machines-classic-metrics\"></a>Métricas de máquinas virtuales (clásico)"
             },
             "conditionalVisibility": null
         },
@@ -152,7 +152,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"percentage-cpu\"></a><span data-ttu-id=\"58f28-102\">Porcentaje de CPU</span><span class=\"sxs-lookup\"><span data-stu-id=\"58f28-102\">Percentage CPU</span></span>"
+                "json": "### <a name=\"percentage-cpu\"></a>Porcentaje de CPU"
             },
             "conditionalVisibility": null
         },
@@ -189,7 +189,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"58f28-103\">*Porcentaje de CPU* es el porcentaje de unidades de proceso asignadas que las máquinas virtuales usan actualmente.</span><span class=\"sxs-lookup\"><span data-stu-id=\"58f28-103\">*Percentage CPU* is the percentage of allocated compute units that are currently in use by the Virtual Machine(s).</span></span>"
+                "json": "*Porcentaje de CPU* es el porcentaje de unidades de proceso asignadas que las máquinas virtuales usan actualmente."
             },
             "conditionalVisibility": null
         },
@@ -203,7 +203,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"disk-reads\"></a><span data-ttu-id=\"58f28-104\">Lecturas de disco</span><span class=\"sxs-lookup\"><span data-stu-id=\"58f28-104\">Disk Reads</span></span>"
+                "json": "### <a name=\"disk-reads\"></a>Lecturas de disco"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -211,7 +211,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"disk-writes\"></a><span data-ttu-id=\"58f28-105\">Escrituras de disco</span><span class=\"sxs-lookup\"><span data-stu-id=\"58f28-105\">Disk Writes</span></span>"
+                "json": "### <a name=\"disk-writes\"></a>Escrituras de disco"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -281,7 +281,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"58f28-106\">*Lecturas de disco* es el promedio de bytes que se leen en el disco durante el período de supervisión.</span><span class=\"sxs-lookup\"><span data-stu-id=\"58f28-106\">*Disk reads* is the average bytes read from disk during monitoring period.</span></span>"
+                "json": "*Lecturas de disco* es el promedio de bytes que se leen en el disco durante el período de supervisión."
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -289,7 +289,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"58f28-107\">*Escrituras de disco* es el promedio de bytes que se escriben en el disco durante el período de supervisión.</span><span class=\"sxs-lookup\"><span data-stu-id=\"58f28-107\">*Disk writes* is the average bytes written to disk during monitoring period.</span></span>"
+                "json": "*Escrituras de disco* es el promedio de bytes que se escriben en el disco durante el período de supervisión."
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -304,7 +304,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"network-in\"></a><span data-ttu-id=\"58f28-108\">Red interna</span><span class=\"sxs-lookup\"><span data-stu-id=\"58f28-108\">Network In</span></span>"
+                "json": "### <a name=\"network-in\"></a>Red interna"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -312,7 +312,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"network-out\"></a><span data-ttu-id=\"58f28-109\">Red interna</span><span class=\"sxs-lookup\"><span data-stu-id=\"58f28-109\">Network Out</span></span>"
+                "json": "### <a name=\"network-out\"></a>Red interna"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -382,7 +382,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"58f28-110\">*Entrada de red* es el número de bytes recibidos por las máquinas virtuales en todas las interfaces de red (tráfico entrante).</span><span class=\"sxs-lookup\"><span data-stu-id=\"58f28-110\">*Network In*  is the number of bytes received on all network interfaces by the Virtual Machine(s) (Incoming Traffic).</span></span>"
+                "json": "*Entrada de red* es el número de bytes recibidos por las máquinas virtuales en todas las interfaces de red (tráfico entrante)."
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -390,7 +390,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"58f28-111\">*Salida de red* es el número de bytes enviados por las máquinas virtuales en todas las interfaces de red (tráfico saliente).</span><span class=\"sxs-lookup\"><span data-stu-id=\"58f28-111\">*Network out* is the number of bytes out on all network interfaces by the Virtual Machine(s) (Outgoing Traffic).</span></span>"
+                "json": "*Salida de red* es el número de bytes enviados por las máquinas virtuales en todas las interfaces de red (tráfico saliente)."
             },
             "conditionalVisibility": null,
             "customWidth": "50"

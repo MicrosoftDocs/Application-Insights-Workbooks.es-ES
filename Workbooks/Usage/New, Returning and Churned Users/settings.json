@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"744bd-101\">Usuarios nuevos, que vuelven y que han abandonado</span><span class=\"sxs-lookup\"><span data-stu-id=\"744bd-101\">New, Returning and Churned Users</span></span>",
+    "name": "Usuarios nuevos, que vuelven y que han abandonado",
     "author": "Microsoft",
     "galleries": [
         {

@@ -5,14 +5,14 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"intune-compliance-activity\"></a><span data-ttu-id=\"47f4a-101\">Actividad de cumplimiento de Intune</span><span class=\"sxs-lookup\"><span data-stu-id=\"47f4a-101\">Intune Compliance Activity</span></span>"
+                "json": "# <a name=\"intune-compliance-activity\"></a>Actividad de cumplimiento de Intune"
             },
             "conditionalVisibility": null
         },
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"parameters\"></a><span data-ttu-id=\"47f4a-102\">Parámetros</span><span class=\"sxs-lookup\"><span data-stu-id=\"47f4a-102\">Parameters</span></span>"
+                "json": "## <a name=\"parameters\"></a>Parámetros"
             },
             "conditionalVisibility": null
         },
@@ -137,7 +137,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"devices-not-in-compliance-trend\"></a><span data-ttu-id=\"47f4a-103\">Tendencia de dispositivos no en cumplimiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"47f4a-103\">Devices not in compliance Trend</span></span>"
+                "json": "## <a name=\"devices-not-in-compliance-trend\"></a>Tendencia de dispositivos no en cumplimiento"
             },
             "conditionalVisibility": null
         },
@@ -168,7 +168,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"compliance-failures-by-failure-reason\"></a><span data-ttu-id=\"47f4a-104\">Errores de cumplimiento por motivo de error</span><span class=\"sxs-lookup\"><span data-stu-id=\"47f4a-104\">Compliance Failures by Failure Reason</span></span>"
+                "json": "## <a name=\"compliance-failures-by-failure-reason\"></a>Errores de cumplimiento por motivo de error"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -176,7 +176,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"compliance-failures-by-operating-system\"></a><span data-ttu-id=\"47f4a-105\">Errores de cumplimiento por sistema operativo</span><span class=\"sxs-lookup\"><span data-stu-id=\"47f4a-105\">Compliance Failures by Operating System</span></span>"
+                "json": "## <a name=\"compliance-failures-by-operating-system\"></a>Errores de cumplimiento por sistema operativo"
             },
             "conditionalVisibility": null,
             "customWidth": "50"

@@ -4,7 +4,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"hdinsight-kafka-insights\"></a><span data-ttu-id=\"1a3e1-101\">Información de HDInsight Kafka</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a3e1-101\">HDInsight Kafka Insights</span></span>"
+                "json": "# <a name=\"hdinsight-kafka-insights\"></a>Información de HDInsight Kafka"
             },
             "name": "text - 1"
         },
@@ -257,7 +257,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"metricskafkacl-table-not-found\"></a><span data-ttu-id=\"1a3e1-102\">No se encontró la tabla metrics_kafka_CL</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a3e1-102\">metrics_kafka_CL table not found</span></span>\n<span data-ttu-id=\"1a3e1-103\">Asegúrese de que tiene al menos un clúster de HDInsight Kafka con la integración de registros de Azure Monitor habilitada y vinculada a esta área de trabajo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a3e1-103\">Ensure you have at least 1 HDInsight Kafka cluster with Azure Monitor Logs integration enabled and linked to this workspace.</span></span> <span data-ttu-id=\"1a3e1-104\">Consulte la documentación <a href=\"https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-oms-log-analytics-tutorial\">Uso de los registros de Azure Monitor para supervisar clústeres de HDInsight</a>.</span><span class=\"sxs-lookup\"><span data-stu-id=\"1a3e1-104\">See the documentation<a href=\"https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-oms-log-analytics-tutorial\">, Use Azure Monitor logs to monitor HDInsight clusters</a>.</span></span>"
+                "json": "## <a name=\"metrics_kafka_cl-table-not-found\"></a>No se encontró la tabla metrics_kafka_CL\nAsegúrese de que tiene al menos un clúster de HDInsight Kafka con la integración de registros de Azure Monitor habilitada y vinculada a esta área de trabajo. Consulte la documentación <a href=\"https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-oms-log-analytics-tutorial\">Uso de los registros de Azure Monitor para supervisar clústeres de HDInsight</a>."
             },
             "conditionalVisibility": {
                 "parameterName": "KafkaMetricsTableExists",

@@ -6,7 +6,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"troubleshooting-request-failures\"></a><span data-ttu-id=\"a36ac-101\">Solución de problemas de solicitud</span><span class=\"sxs-lookup\"><span data-stu-id=\"a36ac-101\">Troubleshooting Request Failures</span></span>\n<span data-ttu-id=\"a36ac-102\">Esta guía de solución de problemas le ayuda a identificar errores en las solicitudes web de su aplicación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"a36ac-102\">This troubleshooting guide helps you identify failures in your application's web requests.</span></span> "
+                "json": "# <a name=\"troubleshooting-request-failures\"></a>Solución de problemas de solicitud\nEsta guía de solución de problemas le ayuda a identificar errores en las solicitudes web de su aplicación. "
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -183,7 +183,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"a36ac-103\">Establezca los parámetros anteriores para optimizar el conjunto de análisis.</span><span class=\"sxs-lookup\"><span data-stu-id=\"a36ac-103\">Set the parameters above to tune your analysis set.</span></span> <span data-ttu-id=\"a36ac-104\">Use el parámetro `Show` anterior para ver solo los errores nuevos o existentes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"a36ac-104\">Use the `Show` parameter above to see only existing or new failures.</span></span> <span data-ttu-id=\"a36ac-105\">La comparación del parámetro `UseComparisionTimeRange` establece el intervalo de tiempo en el que se buscarán los errores existentes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"a36ac-105\">The comparision `UseComparisionTimeRange` parameter sets the window of time to look for existing failures.</span></span> <span data-ttu-id=\"a36ac-106\">Los parámetros `Requests` y `ResultCodes` permiten reducir a un conjunto más pequeño de problemas.</span><span class=\"sxs-lookup\"><span data-stu-id=\"a36ac-106\">`Requests` and `ResultCodes` parameters allow you to filter down to a smaller set of issues.</span></span>"
+                "json": "Establezca los parámetros anteriores para optimizar el conjunto de análisis. Use el parámetro `Show` anterior para ver solo los errores nuevos o existentes. La comparación del parámetro `UseComparisionTimeRange` establece el intervalo de tiempo en el que se buscarán los errores existentes. Los parámetros `Requests` y `ResultCodes` permiten reducir a un conjunto más pequeño de problemas."
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -191,7 +191,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"failure-trend\"></a><span data-ttu-id=\"a36ac-107\">Tendencia de los errores</span><span class=\"sxs-lookup\"><span data-stu-id=\"a36ac-107\">Failure Trend</span></span>\n<span data-ttu-id=\"a36ac-108\">El siguiente gráfico muestra la tendencia de los errores de solicitudes en el intervalo de tiempo seleccionado.</span><span class=\"sxs-lookup\"><span data-stu-id=\"a36ac-108\">The chart below shows the trend of request failures over your chosen time range.</span></span> <span data-ttu-id=\"a36ac-109\">Se divide por errores nuevos y existentes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"a36ac-109\">It is split by new and existing failures.</span></span> "
+                "json": "## <a name=\"failure-trend\"></a>Tendencia de los errores\nEl siguiente gráfico muestra la tendencia de los errores de solicitudes en el intervalo de tiempo seleccionado. Se divide por errores nuevos y existentes. "
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -215,7 +215,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"failure-details\"></a><span data-ttu-id=\"a36ac-110\">Detalles de los errores</span><span class=\"sxs-lookup\"><span data-stu-id=\"a36ac-110\">Failure Details</span></span>"
+                "json": "## <a name=\"failure-details\"></a>Detalles de los errores"
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -223,7 +223,7 @@
         {
             "type": 1,
             "content": {
-                "json": "\n<span data-ttu-id=\"a36ac-111\">🔸 Nuevo error 🔹 Error existente</span><span class=\"sxs-lookup\"><span data-stu-id=\"a36ac-111\">🔸 New Failure 🔹 Existing Failure</span></span>"
+                "json": "\n🔸 Nuevo error 🔹 Error existente"
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -278,7 +278,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"mitigation\"></a><span data-ttu-id=\"a36ac-112\">Mitigación</span><span class=\"sxs-lookup\"><span data-stu-id=\"a36ac-112\">Mitigation</span></span>\n<span data-ttu-id=\"a36ac-113\">Utilice esta sección para enumerar los pasos de recuperación para los problemas conocidos.</span><span class=\"sxs-lookup\"><span data-stu-id=\"a36ac-113\">Use this section to list out the recovery steps for known issues.</span></span> <span data-ttu-id=\"a36ac-114\">Esto permite compartir información con los investigadores de futuros problemas.</span><span class=\"sxs-lookup\"><span data-stu-id=\"a36ac-114\">This allows sharing of information with future issue investigators.</span></span> "
+                "json": "## <a name=\"mitigation\"></a>Mitigación\nUtilice esta sección para enumerar los pasos de recuperación para los problemas conocidos. Esto permite compartir información con los investigadores de futuros problemas. "
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -286,7 +286,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"customizing-your-troubleshooting-guide\"></a><span data-ttu-id=\"a36ac-115\">Personalización de la guía de solución de problemas</span><span class=\"sxs-lookup\"><span data-stu-id=\"a36ac-115\">Customizing your Troubleshooting Guide</span></span>\n```\n1. Start editing this TSG by clicking on the 'Edit' button on the toolbar on top. \n2. Use the edit buttons on bottom-right of markdown control to update it's contents. \n3. Update the parameters to tune your analysis set.\n4. You can also update the underlying query or grid properties to personalize the analysis/view.\n5. If you want to have two sections for different performance counters, use the clone button at the bottom toolbar of a control. Use the ↑ or ↓ buttons to move the controls up or down.\n```\n"
+                "json": "## <a name=\"customizing-your-troubleshooting-guide\"></a>Personalización de la guía de solución de problemas\n```\n1. Start editing this TSG by clicking on the 'Edit' button on the toolbar on top. \n2. Use the edit buttons on bottom-right of markdown control to update it's contents. \n3. Update the parameters to tune your analysis set.\n4. You can also update the underlying query or grid properties to personalize the analysis/view.\n5. If you want to have two sections for different performance counters, use the clone button at the bottom toolbar of a control. Use the ↑ or ↓ buttons to move the controls up or down.\n```\n"
             },
             "conditionalVisibility": null,
             "halfWidth": false

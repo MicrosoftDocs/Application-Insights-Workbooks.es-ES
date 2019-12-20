@@ -164,7 +164,7 @@
         {
             "type": 1,
             "content": {
-                "json": "{Message} _Máquinas virtuales_"
+                "json": "{Message}\n_Máquinas virtuales_"
             },
             "name": "text - 5",
             "styleSettings": {
