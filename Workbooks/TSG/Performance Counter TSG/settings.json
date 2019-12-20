@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"b43bf-101\">Contadores de rendimiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"b43bf-101\">Performance Counters</span></span>",
+    "name": "Contadores de rendimiento",
     "author": "Microsoft",
     "galleries": [
         {

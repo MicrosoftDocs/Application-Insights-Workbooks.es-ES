@@ -4,14 +4,14 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"apdex\"></a><span data-ttu-id=\"b3f27-101\">Apdex</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-101\">Apdex</span></span>\n\n<span data-ttu-id=\"b3f27-102\">[Apdex (Índice de rendimiento de aplicaciones)](http://apdex.org/overview.html) es un método estándar abierto para medir el rendimiento de las aplicaciones.</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-102\">[Apdex (Application Performance Index)](http://apdex.org/overview.html) is an open standard method for measuring application performance.</span></span> <span data-ttu-id=\"b3f27-103\">Contextualiza el rendimiento de la aplicación en términos de la calidad de la experiencia que proporciona a los usuarios.</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-103\">It contextualizes your application's performance in terms of the quality of experience you provide to your users.</span></span>\n\n<span data-ttu-id=\"b3f27-104\">Apdex clasifica el rendimiento en tres zonas basadas en un umbral de rendimiento de línea de base T que se define para la aplicación:</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-104\">Apdex classifies performance into three zones based on a baseline performance threshold T you define for your app:</span></span>\n\n<span data-ttu-id=\"b3f27-105\">| Zona | Tiempo de respuesta mínimo | Tiempo de respuesta máximo || --- |: --- |: --- |: --- | | Satisfecho | 0 segundos | Segundos T || Tolerancia | Segundos T | Segundos 4T || Frustrado | Segundos 4T | - |</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-105\">| Zone | Minimum Response Time | Maximum Response Time | | --- |: --- |: --- |: --- | | Satisfied | 0 seconds | T seconds | | Tolerating | T seconds | 4T seconds | | Frustrated | 4T seconds | - |</span></span>\n"
+                "json": "## <a name=\"apdex\"></a>Apdex\n\n[Apdex (Índice de rendimiento de aplicaciones)](http://apdex.org/overview.html) es un método estándar abierto para medir el rendimiento de las aplicaciones. Contextualiza el rendimiento de la aplicación en términos de la calidad de la experiencia que proporciona a los usuarios.\n\nApdex clasifica el rendimiento en tres zonas basadas en un umbral de rendimiento de línea de base T que se define para la aplicación:\n\n| Zona | Tiempo de respuesta mínimo | Tiempo de respuesta máximo || --- |: --- |: --- |: --- | | Satisfecho | 0 segundos | Segundos T || Tolerancia | Segundos T | Segundos 4T || Frustrado | Segundos 4T | - |\n"
             },
             "conditionalVisibility": null
         },
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"apdex-parameters\"></a><span data-ttu-id=\"b3f27-106\">Parámetros de Apdex</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-106\">Apdex Parameters</span></span>"
+                "json": "### <a name=\"apdex-parameters\"></a>Parámetros de Apdex"
             },
             "conditionalVisibility": null
         },
@@ -39,7 +39,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "Operations",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"b3f27-107\">Lista separada por comas de elementos que se van a incluir en los cálculos de Apdex.</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-107\">Comma seperated list of items to include in Apdex calculations.</span></span> <span data-ttu-id=\"b3f27-108\">ejemplo: 'RequestA', 'RequestB', 'PageViewC'.</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-108\">example: 'RequestA', 'RequestB', 'PageViewC'.</span></span> <span data-ttu-id=\"b3f27-109\">Utilice '\\*' para incluir todo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-109\">Use '\\*' to include all</span></span>",
+                        "description": "Lista separada por comas de elementos que se van a incluir en los cálculos de Apdex. ejemplo: 'RequestA', 'RequestB', 'PageViewC'. Utilice '*' para incluir todo.",
                         "isRequired": true,
                         "multiSelect": true,
                         "quote": "'",
@@ -108,7 +108,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "ApdexThresholdInMilliseconds",
                         "type": 1,
-                        "description": "<span data-ttu-id=\"b3f27-110\">El umbral para usar en los cálculos de Apdex.</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-110\">The threshold to use in Apdex calculations.</span></span> <span data-ttu-id=\"b3f27-111\">Es el valor predeterminado de la duración media de las operaciones para las actividades seleccionadas.</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-111\">It defaults to the average operation duration for the select activities.</span></span>",
+                        "description": "El umbral para usar en los cálculos de Apdex. Es el valor predeterminado de la duración media de las operaciones para las actividades seleccionadas.",
                         "isRequired": true,
                         "query": "{Type}\n| where timestamp {TimeRange}\n| where name in ({Operations}) or '*' in ({Operations})\n| summarize SumOfDuration =  sum(duration), CountOfDuration = count()\n| project AverageDuration = round(iff(CountOfDuration == 0, 0.0, 1.0 * SumOfDuration / CountOfDuration))\n",
                         "isHiddenWhenLocked": false,
@@ -137,7 +137,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"b3f27-112\">`ApdexThresholdInMilliseconds` es el valor predeterminado de la duración media de las operaciones seleccionadas.</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-112\">`ApdexThresholdInMilliseconds` defaults to the average duration for the selected operations.</span></span> <span data-ttu-id=\"b3f27-113\">Establézcalo en un umbral que tenga sentido para la aplicación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-113\">Set this to a threshold that makes sense for your app.</span></span>\n\n### <a name=\"drill-in-parameters\"></a><span data-ttu-id=\"b3f27-114\">Parámetros de obtención de detalles</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-114\">Drill-in parameters</span></span>"
+                "json": "`ApdexThresholdInMilliseconds` es el valor predeterminado de la duración media de las operaciones seleccionadas. Establézcalo en un umbral que tenga sentido para la aplicación.\n\n### <a name=\"drill-in-parameters\"></a>Parámetros de obtención de detalles"
             },
             "conditionalVisibility": null
         },
@@ -333,7 +333,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"daily-apdex-score\"></a><span data-ttu-id=\"b3f27-115\">Puntuación de Apdex diaria</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-115\">Daily Apdex Score</span></span>\n<span data-ttu-id=\"b3f27-116\">Vea cómo cambia la puntuación de Apdex a lo largo del tiempo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-116\">See how your Apdex Score changes over time.</span></span>"
+                "json": "# <a name=\"daily-apdex-score\"></a>Puntuación de Apdex diaria\nVea cómo cambia la puntuación de Apdex a lo largo del tiempo."
             },
             "conditionalVisibility": null
         },
@@ -357,7 +357,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"daily-quality-trend\"></a><span data-ttu-id=\"b3f27-117\">Tendencia de calidad diaria</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-117\">Daily Quality Trend</span></span>\n<span data-ttu-id=\"b3f27-118\">Vea cómo la experiencia de rendimiento de los usuarios ha cambiado con el tiempo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"b3f27-118\">See your how the performance experience of your users have changed over time.</span></span>"
+                "json": "# <a name=\"daily-quality-trend\"></a>Tendencia de calidad diaria\nVea cómo la experiencia de rendimiento de los usuarios ha cambiado con el tiempo."
             },
             "conditionalVisibility": null
         },

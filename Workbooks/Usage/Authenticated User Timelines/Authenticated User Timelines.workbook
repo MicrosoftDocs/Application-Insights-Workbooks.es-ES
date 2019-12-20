@@ -125,7 +125,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"sample-users\"></a><span data-ttu-id=\"20b1c-101\">Usuarios de ejemplo</span><span class=\"sxs-lookup\"><span data-stu-id=\"20b1c-101\">Sample Users</span></span>"
+                "json": "## <a name=\"sample-users\"></a>Usuarios de ejemplo"
             },
             "conditionalVisibility": null
         },
@@ -175,14 +175,14 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"20b1c-102\">💡 *Seleccione una fila del usuario para ver todas las sesiones de dicho usuario.*</span><span class=\"sxs-lookup\"><span data-stu-id=\"20b1c-102\">💡  *Select a user row to see all sessions for the user.*</span></span>"
+                "json": "💡 *Seleccione una fila del usuario para ver todas las sesiones de dicho usuario.*"
             },
             "conditionalVisibility": null
         },
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"their-sessions\"></a><span data-ttu-id=\"20b1c-103\">Sus sesiones</span><span class=\"sxs-lookup\"><span data-stu-id=\"20b1c-103\">Their Sessions</span></span>"
+                "json": "## <a name=\"their-sessions\"></a>Sus sesiones"
             },
             "conditionalVisibility": null
         },
@@ -224,7 +224,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"20b1c-104\">💡 *Haga clic en los detalles de la sesión para ver la escala de tiempo de la sesión.*</span><span class=\"sxs-lookup\"><span data-stu-id=\"20b1c-104\">💡  *Click on Session Details to see the session timeline.*</span></span>"
+                "json": "💡 *Haga clic en los detalles de la sesión para ver la escala de tiempo de la sesión.*"
             },
             "conditionalVisibility": null
         }

@@ -4,7 +4,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"application-failure-analysis\"></a><span data-ttu-id=\"dcc2d-101\">Análisis de los errores de la aplicación</span><span class=\"sxs-lookup\"><span data-stu-id=\"dcc2d-101\">Application Failure Analysis</span></span>"
+                "json": "## <a name=\"application-failure-analysis\"></a>Análisis de los errores de la aplicación"
             },
             "conditionalVisibility": null
         },
@@ -38,18 +38,14 @@
                         "name": "Subscription",
                         "type": 6,
                         "isRequired": true,
-                        "multiSelect": true,
-                        "quote": "'",
-                        "delimiter": ",",
+                        "multiSelect": false,
                         "query": "summarize by subscriptionId\r\n| project value = strcat(\"/subscriptions/\", subscriptionId), label = subscriptionId, selected = iff(subscriptionId =~ '{DefaultSubscription_Internal}', true, false)\r\n",
                         "crossComponentResources": [
                             "value::selected"
                         ],
                         "isHiddenWhenLocked": false,
                         "typeSettings": {
-                            "additionalResourceOptions": [
-                                "value::1"
-                            ]
+                            "additionalResourceOptions": []
                         },
                         "timeContextFromParameter": null,
                         "queryType": 1,
@@ -307,7 +303,8 @@
                             "formatter": 9,
                             "formatOptions": {
                                 "min": 0,
-                                "palette": "red",
+                                "max": 1,
+                                "palette": "greenRed",
                                 "showIcon": true
                             }
                         },
@@ -374,14 +371,14 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"dcc2d-102\">💡 _Seleccione una fila en la tabla anterior para ver más detalles._</span><span class=\"sxs-lookup\"><span data-stu-id=\"dcc2d-102\">💡 _Select a row in the table above to see more details_</span></span>\n<br />\n<br />\n"
+                "json": "💡 _Seleccione una fila en la tabla anterior para ver más detalles._\n<br />\n<br />\n"
             },
             "conditionalVisibility": null
         },
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"failed-requests\"></a><span data-ttu-id=\"dcc2d-103\">Solicitudes con error</span><span class=\"sxs-lookup\"><span data-stu-id=\"dcc2d-103\">Failed Requests</span></span>"
+                "json": "### <a name=\"failed-requests\"></a>Solicitudes con error"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -389,7 +386,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"all-requests\"></a><span data-ttu-id=\"dcc2d-104\">Todas las solicitudes</span><span class=\"sxs-lookup\"><span data-stu-id=\"dcc2d-104\">All Requests</span></span>"
+                "json": "### <a name=\"all-requests\"></a>Todas las solicitudes"
             },
             "conditionalVisibility": null,
             "customWidth": "50"
@@ -404,6 +401,7 @@
                 "aggregation": 0,
                 "showAnnotations": false,
                 "showAnalytics": false,
+                "color": "red",
                 "noDataMessage": "The Application Insights resource you selected has no data.",
                 "timeContext": {
                     "durationMs": 0

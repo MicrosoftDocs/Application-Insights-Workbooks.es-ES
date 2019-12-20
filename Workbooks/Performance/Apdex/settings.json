@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"69f01-101\">Índice de rendimiento de la aplicación (Apdex)</span><span class=\"sxs-lookup\"><span data-stu-id=\"69f01-101\">App Performance Index (Apdex)</span></span>",
+    "name": "Índice de rendimiento de la aplicación (Apdex)",
     "author": "Microsoft",
     "galleries": [
         {

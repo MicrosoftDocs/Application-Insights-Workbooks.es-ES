@@ -202,7 +202,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"port-activity-by-computer-process-ip-and-port\"></a><span data-ttu-id=\"345bc-101\">Actividad del puerto por equipo, proceso, dirección IP y puerto</span><span class=\"sxs-lookup\"><span data-stu-id=\"345bc-101\">Port activity by Computer, Process, IP and Port</span></span>"
+                "json": "## <a name=\"port-activity-by-computer-process-ip-and-port\"></a>Actividad del puerto por equipo, proceso, dirección IP y puerto"
             },
             "conditionalVisibility": null,
             "name": "text - 1"

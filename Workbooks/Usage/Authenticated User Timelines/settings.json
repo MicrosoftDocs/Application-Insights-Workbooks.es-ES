@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"50fde-101\">Escalas de tiempo de usuario autenticado</span><span class=\"sxs-lookup\"><span data-stu-id=\"50fde-101\">Authenticated User Timelines</span></span>",
+    "name": "Escalas de tiempo de usuario autenticado",
     "author": "Microsoft",
     "galleries": [
         {

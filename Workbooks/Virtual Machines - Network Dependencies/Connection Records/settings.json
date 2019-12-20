@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"e25ca-101\">Registros de conexiones (versión preliminar)</span><span class=\"sxs-lookup\"><span data-stu-id=\"e25ca-101\">Connections Records (preview)</span></span>",
+    "name": "Registros de conexiones (versión preliminar)",
     "author": "Microsoft",
     "isPreview": true,
     "galleries": [

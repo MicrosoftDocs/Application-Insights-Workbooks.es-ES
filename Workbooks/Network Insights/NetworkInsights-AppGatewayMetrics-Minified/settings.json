@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"92135-101\">Network Insights AppGateways Minified</span><span class=\"sxs-lookup\"><span data-stu-id=\"92135-101\">Network Insights AppGateways Minified</span></span>",
+    "name": "Network Insights AppGateways Minified",
     "author": "Microsoft",
     "galleries": [
         {

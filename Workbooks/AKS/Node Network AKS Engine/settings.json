@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"1dcd5-101\">Red del nodo</span><span class=\"sxs-lookup\"><span data-stu-id=\"1dcd5-101\">Node Network</span></span>",
+    "name": "Red del nodo",
     "author": "Microsoft",
     "galleries": [
         {

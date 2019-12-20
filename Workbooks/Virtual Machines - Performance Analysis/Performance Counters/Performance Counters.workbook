@@ -700,7 +700,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3 style=\"margin-bottom:0;\"><span data-ttu-id=\"a0530-101\">{CounterLabel1}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-101\">{CounterLabel1}</span></span></h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\"><span data-ttu-id=\"a0530-102\">{TrendAggregatorLabel1} {TrendAggregatorOrder1} {Unit:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-102\">{TrendAggregatorLabel1} {TrendAggregatorOrder1} {Unit:label}</span></span></h4>"
+                "json": "<h3 style=\"margin-bottom:0;\">{CounterLabel1}</h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\">{TrendAggregatorLabel1} {TrendAggregatorOrder1} {Unit:label}</h4>"
             },
             "customWidth": "25",
             "name": "text - 6"
@@ -708,7 +708,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3 style=\"margin-bottom:0;\"><span data-ttu-id=\"a0530-103\">{Counter2:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-103\">{Counter2:label}</span></span></h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\"><span data-ttu-id=\"a0530-104\">{TrendAggregator2:label} {TrendAggregatorOrder2} {Unit2:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-104\">{TrendAggregator2:label} {TrendAggregatorOrder2} {Unit2:label}</span></span></h4>"
+                "json": "<h3 style=\"margin-bottom:0;\">{Counter2:label}</h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\">{TrendAggregator2:label} {TrendAggregatorOrder2} {Unit2:label}</h4>"
             },
             "customWidth": "25",
             "name": "text - 7"
@@ -716,7 +716,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3 style=\"margin-bottom:0;\"><span data-ttu-id=\"a0530-105\">{Counter3:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-105\">{Counter3:label}</span></span></h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\"><span data-ttu-id=\"a0530-106\">{TrendAggregator3:label} {TrendAggregatorOrder3} {Unit3:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-106\">{TrendAggregator3:label} {TrendAggregatorOrder3} {Unit3:label}</span></span></h4>"
+                "json": "<h3 style=\"margin-bottom:0;\">{Counter3:label}</h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\">{TrendAggregator3:label} {TrendAggregatorOrder3} {Unit3:label}</h4>"
             },
             "customWidth": "25",
             "name": "text - 8"
@@ -724,7 +724,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3 style=\"margin-bottom:0;\"><span data-ttu-id=\"a0530-107\">{Counter4:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-107\">{Counter4:label}</span></span></h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\"><span data-ttu-id=\"a0530-108\">{TrendAggregator4:label} {TrendAggregatorOrder4} {Unit4:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-108\">{TrendAggregator4:label} {TrendAggregatorOrder4} {Unit4:label}</span></span></h4>"
+                "json": "<h3 style=\"margin-bottom:0;\">{Counter4:label}</h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\">{TrendAggregator4:label} {TrendAggregatorOrder4} {Unit4:label}</h4>"
             },
             "customWidth": "25",
             "name": "text - 9"
@@ -1276,7 +1276,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3 style=\"margin-bottom:0;\"><span data-ttu-id=\"a0530-109\">{Counter5:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-109\">{Counter5:label}</span></span></h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\"><span data-ttu-id=\"a0530-110\">{TrendAggregator5:label} {TrendAggregatorOrder5} {Unit5:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-110\">{TrendAggregator5:label} {TrendAggregatorOrder5} {Unit5:label}</span></span></h4>"
+                "json": "<h3 style=\"margin-bottom:0;\">{Counter5:label}</h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\">{TrendAggregator5:label} {TrendAggregatorOrder5} {Unit5:label}</h4>"
             },
             "customWidth": "25",
             "name": "text - 18"
@@ -1284,7 +1284,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3 style=\"margin-bottom:0;\"><span data-ttu-id=\"a0530-111\">{Counter6:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-111\">{Counter6:label}</span></span></h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\"><span data-ttu-id=\"a0530-112\">{TrendAggregator6:label} {TrendAggregatorOrder6} {Unit6:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-112\">{TrendAggregator6:label} {TrendAggregatorOrder6} {Unit6:label}</span></span></h4>"
+                "json": "<h3 style=\"margin-bottom:0;\">{Counter6:label}</h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\">{TrendAggregator6:label} {TrendAggregatorOrder6} {Unit6:label}</h4>"
             },
             "customWidth": "25",
             "name": "text - 19"
@@ -1292,7 +1292,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3 style=\"margin-bottom:0;\"><span data-ttu-id=\"a0530-113\">{Counter7:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-113\">{Counter7:label}</span></span></h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\"><span data-ttu-id=\"a0530-114\">{TrendAggregator7:label} {TrendAggregatorOrder7} {Unit7:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-114\">{TrendAggregator7:label} {TrendAggregatorOrder7} {Unit7:label}</span></span></h4>"
+                "json": "<h3 style=\"margin-bottom:0;\">{Counter7:label}</h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\">{TrendAggregator7:label} {TrendAggregatorOrder7} {Unit7:label}</h4>"
             },
             "customWidth": "25",
             "name": "text - 20"
@@ -1300,7 +1300,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3 style=\"margin-bottom:0;\"><span data-ttu-id=\"a0530-115\">{Counter8:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-115\">{Counter8:label}</span></span></h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\"><span data-ttu-id=\"a0530-116\">{TrendAggregator8:label} {TrendAggregatorOrder8} {Unit8:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-116\">{TrendAggregator8:label} {TrendAggregatorOrder8} {Unit8:label}</span></span></h4>"
+                "json": "<h3 style=\"margin-bottom:0;\">{Counter8:label}</h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\">{TrendAggregator8:label} {TrendAggregatorOrder8} {Unit8:label}</h4>"
             },
             "customWidth": "25",
             "name": "text - 21"
@@ -1852,7 +1852,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3 style=\"margin-bottom:0;\"><span data-ttu-id=\"a0530-117\">{Counter9:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-117\">{Counter9:label}</span></span></h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\"><span data-ttu-id=\"a0530-118\">{TrendAggregator9:label} {TrendAggregatorOrder9} {Unit9:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-118\">{TrendAggregator9:label} {TrendAggregatorOrder9} {Unit9:label}</span></span></h4>"
+                "json": "<h3 style=\"margin-bottom:0;\">{Counter9:label}</h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\">{TrendAggregator9:label} {TrendAggregatorOrder9} {Unit9:label}</h4>"
             },
             "customWidth": "25",
             "name": "text - 30"
@@ -1860,7 +1860,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3 style=\"margin-bottom:0;\"><span data-ttu-id=\"a0530-119\">{Counter10:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-119\">{Counter10:label}</span></span></h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\"><span data-ttu-id=\"a0530-120\">{TrendAggregator10:label} {TrendAggregatorOrder10} {Unit10:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-120\">{TrendAggregator10:label} {TrendAggregatorOrder10} {Unit10:label}</span></span></h4>"
+                "json": "<h3 style=\"margin-bottom:0;\">{Counter10:label}</h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\">{TrendAggregator10:label} {TrendAggregatorOrder10} {Unit10:label}</h4>"
             },
             "customWidth": "25",
             "name": "text - 31"
@@ -1868,7 +1868,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3 style=\"margin-bottom:0;\"><span data-ttu-id=\"a0530-121\">{Counter11:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-121\">{Counter11:label}</span></span></h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\"><span data-ttu-id=\"a0530-122\">{TrendAggregator11:label} {TrendAggregatorOrder11} {Unit11:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-122\">{TrendAggregator11:label} {TrendAggregatorOrder11} {Unit11:label}</span></span></h4>"
+                "json": "<h3 style=\"margin-bottom:0;\">{Counter11:label}</h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\">{TrendAggregator11:label} {TrendAggregatorOrder11} {Unit11:label}</h4>"
             },
             "customWidth": "25",
             "name": "text - 32"
@@ -1876,7 +1876,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3 style=\"margin-bottom:0;\"><span data-ttu-id=\"a0530-123\">{Counter12:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-123\">{Counter12:label}</span></span></h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\"><span data-ttu-id=\"a0530-124\">{TrendAggregator12:label} {TrendAggregatorOrder12} {Unit12:label}</span><span class=\"sxs-lookup\"><span data-stu-id=\"a0530-124\">{TrendAggregator12:label} {TrendAggregatorOrder12} {Unit12:label}</span></span></h4>"
+                "json": "<h3 style=\"margin-bottom:0;\">{Counter12:label}</h3><h4 style=\"margin-top:0;font-weight:normal;color:#777;\">{TrendAggregator12:label} {TrendAggregatorOrder12} {Unit12:label}</h4>"
             },
             "customWidth": "25",
             "name": "text - 33"

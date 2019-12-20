@@ -6,7 +6,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"troubleshooting-exceptions\"></a><span data-ttu-id=\"8bf82-101\">Solución de problemas de excepciones</span><span class=\"sxs-lookup\"><span data-stu-id=\"8bf82-101\">Troubleshooting Exceptions</span></span>\n<span data-ttu-id=\"8bf82-102\">Esta guía de solución de problemas ayuda a analizar las excepciones de la aplicación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8bf82-102\">This troubleshooting guide helps you analyze your application's exceptions.</span></span>"
+                "json": "# <a name=\"troubleshooting-exceptions\"></a>Solución de problemas de excepciones\nEsta guía de solución de problemas ayuda a analizar las excepciones de la aplicación."
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -169,7 +169,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"8bf82-103\">Establezca los parámetros anteriores para optimizar el conjunto de análisis.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8bf82-103\">Set the parameters above to tune your analysis set.</span></span> <span data-ttu-id=\"8bf82-104\">Use el parámetro `Show` anterior para ver solo los errores nuevos o existentes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8bf82-104\">Use the `Show` parameter above to see only existing or new failures.</span></span> <span data-ttu-id=\"8bf82-105\">La comparación del parámetro `UseComparisionTimeRange` establece el intervalo de tiempo en el que se buscarán los errores existentes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8bf82-105\">The comparision `UseComparisionTimeRange` parameter sets the window of time to look for existing failures.</span></span> <span data-ttu-id=\"8bf82-106\">`Problem` es simplemente una combinación de tipo de excepción y método en el que se produce.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8bf82-106\">A `Problem` just a combination of exception type and method at which it is thrown.</span></span> <span data-ttu-id=\"8bf82-107\">Cambiar este parámetro permite reducir a un conjunto más pequeño de problemas.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8bf82-107\">Changing this parameter allows you filter down to a smaller set of issues.</span></span>"
+                "json": "Establezca los parámetros anteriores para optimizar el conjunto de análisis. Use el parámetro `Show` anterior para ver solo los errores nuevos o existentes. La comparación del parámetro `UseComparisionTimeRange` establece el intervalo de tiempo en el que se buscarán los errores existentes. `Problem` es simplemente una combinación de tipo de excepción y método en el que se produce. Cambiar este parámetro permite reducir a un conjunto más pequeño de problemas."
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -177,7 +177,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"exception-trend\"></a><span data-ttu-id=\"8bf82-108\">Tendencia de las excepciones</span><span class=\"sxs-lookup\"><span data-stu-id=\"8bf82-108\">Exception Trend</span></span>\n<span data-ttu-id=\"8bf82-109\">El siguiente gráfico muestra la tendencia de las excepciones en el intervalo de tiempo seleccionado.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8bf82-109\">The chart below shows the trend of exceptions over your chosen time range.</span></span> <span data-ttu-id=\"8bf82-110\">Se divide por excepciones nuevas y existentes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8bf82-110\">It is split by new and existing exceptions.</span></span> "
+                "json": "## <a name=\"exception-trend\"></a>Tendencia de las excepciones\nEl siguiente gráfico muestra la tendencia de las excepciones en el intervalo de tiempo seleccionado. Se divide por excepciones nuevas y existentes. "
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -201,7 +201,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"exception-details\"></a><span data-ttu-id=\"8bf82-111\">Detalles de la excepción</span><span class=\"sxs-lookup\"><span data-stu-id=\"8bf82-111\">Exception Details</span></span>"
+                "json": "## <a name=\"exception-details\"></a>Detalles de la excepción"
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -209,7 +209,7 @@
         {
             "type": 1,
             "content": {
-                "json": "\n<span data-ttu-id=\"8bf82-112\">🔸 Nuevo error 🔹 Error existente</span><span class=\"sxs-lookup\"><span data-stu-id=\"8bf82-112\">🔸 New Failure 🔹 Existing Failure</span></span>"
+                "json": "\n🔸 Nuevo error 🔹 Error existente"
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -264,7 +264,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"mitigation\"></a><span data-ttu-id=\"8bf82-113\">Mitigación</span><span class=\"sxs-lookup\"><span data-stu-id=\"8bf82-113\">Mitigation</span></span>\n<span data-ttu-id=\"8bf82-114\">Utilice esta sección para enumerar los pasos de recuperación para los problemas conocidos.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8bf82-114\">Use this section to list out the recovery steps for known issues.</span></span> <span data-ttu-id=\"8bf82-115\">Esto permite compartir información con los investigadores de futuros problemas.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8bf82-115\">This allows sharing of information with future issue investigators.</span></span> "
+                "json": "## <a name=\"mitigation\"></a>Mitigación\nUtilice esta sección para enumerar los pasos de recuperación para los problemas conocidos. Esto permite compartir información con los investigadores de futuros problemas. "
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -272,7 +272,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"customizing-your-troubleshooting-guide\"></a><span data-ttu-id=\"8bf82-116\">Personalización de la guía de solución de problemas</span><span class=\"sxs-lookup\"><span data-stu-id=\"8bf82-116\">Customizing your Troubleshooting Guide</span></span>\n```\n1. Start editing this TSG by clicking on the 'Edit' button on the toolbar on top. \n2. Use the edit buttons on bottom-right of markdown control to update it's contents. \n3. Update the parameters to tune your analysis set.\n4. You can also update the underlying query or grid properties to personalize the analysis/view.\n5. If you want to have two sections for different performance counters, use the clone button at the bottom toolbar of a control. Use the ↑ or ↓ buttons to move the controls up or down.\n```\n"
+                "json": "## <a name=\"customizing-your-troubleshooting-guide\"></a>Personalización de la guía de solución de problemas\n```\n1. Start editing this TSG by clicking on the 'Edit' button on the toolbar on top. \n2. Use the edit buttons on bottom-right of markdown control to update it's contents. \n3. Update the parameters to tune your analysis set.\n4. You can also update the underlying query or grid properties to personalize the analysis/view.\n5. If you want to have two sections for different performance counters, use the clone button at the bottom toolbar of a control. Use the ↑ or ↓ buttons to move the controls up or down.\n```\n"
             },
             "conditionalVisibility": null,
             "halfWidth": false

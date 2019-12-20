@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"c7896-101\">Información de HDInsight Kafka</span><span class=\"sxs-lookup\"><span data-stu-id=\"c7896-101\">HDInsight Kafka Insights</span></span>",
+    "name": "Información de HDInsight Kafka",
     "author": "Microsoft",
     "isPreview": true,
     "galleries": [

@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"efb79-101\">Uso por horas del día</span><span class=\"sxs-lookup\"><span data-stu-id=\"efb79-101\">Usage by hours of the day</span></span>",
+    "name": "Uso por horas del día",
     "author": "Microsoft",
     "galleries": [
         {

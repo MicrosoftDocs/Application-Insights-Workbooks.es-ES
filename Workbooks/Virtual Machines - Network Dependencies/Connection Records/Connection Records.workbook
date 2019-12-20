@@ -4,7 +4,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"52b18-101\">Cada <strong>registro</strong> de [VMConnections](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/service-map) representa una conexión de una máquina a otra en un intervalo de 1 minuto.</span><span class=\"sxs-lookup\"><span data-stu-id=\"52b18-101\">Each <strong>record</strong> from [VMConnections](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/service-map) represents a connection from one machine to another over a 1-minute interval.</span></span>\n\n<span data-ttu-id=\"52b18-102\">Cada <strong>registro</strong> agrega las siguientes propiedades en un intervalo de 1 minuto: el número total de bytes enviados y recibidos, el número de vínculos (conexiones de puerto) establecidos, actualmente activos y terminados, y el número de respuestas recibidas.</span><span class=\"sxs-lookup\"><span data-stu-id=\"52b18-102\">Each <strong>record</strong> aggregates the following properties over a 1-minute interval: the total number of bytes sent and received, the number of links (port connections) that are established, currently active, and terminated, and the number of responses received.</span></span>\n\n<hr style=\"height: 2px;\" />"
+                "json": "Cada <strong>registro</strong> de [VMConnections](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/service-map) representa una conexión de una máquina a otra en un intervalo de 1 minuto.\n\nCada <strong>registro</strong> agrega las siguientes propiedades en un intervalo de 1 minuto: el número total de bytes enviados y recibidos, el número de vínculos (conexiones de puerto) establecidos, actualmente activos y terminados, y el número de respuestas recibidas.\n\n<hr style=\"height: 2px;\" />"
             },
             "conditionalVisibility": null
         },
@@ -157,14 +157,14 @@
         {
             "type": 1,
             "content": {
-                "json": "<p><span data-ttu-id=\"52b18-103\"><strong>TimeRange</strong> especifica la distancia en el tiempo que hay que recorrer para recopilar los registros de conexión de <em>VMConnections</em>.</span><span class=\"sxs-lookup\"><span data-stu-id=\"52b18-103\"><strong>TimeRange</strong> specifies how far back in time to gather connection records from <em>VMConnections</em>.</span></span> <span data-ttu-id=\"52b18-104\">La selección de un amplio intervalo de tiempo dará como resultado un largo tiempo de procesamiento de las consultas.</span><span class=\"sxs-lookup\"><span data-stu-id=\"52b18-104\">Selecting a large time range will result in a long query processing time.</span></span></p>\n\n<hr style=\"height: 1px;\" />"
+                "json": "<p><strong>TimeRange</strong> especifica la distancia en el tiempo que hay que recorrer para recopilar los registros de conexión de <em>VMConnections</em>. La selección de un amplio intervalo de tiempo dará como resultado un largo tiempo de procesamiento de las consultas.</p>\n\n<hr style=\"height: 1px;\" />"
             },
             "conditionalVisibility": null
         },
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"aggregate-connection-records\"></a><span data-ttu-id=\"52b18-105\">Agregación de registros de conexión</span><span class=\"sxs-lookup\"><span data-stu-id=\"52b18-105\">Aggregate Connection Records</span></span>\n\n"
+                "json": "### <a name=\"aggregate-connection-records\"></a>Agregación de registros de conexión\n\n"
             },
             "conditionalVisibility": null,
             "customWidth": "25"
@@ -172,7 +172,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"connection-records-by-country\"></a><span data-ttu-id=\"52b18-106\">Registros de conexión por país</span><span class=\"sxs-lookup\"><span data-stu-id=\"52b18-106\">Connection Records by Country</span></span>"
+                "json": "### <a name=\"connection-records-by-country\"></a>Registros de conexión por país"
             },
             "conditionalVisibility": null,
             "customWidth": "75"

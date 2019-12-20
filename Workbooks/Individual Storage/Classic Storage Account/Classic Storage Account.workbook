@@ -4,7 +4,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<br /><br /><br />\n##      <a name=\"insights-are-not-supported-for-classic-storage-account-go-to-monitoring-classic\"></a><span data-ttu-id=\"af62c-101\">Las cuentas de almacenamiento clásicas no admiten Insights.</span><span class=\"sxs-lookup\"><span data-stu-id=\"af62c-101\">Insights are not supported for Classic Storage Account.</span></span> <span data-ttu-id=\"af62c-102\">Ir a Supervisión (clásica).</span><span class=\"sxs-lookup\"><span data-stu-id=\"af62c-102\">Go to Monitoring (classic).</span></span>"
+                "json": "<br /><br /><br />\n##      <a name=\"insights-are-not-supported-for-classic-storage-account-go-to-monitoring-classic\"></a>Las cuentas de almacenamiento clásicas no admiten Insights. Ir a Supervisión (clásica)."
             },
             "name": "text - 0"
         }

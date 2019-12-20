@@ -1,11 +1,16 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Cuenta de almacenamiento clásica",
+    "name": "Cuentas de almacenamiento",
     "author": "Microsoft",
     "galleries": [
         {
             "type": "workbook",
-            "resourceType": "microsoft.classicstorage/storageaccounts",
+            "resourceType": "Monitoring Groups",
+            "order": 200
+        },
+        {
+            "type": "storage-insights",
+            "resourceType": "Monitoring Groups",
             "order": 100
         }
     ]

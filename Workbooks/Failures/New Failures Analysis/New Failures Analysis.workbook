@@ -6,7 +6,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"new-failures-analysis\"></a><span data-ttu-id=\"8fbec-101\">Análisis de nuevos errores</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-101\">New Failures Analysis</span></span>\n<span data-ttu-id=\"8fbec-102\">Este libro le ayudará a identificar cualquier error nuevo que pueda haber comenzado en la aplicación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-102\">This workbook will help you identify any new failures that may have begun in your app.</span></span> <span data-ttu-id=\"8fbec-103\">Examina los errores de la aplicación a partir de tres orígenes de telemetría:</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-103\">It looks at your app's failures from three telemetry sources:</span></span>\n* <span data-ttu-id=\"8fbec-104\">Solicitudes atendidas por aplicación</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-104\">Requests served by app</span></span>\n* <span data-ttu-id=\"8fbec-105\">Excepciones de la aplicación</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-105\">Exceptions in your app</span></span>\n* <span data-ttu-id=\"8fbec-106\">Llamadas de dependencia realizadas por la aplicación</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-106\">Dependency calls made by you app</span></span>\n\n<span data-ttu-id=\"8fbec-107\">El informe le proporciona una serie de información que le ayudará a evaluar las prioridades y a diagnosticar estos nuevos problemas.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-107\">The report provides you with a bunch of information to help you triage and diagnose these new issues.</span></span> <span data-ttu-id=\"8fbec-108\">Utilícelo junto con el informe de errores de App Insights para comprender los errores de su aplicación.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-108\">Use it in conjunction with the Failure report in App Insights to understand the failures in your app.</span></span>"
+                "json": "# <a name=\"new-failures-analysis\"></a>Análisis de nuevos errores\nEste libro le ayudará a identificar cualquier error nuevo que pueda haber comenzado en la aplicación. Examina los errores de la aplicación a partir de tres orígenes de telemetría:\n* Solicitudes atendidas por aplicación\n* Excepciones de la aplicación\n* Llamadas de dependencia realizadas por la aplicación\n\nEl informe le proporciona una serie de información que le ayudará a evaluar las prioridades y a diagnosticar estos nuevos problemas. Utilícelo junto con el informe de errores de App Insights para comprender los errores de su aplicación."
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -78,7 +78,7 @@
         {
             "type": 1,
             "content": {
-                "json": "---\n## <a name=\"request-failures-analysis\"></a><span data-ttu-id=\"8fbec-109\">Análisis de errores de solicitud</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-109\">Request Failures Analysis</span></span>\n"
+                "json": "---\n## <a name=\"request-failures-analysis\"></a>Análisis de errores de solicitud\n"
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -123,7 +123,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"failures-rates\"></a><span data-ttu-id=\"8fbec-110\">Tasas de errores</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-110\">Failures Rates</span></span>\n<span data-ttu-id=\"8fbec-111\">Esta sección le ayudará a ver cómo las tasas de error de la solicitud cambian con el tiempo, segmentadas por errores nuevos o existentes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-111\">This section will help you see how your request failure rates change over time -- segmented by new vs. existing failures.</span></span>"
+                "json": "### <a name=\"failures-rates\"></a>Tasas de errores\nEsta sección le ayudará a ver cómo las tasas de error de la solicitud cambian con el tiempo, segmentadas por errores nuevos o existentes."
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -145,7 +145,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"requests-volume\"></a><span data-ttu-id=\"8fbec-112\">Volumen de solicitudes</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-112\">Requests Volume</span></span>\n<span data-ttu-id=\"8fbec-113\">En esta tabla se muestran los volúmenes de solicitud o carga a lo largo del tiempo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-113\">This chart shows you request volumes or load over time.</span></span> <span data-ttu-id=\"8fbec-114\">Los cambios en el volumen pueden afectar a los errores y al rendimiento.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-114\">Changes in volume can impact failures and performance.</span></span> <span data-ttu-id=\"8fbec-115\">Estos datos establecerán el contexto en el que se han producido los errores.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-115\">This data will set the context in which any failures have occured.</span></span>"
+                "json": "### <a name=\"requests-volume\"></a>Volumen de solicitudes\nEn esta tabla se muestran los volúmenes de solicitud o carga a lo largo del tiempo. Los cambios en el volumen pueden afectar a los errores y al rendimiento. Estos datos establecerán el contexto en el que se han producido los errores."
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -167,7 +167,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"request-details\"></a><span data-ttu-id=\"8fbec-116\">Detalles de la solicitud</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-116\">Request Details</span></span>\n<span data-ttu-id=\"8fbec-117\">En esta tabla se muestran todas las solicitudes de error en la aplicación y sus códigos de resultado, ordenados por usuarios afectados.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-117\">This table shows all failing requests in your app and their result codes - sorted by users impacted.</span></span> <span data-ttu-id=\"8fbec-118\">Esta información le ayudará a conocer los distintos errores de la aplicación y su gravedad.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-118\">This information will help you know the various failures in your app and their severity.</span></span> <span data-ttu-id=\"8fbec-119\">El informe también indica si un error es nuevo o existente, para que vea los errores que acaban de empezar, por lo general los más interesantes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-119\">The report also indicates if a failure is new or existing - so you see failures just started happening -- usually the most interesting ones.</span></span>"
+                "json": "## <a name=\"request-details\"></a>Detalles de la solicitud\nEn esta tabla se muestran todas las solicitudes de error en la aplicación y sus códigos de resultado, ordenados por usuarios afectados. Esta información le ayudará a conocer los distintos errores de la aplicación y su gravedad. El informe también indica si un error es nuevo o existente, para que vea los errores que acaban de empezar, por lo general los más interesantes."
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -175,7 +175,7 @@
         {
             "type": 1,
             "content": {
-                "json": "\n<span data-ttu-id=\"8fbec-120\">🔸 Nuevo error 🔹 Error existente</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-120\">🔸 New Failure 🔹 Existing Failure</span></span>"
+                "json": "\n🔸 Nuevo error 🔹 Error existente"
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -219,7 +219,7 @@
         {
             "type": 1,
             "content": {
-                "json": "---\n## <a name=\"exceptions-analysis\"></a><span data-ttu-id=\"8fbec-121\">Análisis de excepciones</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-121\">Exceptions Analysis</span></span>\n"
+                "json": "---\n## <a name=\"exceptions-analysis\"></a>Análisis de excepciones\n"
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -263,7 +263,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"exception-trends\"></a><span data-ttu-id=\"8fbec-122\">Tendencias de excepciones</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-122\">Exception Trends</span></span>"
+                "json": "### <a name=\"exception-trends\"></a>Tendencias de excepciones"
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -285,7 +285,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"exception-details\"></a><span data-ttu-id=\"8fbec-123\">Detalles de la excepción</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-123\">Exception Details</span></span>\n<span data-ttu-id=\"8fbec-124\">En esta tabla se muestran todas las excepciones de la aplicación y la operación relacionada, ordenadas por usuarios afectados.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-124\">This table shows all exceptions in your app and related operation - sorted by users impacted.</span></span> <span data-ttu-id=\"8fbec-125\">Esta información le ayudará a conocer los distintos errores de la aplicación y su gravedad.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-125\">This information will help you know the various errors in your app and their severity.</span></span> <span data-ttu-id=\"8fbec-126\">El informe también indica si una excepción es nueva o existente, para que vea las excepciones que acaban de empezar, por lo general las más interesantes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-126\">The report also indicates if an exception is new or existing - so you see exceptions that just started happening -- usually the most interesting ones.</span></span>"
+                "json": "### <a name=\"exception-details\"></a>Detalles de la excepción\nEn esta tabla se muestran todas las excepciones de la aplicación y la operación relacionada, ordenadas por usuarios afectados. Esta información le ayudará a conocer los distintos errores de la aplicación y su gravedad. El informe también indica si una excepción es nueva o existente, para que vea las excepciones que acaban de empezar, por lo general las más interesantes."
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -293,7 +293,7 @@
         {
             "type": 1,
             "content": {
-                "json": "\n<span data-ttu-id=\"8fbec-127\">🔸 Nueva excepción 🔹 Excepción existente</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-127\">🔸 New Exception 🔹 Existing Exception</span></span>"
+                "json": "\n🔸 Nueva excepción 🔹 Excepción existente"
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -336,7 +336,7 @@
         {
             "type": 1,
             "content": {
-                "json": "---\n## <a name=\"dependency-failure-analysis\"></a><span data-ttu-id=\"8fbec-128\">Análisis de errores de dependencia</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-128\">Dependency Failure Analysis</span></span>\n"
+                "json": "---\n## <a name=\"dependency-failure-analysis\"></a>Análisis de errores de dependencia\n"
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -381,7 +381,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"failure-rates\"></a><span data-ttu-id=\"8fbec-129\">Tasas de errores</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-129\">Failure Rates</span></span>\n<span data-ttu-id=\"8fbec-130\">Esta sección le ayudará a ver cómo las tasas de error de dependencia cambian con el tiempo, segmentadas por errores nuevos o existentes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-130\">This section will help you see how your dependency failure rates change over time -- segmented by new vs. existing failures.</span></span>"
+                "json": "### <a name=\"failure-rates\"></a>Tasas de errores\nEsta sección le ayudará a ver cómo las tasas de error de dependencia cambian con el tiempo, segmentadas por errores nuevos o existentes."
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -403,7 +403,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"dependency-volume\"></a><span data-ttu-id=\"8fbec-131\">Volumen de dependencia</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-131\">Dependency Volume</span></span>\n<span data-ttu-id=\"8fbec-132\">En esta tabla se muestran los volúmenes de solicitud o carga a lo largo del tiempo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-132\">This chart shows you request volumes or load over time.</span></span> <span data-ttu-id=\"8fbec-133\">Los cambios en el volumen pueden afectar a los errores y al rendimiento.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-133\">Changes in volume can impact failures and performance.</span></span> <span data-ttu-id=\"8fbec-134\">Estos datos establecerán el contexto en el que se han producido los errores.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-134\">This data will set the context in which any failures have occured.</span></span>"
+                "json": "### <a name=\"dependency-volume\"></a>Volumen de dependencia\nEn esta tabla se muestran los volúmenes de solicitud o carga a lo largo del tiempo. Los cambios en el volumen pueden afectar a los errores y al rendimiento. Estos datos establecerán el contexto en el que se han producido los errores."
             },
             "conditionalVisibility": null,
             "halfWidth": false
@@ -425,7 +425,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"dependency-details\"></a><span data-ttu-id=\"8fbec-135\">Detalles de la dependencia</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-135\">Dependency Details</span></span>\n<span data-ttu-id=\"8fbec-136\">En esta tabla se muestran todas las dependencias de error en la aplicación y sus códigos de resultado, ordenados por usuarios afectados.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-136\">This table shows all failing dependencies in your app and their result codes - sorted by users impacted.</span></span> <span data-ttu-id=\"8fbec-137\">Esta información le ayudará a conocer los distintos errores de la aplicación y su gravedad.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-137\">This information will help you know the various failures in your app and their severity.</span></span> <span data-ttu-id=\"8fbec-138\">El informe también indica si un error es nuevo o existente, para que vea los errores que acaban de empezar, por lo general los más interesantes.</span><span class=\"sxs-lookup\"><span data-stu-id=\"8fbec-138\">The report also indicates if a failure is new or existing - so you see failures just started happening -- usually the most interesting ones.</span></span>"
+                "json": "### <a name=\"dependency-details\"></a>Detalles de la dependencia\nEn esta tabla se muestran todas las dependencias de error en la aplicación y sus códigos de resultado, ordenados por usuarios afectados. Esta información le ayudará a conocer los distintos errores de la aplicación y su gravedad. El informe también indica si un error es nuevo o existente, para que vea los errores que acaban de empezar, por lo general los más interesantes."
             },
             "conditionalVisibility": null,
             "halfWidth": false

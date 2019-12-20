@@ -6,28 +6,37 @@
             "content": {
                 "version": "KqlParameterItem/1.0",
                 "crossComponentResources": [
-                    "value::selected"
+                    "value::all"
                 ],
                 "parameters": [
                     {
                         "id": "1f74ed9a-e3ed-498d-bd5b-f68f3836a117",
                         "version": "KqlParameterItem/1.0",
-                        "name": "Subscription",
-                        "label": "Subscriptions",
-                        "type": 6,
+                        "name": "InputContext",
+                        "label": "Input context",
+                        "type": 5,
                         "description": "Todas las suscripciones con cuentas de almacenamiento",
                         "isRequired": true,
-                        "multiSelect": true,
-                        "quote": "'",
-                        "delimiter": ",",
-                        "query": "where type =~ 'microsoft.storage/storageaccounts'\r\n| summarize Count = count() by subscriptionId\r\n| order by Count desc\r\n| extend Rank = row_number()\r\n| project value = subscriptionId, label = subscriptionId, selected = Rank == 1",
+                        "value": "value::1",
+                        "isHiddenWhenLocked": true,
+                        "typeSettings": {
+                            "additionalResourceOptions": [
+                                "value::1"
+                            ],
+                            "showDefault": false
+                        }
+                    },
+                    {
+                        "id": "102e5ff4-5a4b-4186-87ea-e4ccb0392e2c",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "ResourceGraphQuery",
+                        "label": "Resource graph query snippet",
+                        "type": 1,
+                        "query": "Resources\r\n| take 1\r\n| project InputContext = tolower('{InputContext}')\r\n| extend ResourceQueryId = extract(@'(/subscriptions/.+/resourcegroups/.+/providers/microsoft.resourcegraph/queries/.+)', 1, InputContext)\r\n| project QuerySnippet = iff(ResourceQueryId == '', 'Resources | where id startswith \"{InputContext}\"', strcat('{', '{','{InputContext}', '}', '}'))",
                         "crossComponentResources": [
                             "value::selected"
                         ],
-                        "typeSettings": {
-                            "additionalResourceOptions": [],
-                            "showDefault": false
-                        },
+                        "isHiddenWhenLocked": true,
                         "queryType": 1,
                         "resourceType": "microsoft.resourcegraph/resources"
                     },
@@ -41,14 +50,11 @@
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
-                        "query": "where type =~ 'microsoft.storage/storageaccounts'\n| order by name asc\n| extend Rank = row_number()\n| project value = id, label = id, selected = Rank <= 5",
+                        "query": "{ResourceGraphQuery}\n| where type =~ 'microsoft.storage/storageaccounts'\n| order by name asc\n| extend Rank = row_number()\n| project value = id, label = id, selected = Rank <= 25",
                         "crossComponentResources": [
-                            "{Subscription}"
+                            "value::all"
                         ],
                         "typeSettings": {
-                            "resourceTypeFilter": {
-                                "microsoft.storage/storageaccounts": true
-                            },
                             "additionalResourceOptions": [
                                 "value::all"
                             ],
@@ -144,13 +150,13 @@
                         "label": "Time Range"
                     },
                     {
-                        "id": "9b48988f-dcd2-48cc-b233-5999ed32149f",
+                        "id": "63640264-0edc-4e98-bba7-d8056705e70e",
                         "version": "KqlParameterItem/1.0",
                         "name": "Message",
                         "type": 1,
-                        "query": "where type == 'microsoft.storage/storageaccounts' \n| summarize Selected = countif(id in ({StorageAccounts:value})), Total = count()\n| extend Selected = iff(Selected > 200, 200, Selected)\n| project Message = strcat('# ', Selected, ' / ', Total)",
+                        "query": "{ResourceGraphQuery}\r\n| where type == 'microsoft.storage/storageaccounts' \r\n| summarize Selected = countif(id in ({StorageAccounts:value})), Total = count()\r\n| extend Selected = iff(Selected > 200, 200, Selected)\r\n| project Message = strcat('# ', Selected, ' / ', Total)",
                         "crossComponentResources": [
-                            "{Subscription}"
+                            "value::all"
                         ],
                         "isHiddenWhenLocked": true,
                         "queryType": 1,
@@ -171,7 +177,7 @@
             "content": {
                 "json": "{Message}\n_Cuentas de almacenamiento_"
             },
-            "name": "text - 3",
+            "name": "text - 6",
             "styleSettings": {
                 "margin": "15px 0 10px 10px"
             }
@@ -234,20 +240,17 @@
                         "namespace": "microsoft.storage/storageaccounts",
                         "metric": "microsoft.storage/storageaccounts-Transaction-Transactions",
                         "aggregation": 1,
-                        "splitBy": null,
-                        "splitByLimit": null
+                        "splitBy": null
                     },
                     {
                         "namespace": "microsoft.storage/storageaccounts",
                         "metric": "microsoft.storage/storageaccounts-Transaction-SuccessE2ELatency",
-                        "aggregation": 4,
-                        "splitByLimit": null
+                        "aggregation": 4
                     },
                     {
                         "namespace": "microsoft.storage/storageaccounts",
                         "metric": "microsoft.storage/storageaccounts-Transaction-SuccessServerLatency",
-                        "aggregation": 4,
-                        "splitByLimit": null
+                        "aggregation": 4
                     },
                     {
                         "namespace": "microsoft.storage/storageaccounts",
@@ -259,6 +262,7 @@
                         "columnName": "Errors"
                     }
                 ],
+                "resourceLimit": 200,
                 "gridSettings": {
                     "formatters": [
                         {
@@ -456,7 +460,16 @@
                             "columnId": "Success/Errors"
                         },
                         {
-                            "columnId": "ClientOtherError/Errors"
+                            "columnId": "AuthenticationError/Errors",
+                            "label": "AuthenticationError/Errors"
+                        },
+                        {
+                            "columnId": "ClientOtherError/Errors",
+                            "label": "ClientOtherError/Errors"
+                        },
+                        {
+                            "columnId": "ClientTimeoutError/Errors",
+                            "label": "ClientTimeoutError/Errors"
                         }
                     ]
                 },
@@ -466,9 +479,7 @@
                         "sortOrder": 2
                     }
                 ],
-                "resourceLimit": 200,
-                "showExportToExcel": true,
-                "exportToExcelOptions": "visible"
+                "showExportToExcel": true
             },
             "conditionalVisibility": {
                 "parameterName": "selectedTab",
@@ -704,8 +715,7 @@
                         "sortOrder": 2
                     }
                 ],
-                "showExportToExcel": true,
-                "exportToExcelOptions": "visible"
+                "showExportToExcel": true
             },
             "conditionalVisibility": {
                 "parameterName": "selectedTab",

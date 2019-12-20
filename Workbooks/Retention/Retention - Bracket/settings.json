@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"49f5b-101\">Retención durante un intervalo</span><span class=\"sxs-lookup\"><span data-stu-id=\"49f5b-101\">Bracket Retention</span></span>",
+    "name": "Retención durante un intervalo",
     "author": "Microsoft",
     "galleries": [
         {

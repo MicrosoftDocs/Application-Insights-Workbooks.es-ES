@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"adce0-101\">Información de inicios de sesión por estado del acceso condicional</span><span class=\"sxs-lookup\"><span data-stu-id=\"adce0-101\">Sign-ins by Conditional Access Status</span></span>",
+    "name": "Información de inicios de sesión por estado del acceso condicional",
     "author": "Microsoft",
     "galleries": [
         {

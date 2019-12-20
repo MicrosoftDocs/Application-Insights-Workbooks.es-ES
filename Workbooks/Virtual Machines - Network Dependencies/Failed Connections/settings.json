@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "<span data-ttu-id=\"fc0b1-101\">Conexiones con errores</span><span class=\"sxs-lookup\"><span data-stu-id=\"fc0b1-101\">Failed Connections</span></span>",
+    "name": "Conexiones con errores",
     "author": "Microsoft",
     "galleries": [
         {

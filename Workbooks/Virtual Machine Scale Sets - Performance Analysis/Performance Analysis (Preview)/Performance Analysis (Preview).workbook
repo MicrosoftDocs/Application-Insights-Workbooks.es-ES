@@ -694,7 +694,7 @@
         {
             "type": 1,
             "content": {
-                "json": "#### <a name=\"-total-bytes-networkdirection-counters-are-also-being-utilized-to-display-the-network-table-the-delta-of-total-bytes-networkdirection-over-a-time-period-is-being-calculated-to-match-up-with-the-bytes-networkdirectionsec-counter-to-display-an-accurate-representation-of-network-activity-over-all-machines\"></a>Los contadores ℹ `Total Bytes {NetworkDirection}` también se utilizan para mostrar la tabla de la red. Se calculan las diferencias de `Total Bytes {NetworkDirection}` durante un período de tiempo para que coincida con el contador `Bytes {NetworkDirection}/sec` y poder mostrar una representación precisa de la actividad de red en todas las máquinas."
+                "json": "#### <a name=\"-total-bytes-no_loc_phnetworkdirectionno_loc_ph-counters-are-also-being-utilized-to-display-the-network-table-the-delta-of-total-bytes-no_loc_phnetworkdirectionno_loc_ph-over-a-time-period-is-being-calculated-to-match-up-with-the-bytes-no_loc_phnetworkdirectionno_loc_phsec-counter-to-display-an-accurate-representation-of-network-activity-over-all-machines\"></a>Los contadores ℹ `Total Bytes {NetworkDirection}` también se utilizan para mostrar la tabla de la red. Se calculan las diferencias de `Total Bytes {NetworkDirection}` durante un período de tiempo para que coincida con el contador `Bytes {NetworkDirection}/sec` y poder mostrar una representación precisa de la actividad de red en todas las máquinas."
             },
             "conditionalVisibility": {
                 "parameterName": "ShowNetworkTable",

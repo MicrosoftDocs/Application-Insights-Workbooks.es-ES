@@ -4,7 +4,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"workspace-usage\"></a><span data-ttu-id=\"b29a7-101\">Uso del área de trabajo</span><span class=\"sxs-lookup\"><span data-stu-id=\"b29a7-101\">Workspace Usage</span></span>\n<span data-ttu-id=\"b29a7-102\">Utilice este informe para analizar los tamaños de las diferentes tablas del área de trabajo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"b29a7-102\">Use this report to analyze the the sizes of the different tables in your workspace.</span></span> \n<br/>\n<br/>"
+                "json": "## <a name=\"workspace-usage\"></a>Uso del área de trabajo\nUtilice este informe para analizar los tamaños de las diferentes tablas del área de trabajo. \n<br/>\n<br/>"
             },
             "conditionalVisibility": null,
             "name": "text - 0"
@@ -186,7 +186,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"b29a7-103\">💡 _Haga clic en una fila en la tabla anterior para ver más detalles._</span><span class=\"sxs-lookup\"><span data-stu-id=\"b29a7-103\">💡_Click on a row in the table above to see more details_</span></span>\n<br />\n<br />"
+                "json": "💡 _Haga clic en una fila en la tabla anterior para ver más detalles._\n<br />\n<br />"
             },
             "conditionalVisibility": null,
             "name": "text - 3"
@@ -194,7 +194,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"table-entries\"></a><span data-ttu-id=\"b29a7-104\">Entradas de la tabla</span><span class=\"sxs-lookup\"><span data-stu-id=\"b29a7-104\">Table Entries</span></span>"
+                "json": "### <a name=\"table-entries\"></a>Entradas de la tabla"
             },
             "conditionalVisibility": null,
             "customWidth": "50",
@@ -203,7 +203,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"table-size\"></a><span data-ttu-id=\"b29a7-105\">Tamaño de la tabla</span><span class=\"sxs-lookup\"><span data-stu-id=\"b29a7-105\">Table Size</span></span>"
+                "json": "### <a name=\"table-size\"></a>Tamaño de la tabla"
             },
             "conditionalVisibility": null,
             "customWidth": "50",
