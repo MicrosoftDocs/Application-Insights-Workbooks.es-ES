@@ -6,8 +6,7 @@
             "content": {
                 "json": "## <a name=\"workspace-usage\"></a>Uso del área de trabajo\nUtilice este informe para analizar los tamaños de las diferentes tablas del área de trabajo. \n<br/>\n<br/>"
             },
-            "conditionalVisibility": null,
-            "name": "text - 0"
+            "conditionalVisibility": null
         },
         {
             "type": 9,
@@ -18,6 +17,64 @@
                     "value::selected"
                 ],
                 "parameters": [
+                    {
+                        "id": "ccd5adcd-8d59-4cfe-99ec-98075de2e253",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "DefaultSubscription_Internal",
+                        "type": 1,
+                        "isRequired": true,
+                        "query": "where type =~ 'microsoft.operationalinsights/workspaces'\r\n| take 1\r\n| project subscriptionId",
+                        "crossComponentResources": [
+                            "value::selected"
+                        ],
+                        "isHiddenWhenLocked": true,
+                        "timeContextFromParameter": null,
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    },
+                    {
+                        "id": "1ca69445-60fc-4806-b43d-ac7e6aad630a",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Subscription",
+                        "type": 6,
+                        "isRequired": true,
+                        "multiSelect": false,
+                        "query": "summarize by subscriptionId\r\n| project value = strcat(\"/subscriptions/\", subscriptionId), label = subscriptionId, selected = iff(subscriptionId =~ '{DefaultSubscription_Internal}', true, false)\r\n",
+                        "crossComponentResources": [
+                            "value::selected"
+                        ],
+                        "isHiddenWhenLocked": false,
+                        "typeSettings": {
+                            "additionalResourceOptions": []
+                        },
+                        "timeContextFromParameter": null,
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    },
+                    {
+                        "id": "e94aafa3-c5d9-4523-89f0-4e87aa754511",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Workspace",
+                        "type": 5,
+                        "isRequired": true,
+                        "query": "where type =~ 'microsoft.operationalinsights/workspaces'\n| project id",
+                        "crossComponentResources": [
+                            "{Subscription}"
+                        ],
+                        "value": "value::1",
+                        "isHiddenWhenLocked": false,
+                        "typeSettings": {
+                            "resourceTypeFilter": {
+                                "microsoft.operationalinsights/workspaces": true
+                            },
+                            "additionalResourceOptions": [
+                                "value::1"
+                            ]
+                        },
+                        "timeContextFromParameter": null,
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    },
                     {
                         "id": "c4b69c01-2263-4ada-8d9c-43433b739ff3",
                         "version": "KqlParameterItem/1.0",
@@ -101,7 +158,7 @@
                             "allowCustom": null
                         },
                         "value": {
-                            "durationMs": 900000
+                            "durationMs": 3600000
                         }
                     }
                 ],
@@ -109,15 +166,17 @@
                 "queryType": 1,
                 "resourceType": "microsoft.resourcegraph/resources"
             },
-            "conditionalVisibility": null,
-            "name": "parameters - 1"
+            "conditionalVisibility": null
         },
         {
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
                 "query": "union withsource=TableName *\r\n| summarize Entries = count(), Size = sum(estimate_data_size(*)) by TableName\r\n| order by Size desc\r\n| project ['Table Name'] = TableName, ['Table Entries'] = Entries, ['Table Size'] = Size, ['Size per Entry'] = 1.0 * Size / Entries\r\n",
+                "showQuery": false,
                 "size": 0,
+                "aggregation": 0,
+                "showAnnotations": false,
                 "exportFieldName": "Table Name",
                 "exportParameterName": "Table",
                 "exportDefaultValue": "All Tables",
@@ -128,6 +187,9 @@
                 "timeContextFromParameter": "TimeRange",
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
+                "crossComponentResources": [
+                    "{Workspace}"
+                ],
                 "gridSettings": {
                     "formatters": [
                         {
@@ -181,15 +243,14 @@
                 }
             },
             "conditionalVisibility": null,
-            "name": "query - 2"
+            "alwaysShowPin": true
         },
         {
             "type": 1,
             "content": {
                 "json": "💡 _Haga clic en una fila en la tabla anterior para ver más detalles._\n<br />\n<br />"
             },
-            "conditionalVisibility": null,
-            "name": "text - 3"
+            "conditionalVisibility": null
         },
         {
             "type": 1,
@@ -197,8 +258,7 @@
                 "json": "### <a name=\"table-entries\"></a>Entradas de la tabla"
             },
             "conditionalVisibility": null,
-            "customWidth": "50",
-            "name": "text - 4"
+            "customWidth": "50"
         },
         {
             "type": 1,
@@ -206,15 +266,17 @@
                 "json": "### <a name=\"table-size\"></a>Tamaño de la tabla"
             },
             "conditionalVisibility": null,
-            "customWidth": "50",
-            "name": "text - 5"
+            "customWidth": "50"
         },
         {
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
                 "query": "union withsource=TableName *\r\n| where '{Table}' == 'All Tables' or TableName == '{Table}'\r\n| make-series TableSize = count() default = 0 on TimeGenerated from {TimeRange:start} to {TimeRange:end} step {TimeRange:grain}\r\n| mvexpand TableSize to typeof(real), TimeGenerated to typeof(datetime) limit 1000\r\n| project TimeGenerated, ['{Table}'] = TableSize",
+                "showQuery": false,
                 "size": 0,
+                "aggregation": 0,
+                "showAnnotations": false,
                 "exportFieldName": "Namespace",
                 "exportParameterName": "Namespace",
                 "exportDefaultValue": "All",
@@ -226,6 +288,9 @@
                 "timeContextFromParameter": "TimeRange",
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
+                "crossComponentResources": [
+                    "{Workspace}"
+                ],
                 "visualization": "areachart",
                 "gridSettings": {
                     "formatters": [
@@ -274,14 +339,17 @@
             },
             "conditionalVisibility": null,
             "customWidth": "50",
-            "name": "query - 6"
+            "alwaysShowPin": true
         },
         {
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
                 "query": "union withsource=TableName *\r\n| where '{Table}' == 'All Tables' or TableName == '{Table}'\r\n| make-series TableSize = sum(estimate_data_size(*)) default = 0 on TimeGenerated from {TimeRange:start} to {TimeRange:end} step {TimeRange:grain} \r\n| mvexpand TableSize to typeof(real), TimeGenerated to typeof(datetime) limit 1000\r\n| project TimeGenerated, ['{Table}'] = TableSize",
+                "showQuery": false,
                 "size": 0,
+                "aggregation": 0,
+                "showAnnotations": false,
                 "exportFieldName": "Namespace",
                 "exportParameterName": "Namespace",
                 "exportDefaultValue": "All",
@@ -293,6 +361,9 @@
                 "timeContextFromParameter": "TimeRange",
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
+                "crossComponentResources": [
+                    "{Workspace}"
+                ],
                 "visualization": "areachart",
                 "gridSettings": {
                     "formatters": [
@@ -341,7 +412,7 @@
             },
             "conditionalVisibility": null,
             "customWidth": "50",
-            "name": "query - 7"
+            "alwaysShowPin": true
         }
     ],
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
