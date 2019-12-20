@@ -257,7 +257,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"metricskafkacl-table-not-found\"></a>No se encontró la tabla metrics_kafka_CL\nAsegúrese de que tiene al menos un clúster de HDInsight Kafka con la integración de registros de Azure Monitor habilitada y vinculada a esta área de trabajo. Consulte la documentación <a href=\"https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-oms-log-analytics-tutorial\">Uso de los registros de Azure Monitor para supervisar clústeres de HDInsight</a>."
+                "json": "## <a name=\"metrics_kafka_cl-table-not-found\"></a>No se encontró la tabla metrics_kafka_CL\nAsegúrese de que tiene al menos un clúster de HDInsight Kafka con la integración de registros de Azure Monitor habilitada y vinculada a esta área de trabajo. Consulte la documentación <a href=\"https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-oms-log-analytics-tutorial\">Uso de los registros de Azure Monitor para supervisar clústeres de HDInsight</a>."
             },
             "conditionalVisibility": {
                 "parameterName": "KafkaMetricsTableExists",
