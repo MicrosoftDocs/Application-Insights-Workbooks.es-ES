@@ -249,7 +249,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"details---selectedoperationname\"></a>Detalles: {SelectedOperationName}\n"
+                "json": "## <a name=\"details---no_loc_phselectedoperationnameno_loc_ph\"></a>Detalles: {SelectedOperationName}\n"
             },
             "conditionalVisibility": null
         },

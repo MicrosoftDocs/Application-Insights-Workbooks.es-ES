@@ -56,7 +56,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<div style=\"text-align:left;float:left;\"><span style=\"font-size:16px;font-weight:600\">Explorador de Backup (Virtual Machines) - {NombrePestaña} </span></div> <div style=\"text-align:right;float:right\"><span style=\"font-size:12px;\"><a href=\"https://aka.ms/AzureBackupExplorerDoc\" target=\"_blank\">¿Cómo se usa el Explorador de Backup?</a></span></div>"
+                "json": "<div style=\"text-align:left;float:left;\"><span style=\"font-size:16px;font-weight:600\">Explorador de Backup (Virtual Machines) - {Tabname} </span></div> <div style=\"text-align:right;float:right\"><span style=\"font-size:12px;\"><a href=\"https://aka.ms/AzureBackupExplorerDoc\" target=\"_blank\">¿Cómo se usa el Explorador de Backup?</a></span></div>"
             },
             "name": "MainHeadingAndLink"
         },
@@ -1538,20 +1538,11 @@
                         },
                         {
                             "columnMatch": "Item",
-                            "formatter": 18,
+                            "formatter": 16,
                             "formatOptions": {
                                 "linkColumn": "backupItemId",
                                 "linkTarget": "Resource",
-                                "showIcon": true,
-                                "thresholdsOptions": "icons",
-                                "thresholdsGrid": [
-                                    {
-                                        "operator": "Default",
-                                        "thresholdValue": null,
-                                        "representation": "resource",
-                                        "text": "{0}{1}"
-                                    }
-                                ]
+                                "showIcon": true
                             }
                         },
                         {
@@ -2043,21 +2034,12 @@
                         },
                         {
                             "columnMatch": "Item",
-                            "formatter": 18,
+                            "formatter": 16,
                             "formatOptions": {
                                 "linkColumn": "backupItemId",
                                 "linkTarget": "Resource",
                                 "subTarget": "",
-                                "showIcon": true,
-                                "thresholdsOptions": "icons",
-                                "thresholdsGrid": [
-                                    {
-                                        "operator": "Default",
-                                        "thresholdValue": null,
-                                        "representation": "resource",
-                                        "text": "{0}{1}"
-                                    }
-                                ]
+                                "showIcon": true
                             }
                         },
                         {
@@ -2474,21 +2456,12 @@
                     "formatters": [
                         {
                             "columnMatch": "Name",
-                            "formatter": 18,
+                            "formatter": 16,
                             "formatOptions": {
                                 "linkColumn": "backupItemId",
                                 "linkTarget": "Resource",
                                 "subTarget": "",
-                                "showIcon": true,
-                                "thresholdsOptions": "icons",
-                                "thresholdsGrid": [
-                                    {
-                                        "operator": "Default",
-                                        "thresholdValue": null,
-                                        "representation": "resource",
-                                        "text": "{0}{1}"
-                                    }
-                                ]
+                                "showIcon": true
                             }
                         },
                         {
@@ -2822,20 +2795,11 @@
                         },
                         {
                             "columnMatch": "Item",
-                            "formatter": 18,
+                            "formatter": 16,
                             "formatOptions": {
                                 "linkColumn": "backupItemId",
                                 "linkTarget": "Resource",
-                                "showIcon": true,
-                                "thresholdsOptions": "icons",
-                                "thresholdsGrid": [
-                                    {
-                                        "operator": "Default",
-                                        "thresholdValue": null,
-                                        "representation": "resource",
-                                        "text": "{0}{1}"
-                                    }
-                                ]
+                                "showIcon": true
                             }
                         },
                         {

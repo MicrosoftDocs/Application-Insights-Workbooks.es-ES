@@ -47,7 +47,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<Strong>Flujo de la plantilla</Strong>:\n\n1. Consulte el rendimiento de las rutas.\n2. <strong>Seleccione una ruta</strong> para profundizar más en los diagnósticos. \n3. Los gráficos proporcionados para la ruta seleccionada son:\n<br>    a. Componente de tiempo de carga para cada uno de los componentes incluidos en la ruta seleccionada.\n<br>   b. Desglose del tiempo de carga de la aplicación.\n\n<p>**Estos parámetros afectan a todos los gráficos siguientes:**</p>\n"
+                "json": "<Strong>Flujo de la plantilla</Strong>:\n\n1. Consulte el rendimiento de las rutas.\n2. <strong>Seleccione una ruta</strong> para profundizar más en los diagnósticos. \n3. Los gráficos proporcionados para la ruta seleccionada son:\n<br>   a. Componente de tiempo de carga para cada uno de los componentes incluidos en la ruta seleccionada.\n<br>   b. Desglose del tiempo de carga de la aplicación.\n\n<p>**Estos parámetros afectan a todos los gráficos siguientes:**</p>\n"
             },
             "conditionalVisibility": {
                 "parameterName": "has_Mezzurite_Data",
@@ -614,7 +614,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h2 style=\"text-decoration: underline; margin-bottom: 0;\">Rendimiento de los tiempos secundarios de la aplicación en la ruta \"{Route}\"</h2>\nEste gráfico se usa si los valores de <strong>ALT</strong> han retrocedido.  Estos intervalos proceden del objeto de tiempos de rendimiento del explorador.  Estos tiempos secundarios proceden de los tiempos de rendimiento de la navegación del explorador y se basan en las <a href=\"https://www.w3.org/TR/2012/REC-navigation-timing-20121217/\">normas del W3C</a>.  Consulte el repositorio de <a href=\"https://github.com/Microsoft/Mezzurite\">Mezzurite en GitHub</a> para más información."
+                "json": "<h2 style=\"text-decoration: underline; margin-bottom: 0;\">Rendimiento de los tiempos secundarios de carga de la aplicación en la ruta \"{Route}\"</h2>\nEste gráfico se usa si los valores de <strong>ALT</strong> han retrocedido.  Estos intervalos proceden del objeto de tiempos de rendimiento del explorador.  Estos tiempos secundarios proceden de los tiempos de rendimiento de la navegación del explorador y se basan en las <a href=\"https://www.w3.org/TR/2012/REC-navigation-timing-20121217/\">normas del W3C</a>.  Consulte el repositorio de <a href=\"https://github.com/Microsoft/Mezzurite\">Mezzurite en GitHub</a> para más información."
             },
             "conditionalVisibility": {
                 "parameterName": "Route",

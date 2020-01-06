@@ -88,7 +88,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"perf-counter-trend-compared-to-the-rollingtimewindow-moving-average\"></a>Tendencia de contador de rendimiento en comparación con la media acumulada de {RollingTimeWindow}"
+                "json": "## <a name=\"perf-counter-trend-compared-to-the-no_loc_phrollingtimewindowno_loc_ph-moving-average\"></a>Tendencia de contador de rendimiento en comparación con la media acumulada de {RollingTimeWindow}"
             }
         },
         {

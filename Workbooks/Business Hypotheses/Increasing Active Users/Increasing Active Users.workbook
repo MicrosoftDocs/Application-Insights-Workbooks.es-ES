@@ -5,13 +5,13 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"hypothesis---proposed-change-will-increase-active-users-by-expected-improvement\"></a>Hypothesis: _[cambio propuesto]_ aumentará los usuarios activos en _[mejora prevista]_\n---\nUna buena hipótesis es el corazón de la toma de decisiones basada en datos. Las hipótesis le ayudan a convertir la información sobre el uso de su aplicación por parte de sus clientes en una propuesta de mejora práctica. Use este libro para elaborar una hipótesis acerca de cómo mejorar el número de usuarios activos mensual (MAU), semanal (WAU) o diario (DAU) de la aplicación."
+                "json": "# <a name=\"hypothesis---_proposed-change_-will-increase-active-users-by-_expected-improvement_\"></a>Hypothesis: _[cambio propuesto]_ aumentará los usuarios activos en _[mejora prevista]_\n---\nUna buena hipótesis es el corazón de la toma de decisiones basada en datos. Las hipótesis le ayudan a convertir la información sobre el uso de su aplicación por parte de sus clientes en una propuesta de mejora práctica. Use este libro para elaborar una hipótesis acerca de cómo mejorar el número de usuarios activos mensual (MAU), semanal (WAU) o diario (DAU) de la aplicación."
             }
         },
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"problem---problem-statement\"></a>Problema: _[declaración del problema]_\nAgregue un resumen del problema en la sección. El resumen debe ser conciso y no tener más de unas pocas frases. Indique claramente el problema y evite los detalles no esenciales. \n\n\n"
+                "json": "## <a name=\"problem---_problem-statement_\"></a>Problema: _[declaración del problema]_\nAgregue un resumen del problema en la sección. El resumen debe ser conciso y no tener más de unas pocas frases. Indique claramente el problema y evite los detalles no esenciales. \n\n\n"
             }
         },
         {
@@ -143,7 +143,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"potential-solution---solution-description\"></a>Posible solución: _[descripción de la solución]_\nUtilice esta sección para describir la solución propuesta.\n"
+                "json": "## <a name=\"potential-solution---_solution-description_\"></a>Posible solución: _[descripción de la solución]_\nUtilice esta sección para describir la solución propuesta.\n"
             }
         },
         {
@@ -167,7 +167,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"expected-outcome---active-usage-hits-threshold\"></a>Resultado esperado: el uso activo llega a _[threshold]_\nEn esta sección se enumeran claramente los resultados medibles de la implementación de la solución propuesta.\n\n"
+                "json": "## <a name=\"expected-outcome---active-usage-hits-_threshold_\"></a>Resultado esperado: el uso activo llega a _[threshold]_\nEn esta sección se enumeran claramente los resultados medibles de la implementación de la solución propuesta.\n\n"
             }
         },
         {
@@ -192,7 +192,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"primary-goal---active-usage-hits-goal\"></a>Objetivo principal: el uso activo llega a {Goal}\nEl objetivo predeterminado elegido es aproximadamente el 10 % mayor que el valor de MAU actual. Cambie esto según el objetivo de la aplicación. "
+                "json": "### <a name=\"primary-goal---active-usage-hits-no_loc_phgoalno_loc_ph\"></a>Objetivo principal: el uso activo llega a {Goal}\nEl objetivo predeterminado elegido es aproximadamente el 10 % mayor que el valor de MAU actual. Cambie esto según el objetivo de la aplicación. "
             }
         },
         {

@@ -371,7 +371,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3>Enviado {unit:label}/s</h3>"
+                "json": "<h3>{unit:label} enviados por segundo</h3>"
             },
             "customWidth": "50",
             "name": "text - 5"
@@ -379,7 +379,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3>Recibido {unit:label}/s</h3>"
+                "json": "<h3>{unit:label} recibidos por segundo</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy"
@@ -437,7 +437,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3>Enviado en total: {unit:label} (por {timeRange:grain} intervalos)</h3>"
+                "json": "<h3>{unit:label} totales enviados (por intervalos de {timeRange:grain})</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy"
@@ -445,7 +445,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3>Recibido en total: {unit:label} (por {timeRange:grain} intervalos)</h3>"
+                "json": "<h3>{unit:label} totales recibidos (por intervalos de {timeRange:grain})</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy"
@@ -563,7 +563,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3>Total de errores de salida (por {timeRange:grain} intervalos)</h3>"
+                "json": "<h3>Errores totales de salida (por intervalos de {timeRange:grain})</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy - Copy - Copy"
@@ -571,7 +571,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3>Total de errores de entrada (por {timeRange:grain} intervalos)</h3>"
+                "json": "<h3>Errores totales de entrada (por intervalos de {timeRange:grain})</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy - Copy - Copy - Copy"

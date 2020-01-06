@@ -76,7 +76,7 @@
         {
             "type": 1,
             "content": {
-                "json": "Comparación del tráfico entre dos períodos de tiempo para la máquina <span title=\"{Computer:value}\">`{Computer}`</span> en el área de trabajo <span title=\"{Workspace:value}\">`{Workspace:label}`</span>\n\n---"
+                "json": "Comparación del tráfico entre dos períodos de tiempo para la máquina <span title=\"{Computer:value}\">`{Computer}`</span> del área de trabajo <span title=\"{Workspace:value}\">`{Workspace:label}`</span>\n\n---"
             },
             "conditionalVisibility": null
         },

@@ -128,7 +128,7 @@
         {
             "type": 1,
             "content": {
-                "json": "{Mensaje} _Almacenes de claves_"
+                "json": "{Message}\n_Almacenes de claves_"
             },
             "name": "text - 5",
             "styleSettings": {

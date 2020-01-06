@@ -461,7 +461,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3>Detalles de <span style=\"text-decoration: underline\">{selectedRowId}</span></h3>"
+                "json": "<h3>Detalles para <span style=\"text-decoration: underline\">{selectedRowId}</span>:</h3>"
             },
             "name": "text - 13 - Copy"
         },

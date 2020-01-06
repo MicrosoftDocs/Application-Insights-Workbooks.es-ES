@@ -1,0 +1,19 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Contadores de rendimiento (versión preliminar de Azure)",
+    "author": "Microsoft",
+    "isPreview": true,
+    "galleries": [
+        {
+            "type": "vm-insights",
+            "resourceType": "Azure Monitor",
+            "order": 200
+        },
+        {
+            "type": "workbook",
+            "resourceType": "Azure Monitor",
+            "categoryKey": "azureMonitorVirtualMachines",
+            "order": 100
+        }
+    ]
+}

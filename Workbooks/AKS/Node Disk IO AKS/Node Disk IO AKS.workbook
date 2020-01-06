@@ -368,7 +368,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3>Leer {unit:label}/s</h3>"
+                "json": "<h3>{unit:label} leídos por segundo</h3>"
             },
             "customWidth": "50",
             "name": "text - 5"
@@ -376,7 +376,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3>Escribir {unit:label}/s</h3>"
+                "json": "<h3>{unit:label} escritos por segundo</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy"
@@ -434,7 +434,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3>Leído en total: {unit:label} ({timeRange:grain} intervalos)</h3>"
+                "json": "<h3>{unit:label} totales leídos (intervalos de {timeRange:grain})</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy"
@@ -442,7 +442,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3>Escrito en total: {unit:label} ({timeRange:grain} intervalos)</h3>"
+                "json": "<h3>{unit:label} totales escritos (intervalos de {timeRange:grain})</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy"
@@ -497,7 +497,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3>Milisegundos por {unit:label} leído</h3>"
+                "json": "<h3>Milisegundos por {unit:label} leídos</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy - Copy"
@@ -505,7 +505,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3>Milisegundos por {unit:label} escrito</h3>"
+                "json": "<h3>Milisegundos por {unit:label} escritos</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy - Copy - Copy"
