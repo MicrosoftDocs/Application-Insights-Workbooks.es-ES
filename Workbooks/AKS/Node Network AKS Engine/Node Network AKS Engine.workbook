@@ -4,7 +4,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<div style=\"font-style: italic\"><span data-ttu-id=\"6c511-101\"><a href='https://github.com/influxdata/telegraf/blob/master/plugins/inputs/net/NET_README.md'>Aquí</a> hay más información disponible acerca de las métricas de este libro.</span><span class=\"sxs-lookup\"><span data-stu-id=\"6c511-101\">More information about the metrics in this workbook is available <a href='https://github.com/influxdata/telegraf/blob/master/plugins/inputs/net/NET_README.md'>here</a></span></span></div>"
+                "json": "<div style=\"font-style: italic\"><a href='https://github.com/influxdata/telegraf/blob/master/plugins/inputs/net/NET_README.md'>Aquí</a> hay más información disponible acerca de las métricas de este libro.</div>"
             },
             "name": "text - 18"
         },
@@ -21,7 +21,7 @@
                         "name": "timeRange",
                         "label": "Time Range",
                         "type": 4,
-                        "description": "<span data-ttu-id=\"6c511-102\">Filtrar datos por intervalo de tiempo</span><span class=\"sxs-lookup\"><span data-stu-id=\"6c511-102\">Filter data by time range</span></span>",
+                        "description": "Filtrar datos por intervalo de tiempo",
                         "isRequired": true,
                         "value": {
                             "durationMs": 1800000
@@ -83,7 +83,7 @@
                         "name": "unit",
                         "label": "Unit",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"6c511-103\">Las unidades que se usarán para los datos</span><span class=\"sxs-lookup\"><span data-stu-id=\"6c511-103\">The units to use for the data</span></span>",
+                        "description": "Las unidades que se usarán para los datos",
                         "typeSettings": {
                             "additionalResourceOptions": []
                         },
@@ -95,7 +95,7 @@
                         "name": "aggregation1",
                         "label": "Aggregation",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"6c511-104\">Elija qué agregación de datos desea visualizar en el gráfico temporal</span><span class=\"sxs-lookup\"><span data-stu-id=\"6c511-104\">Choose which data aggregation you want to visualize on the time chart</span></span>",
+                        "description": "Elija qué agregación de datos desea visualizar en el gráfico temporal",
                         "value": "Average",
                         "typeSettings": {
                             "additionalResourceOptions": []
@@ -112,7 +112,7 @@
                         "name": "selectedNodes1",
                         "label": "Node",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"6c511-105\">Filtrar por nodo</span><span class=\"sxs-lookup\"><span data-stu-id=\"6c511-105\">Filter by node</span></span>",
+                        "description": "Filtrar por nodo",
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
@@ -139,7 +139,7 @@
                         "name": "selectedInterfaces1",
                         "label": "Interface",
                         "type": 2,
-                        "description": "<span data-ttu-id=\"6c511-106\">Filtrar por interfaz</span><span class=\"sxs-lookup\"><span data-stu-id=\"6c511-106\">Filter by interface</span></span>",
+                        "description": "Filtrar por interfaz",
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
@@ -165,7 +165,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "clusterId",
                         "type": 1,
-                        "description": "<span data-ttu-id=\"6c511-107\">Filtrar el área de trabajo seleccionada por identificador de clúster</span><span class=\"sxs-lookup\"><span data-stu-id=\"6c511-107\">Filter the selected workspace by cluster id</span></span>",
+                        "description": "Filtrar el área de trabajo seleccionada por identificador de clúster",
                         "isHiddenWhenLocked": true,
                         "timeContext": {
                             "durationMs": 0
@@ -189,7 +189,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"6c511-108\">Detalles de red</span><span class=\"sxs-lookup\"><span data-stu-id=\"6c511-108\">Network Details</span></span></h3>"
+                "json": "<h3>Detalles de red</h3>"
             },
             "name": "text - 21"
         },
@@ -383,7 +383,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"6c511-109\">Enviado {unit:label}/s</span><span class=\"sxs-lookup\"><span data-stu-id=\"6c511-109\">Sent {unit:label}/sec</span></span></h3>"
+                "json": "<h3>{unit:label} enviados por segundo</h3>"
             },
             "customWidth": "50",
             "name": "text - 5"
@@ -391,7 +391,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"6c511-110\">Recibido {unit:label}/s</span><span class=\"sxs-lookup\"><span data-stu-id=\"6c511-110\">Received {unit:label}/sec</span></span></h3>"
+                "json": "<h3>{unit:label} recibidos por segundo</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy"
@@ -449,7 +449,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"6c511-111\">Enviado en total: {unit:label} (por {timeRange:grain} intervalos)</span><span class=\"sxs-lookup\"><span data-stu-id=\"6c511-111\">Total {unit:label} Sent (by {timeRange:grain} intervals)</span></span></h3>"
+                "json": "<h3>{unit:label} totales enviados (por intervalos de {timeRange:grain})</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy"
@@ -457,7 +457,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"6c511-112\">Recibido en total: {unit:label} (por {timeRange:grain} intervalos)</span><span class=\"sxs-lookup\"><span data-stu-id=\"6c511-112\">Total {unit:label} Received (by {timeRange:grain} intervals)</span></span></h3>"
+                "json": "<h3>{unit:label} totales recibidos (por intervalos de {timeRange:grain})</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy"
@@ -512,7 +512,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"6c511-113\">Errores de salida/s</span><span class=\"sxs-lookup\"><span data-stu-id=\"6c511-113\">Errors Out/sec</span></span></h3>"
+                "json": "<h3>Errores de salida/s</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy - Copy"
@@ -520,7 +520,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"6c511-114\">Errores de entrada/s</span><span class=\"sxs-lookup\"><span data-stu-id=\"6c511-114\">Errors In/sec</span></span></h3>"
+                "json": "<h3>Errores de entrada/s</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy - Copy - Copy"
@@ -575,7 +575,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"6c511-115\">Total de errores de salida (por {timeRange:grain} intervalos)</span><span class=\"sxs-lookup\"><span data-stu-id=\"6c511-115\">Total Errors Out (by {timeRange:grain} intervals)</span></span></h3>"
+                "json": "<h3>Errores totales de salida (por intervalos de {timeRange:grain})</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy - Copy - Copy"
@@ -583,7 +583,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<h3><span data-ttu-id=\"6c511-116\">Total de errores de entrada (por {timeRange:grain} intervalos)</span><span class=\"sxs-lookup\"><span data-stu-id=\"6c511-116\">Total Errors In (by {timeRange:grain} intervals)</span></span></h3>"
+                "json": "<h3>Errores totales de entrada (por intervalos de {timeRange:grain})</h3>"
             },
             "customWidth": "50",
             "name": "text - 5 - Copy - Copy - Copy - Copy - Copy"

@@ -5,7 +5,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"performance-counter-analysis\"></a><span data-ttu-id=\"59ad0-101\">Análisis de contadores de rendimiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"59ad0-101\">Performance Counter Analysis</span></span>\n<span data-ttu-id=\"59ad0-102\">Windows proporciona una amplia variedad de [contadores de rendimiento](http://www.codeproject.com/Articles/8590/An-Introduction-To-Performance-Counters), como la ocupación de la CPU, memoria, disco y uso de la red.</span><span class=\"sxs-lookup\"><span data-stu-id=\"59ad0-102\">Windows provides a wide variety of [performance counters](http://www.codeproject.com/Articles/8590/An-Introduction-To-Performance-Counters) such as CPU occupancy, memory, disk, and network usage.</span></span> <span data-ttu-id=\"59ad0-103\">También puede definir sus propios contadores.</span><span class=\"sxs-lookup\"><span data-stu-id=\"59ad0-103\">You can also define your own.</span></span> <span data-ttu-id=\"59ad0-104\">[Application Insights](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview) puede mostrar estos contadores de rendimiento si la aplicación se ejecuta en IIS en un host local o en una máquina virtual para la que tenga acceso administrativo.</span><span class=\"sxs-lookup\"><span data-stu-id=\"59ad0-104\">[Application Insights](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview) can show these performance counters if your application is running under IIS on an on-premises host or virtual machine to which you have administrative access.</span></span> <span data-ttu-id=\"59ad0-105\">Los gráficos indican los recursos disponibles para su aplicación activa y pueden ayudar a identificar la carga no equilibrada entre las instancias de servidor.</span><span class=\"sxs-lookup\"><span data-stu-id=\"59ad0-105\">The charts indicate the resources available to your live application, and can help to identify unbalanced load between server instances.</span></span> <span data-ttu-id=\"59ad0-106\">Pueden encontrar más detalles en [Contadores de rendimiento en Application Insights](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-performance-counters).</span><span class=\"sxs-lookup\"><span data-stu-id=\"59ad0-106\">More details can be found at [Performance counters in Application Insights](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-performance-counters)</span></span>\n\n<span data-ttu-id=\"59ad0-107\">Este informe le ayudará a analizar los contadores de rendimiento de la aplicación y a identificar posibles problemas en el uso de recursos.</span><span class=\"sxs-lookup\"><span data-stu-id=\"59ad0-107\">This report will help you analyze your app's performance counters and potentially indentify issues in resource utilization.</span></span>"
+                "json": "# <a name=\"performance-counter-analysis\"></a>Análisis de contadores de rendimiento\nWindows proporciona una amplia variedad de [contadores de rendimiento](http://www.codeproject.com/Articles/8590/An-Introduction-To-Performance-Counters), como la ocupación de la CPU, memoria, disco y uso de la red. También puede definir sus propios contadores. [Application Insights](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview) puede mostrar estos contadores de rendimiento si la aplicación se ejecuta en IIS en un host local o en una máquina virtual para la que tenga acceso administrativo. Los gráficos indican los recursos disponibles para su aplicación activa y pueden ayudar a identificar la carga no equilibrada entre las instancias de servidor. Pueden encontrar más detalles en [Contadores de rendimiento en Application Insights](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-performance-counters).\n\nEste informe le ayudará a analizar los contadores de rendimiento de la aplicación y a identificar posibles problemas en el uso de recursos."
             }
         },
         {
@@ -88,7 +88,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"perf-counter-trend-compared-to-the-rollingtimewindow-moving-average\"></a><span data-ttu-id=\"59ad0-108\">Tendencia de contador de rendimiento en comparación con la media acumulada de {RollingTimeWindow}</span><span class=\"sxs-lookup\"><span data-stu-id=\"59ad0-108\">Perf Counter Trend Compared to the {RollingTimeWindow} Moving Average</span></span>"
+                "json": "## <a name=\"perf-counter-trend-compared-to-the-no_loc_phrollingtimewindowno_loc_ph-moving-average\"></a>Tendencia de contador de rendimiento en comparación con la media acumulada de {RollingTimeWindow}"
             }
         },
         {
@@ -106,7 +106,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"breakouts-in-perf-counter\"></a><span data-ttu-id=\"59ad0-109\">Subgrupos en el contador de rendimiento</span><span class=\"sxs-lookup\"><span data-stu-id=\"59ad0-109\">Breakouts in Perf Counter</span></span>"
+                "json": "## <a name=\"breakouts-in-perf-counter\"></a>Subgrupos en el contador de rendimiento"
             }
         },
         {
@@ -145,7 +145,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"perf-counters-by-machine\"></a><span data-ttu-id=\"59ad0-110\">Contadores de rendimiento por máquina</span><span class=\"sxs-lookup\"><span data-stu-id=\"59ad0-110\">Perf Counters by Machine</span></span>"
+                "json": "## <a name=\"perf-counters-by-machine\"></a>Contadores de rendimiento por máquina"
             }
         },
         {

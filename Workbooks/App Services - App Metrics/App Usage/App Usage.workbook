@@ -6,7 +6,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"app-usage\"></a><span data-ttu-id=\"b56a8-101\">Uso de la aplicación</span><span class=\"sxs-lookup\"><span data-stu-id=\"b56a8-101\">App Usage</span></span>\n<span data-ttu-id=\"b56a8-102\">Utilice este informe para descubrir cuándo utilizan los usuarios la aplicación, en qué páginas están más interesados, en qué ubicación se encuentran dichos usuarios, y los sistemas operativos y exploradores que emplean.</span><span class=\"sxs-lookup\"><span data-stu-id=\"b56a8-102\">Use this report to find out when people use your app, what pages they're most interested in, where your users are located, and what browsers and operating systems they use.</span></span> \n"
+                "json": "# <a name=\"app-usage\"></a>Uso de la aplicación\nUtilice este informe para descubrir cuándo utilizan los usuarios la aplicación, en qué páginas están más interesados, en qué ubicación se encuentran dichos usuarios, y los sistemas operativos y exploradores que emplean. \n"
             },
             "conditionalVisibility": null
         },
@@ -220,7 +220,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"b56a8-103\">💡 *Seleccione una operación en la tabla para ver sus detalles de uso*</span><span class=\"sxs-lookup\"><span data-stu-id=\"b56a8-103\">💡 *Select an operation in the table to see its usage details*</span></span>"
+                "json": "💡 *Seleccione una operación en la tabla para ver sus detalles de uso*"
             },
             "conditionalVisibility": null
         },
@@ -249,7 +249,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"details---selectedoperationname\"></a><span data-ttu-id=\"b56a8-104\">Detalles: {SelectedOperationName}</span><span class=\"sxs-lookup\"><span data-stu-id=\"b56a8-104\">Details - {SelectedOperationName}</span></span>\n"
+                "json": "## <a name=\"details---no_loc_phselectedoperationnameno_loc_ph\"></a>Detalles: {SelectedOperationName}\n"
             },
             "conditionalVisibility": null
         },

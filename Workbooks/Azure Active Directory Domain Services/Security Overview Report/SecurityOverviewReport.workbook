@@ -340,7 +340,7 @@
         {
             "type": 1,
             "content": {
-                "json": "_\\* Muestra los intentos de inicio de sesión de **{AuthResultA}**_"
+                "json": "_\\* Se muestran **{AuthResultA}** intentos de inicio de sesión_"
             },
             "conditionalVisibility": {
                 "parameterName": "TileView",
@@ -352,7 +352,7 @@
         {
             "type": 1,
             "content": {
-                "json": "_\\* Muestra los intentos de inicio de sesión de **{AuthResultB}**_"
+                "json": "_\\* Se muestran **{AuthResultB}** intentos de inicio de sesión_"
             },
             "conditionalVisibility": {
                 "parameterName": "TileView",

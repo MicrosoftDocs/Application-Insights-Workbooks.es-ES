@@ -1,0 +1,19 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Información general sobre Connections (versión preliminar de Azure)",
+    "author": "Microsoft",
+    "isPreview": true,
+    "galleries": [
+        {
+            "type": "vm-insights",
+            "resourceType": "Azure Monitor",
+            "order": 100
+        },
+        {
+            "type": "workbook",
+            "resourceType": "Azure Monitor",
+            "categoryKey": "azureMonitorVirtualMachines",
+            "order": 100
+        }
+    ]
+}

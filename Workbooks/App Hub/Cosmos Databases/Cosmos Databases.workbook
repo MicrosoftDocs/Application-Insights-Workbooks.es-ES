@@ -5,7 +5,6 @@
             "type": 9,
             "content": {
                 "version": "KqlParameterItem/1.0",
-                "query": "",
                 "crossComponentResources": [
                     "value::selected"
                 ],
@@ -13,22 +12,31 @@
                     {
                         "id": "1f74ed9a-e3ed-498d-bd5b-f68f3836a117",
                         "version": "KqlParameterItem/1.0",
-                        "name": "Subscription",
-                        "label": "Subscriptions",
-                        "type": 6,
-                        "description": "Todas las suscripciones con cuentas de CosmosDB",
+                        "name": "InputContext",
+                        "label": "Input context",
+                        "type": 5,
+                        "description": "Todas las suscripciones con cuentas de almacenamiento",
                         "isRequired": true,
-                        "multiSelect": true,
-                        "quote": "'",
-                        "delimiter": ",",
-                        "query": "where type =~ 'Microsoft.DocumentDB/databaseAccounts'\r\n\t| summarize Count = count() by subscriptionId\r\n\t| order by Count desc\r\n\t| extend Rank = row_number()\r\n\t| project value = subscriptionId, label = subscriptionId, selected = Rank == 1",
+                        "value": "value::1",
+                        "isHiddenWhenLocked": true,
+                        "typeSettings": {
+                            "additionalResourceOptions": [
+                                "value::1"
+                            ],
+                            "showDefault": false
+                        }
+                    },
+                    {
+                        "id": "102e5ff4-5a4b-4186-87ea-e4ccb0392e2c",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "ResourceGraphQuery",
+                        "label": "Resource graph query snippet",
+                        "type": 1,
+                        "query": "Resources\r\n| take 1\r\n| project InputContext = tolower('{InputContext}')\r\n| extend ResourceQueryId = extract(@'(/subscriptions/.+/resourcegroups/.+/providers/microsoft.resourcegraph/queries/.+)', 1, InputContext)\r\n| project QuerySnippet = iff(ResourceQueryId == '', 'Resources | where id startswith \"{InputContext}\"', strcat('{', '{','{InputContext}', '}', '}'))",
                         "crossComponentResources": [
                             "value::selected"
                         ],
-                        "typeSettings": {
-                            "additionalResourceOptions": [],
-                            "showDefault": false
-                        },
+                        "isHiddenWhenLocked": true,
                         "queryType": 1,
                         "resourceType": "microsoft.resourcegraph/resources"
                     },
@@ -36,15 +44,15 @@
                         "id": "138881c1-d041-4acd-acc9-e7a7af02d2ef",
                         "version": "KqlParameterItem/1.0",
                         "name": "CosmosDB",
-                        "label": "Cosmos DB",
+                        "label": "Cosmos Databases",
                         "type": 5,
                         "isRequired": true,
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
-                        "query": "where type =~ 'Microsoft.DocumentDB/databaseAccounts'\r\n\t| order by name asc\r\n\t| extend Rank = row_number()\r\n\t| project value = id, label = id, selected = Rank <= 5\r\n",
+                        "query": "{ResourceGraphQuery}\r\n| where type =~ 'Microsoft.DocumentDB/databaseAccounts'\r\n| order by name asc\r\n| extend Rank = row_number()\r\n| project value = id, label = id, selected = Rank <= 25",
                         "crossComponentResources": [
-                            "{Subscription}"
+                            "value::selected"
                         ],
                         "typeSettings": {
                             "additionalResourceOptions": [
@@ -146,9 +154,9 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "Message",
                         "type": 1,
-                        "query": "where type  =~ 'Microsoft.DocumentDB/databaseAccounts'\n| summarize Selected = countif(id in ({CosmosDB:value})), Total = count()\n| extend Selected = iff(Selected > 200, 200, Selected)\n| project Message = strcat('# ', Selected, ' / ', Total)",
+                        "query": "{ResourceGraphQuery}\n| where type =~ 'Microsoft.DocumentDB/databaseAccounts'\n| summarize Selected = countif(id in ({CosmosDB:value})), Total = count()\n| extend Selected = iff(Selected > 200, 200, Selected)\n| project Message = strcat('# ', Selected, ' / ', Total)",
                         "crossComponentResources": [
-                            "{Subscription}"
+                            "value::selected"
                         ],
                         "isHiddenWhenLocked": true,
                         "queryType": 1,
@@ -167,7 +175,7 @@
         {
             "type": 1,
             "content": {
-                "json": "{Message}\n_Cuentas de Cosmos DB_\n<br />\n<br />"
+                "json": "{Message}\n_Cuentas de Cosmos DB_\n"
             },
             "name": "CosmosDBAccounts",
             "styleSettings": {
@@ -212,7 +220,7 @@
             },
             "name": "links-tabs",
             "styleSettings": {
-                "margin": "-15px 0px -15px 0px"
+                "margin": "10px 0 0 0"
             }
         },
         {
@@ -565,8 +573,7 @@
                         "sortOrder": 2
                     }
                 ],
-                "showExportToExcel": true,
-                "exportToExcelOptions": "visible"
+                "showExportToExcel": true
             },
             "conditionalVisibility": {
                 "parameterName": "selectedTab",
@@ -761,6 +768,18 @@
                         {
                             "columnId": "200/response",
                             "label": "200/response"
+                        },
+                        {
+                            "columnId": "304/response",
+                            "label": "304/response"
+                        },
+                        {
+                            "columnId": "404/response",
+                            "label": "404/response"
+                        },
+                        {
+                            "columnId": "201/response",
+                            "label": "201/response"
                         }
                     ]
                 },
@@ -770,8 +789,7 @@
                         "sortOrder": 2
                     }
                 ],
-                "showExportToExcel": true,
-                "exportToExcelOptions": "visible"
+                "showExportToExcel": true
             },
             "conditionalVisibility": {
                 "parameterName": "selectedTab",
@@ -1041,8 +1059,7 @@
                         "sortOrder": 2
                     }
                 ],
-                "showExportToExcel": true,
-                "exportToExcelOptions": "visible"
+                "showExportToExcel": true
             },
             "conditionalVisibility": {
                 "parameterName": "selectedTab",
@@ -1224,8 +1241,7 @@
                         "sortOrder": 2
                     }
                 ],
-                "showExportToExcel": true,
-                "exportToExcelOptions": "visible"
+                "showExportToExcel": true
             },
             "conditionalVisibility": {
                 "parameterName": "selectedTab",
@@ -1236,6 +1252,5 @@
             "name": "cosmosDB account operations"
         }
     ],
-    "styleSettings": {},
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
 }

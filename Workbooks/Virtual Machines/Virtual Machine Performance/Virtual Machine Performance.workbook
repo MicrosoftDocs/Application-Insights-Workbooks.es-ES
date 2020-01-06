@@ -6,7 +6,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"virtual-machine-performance\"></a><span data-ttu-id=\"9643a-101\">Rendimiento de la máquina virtual</span><span class=\"sxs-lookup\"><span data-stu-id=\"9643a-101\">Virtual Machine Performance</span></span>\n<span data-ttu-id=\"9643a-102\">Utilice este libro para analizar los contadores de rendimiento de las máquinas virtuales (procesador, memoria, disco, etc.).</span><span class=\"sxs-lookup\"><span data-stu-id=\"9643a-102\">Analyze the performance counters (processor, memory, disk, etc.) of your VMs using this workbook.</span></span>  <span data-ttu-id=\"9643a-103\">También puede elegir personalizar el análisis mediante el botón `Edit` en la barra de herramientas.</span><span class=\"sxs-lookup\"><span data-stu-id=\"9643a-103\">You can also choose to customize the analysis by using the `Edit` button in the toolbar.</span></span>"
+                "json": "# <a name=\"virtual-machine-performance\"></a>Rendimiento de la máquina virtual\nUtilice este libro para analizar los contadores de rendimiento de las máquinas virtuales (procesador, memoria, disco, etc.).  También puede elegir personalizar el análisis mediante el botón `Edit` en la barra de herramientas."
             },
             "conditionalVisibility": null
         },
@@ -213,14 +213,14 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"9643a-104\">Use el parámetro `Counter` para cambiar a un contador diferente de la máquina virtual.</span><span class=\"sxs-lookup\"><span data-stu-id=\"9643a-104\">Use the `Counter` parameter to switch to a different VM counter.</span></span> <span data-ttu-id=\"9643a-105\">Puede incluir más máquinas virtuales en su análisis con el parámetro `VirtualMachines`.</span><span class=\"sxs-lookup\"><span data-stu-id=\"9643a-105\">You can include more VMs in your analysis using the `VirtualMachines` parameter.</span></span> "
+                "json": "Use el parámetro `Counter` para cambiar a un contador diferente de la máquina virtual. Puede incluir más máquinas virtuales en su análisis con el parámetro `VirtualMachines`. "
             },
             "conditionalVisibility": null
         },
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"computers\"></a><span data-ttu-id=\"9643a-106\">Equipos</span><span class=\"sxs-lookup\"><span data-stu-id=\"9643a-106\">Computers</span></span>"
+                "json": "## <a name=\"computers\"></a>Equipos"
             },
             "conditionalVisibility": null
         },
@@ -274,14 +274,14 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"9643a-107\">*Haga clic en una fila para ver las tendencias solo de ese equipo*</span><span class=\"sxs-lookup\"><span data-stu-id=\"9643a-107\">*Click on a row to see trends for just that computer*</span></span>"
+                "json": "*Haga clic en una fila para ver las tendencias solo de ese equipo*"
             },
             "conditionalVisibility": null
         },
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"trend-computer\"></a><span data-ttu-id=\"9643a-108\">Tendencia: {computer}</span><span class=\"sxs-lookup\"><span data-stu-id=\"9643a-108\">Trend: {computer}</span></span>"
+                "json": "## <a name=\"trend-no_loc_phcomputerno_loc_ph\"></a>Tendencia: {computer}"
             },
             "conditionalVisibility": null
         },

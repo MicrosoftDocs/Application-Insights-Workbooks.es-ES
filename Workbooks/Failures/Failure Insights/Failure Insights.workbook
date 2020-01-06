@@ -4,7 +4,7 @@
         {
             "type": 1,
             "content": {
-                "json": "# <a name=\"failures-insights\"></a><span data-ttu-id=\"813cb-101\">Información sobre errores</span><span class=\"sxs-lookup\"><span data-stu-id=\"813cb-101\">Failures Insights</span></span>\n"
+                "json": "# <a name=\"failures-insights\"></a>Información sobre errores\n"
             },
             "conditionalVisibility": null,
             "name": "text - 0"
@@ -162,7 +162,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<span data-ttu-id=\"813cb-102\">💡 *Haga clic en las filas de la tabla de arriba para ver los detalles de otras operaciones.*</span><span class=\"sxs-lookup\"><span data-stu-id=\"813cb-102\">💡 *Click on the rows of the table above to see details for other operations*</span></span>"
+                "json": "💡 *Haga clic en las filas de la tabla de arriba para ver los detalles de otras operaciones.*"
             },
             "conditionalVisibility": null,
             "name": "text - 3"
@@ -195,7 +195,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"details----selectedoperation\"></a><span data-ttu-id=\"813cb-103\">Detalles: {SelectedOperation}</span><span class=\"sxs-lookup\"><span data-stu-id=\"813cb-103\">Details -- {SelectedOperation}</span></span>\n"
+                "json": "## <a name=\"details----no_loc_phselectedoperationno_loc_ph\"></a>Detalles: {SelectedOperation}\n"
             },
             "conditionalVisibility": null,
             "name": "text - 5"

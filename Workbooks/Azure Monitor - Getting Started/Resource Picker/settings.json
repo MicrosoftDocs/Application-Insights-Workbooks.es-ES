@@ -1,0 +1,13 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Selector de recursos",
+    "description": "Permite seleccionar los recursos que se van a analizar.",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "Azure Monitor",
+            "order": 100
+        }
+    ]
+}
