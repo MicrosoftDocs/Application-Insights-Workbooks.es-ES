@@ -1,17 +1,18 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Red del nodo",
+    "name": "Integración continua de la capacidad de disco del nodo",
     "author": "Microsoft",
+    "isPreview": true,
     "galleries": [
         {
             "type": "container-insights",
             "resourceType": "Microsoft.ContainerService/managedClusters",
-            "order": 400
+            "order": 100
         },
         {
             "type": "workbook",
             "resourceType": "Microsoft.ContainerService/managedClusters",
-            "order": 400
+            "order": 100
         }
     ]
 }
