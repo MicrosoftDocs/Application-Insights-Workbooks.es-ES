@@ -52,7 +52,7 @@
                             "showDefault": false
                         },
                         "timeContext": {
-                            "durationMs": 14400000
+                            "durationMs": 1800000
                         },
                         "queryType": 0,
                         "resourceType": "microsoft.operationalinsights/workspaces"
@@ -163,7 +163,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"impact-summary\"></a>Resumen de impacto\nEste es el impacto de la directiva seleccionada en el inquilino a lo largo de {TimeRange}. \n\n💡 _Ver el resumen por número de usuarios o de inicios de sesión. Haga clic en un icono para ver los detalles a continuación._"
+                "json": "## <a name=\"impact-summary\"></a>Resumen de impacto\nEste es el impacto de la directiva seleccionada en el inquilino a lo largo de {TimeRange}. \n\n💡 _Vea el resumen por número de usuarios o de inicios de sesión. Haga clic en un icono para ver los detalles a continuación._"
             },
             "name": "text - 5"
         },
@@ -173,15 +173,14 @@
                 "version": "KqlItem/1.0",
                 "query": "// Total\r\nSigninLogs\r\n| where CreatedDateTime {TimeRange:value}\r\n| project ConditionalAccessPolicies, UserDisplayName, AppDisplayName\r\n| where ConditionalAccessPolicies != \"[]\"\r\n| where \"{User:escape}\" == \"All users\" or UserDisplayName contains \"{User:escape}\"\r\n| where \"{App:escape}\" == \"All apps\" or AppDisplayName contains \"{App:escape}\"\r\n| project-away AppDisplayName\r\n| mv-expand ConditionalAccessPolicies\r\n| where ConditionalAccessPolicies[\"displayName\"] == \"{Policy:escape}\"\r\n| project-away ConditionalAccessPolicies\r\n{unit} summarize count() by UserDisplayName\r\n| summarize count()\r\n| extend resultName = \"Total\", unit = case(\"{unit}\" == \"//\", \"sign-ins\",\"users\"), statusCode = 1\r\n//\r\n//\r\n// Number of success/failure/user action required/not applied\r\n| union (\r\nSigninLogs\r\n| where CreatedDateTime {TimeRange:value}\r\n| project ConditionalAccessPolicies, UserDisplayName, AppDisplayName\r\n| where ConditionalAccessPolicies != \"[]\"\r\n| where \"{User:escape}\" == \"All users\" or UserDisplayName contains \"{User:escape}\"\r\n| where \"{App:escape}\" == \"All apps\" or AppDisplayName contains \"{App:escape}\"\r\n| project-away AppDisplayName\r\n| mv-expand ConditionalAccessPolicies\r\n| where ConditionalAccessPolicies[\"displayName\"] == \"{Policy:escape}\"\r\n| extend result = ConditionalAccessPolicies[\"result\"]\r\n| project-away ConditionalAccessPolicies\r\n| extend resultName = case(result == \"success\" or result == \"reportOnlySuccess\", \"Success\", result == \"failure\" or result == \"reportOnlyFailure\", \"Failure\", result == \"interrupt\" or result == \"reportOnlyInterrupted\", \"User action required\", \"Not applied\")\r\n| extend statusCode = case(result == \"success\", 2, result == \"failure\", 3, result == \"interrupt\", 4, 5)\r\n{unit} summarize count() by resultName, UserDisplayName, statusCode\r\n| summarize count() by resultName, statusCode\r\n| extend unit = case(\"{unit}\" == \"//\", \"sign-ins\",\"users\")\r\n)\r\n//\r\n// Case if result count is 0\r\n| join kind = fullouter (\r\n    datatable (resultName:string,statusCode1:string)\r\n    [\"Total\", 1,\r\n     \"Success\", 2,\r\n     \"Failure\", 3,\r\n     \"User action required\", 4,\r\n     \"Not applied\", 5]\r\n) on resultName\r\n| extend resultName = iff(resultName == '', resultName1, resultName), count_ = iff(resultName == '', 0, count_), unit = \"{unit:label}\", statusCode1\r\n| project-away resultName1\r\n| sort by statusCode1 asc",
                 "size": 3,
-                "exportFieldName": "resultName",
-                "exportParameterName": "resultName",
-                "exportDefaultValue": "Total",
                 "showAnalytics": true,
-                "exportToExcelOptions": "visible",
                 "timeContext": {
                     "durationMs": 0
                 },
                 "timeContextFromParameter": "TimeRange",
+                "exportFieldName": "resultName",
+                "exportParameterName": "resultName",
+                "exportDefaultValue": "Total",
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "visualization": "tiles",
@@ -223,7 +222,7 @@
         {
             "type": 1,
             "content": {
-                "json": "__________________________________________\n## <a name=\"breakdown-per-condition-and-sign-in-status\"></a>Desglose por estado de la condición e inicio de sesión\n💡 _Haga clic en el icono de log Analytics en la esquina de cada consulta para ejecutarlo en una nueva ventana._"
+                "json": "__________________________________________\n## <a name=\"breakdown-per-condition-and-sign-in-status\"></a>Desglose por estado de la condición e inicio de sesión\n💡 _Haga clic en el icono de Log Analytics en la esquina de cada consulta para ejecutarlo en una nueva ventana._"
             },
             "conditionalVisibility": {
                 "parameterName": "statusCode",
@@ -278,7 +277,6 @@
                 "query": "SigninLogs\r\n| where CreatedDateTime{TimeRange:value}\r\n| project ConditionalAccessPolicies, UserDisplayName, AppDisplayName, DeviceDetail\r\n| where ConditionalAccessPolicies != \"[]\"\r\n| where \"{User:escape}\" == \"All users\" or UserDisplayName contains \"{User:escape}\"\r\n| where \"{App:escape}\" == \"All apps\" or AppDisplayName contains \"{App:escape}\"\r\n| project-away AppDisplayName\r\n| mv-expand ConditionalAccessPolicies\r\n| where ConditionalAccessPolicies[\"displayName\"] == \"{Policy:escape}\"\r\n| extend result = ConditionalAccessPolicies[\"result\"]\r\n| project-away ConditionalAccessPolicies\r\n| extend filterResult = case(\"{resultName}\" == \"Total\",\"successfailureinterruptreportOnlySuccessreportOnlyFailurereportOnlyInterruptedreportOnlyNotAppliednotEnabled\", \"{resultName}\" == \"Success\", \"successreportOnlySuccess\", \"{resultName}\" == \"Failure\", \"failurereportOnlyFailure\", \"{resultName}\" == \"User action required\", \"interruptreportOnlyInterrupted\",\"notAppliedreportOnlyNotAppliednotEnabled\")\r\n| where filterResult contains result\r\n| extend deviceState = case(DeviceDetail[\"trustType\"] == \"\", \"Unmanaged\", DeviceDetail[\"trustType\"])\r\n{unit} summarize count() by UserDisplayName, deviceState\r\n| summarize count() by deviceState\r\n\r\n",
                 "size": 1,
                 "showAnalytics": true,
-                "exportToExcelOptions": "visible",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -318,7 +316,6 @@
                 "query": "SigninLogs\r\n| where CreatedDateTime {TimeRange:value}\r\n| project ConditionalAccessPolicies, UserDisplayName, AppDisplayName, DeviceDetail\r\n| where ConditionalAccessPolicies != \"[]\"\r\n| where \"{User:escape}\" == \"All users\" or UserDisplayName contains \"{User:escape}\"\r\n| where \"{App:escape}\" == \"All apps\" or AppDisplayName contains \"{App:escape}\"\r\n| project-away AppDisplayName\r\n| mv-expand ConditionalAccessPolicies\r\n| where ConditionalAccessPolicies[\"displayName\"] == \"{Policy:escape}\"\r\n| extend result = ConditionalAccessPolicies[\"result\"]\r\n| project-away ConditionalAccessPolicies\r\n| extend filterResult = case(\"{resultName}\" == \"Total\",\"successfailureinterruptreportOnlySuccessreportOnlyFailurereportOnlyInterruptedreportOnlyNotAppliednotEnabled\", \"{resultName}\" == \"Success\", \"successreportOnlySuccess\", \"{resultName}\" == \"Failure\", \"failurereportOnlyFailure\", \"{resultName}\" == \"User action required\", \"interruptreportOnlyInterrupted\",\"notAppliedreportOnlyNotAppliednotEnabled\")\r\n| where filterResult contains result\r\n| extend device = tostring(DeviceDetail[\"operatingSystem\"])\r\n{unit} summarize count() by UserDisplayName, device\r\n| summarize count() by device\r\n\r\n\r\n",
                 "size": 1,
                 "showAnalytics": true,
-                "exportToExcelOptions": "visible",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -358,7 +355,6 @@
                 "query": "SigninLogs\r\n| where CreatedDateTime {TimeRange:value}\r\n| project ConditionalAccessPolicies, UserDisplayName, AppDisplayName, ClientAppUsed\r\n| where ConditionalAccessPolicies != \"[]\"\r\n| where \"{User:escape}\" == \"All users\" or UserDisplayName contains \"{User:escape}\"\r\n| where \"{App:escape}\" == \"All apps\" or AppDisplayName contains \"{App:escape}\"\r\n| project-away AppDisplayName\r\n| mv-expand ConditionalAccessPolicies\r\n| where ConditionalAccessPolicies[\"displayName\"] == \"{Policy:escape}\"\r\n| extend result = ConditionalAccessPolicies[\"result\"]\r\n| project-away ConditionalAccessPolicies\r\n| extend filterResult = case(\"{resultName}\" == \"Total\",\"successfailureinterruptreportOnlySuccessreportOnlyFailurereportOnlyInterruptedreportOnlyNotAppliednotEnabled\", \"{resultName}\" == \"Success\", \"successreportOnlySuccess\", \"{resultName}\" == \"Failure\", \"failurereportOnlyFailure\", \"{resultName}\" == \"User action required\", \"interruptreportOnlyInterrupted\",\"notAppliedreportOnlyNotAppliednotEnabled\")\r\n| where filterResult contains result\r\n{unit} summarize count() by UserDisplayName, ClientAppUsed\r\n| summarize count() by ClientAppUsed",
                 "size": 1,
                 "showAnalytics": true,
-                "exportToExcelOptions": "visible",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -437,7 +433,6 @@
                 "query": "SigninLogs\r\n| where CreatedDateTime {TimeRange:value}\r\n| project ConditionalAccessPolicies, UserDisplayName, AppDisplayName, RiskLevelDuringSignIn\r\n| where ConditionalAccessPolicies != \"[]\"\r\n| where \"{User:escape}\" == \"All users\" or UserDisplayName contains \"{User:escape}\"\r\n| where \"{App:escape}\" == \"All apps\" or AppDisplayName contains \"{App:escape}\"\r\n| project-away AppDisplayName\r\n| mv-expand ConditionalAccessPolicies\r\n| where ConditionalAccessPolicies[\"displayName\"] == \"{Policy:escape}\"\r\n| extend result = ConditionalAccessPolicies[\"result\"]\r\n| project-away ConditionalAccessPolicies\r\n| extend filterResult = case(\"{resultName}\" == \"Total\",\"successfailureinterruptreportOnlySuccessreportOnlyFailurereportOnlyInterruptedreportOnlyNotAppliednotEnabled\", \"{resultName}\" == \"Success\", \"successreportOnlySuccess\", \"{resultName}\" == \"Failure\", \"failurereportOnlyFailure\", \"{resultName}\" == \"User action required\", \"interruptreportOnlyInterrupted\",\"notAppliedreportOnlyNotAppliednotEnabled\")\r\n| where filterResult contains result\r\n{unit} summarize count() by UserDisplayName, RiskLevelDuringSignIn\r\n| summarize count() by RiskLevelDuringSignIn",
                 "size": 1,
                 "showAnalytics": true,
-                "exportToExcelOptions": "visible",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -477,7 +472,6 @@
                 "query": "SigninLogs\r\n| where CreatedDateTime {TimeRange:value}\r\n| project ConditionalAccessPolicies, UserDisplayName, AppDisplayName, location = tostring(LocationDetails.city)\r\n| where ConditionalAccessPolicies != \"[]\"\r\n| where \"{User:escape}\" == \"All users\" or UserDisplayName contains \"{User:escape}\"\r\n| where \"{App:escape}\" == \"All apps\" or AppDisplayName contains \"{App:escape}\"\r\n| project-away AppDisplayName\r\n| mv-expand ConditionalAccessPolicies\r\n| where ConditionalAccessPolicies[\"displayName\"] == \"{Policy:escape}\"\r\n| extend result = ConditionalAccessPolicies[\"result\"]\r\n| project-away ConditionalAccessPolicies\r\n| extend filterResult = case(\"{resultName}\" == \"Total\",\"successfailureinterruptreportOnlySuccessreportOnlyFailurereportOnlyInterruptedreportOnlyNotAppliednotEnabled\", \"{resultName}\" == \"Success\", \"successreportOnlySuccess\", \"{resultName}\" == \"Failure\", \"failurereportOnlyFailure\", \"{resultName}\" == \"User action required\", \"interruptreportOnlyInterrupted\",\"notAppliedreportOnlyNotAppliednotEnabled\")\r\n| where filterResult contains result\r\n{unit} summarize count() by UserDisplayName, location\r\n| summarize Count = count() by location\r\n| sort by Count desc",
                 "size": 1,
                 "showAnalytics": true,
-                "exportToExcelOptions": "visible",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -561,16 +555,6 @@
                             "formatOptions": {
                                 "showIcon": true
                             }
-                        }
-                    ],
-                    "labelSettings": [
-                        {
-                            "columnId": "location",
-                            "label": "location"
-                        },
-                        {
-                            "columnId": "Count",
-                            "label": "Count"
                         }
                     ]
                 }
@@ -585,7 +569,6 @@
                 "query": "SigninLogs\r\n| where CreatedDateTime {TimeRange:value}\r\n| project ConditionalAccessPolicies, UserDisplayName, AppDisplayName\r\n| where ConditionalAccessPolicies != \"[]\"\r\n| where \"{User:escape}\" == \"All users\" or UserDisplayName contains \"{User:escape}\"\r\n| where \"{App:escape}\" == \"All apps\" or AppDisplayName contains \"{App:escape}\"\r\n| mv-expand ConditionalAccessPolicies\r\n| where ConditionalAccessPolicies[\"displayName\"] == \"{Policy:escape}\"\r\n| extend result = ConditionalAccessPolicies[\"result\"]\r\n| project-away ConditionalAccessPolicies\r\n| extend filterResult = case(\"{resultName}\" == \"Total\",\"successfailureinterruptreportOnlySuccessreportOnlyFailurereportOnlyInterruptedreportOnlyNotAppliednotEnabled\", \"{resultName}\" == \"Success\", \"successreportOnlySuccess\", \"{resultName}\" == \"Failure\", \"failurereportOnlyFailure\", \"{resultName}\" == \"User action required\", \"interruptreportOnlyInterrupted\",\"notAppliedreportOnlyNotAppliednotEnabled\")\r\n| where filterResult contains result\r\n{unit} summarize count() by UserDisplayName, AppDisplayName\r\n| summarize Count = count() by AppDisplayName\r\n| sort by Count desc",
                 "size": 1,
                 "showAnalytics": true,
-                "exportToExcelOptions": "visible",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -669,16 +652,6 @@
                             "formatOptions": {
                                 "showIcon": true
                             }
-                        }
-                    ],
-                    "labelSettings": [
-                        {
-                            "columnId": "AppDisplayName",
-                            "label": "AppDisplayName"
-                        },
-                        {
-                            "columnId": "Count",
-                            "label": "Count"
                         }
                     ]
                 }
@@ -704,16 +677,15 @@
                 "version": "KqlItem/1.0",
                 "query": "SigninLogs\r\n| where CreatedDateTime {TimeRange:value}\r\n| project ConditionalAccessPolicies, UserDisplayName, AppDisplayName\r\n| where ConditionalAccessPolicies != \"[]\"\r\n| where \"{User:escape}\" == \"All users\" or UserDisplayName contains \"{User:escape}\"\r\n| where \"{App:escape}\" == \"All apps\" or AppDisplayName contains \"{App:escape}\"\r\n| project-away AppDisplayName\r\n| mv-expand ConditionalAccessPolicies\r\n| where ConditionalAccessPolicies[\"displayName\"] == \"{Policy:escape}\"\r\n| extend result = ConditionalAccessPolicies[\"result\"]\r\n| project-away ConditionalAccessPolicies\r\n| extend filterResult = case(\"{resultName}\" == \"Total\",\"successfailureinterruptreportOnlySuccessreportOnlyFailurereportOnlyInterruptedreportOnlyNotAppliednotEnabled\", \"{resultName}\" == \"Success\", \"successreportOnlySuccess\", \"{resultName}\" == \"Failure\", \"failurereportOnlyFailure\", \"{resultName}\" == \"User action required\", \"interruptreportOnlyInterrupted\",\"notAppliedreportOnlyNotAppliednotEnabled\")\r\n| where filterResult contains result\r\n| summarize Count = count() by UserDisplayName\r\n| sort by Count desc",
                 "size": 0,
-                "exportFieldName": "UserDisplayName",
-                "exportParameterName": "user",
-                "exportDefaultValue": "*",
                 "showAnalytics": true,
-                "exportToExcelOptions": "visible",
                 "title": "User sign-in count",
                 "timeContext": {
                     "durationMs": 0
                 },
                 "timeContextFromParameter": "TimeRange",
+                "exportFieldName": "UserDisplayName",
+                "exportParameterName": "user",
+                "exportDefaultValue": "*",
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "gridSettings": {
@@ -741,17 +713,7 @@
                         }
                     ],
                     "rowLimit": 10000,
-                    "filter": true,
-                    "labelSettings": [
-                        {
-                            "columnId": "UserDisplayName",
-                            "label": "UserDisplayName"
-                        },
-                        {
-                            "columnId": "Count",
-                            "label": "Count"
-                        }
-                    ]
+                    "filter": true
                 }
             },
             "customWidth": "30",
@@ -764,7 +726,6 @@
                 "query": "SigninLogs\r\n| where CreatedDateTime {TimeRange:value}\r\n| project ConditionalAccessPolicies, CreatedDateTime, UserDisplayName, AppDisplayName, CorrelationId, Status\r\n| where ConditionalAccessPolicies != \"[]\"\r\n| where '{user:escape}' == '*' or '{user:escape}' == UserDisplayName\r\n| where \"{User:escape}\" == \"All users\" or UserDisplayName contains \"{User:escape}\"\r\n| where \"{App:escape}\" == \"All apps\" or AppDisplayName contains \"{App:escape}\"\r\n| mv-expand ConditionalAccessPolicies\r\n| where ConditionalAccessPolicies[\"displayName\"] == \"{Policy:escape}\"\r\n| extend result = ConditionalAccessPolicies[\"result\"], failureReason = tostring(Status[\"failureReason\"])\r\n| project-away ConditionalAccessPolicies\r\n| extend filterResult = case(\"{resultName}\" == \"Total\",\"successfailureinterruptreportOnlySuccessreportOnlyFailurereportOnlyInterruptedreportOnlyNotAppliednotEnabled\", \"{resultName}\" == \"Success\", \"successreportOnlySuccess\", \"{resultName}\" == \"Failure\", \"failurereportOnlyFailure\", \"{resultName}\" == \"User action required\", \"interruptreportOnlyInterrupted\",\"notAppliedreportOnlyNotAppliednotEnabled\")\r\n| where filterResult contains result\r\n| project CreatedDateTime, UserDisplayName, AppDisplayName, result, CorrelationId",
                 "size": 0,
                 "showAnalytics": true,
-                "exportToExcelOptions": "visible",
                 "title": "Sign-in events",
                 "timeContext": {
                     "durationMs": 0
@@ -834,35 +795,12 @@
                         }
                     ],
                     "rowLimit": 1000,
-                    "filter": true,
-                    "labelSettings": [
-                        {
-                            "columnId": "CreatedDateTime",
-                            "label": "CreatedDateTime"
-                        },
-                        {
-                            "columnId": "UserDisplayName",
-                            "label": "UserDisplayName"
-                        },
-                        {
-                            "columnId": "AppDisplayName",
-                            "label": "AppDisplayName"
-                        },
-                        {
-                            "columnId": "result",
-                            "label": "result"
-                        },
-                        {
-                            "columnId": "CorrelationId",
-                            "label": "CorrelationId"
-                        }
-                    ]
+                    "filter": true
                 }
             },
             "customWidth": "70",
             "name": "query - 22"
         }
     ],
-    "styleSettings": {},
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
 }
