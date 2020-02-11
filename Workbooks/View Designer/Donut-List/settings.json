@@ -1,6 +1,7 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
     "name": "Anillo y lista",
+    "description": "Esquema del icono de anillo y lista del Diseñador de vistas",
     "author": "Microsoft",
     "galleries": [
         {

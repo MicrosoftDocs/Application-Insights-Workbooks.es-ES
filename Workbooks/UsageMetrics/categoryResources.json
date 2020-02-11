@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Seguimiento de datos de uso para usuarios, sesiones y eventos",
+        "description": "",
+        "order": 100
+    }
+}
