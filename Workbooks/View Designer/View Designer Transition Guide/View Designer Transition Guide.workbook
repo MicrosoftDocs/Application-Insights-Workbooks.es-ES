@@ -4,23 +4,92 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"getting-started-with-creating-new-views-in-workbooks\"></a>Introducción a la creación de vistas en Xamarin Workbooks"
+                "json": "## <a name=\"getting-started-with-creating-new-views-in-workbooks\"></a>Introducción a la creación de vistas en Xamarin Workbooks\n\n### <a name=\"jump-to-a-section\"></a>Saltar a una sección"
             },
             "name": "text - 0"
         },
         {
-            "type": 1,
+            "type": 11,
             "content": {
-                "json": "### <a name=\"why-convert-view-designer-dashboards-to-workbooks\"></a>¿Por qué convertir los paneles del diseñador de vistas en libros?\n\n\nEl diseñador de vistas permite generar diferentes vistas y visualizaciones basadas en consultas. Sin embargo, las personalizaciones generales son limitadas, como el formato de las cuadrículas y los diseños de los iconos, o la posibilidad de seleccionar gráficos alternativos para representar los datos. El diseñador de vistas está restringido a un total de 9 iconos distintos para representar los datos.\n\nWorkbooks es una plataforma que permite aprovechar todo el potencial que los datos ofrecen. Workbooks ofrece todas las funciones del diseñador de vistas, además de flexibilidad y funcionalidad adicionales con texto, métricas, parámetros y otras personalizaciones de gráficos."
+                "version": "LinkItem/1.0",
+                "style": "bullets",
+                "links": [
+                    {
+                        "cellValue": "why workbooks",
+                        "linkTarget": "step",
+                        "linkLabel": "Why Workbooks?",
+                        "style": "link"
+                    },
+                    {
+                        "cellValue": "quick start",
+                        "linkTarget": "step",
+                        "linkLabel": "Quick Start Templates",
+                        "style": "link"
+                    },
+                    {
+                        "cellValue": "edit mode",
+                        "linkTarget": "step",
+                        "linkLabel": "Edit Mode",
+                        "style": "link",
+                        "workbookContext": {},
+                        "alertRuleContext": {}
+                    },
+                    {
+                        "cellValue": "Parameters",
+                        "linkTarget": "step",
+                        "linkLabel": "Parameters",
+                        "style": "link",
+                        "workbookContext": {},
+                        "alertRuleContext": {}
+                    },
+                    {
+                        "cellValue": "running queries",
+                        "linkTarget": "step",
+                        "linkLabel": "Running Queries",
+                        "style": "link"
+                    },
+                    {
+                        "cellValue": "customizing",
+                        "linkTarget": "step",
+                        "linkLabel": "Customizing Visualizations",
+                        "style": "link",
+                        "workbookContext": {},
+                        "alertRuleContext": {}
+                    },
+                    {
+                        "cellValue": "additional resources - Copy",
+                        "linkTarget": "step",
+                        "linkLabel": "Additional Resources",
+                        "style": "link"
+                    }
+                ]
             },
-            "name": "text - 15"
+            "customWidth": "25",
+            "name": "links - 16",
+            "styleSettings": {
+                "padding": "0px 0px 0px 25px"
+            }
         },
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"workbooks-quick-start-templates\"></a>Plantillas de inicio rápido de Xamarin Workbooks\n\nEn las áreas de trabajo de Log Analytics, los libros ya tienen plantillas personalizadas diseñadas para replicar los iconos existentes del Diseñador de vistas. Los vínculos siguientes a las plantillas para un acceso rápido las plantillas se pueden abrir en la galería de Xamarin Workbooks"
+                "json": "### <a name=\"why-convert-view-designer-dashboards-to-workbookshttpsgithubcommicrosoftapplication-insights-workbooksblobmasterdocumentationviewdesignerviewdesigneroverviewmd\"></a>[¿Por qué convertir los paneles del Diseñador de vistas a Workbooks?](https://github.com/microsoft/Application-Insights-Workbooks/blob/master/Documentation/ViewDesigner/ViewDesignerOverview.md)\n\nWorkbooks es una plataforma que permite aprovechar todo el potencial que los datos ofrecen. Workbooks ofrece todas las funciones del diseñador de vistas, además de flexibilidad y funcionalidad adicionales con texto, métricas, parámetros y otras personalizaciones de gráficos.\n\n### <a name=\"advantages-of-workbooks-over-view-designer\"></a>Ventajas de Workbooks sobre el Diseñador de vistas\n* Admite registros y métricas.\n* Permite vistas personales para el control de acceso individual y vistas de libros compartidas.\n* Opciones de diseño personalizadas con pestañas, ajuste de tamaño y controles de escalado.\n* Compatibilidad con consultas en varias áreas de trabajo, aplicaciones de Application Insights y suscripciones.\n* Permite parámetros personalizados que actualizan dinámicamente los gráficos y visualizaciones asociados.\n* Compatibilidad con la galería de plantillas desde el repositorio GitHub público."
             },
-            "name": "text - 14"
+            "customWidth": "75",
+            "name": "why workbooks",
+            "styleSettings": {
+                "margin": "-30px"
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"workbooks-quick-start-templates-httpsgithubcommicrosoftapplication-insights-workbooksblobmasterdocumentationviewdesignertileconversionsmd\"></a>[Plantillas de inicio rápido de Workbooks](https://github.com/microsoft/Application-Insights-Workbooks/blob/master/Documentation/ViewDesigner/TileConversions.md)\n\nEn las áreas de trabajo de Log Analytics, los libros ya tienen plantillas personalizadas diseñadas para replicar los iconos existentes del Diseñador de vistas. Se pueden crear vínculos a las plantillas para un acceso rápido o las plantillas se pueden abrir en la galería de libros.\n\nUna vez que seleccione un vínculo de plantilla, siga estos pasos para actualizar las vistas.\n\n1. Seleccione el botón `Edit` en la barra de herramientas de la parte superior de la página para pasar a `Edit Mode`.\n\n2. Luego, elija la opción `↑ Edit` en la esquina inferior derecha de una celda y pegue la consulta."
+            },
+            "name": "quick start",
+            "styleSettings": {
+                "margin": "30px"
+            }
         },
         {
             "type": 11,
@@ -116,7 +185,7 @@
                         "style": "link"
                     },
                     {
-                        "cellValue": "https://docs.microsoft.com/en-us/azure/azure-monitor/app/usage-workbooks",
+                        "cellValue": "https://docs.microsoft.com/azure/azure-monitor/app/usage-workbooks",
                         "linkTarget": "Url",
                         "linkLabel": "Workbooks documentation",
                         "preText": " or the ",
@@ -124,21 +193,21 @@
                     }
                 ]
             },
-            "name": "links - 15"
+            "name": "additional resources"
         },
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"learn-more-features-about-workbooks\"></a>Más características de Xamarin Workbooks\n\nXamarin Workbooks tiene dos modos, un modo de edición y un modo de lectura. De forma predeterminada, los libros y plantillas guardados se abren en modo de lectura, y para empezar la edición haga clic en el botón Edit (Editar) de la barra de herramientas superior."
+                "json": "## <a name=\"understanding-editing-in-workbookshttpsdocsmicrosoftcomen-usazureazure-monitorappusage-workbooksediting-rearranging-cloning-and-deleting-workbook-sections\"></a>[Uso de la edición en Workbooks](https://docs.microsoft.com/en-us/azure/azure-monitor/app/usage-workbooks#editing-rearranging-cloning-and-deleting-workbook-sections)\n\nEl Diseñador de vistas permite a los usuarios seleccionar un tipo de visualización específico y luego editar la consulta para actualizar el origen de datos.\n\nWorkbooks permite a los usuarios ejecutar primero su consulta y, luego, elegir y personalizar la visualización óptima de los datos. Xamarin Workbooks tiene dos modos, un modo de edición y un modo de lectura. De forma predeterminada, los libros y plantillas guardados se abren en modo de lectura. Para comenzar a editar, haga clic en el botón `🖊️ Edit` de la barra de herramientas superior. \n\nPara editar una celda, solo tiene que seleccionar el botón `↑ Edit` que se encuentra en la esquina inferior derecha de cada celda. Los libros permiten a los usuarios editar varios pasos al mismo tiempo. Para volver al modo de lectura, seleccione `Done Editing` en la barra de herramientas superior."
             },
-            "name": "text - 2"
+            "name": "edit mode"
         },
         {
             "type": 1,
             "content": {
-                "json": "Para editar una celda, solo tiene que seleccionar el botón Edit (Editar), que se encuentra en la esquina inferior derecha de cada celda.\n\nAhora puede crear un filtro de intervalo de tiempo, para lo que debe seleccionar la opción \"Add parameters\" (Agregar parámetros) y, después, \"Time Range Picker\" (Selector de intervalo de tiempo), como se muestra en el ejemplo siguiente:"
+                "json": "## <a name=\"parameters-in-workbookshttpsdocsmicrosoftcomen-usazureazure-monitorappusage-workbooksadding-parameter-sections\"></a>[Parámetros de Workbooks](https://docs.microsoft.com/en-us/azure/azure-monitor/app/usage-workbooks#adding-parameter-sections)\n\nAhora puede crear un filtro de intervalo de tiempo, para lo que debe seleccionar la opción \"Add parameters\" (Agregar parámetros) y, después, \"Time Range Picker\" (Selector de intervalo de tiempo), como se muestra en el ejemplo siguiente:"
             },
-            "name": "text - 11"
+            "name": "Parameters"
         },
         {
             "type": 9,
@@ -284,9 +353,9 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"running-queries-and-making-visualizations-in-workbooks\"></a>Ejecución de consultas y realización de visualizaciones en Xamarin Workbooks\n\nLas consultas funcionan igual que en el Diseñador de vistas o en las áreas de trabajo de LA. Con Workbooks, se puede incluso cambiar el ámbito en el que se realiza la consulta, tanto si se trata de varias áreas de trabajo como de recursos.\n\nWorkbooks también permite controlar todas las opciones disponibles para las visualizaciones. Puede crear cuadrículas, gráficos circulares, gráficos de barras, gráficos de líneas, etc."
+                "json": "### <a name=\"running-queries-and-making-visualizations-in-workbookshttpsdocsmicrosoftcomen-usazureazure-monitorappusage-workbooksadding-query-sections\"></a>[Ejecución de consultas y realización de visualizaciones en Workbooks](https://docs.microsoft.com/en-us/azure/azure-monitor/app/usage-workbooks#adding-query-sections)\n\nLas consultas funcionan igual que en el Diseñador de vistas o en las áreas de trabajo de LA. Con Workbooks, se puede incluso cambiar el ámbito en el que se realiza la consulta, tanto si se trata de varias áreas de trabajo como de recursos.\n\nWorkbooks también permite controlar todas las opciones disponibles para las visualizaciones. Puede crear cuadrículas, gráficos circulares, gráficos de barras, gráficos de líneas, etc."
             },
-            "name": "text - 6"
+            "name": "running queries"
         },
         {
             "type": 1,
@@ -314,9 +383,9 @@
         {
             "type": 1,
             "content": {
-                "json": "Podemos volver a usar la misma consulta y formar también un gráfico de barras. Para ello, seleccione la opción \"Bar chart\" (Gráfico de barras) debajo de la lista desplegable Visualizations (Visualizaciones).\n\nEn el caso de las visualizaciones, también puede realizar personalizaciones como cambiar al color y a los datos mostrados, como se muestra en los ejemplos siguientes.\n\nTambién podemos realizar numerosos cambios cosméticos en los gráficos, como por ejemplo, el tamaño de cada celda, agregar las opciones de exportar o anclar al panel está disponible en ⚙️, para la configuración avanzada."
+                "json": "Podemos volver a usar la misma consulta y formar también un gráfico de barras. Para ello, seleccione la opción \"Bar chart\" (Gráfico de barras) debajo de la lista desplegable Visualizations (Visualizaciones).\n\n### <a name=\"customizing-visualizationshttpsdocsmicrosoftcomen-usazureazure-monitorappusage-workbooksadvanced-analytic-query-settings\"></a>[Personalización de visualizaciones](https://docs.microsoft.com/en-us/azure/azure-monitor/app/usage-workbooks#advanced-analytic-query-settings)\n\nEn el caso de las visualizaciones, también puede realizar personalizaciones como cambiar al color y a los datos mostrados, como se muestra en los ejemplos siguientes.\n\nTambién podemos realizar numerosos cambios cosméticos en los gráficos, como por ejemplo, el tamaño de cada celda, agregar las opciones de exportar o anclar al panel está disponible en ⚙️, para la configuración avanzada."
             },
-            "name": "text - 9"
+            "name": "customizing"
         },
         {
             "type": 3,
@@ -366,6 +435,31 @@
             "customWidth": "50",
             "showPin": true,
             "name": "query - 10 - Copy"
+        },
+        {
+            "type": 11,
+            "content": {
+                "version": "LinkItem/1.0",
+                "style": "paragraph",
+                "links": [
+                    {
+                        "cellValue": "https://github.com/microsoft/Application-Insights-Workbooks/blob/master/Documentation/ViewDesigner/ViewDesignerOverview.md",
+                        "linkTarget": "Url",
+                        "linkLabel": "View Designer transition documentation",
+                        "preText": "For additional assistance, please reference the ",
+                        "postText": "",
+                        "style": "link"
+                    },
+                    {
+                        "cellValue": "https://docs.microsoft.com/azure/azure-monitor/app/usage-workbooks",
+                        "linkTarget": "Url",
+                        "linkLabel": "Workbooks documentation",
+                        "preText": " or the ",
+                        "style": "link"
+                    }
+                ]
+            },
+            "name": "additional resources - Copy"
         }
     ],
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"

@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Información detallada de Azure Key Vault",
+        "description": "Proporciona información detallada de las instancias de Azure Key Vault.",
+        "order": 100
+    }
+}

@@ -1,6 +1,7 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
     "name": "Guía de transición del Diseñador de vistas",
+    "description": "Guía de inicio rápido para usar Workbooks con los usuarios del Diseñador de vistas",
     "author": "Microsoft",
     "galleries": [
         {

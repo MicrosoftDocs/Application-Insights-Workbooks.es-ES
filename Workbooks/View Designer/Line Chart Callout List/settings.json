@@ -1,6 +1,7 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
     "name": "Gráfico de líneas, llamada y lista",
+    "description": "Esquema del icono de gráfico de líneas, llamada y lista del Diseñador de vistas",
     "author": "Microsoft",
     "galleries": [
         {
