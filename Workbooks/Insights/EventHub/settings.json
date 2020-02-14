@@ -1,13 +1,18 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Selector de recursos",
-    "description": "Permite seleccionar los recursos que se van a analizar.",
+    "name": "Centro de eventos",
+    "isPreview": true,
     "author": "Microsoft",
     "galleries": [
         {
             "type": "workbook",
             "resourceType": "Azure Monitor",
-            "order": 200
+            "order": 100
+        },
+        {
+            "type": "eventhub-insights",
+            "resourceType": "Azure Monitor",
+            "order": 100
         }
     ]
 }
