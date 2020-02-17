@@ -1,0 +1,13 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Introducción al diseño vertical",
+    "description": "Combina varias vistas en un diseño vertical.",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "order": 300
+        }
+    ]
+}
