@@ -4,9 +4,9 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"line-chart-callout--list-template\"></a>Plantilla de gráfico de líneas, llamada y lista\nUse este informe modelar el icono de gráfico de líneas, llamada y lista del Diseñador de vistas.\n\n1. Para reemplazar las siguientes vistas por sus propias consultas, seleccione el botón `Edit` en la barra de herramientas de la parte superior de la página para pasar a `Edit Mode`.\n\n2. Elija la opción `↑ Edit` en la esquina inferior derecha de cada celda y pegue la consulta.\n\n💡 Para obtener instrucciones paso a paso sobre cómo crear este libro, siga nuestra [guía](https://github.com/microsoft/Application-Insights-Workbooks/blob/master/Documentation/ViewDesigner/TileConversions.md#Donut-&-List) o lea más sobre otras características en la [documentación de Workbooks](https://docs.microsoft.com/en-us/azure/azure-monitor/app/usage-workbooks).\n<br/>\n<br/>"
+                "json": "## <a name=\"two-numbers--list-template\"></a>Plantilla de Dos números y lista\nUse este informe para modelar el icono de Dos números y lista del Diseñador de vistas.\n\n1. Para reemplazar las siguientes vistas por sus propias consultas, seleccione el botón `Edit` en la barra de herramientas de la parte superior de la página para pasar a `Edit Mode`.\n\n2. Después, seleccione la opción `↑ Edit` en la esquina inferior derecha del paso del parámetro siguiente y elija los parámetros `Message` y `Message2nd`, y el icono 🖊, para abrir el menú contextual. Desde ahí, puede reemplazar las consultas numéricas.\n*Asegúrese de incluir `| project Message = strcat('# ', Count)` con formato de texto grande.*\n\n\n3. Luego, elija la opción `↑ Edit` en la esquina inferior derecha de la celda de lista y pegue la consulta.\n\n💡 Para obtener instrucciones paso a paso sobre cómo crear este libro, siga nuestra [guía](https://github.com/microsoft/Application-Insights-Workbooks/blob/master/Documentation/ViewDesigner/TileConversions.md#Number-&-List) o lea más sobre otras características en la [documentación de Workbooks](https://docs.microsoft.com/azure/azure-monitor/app/usage-workbooks).\n<br/>\n<br/>"
             },
-            "name": "text - 4"
+            "name": "text - 3"
         },
         {
             "type": 9,
@@ -72,6 +72,36 @@
                             ],
                             "allowCustom": true
                         }
+                    },
+                    {
+                        "id": "e1d34b98-42ee-4781-9350-73f16548c4f2",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Message",
+                        "type": 1,
+                        "isRequired": true,
+                        "query": "search * \r\n| summarize AggregatedValue = count() by Computer\r\n| summarize Count = count()\r\n| project Message = strcat('# ', Count)",
+                        "isHiddenWhenLocked": true,
+                        "timeContext": {
+                            "durationMs": 0
+                        },
+                        "timeContextFromParameter": "TimeRange",
+                        "queryType": 0,
+                        "resourceType": "microsoft.operationalinsights/workspaces"
+                    },
+                    {
+                        "id": "99f2effe-5a24-4764-b71a-2624fce768c9",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Message2nd",
+                        "type": 1,
+                        "isRequired": true,
+                        "query": "search * \r\n| summarize Count = count()\r\n| project Message = strcat('# ', Count)",
+                        "isHiddenWhenLocked": true,
+                        "timeContext": {
+                            "durationMs": 0
+                        },
+                        "timeContextFromParameter": "TimeRange",
+                        "queryType": 0,
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     }
                 ],
                 "style": "pills",
@@ -81,69 +111,27 @@
             "name": "parameters - 0"
         },
         {
-            "type": 3,
+            "type": 1,
             "content": {
-                "version": "KqlItem/1.0",
-                "query": "search *\r\n| summarize AggregatedValue = count() by Type, bin(TimeGenerated, 1h)\r\n| sort by TimeGenerated desc",
-                "size": 1,
-                "aggregation": 3,
-                "showAnalytics": true,
-                "title": "Data Type Distribution",
-                "timeContext": {
-                    "durationMs": 86400000
-                },
-                "showExportToExcel": true,
-                "queryType": 0,
-                "resourceType": "microsoft.operationalinsights/workspaces",
-                "visualization": "linechart"
+                "json": "_Promedio por día_\n{Message}\n_Total de entradas_\n{Message2nd}\n<br />\n<br />"
             },
-            "customWidth": "50",
-            "showPin": true,
-            "name": "query - 1"
+            "name": "text - 5",
+            "styleSettings": {
+                "margin": "15px 0px -75px 15px",
+                "padding": "0px"
+            }
         },
         {
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "search * \r\n| summarize AggregatedValue = count() by Computer \r\n| summarize Count = count() ",
+                "query": "search *  | summarize Count = count() by Type",
                 "size": 1,
-                "title": "Average per hour",
+                "showAnalytics": true,
                 "timeContext": {
                     "durationMs": 0
                 },
                 "timeContextFromParameter": "TimeRange",
-                "queryType": 0,
-                "resourceType": "microsoft.operationalinsights/workspaces",
-                "visualization": "tiles",
-                "tileSettings": {
-                    "titleContent": {
-                        "formatOptions": {
-                            "showIcon": true
-                        }
-                    },
-                    "leftContent": {
-                        "columnMatch": "Count",
-                        "formatter": 12,
-                        "formatOptions": {
-                            "showIcon": true
-                        }
-                    },
-                    "showBorder": false
-                }
-            },
-            "customWidth": "50",
-            "name": "query - 5"
-        },
-        {
-            "type": 3,
-            "content": {
-                "version": "KqlItem/1.0",
-                "query": "search * | summarize Count = count() by Type",
-                "size": 1,
-                "showAnalytics": true,
-                "timeContext": {
-                    "durationMs": 86400000
-                },
                 "showExportToExcel": true,
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
@@ -167,7 +155,8 @@
                         }
                     ],
                     "filter": true
-                }
+                },
+                "sortBy": []
             },
             "customWidth": "50",
             "showPin": true,
