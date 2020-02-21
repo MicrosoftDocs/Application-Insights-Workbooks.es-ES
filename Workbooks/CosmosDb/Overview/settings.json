@@ -1,11 +1,12 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Información general",
+    "name": "Introducción a Cosmos DB",
     "author": "Microsoft",
     "galleries": [
         {
             "type": "workbook",
             "resourceType": "Azure Monitor",
+            "categoryKey": "azureMonitorInsights",
             "order": 100
         },
         {

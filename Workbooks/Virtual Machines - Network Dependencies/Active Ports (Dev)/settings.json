@@ -1,0 +1,13 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Puertos activos (desarrollo)",
+    "isPreview": true,
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "vm-insights",
+            "resourceType": "Azure Monitor",
+            "order": 175
+        }
+    ]
+}
