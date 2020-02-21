@@ -4,7 +4,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"tabbed-overview\"></a>Información general con pestañas\nEste informe emplea las pestañas de Workbooks para consolidar varias vistas en un libro.\n\nLos usuarios pueden modificar las consultas con el botón 🖊️ (Editar) de la barra de herramientas superior, y cambiar las consultas de un paso específico con el botón ↑ (Editar) de la esquina inferior derecha.\n<br/>\n<br/>"
+                "json": "## <a name=\"tabbed-overview\"></a>Información general con pestañas\nEste informe emplea las pestañas de Workbooks para consolidar varias vistas en un libro.\n\nLos usuarios pueden modificar las consultas con el botón 🖊️ (Editar) de la barra de herramientas superior, y cambiar las consultas de un paso específico con el botón ↑ (Editar) de la esquina inferior derecha.\n\nConozca más información sobre la conversión de [Diseñador de vistas a Libros](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/view-designer-conversion-options) o descubra [características de Libros](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/workbooks-overview) adicionales.\n<br/>\n<br/>"
             },
             "name": "text - 7"
         },

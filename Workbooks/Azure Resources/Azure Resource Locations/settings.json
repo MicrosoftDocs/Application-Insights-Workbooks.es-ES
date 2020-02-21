@@ -1,17 +1,10 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Introducción a Redis Cache",
-    "isPreview": true,
+    "name": "Ubicaciones de recursos de Azure",
     "author": "Microsoft",
     "galleries": [
         {
             "type": "workbook",
-            "resourceType": "Azure Monitor",
-            "categoryKey": "azureMonitorInsights",
-            "order": 100
-        },
-        {
-            "type": "rediscache-insights",
             "resourceType": "Azure Monitor",
             "order": 100
         }

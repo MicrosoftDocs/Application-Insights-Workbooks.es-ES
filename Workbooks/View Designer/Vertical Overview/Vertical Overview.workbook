@@ -4,7 +4,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"vertical-overview\"></a>Introducción al diseño vertical\nEste informe usa varias vistas consolidadas en Workbooks con un diseño vertical.\n\nLos usuarios pueden modificar las consultas con el botón `🖊️ Edit` de la barra de herramientas superior, y cambiar las consultas de un paso concreto con el botón `↑ Edit` de la esquina inferior derecha.\n<br/>\n<br/>"
+                "json": "## <a name=\"vertical-overview\"></a>Introducción al diseño vertical\nEste informe usa varias vistas consolidadas en Workbooks con un diseño vertical.\n\nLos usuarios pueden modificar las consultas con el botón `🖊️ Edit` de la barra de herramientas superior, y cambiar las consultas de un paso concreto con el botón `↑ Edit` de la esquina inferior derecha.\n\nConozca más información sobre la conversión de [Diseñador de vistas a Libros](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/view-designer-conversion-options) o descubra [características de Libros](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/workbooks-overview) adicionales.\n<br/>\n<br/>"
             },
             "name": "text - 7"
         },
@@ -161,7 +161,7 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "search *\r\n| summarize AggregatedValue = count() by Type, bin(TimeGenerated, 1h)\r\n| sort by TimeGenerated desc\r\n| render linechart\r\n",
+                "query": "search *\r\n| summarize AggregatedValue = count() by Type, bin(TimeGenerated, 1h)\r\n| sort by TimeGenerated desc",
                 "size": 1,
                 "showAnalytics": true,
                 "title": "Data Types Over Time",
@@ -171,7 +171,8 @@
                 "timeContextFromParameter": "TimeRange",
                 "showExportToExcel": true,
                 "queryType": 0,
-                "resourceType": "microsoft.operationalinsights/workspaces"
+                "resourceType": "microsoft.operationalinsights/workspaces",
+                "visualization": "linechart"
             },
             "customWidth": "50",
             "showPin": true,

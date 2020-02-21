@@ -1,12 +1,13 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Azure Service Bus",
+    "name": "Introducción a Service Bus",
     "isPreview": true,
     "author": "Microsoft",
     "galleries": [
         {
             "type": "workbook",
             "resourceType": "Azure Monitor",
+            "categoryKey": "azureMonitorInsights",
             "order": 100
         },
         {
