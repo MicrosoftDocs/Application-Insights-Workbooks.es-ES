@@ -1,0 +1,7 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Mapa térmico de uso de la CPU",
+    "author": "Microsoft",
+    "description": "No aparecen en ninguna galería. Los mapas térmicos de uso de la CPU se encuentran ahora en Workbooks/Virtual Machines/At-scale Metrics/Key Metrics.workbook",
+    "galleries": []
+}
