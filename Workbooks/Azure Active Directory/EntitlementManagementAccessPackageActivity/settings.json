@@ -1,8 +1,7 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Actividad de administración de derechos de un paquete de acceso",
+    "name": "Actividad de acceso a paquetes",
     "author": "Microsoft",
-    "isPreview": true,
     "galleries": [
         {
             "type": "workbook",
