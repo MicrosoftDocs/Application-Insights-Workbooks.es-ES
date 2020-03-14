@@ -1,13 +1,13 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Contadores de rendimiento",
+    "name": "Errores",
     "author": "Microsoft",
+    "isPreview": true,
     "galleries": [
         {
-            "type": "vm-insights",
+            "type": "keyvaults-insights",
             "resourceType": "Azure Monitor",
-            "categoryKey": "vmInsightsVirtualMachinesInsightsMetrics",
-            "order": 200
+            "order": 600
         }
     ]
 }
