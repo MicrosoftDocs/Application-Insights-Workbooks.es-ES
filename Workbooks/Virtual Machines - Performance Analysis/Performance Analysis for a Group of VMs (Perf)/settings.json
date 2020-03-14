@@ -6,13 +6,13 @@
         {
             "type": "workbook",
             "resourceType": "Azure Monitor",
-            "categoryKey": "azureMonitorVirtualMachines",
+            "categoryKey": "azureMonitorVirtualMachinesPerf",
             "order": 100
         },
         {
             "type": "vm-insights",
             "resourceType": "Azure Monitor",
-            "categoryKey": "vmInsightsVirtualMachinesInsightsMetrics",
+            "categoryKey": "vmInsightsVirtualMachinesPerf",
             "order": 200
         }
     ]
