@@ -348,7 +348,7 @@
         {
             "type": 1,
             "content": {
-                "json": "💡 _Haga clic en los vínculos de las celdas para ver más información acerca de la máquina virtual_"
+                "json": "💡 _Haga clic en los vínculos de las celdas para ver más información acerca de la máquina virtual._"
             },
             "conditionalVisibility": {
                 "parameterName": "VirtualMachines",

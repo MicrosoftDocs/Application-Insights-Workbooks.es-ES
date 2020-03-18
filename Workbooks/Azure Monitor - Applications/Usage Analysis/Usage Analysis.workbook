@@ -450,7 +450,7 @@
         {
             "type": 1,
             "content": {
-                "json": "⚠️ _Las agregaciones de recuentos únicos en aplicaciones de distintos dominios pueden no ser precisas para los usuarios anónimos_"
+                "json": "⚠️ _Las agregaciones de recuentos únicos en aplicaciones de distintos dominios pueden no ser precisas para los usuarios anónimos._"
             },
             "conditionalVisibility": null
         }

@@ -175,7 +175,7 @@
         {
             "type": 1,
             "content": {
-                "json": "💡 *Seleccione una fila del usuario para ver todas las sesiones de dicho usuario.*"
+                "json": "💡  *Seleccione una fila del usuario para ver todas las sesiones de ese usuario.*"
             },
             "conditionalVisibility": null
         },
@@ -224,7 +224,7 @@
         {
             "type": 1,
             "content": {
-                "json": "💡 *Haga clic en los detalles de la sesión para ver la escala de tiempo de la sesión.*"
+                "json": "💡  *Haga clic en los detalles de la sesión para ver la escala de tiempo de la sesión.*"
             },
             "conditionalVisibility": null
         }
