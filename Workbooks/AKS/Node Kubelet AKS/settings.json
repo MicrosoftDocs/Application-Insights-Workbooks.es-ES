@@ -7,6 +7,11 @@
             "type": "container-insights",
             "resourceType": "Microsoft.ContainerService/managedClusters",
             "order": 300
+        },
+        {
+            "type": "workbook",
+            "resourceType": "Microsoft.ContainerService/managedClusters",
+            "order": 300
         }
     ]
 }

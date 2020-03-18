@@ -6,7 +6,7 @@
             "content": {
                 "version": "KqlParameterItem/1.0",
                 "crossComponentResources": [
-                    "value::all"
+                    "{Workspaces}"
                 ],
                 "parameters": [
                     {
@@ -237,18 +237,50 @@
                             ],
                             "allowCustom": true
                         }
+                    },
+                    {
+                        "id": "48e2b8b9-e618-480c-80e6-5cf1cee85ee9",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Test",
+                        "label": "Not Onboarded",
+                        "type": 1,
+                        "query": "VMBoundPort\r\n| take 1\r\n| summarize count()",
+                        "crossComponentResources": [
+                            "{Workspaces}"
+                        ],
+                        "isHiddenWhenLocked": true,
+                        "timeContextFromParameter": "TimeRange",
+                        "queryType": 0,
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     }
                 ],
                 "style": "pills",
-                "queryType": 1,
-                "resourceType": "microsoft.resourcegraph/resources"
+                "queryType": 0,
+                "resourceType": "microsoft.operationalinsights/workspaces"
             },
             "name": "parameters - 0"
         },
         {
             "type": 1,
             "content": {
+                "json": "⚠ La tabla `VMBoundPort` no se detectó o está vacía. Realice lo siguiente:\n\n* Seleccione otro intervalo de tiempo:\n* Pruebe a elegir otros ámbitos.\n* Incorporación a Azure Monitor para VM ([Preguntas frecuentes sobre Azure Monitor para VM disponible de forma general](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-ga-release-faq))."
+            },
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo",
+                "value": "1"
+            },
+            "name": "text - 7"
+        },
+        {
+            "type": 1,
+            "content": {
                 "json": "💡 <em>Seleccione una fila de la tabla siguiente para ver los detalles del puerto de esa entrada.</em>"
+            },
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isEqualTo",
+                "value": "1"
             },
             "name": "text - 1"
         },
@@ -256,6 +288,11 @@
             "type": 1,
             "content": {
                 "json": "<h2 style=\"font-weight:normal;\">Lista de puertos abiertos para todos los equipos del área de trabajo</h2>"
+            },
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isEqualTo",
+                "value": "1"
             },
             "customWidth": "50",
             "name": "text - 2"
@@ -265,6 +302,11 @@
             "content": {
                 "json": "<h2 style=\"font-weight:normal;\">Puertos utilizados por los procesos en el equipo seleccionado</h2>"
             },
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isEqualTo",
+                "value": "1"
+            },
             "customWidth": "50",
             "name": "text - 3"
         },
@@ -272,7 +314,7 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "// {DefaultWorkspace} {ContextSelection} {Subscriptions} {Workspaces} {TimeRange}\nVMBoundPort\n| where Ip != \"127.0.0.1\"\n| summarize by Computer, Port, Protocol\n| summarize OpenPorts=dcount(Port) by Computer\n| project Computer, [\"Number of Open Ports\"] = OpenPorts\n| order by [\"Number of Open Ports\"] desc",
+                "query": "VMBoundPort\n| where Ip != \"127.0.0.1\"\n| summarize by Computer, Port, Protocol\n| summarize OpenPorts=dcount(Port) by Computer\n| project Computer, [\"Number of Open Ports\"] = OpenPorts\n| order by [\"Number of Open Ports\"] desc",
                 "size": 2,
                 "timeContext": {
                     "durationMs": 0
@@ -307,6 +349,11 @@
                     "rowLimit": 10000,
                     "filter": true
                 }
+            },
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isEqualTo",
+                "value": "1"
             },
             "customWidth": "50",
             "name": "query - 4"
@@ -349,7 +396,7 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "// {DefaultWorkspace} {ContextSelection} {Subscriptions} {Workspaces} {TimeRange}\nVMBoundPort\n| where Computer == '{ComputerName}'\n| summarize BytesSent=sum(BytesSent), BytesReceived=sum(BytesReceived), BytesTotal=sum(BytesSent + BytesReceived) by Port, ProcessName\n| project [\"Port Number\"] = Port, [\"Process Name\"] = ProcessName, [\"Bytes Sent\"] = BytesSent, [\"Bytes Received\"] = BytesReceived, [\"Bytes Total\"] = BytesTotal\n| order by [\"Bytes Total\"] desc",
+                "query": "VMBoundPort\n| where Computer == '{ComputerName}'\n| summarize BytesSent=sum(BytesSent), BytesReceived=sum(BytesReceived), BytesTotal=sum(BytesSent + BytesReceived) by Port, ProcessName\n| project [\"Port Number\"] = Port, [\"Process Name\"] = ProcessName, [\"Bytes Sent\"] = BytesSent, [\"Bytes Received\"] = BytesReceived, [\"Bytes Total\"] = BytesTotal\n| order by [\"Bytes Total\"] desc",
                 "size": 2,
                 "timeContext": {
                     "durationMs": 0
@@ -419,6 +466,18 @@
                     "filter": true
                 }
             },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "ShowDetail",
+                    "comparison": "isEqualTo",
+                    "value": "True"
+                },
+                {
+                    "parameterName": "Test",
+                    "comparison": "isEqualTo",
+                    "value": "1"
+                }
+            ],
             "conditionalVisibility": {
                 "parameterName": "ShowDetail",
                 "comparison": "isEqualTo",
@@ -426,6 +485,19 @@
             },
             "customWidth": "50",
             "name": "query - 6"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "ℹ Seleccione un equipo de la tabla"
+            },
+            "conditionalVisibility": {
+                "parameterName": "ShowDetail",
+                "comparison": "isNotEqualTo",
+                "value": "True"
+            },
+            "customWidth": "50",
+            "name": "text - 8"
         }
     ],
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"

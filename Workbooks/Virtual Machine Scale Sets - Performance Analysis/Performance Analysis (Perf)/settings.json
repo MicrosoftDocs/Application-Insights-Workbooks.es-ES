@@ -6,14 +6,14 @@
         {
             "type": "workbook",
             "resourceType": "microsoft.compute/virtualmachinescalesets",
-            "categoryKey": "vmInsightsVirtualMachinesInsightsMetrics",
-            "order": 175
+            "categoryKey": "vmInsightsVirtualMachinesPerf",
+            "order": 200
         },
         {
             "type": "insights",
             "resourceType": "microsoft.compute/virtualmachinescalesets",
-            "categoryKey": "vmInsightsVirtualMachinesInsightsMetrics",
-            "order": 175
+            "categoryKey": "vmInsightsVirtualMachinesPerf",
+            "order": 200
         }
     ]
 }

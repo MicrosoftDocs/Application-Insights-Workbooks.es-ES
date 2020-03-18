@@ -1,12 +1,13 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Conjuntos de escalado de máquinas virtuales: Análisis de rendimiento (versión preliminar)",
+    "name": "Rendimiento",
     "author": "Microsoft",
     "isPreview": true,
     "galleries": [
         {
             "type": "insights",
             "resourceType": "microsoft.compute/virtualmachinescalesets",
+            "categoryKey": "vmInsightsVirtualMachinesInsightsMetrics",
             "order": 200
         }
     ]
