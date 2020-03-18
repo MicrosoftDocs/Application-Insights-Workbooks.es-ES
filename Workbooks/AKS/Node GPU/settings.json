@@ -1,17 +1,18 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Capacidad de disco del nodo",
+    "name": "GPU de nodo",
     "author": "Microsoft",
+    "isPreview": true,
     "galleries": [
         {
             "type": "container-insights",
             "resourceType": "Microsoft.ContainerService/managedClusters",
-            "order": 100
+            "order": 500
         },
         {
             "type": "workbook",
             "resourceType": "Microsoft.ContainerService/managedClusters",
-            "order": 100
+            "order": 500
         }
     ]
 }

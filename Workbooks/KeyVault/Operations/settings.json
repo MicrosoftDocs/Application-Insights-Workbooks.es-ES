@@ -1,12 +1,13 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Datos BLOB",
+    "name": "Operaciones y latencia",
     "author": "Microsoft",
+    "isPreview": true,
     "galleries": [
         {
-            "type": "performance-storage",
-            "resourceType": "microsoft.resources/subscriptions/resourcegroups",
-            "order": 200
+            "type": "keyvaults-insights",
+            "resourceType": "Azure Monitor",
+            "order": 600
         }
     ]
 }

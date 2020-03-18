@@ -248,7 +248,7 @@
         {
             "type": 1,
             "content": {
-                "json": "💡 _Haga clic en una fila en la tabla anterior para ver más detalles._\n<br />\n<br />"
+                "json": "💡_Haga clic en una fila en la tabla anterior para ver más detalles._\n<br />\n<br />"
             },
             "conditionalVisibility": null
         },

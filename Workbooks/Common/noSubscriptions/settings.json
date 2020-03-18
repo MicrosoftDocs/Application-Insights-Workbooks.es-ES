@@ -1,0 +1,7 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "noSubscriptions",
+    "description": "Plantilla usada para las conclusiones cuando no hay ninguna suscripción predeterminada seleccionada.",
+    "author": "Microsoft",
+    "galleries": []
+}

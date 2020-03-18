@@ -220,7 +220,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"computers\"></a>Equipos"
+                "json": "## <a name=\"computers\"></a>Computers"
             },
             "conditionalVisibility": null
         },
