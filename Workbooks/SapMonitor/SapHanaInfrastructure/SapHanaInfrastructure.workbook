@@ -9,6 +9,42 @@
                 "crossComponentResources": [],
                 "parameters": [
                     {
+                        "id": "696da4a1-0e13-40a2-9463-202f0ea90375",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Provider",
+                        "label": "Instancia del proveedor",
+                        "type": 2,
+                        "description": "Seleccione la instancia del proveedor de supervisión.",
+                        "isRequired": true,
+                        "multiSelect": true,
+                        "quote": "\"",
+                        "delimiter": ",",
+                        "query": "SapHana_LoadHistory_CL\r\n| summarize arg_max(TimeGenerated, * ) by PROVIDER_INSTANCE_s\r\n| project Provider=PROVIDER_INSTANCE_s",
+                        "value": [
+                            "value::all"
+                        ],
+                        "typeSettings": {
+                            "additionalResourceOptions": [
+                                "value::all"
+                            ],
+                            "selectAllValue": "*"
+                        },
+                        "queryType": 0,
+                        "resourceType": "microsoft.operationalinsights/workspaces"
+                    }
+                ],
+                "style": "above",
+                "queryType": 0,
+                "resourceType": "microsoft.operationalinsights/workspaces"
+            },
+            "name": "Provider_Parameters"
+        },
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "parameters": [
+                    {
                         "id": "386c5637-375e-437c-acdb-542be563ed5a",
                         "version": "KqlParameterItem/1.0",
                         "name": "testDataExist",
@@ -37,7 +73,7 @@
                     {
                         "cellValue": "selectedTab",
                         "linkTarget": "parameter",
-                        "linkLabel": "Utilization",
+                        "linkLabel": "Utilización",
                         "subTarget": "1",
                         "postText": "",
                         "style": "secondary"
@@ -45,14 +81,14 @@
                     {
                         "cellValue": "selectedTab",
                         "linkTarget": "parameter",
-                        "linkLabel": "Anomalies",
+                        "linkLabel": "Anomalías",
                         "subTarget": "2",
                         "style": "secondary"
                     },
                     {
                         "cellValue": "selectedTab",
                         "linkTarget": "parameter",
-                        "linkLabel": "Host Config",
+                        "linkLabel": "Configuración de host",
                         "subTarget": "3",
                         "style": "secondary"
                     }
@@ -71,6 +107,29 @@
                 "query": "",
                 "crossComponentResources": [],
                 "parameters": [
+                    {
+                        "id": "8e3577a4-1f9f-4935-a2b2-c42a6911ae8a",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Host",
+                        "label": "Host de HANA",
+                        "type": 2,
+                        "isRequired": true,
+                        "multiSelect": true,
+                        "quote": "\"",
+                        "delimiter": ",",
+                        "query": "SapHana_LoadHistory_CL\r\n| where PROVIDER_INSTANCE_s in  ({Provider}) or '*' in ({Provider})\r\n| summarize arg_max(TimeGenerated, * ) by HOST_s\r\n| project Host=HOST_s ",
+                        "value": [
+                            "value::all"
+                        ],
+                        "typeSettings": {
+                            "additionalResourceOptions": [
+                                "value::all"
+                            ],
+                            "selectAllValue": "*"
+                        },
+                        "queryType": 0,
+                        "resourceType": "microsoft.operationalinsights/workspaces"
+                    },
                     {
                         "id": "8a72f4ec-ce64-49b7-88dc-d9b27de74f7a",
                         "version": "KqlParameterItem/1.0",
@@ -116,7 +175,8 @@
                                 }
                             ]
                         },
-                        "label": "Time range"
+                        "label": "Intervalo de horas",
+                        "resourceType": "microsoft.insights/components"
                     },
                     {
                         "id": "fae26122-3768-43dd-ac98-9b9768924799",
@@ -130,45 +190,25 @@
                         "timeContext": {
                             "durationMs": 0
                         },
-                        "timeContextFromParameter": "TimeRange"
-                    },
-                    {
-                        "id": "8e3577a4-1f9f-4935-a2b2-c42a6911ae8a",
-                        "version": "KqlParameterItem/1.0",
-                        "name": "Host",
-                        "type": 2,
-                        "multiSelect": true,
-                        "quote": "\"",
-                        "delimiter": ",",
-                        "query": "SapHana_LoadHistory_CL\r\n| summarize arg_max(TimeGenerated, * ) by HOST_s\r\n| project Host=HOST_s ",
-                        "value": [
-                            "value::all"
-                        ],
-                        "typeSettings": {
-                            "additionalResourceOptions": [
-                                "value::all"
-                            ],
-                            "selectAllValue": "*"
-                        },
-                        "queryType": 0,
-                        "resourceType": "microsoft.operationalinsights/workspaces",
-                        "label": "HANA host"
+                        "timeContextFromParameter": "TimeRange",
+                        "resourceType": "microsoft.insights/components"
                     },
                     {
                         "id": "97bd0cb4-8720-4e4c-87ff-f8156a475d44",
                         "version": "KqlParameterItem/1.0",
                         "name": "ShowForecast",
+                        "label": "Mostrar métricas de previsión",
                         "type": 2,
                         "typeSettings": {
                             "additionalResourceOptions": []
                         },
                         "jsonData": "[\r\n    { \"value\":0, \"label\":\"No\", \"selected\":true},\r\n    { \"value\":1, \"label\":\"Yes\", \"selected\":false}\r\n]\r\n",
-                        "label": "Show forecast metrics"
+                        "resourceType": "microsoft.insights/components"
                     }
                 ],
                 "style": "pills",
                 "queryType": 0,
-                "resourceType": "microsoft.operationalinsights/workspaces"
+                "resourceType": "microsoft.insights/components"
             },
             "conditionalVisibilities": [
                 {
@@ -204,9 +244,9 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let nodata = datatable(HOST:string, ACTIVE:string,HOST_STATUS_s:string,INDEXSERVERROLE:string,NAMESERVERROLE:string)\r\n[\r\n\"N\\\\A\", \"YES\",\"OK\",\"MASTER\",\"MASTER\"\r\n];\r\nSapHana_HostConfig_CL\r\n| where TimeGenerated > ago(30d)\r\n| summarize arg_max(TimeGenerated, *) by HOST_s \r\n| project HOST=HOST_s , ACTIVE=HOST_ACTIVE_s , HOST_STATUS_s , INDEXSERVERROLE=INDEXSERVER_ACTUAL_ROLE_s , NAMESERVERROLE=NAMESERVER_ACTUAL_ROLE_s\r\n| union   isfuzzy=true nodata  | where HOST <> \"N\\\\A\" ",
+                "query": "let nodata = datatable(HOST:string, ACTIVE:string,HOST_STATUS_s:string,INDEXSERVERROLE:string,NAMESERVERROLE:string)\r\n[\r\n\"N\\\\A\", \"YES\",\"OK\",\"MASTER\",\"MASTER\"\r\n];\r\nSapHana_HostConfig_CL\r\n| where TimeGenerated > ago(30d)\r\n| where PROVIDER_INSTANCE_s in  ({Provider}) or '*' in ({Provider})\r\n| summarize arg_max(TimeGenerated, *) by HOST_s \r\n| project HOST=HOST_s , ACTIVE=HOST_ACTIVE_s , HOST_STATUS_s , INDEXSERVERROLE=INDEXSERVER_ACTUAL_ROLE_s , NAMESERVERROLE=NAMESERVER_ACTUAL_ROLE_s\r\n| union   isfuzzy=true nodata  | where HOST <> \"N\\\\A\" ",
                 "size": 4,
-                "title": "HANA Host Status",
+                "title": "Estado de host de HANA",
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "visualization": "tiles",
@@ -348,8 +388,7 @@
                                 "showIcon": true
                             }
                         }
-                    ],
-                    "labelSettings": []
+                    ]
                 },
                 "tileSettings": {
                     "titleContent": {
@@ -432,10 +471,9 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let nodata = datatable(HOST:string, ACTIVE:string,HOST_STATUS_s:string,INDEXSERVERROLE:string,NAMESERVERROLE:string)\r\n[\r\n\"N\\\\A\", \"YES\",\"OK\",\"MASTER\",\"MASTER\"\r\n];\r\nSapHana_HostConfig_CL\r\n| where TimeGenerated > ago(30d)\r\n| summarize arg_max(TimeGenerated, *) by HOST_s \r\n| project HOST=HOST_s , ACTIVE=HOST_ACTIVE_s , HOST_STATUS_s , INDEXSERVERROLE=INDEXSERVER_ACTUAL_ROLE_s , NAMESERVERROLE=NAMESERVER_ACTUAL_ROLE_s\r\n| union   isfuzzy=true nodata  | where HOST <> \"N\\\\A\" ",
+                "query": "let nodata = datatable(HOST:string, ACTIVE:string,HOST_STATUS_s:string,INDEXSERVERROLE:string,NAMESERVERROLE:string)\r\n[\r\n\"N\\\\A\", \"YES\",\"OK\",\"MASTER\",\"MASTER\"\r\n];\r\nSapHana_HostConfig_CL\r\n| where PROVIDER_INSTANCE_s in  ({Provider}) or '*' in ({Provider})\r\n| where TimeGenerated > ago(30d)\r\n| summarize arg_max(TimeGenerated, *) by HOST_s \r\n| project HOST=HOST_s , ACTIVE=HOST_ACTIVE_s , HOST_STATUS_s , INDEXSERVERROLE=INDEXSERVER_ACTUAL_ROLE_s , NAMESERVERROLE=NAMESERVER_ACTUAL_ROLE_s\r\n| union   isfuzzy=true nodata  | where HOST <> \"N\\\\A\" ",
                 "size": 4,
-                "title": "HANA IndexServer Role",
-                "exportToExcelOptions": "visible",
+                "title": "Rol IndexServer de HANA",
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "visualization": "tiles",
@@ -509,10 +547,9 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let nodata = datatable(HOST:string, ACTIVE:string,HOST_STATUS_s:string,INDEXSERVERROLE:string,NAMESERVERROLE:string)\r\n[\r\n\"N\\\\A\", \"YES\",\"OK\",\"MASTER\",\"MASTER\"\r\n];\r\nSapHana_HostConfig_CL\r\n| where TimeGenerated > ago(30d)\r\n| summarize arg_max(TimeGenerated, *) by HOST_s \r\n| project HOST=HOST_s , ACTIVE=HOST_ACTIVE_s , HOST_STATUS_s , INDEXSERVERROLE=INDEXSERVER_ACTUAL_ROLE_s , NAMESERVERROLE=NAMESERVER_ACTUAL_ROLE_s\r\n| union   isfuzzy=true nodata  | where HOST <> \"N\\\\A\" ",
+                "query": "let nodata = datatable(HOST:string, ACTIVE:string,HOST_STATUS_s:string,INDEXSERVERROLE:string,NAMESERVERROLE:string)\r\n[\r\n\"N\\\\A\", \"YES\",\"OK\",\"MASTER\",\"MASTER\"\r\n];\r\nSapHana_HostConfig_CL\r\n| where PROVIDER_INSTANCE_s in  ({Provider}) or '*' in ({Provider})\r\n| where TimeGenerated > ago(30d)\r\n| summarize arg_max(TimeGenerated, *) by HOST_s \r\n| project HOST=HOST_s , ACTIVE=HOST_ACTIVE_s , HOST_STATUS_s , INDEXSERVERROLE=INDEXSERVER_ACTUAL_ROLE_s , NAMESERVERROLE=NAMESERVER_ACTUAL_ROLE_s\r\n| union   isfuzzy=true nodata  | where HOST <> \"N\\\\A\" \r\n",
                 "size": 4,
-                "title": "HANA NameServer Role",
-                "exportToExcelOptions": "visible",
+                "title": "Rol NameServer de HANA",
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "visualization": "tiles",
@@ -586,7 +623,7 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let nodata = datatable([\"HANA Host\"]:string, [\"CPU used (%)\"]:real,[\"Memory used (%)\"]:real,[\"Disk used (GB)\"]:real,[\"Network in (MB/s)\"]:real,[\"Network out (MB/s)\"]:real)\r\n[\r\n\"N\\\\A\", 0,0,0,0,0\r\n];\r\nSapHana_LoadHistory_CL\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n|summarize arg_max(TimeGenerated, *) by HOST_s\r\n|project [\"HANA Host\"]=HOST_s , [\"CPU used (%)\"]=CPU_d ,  [\"Memory used (GB)\"]=round((MEMORY_USED_d/MEMORY_SIZE_d)*100,2),[\"Disk used (GB)\"]=DISK_USED_d  , [\"Network in (MB/s)\"]=NETWORK_IN_d , [\"Network out (MB/s)\"]=NETWORK_OUT_d \r\n| union   isfuzzy=true nodata  | where [\"HANA Host\"] <> \"N\\\\A\" ",
+                "query": "let nodata = datatable([\"HANA Host\"]:string, [\"CPU used (%)\"]:real,[\"Memory used (%)\"]:real,[\"Disk used (GB)\"]:real,[\"Network in (MB/s)\"]:real,[\"Network out (MB/s)\"]:real)\r\n[\r\n\"N\\\\A\", 0,0,0,0,0\r\n];\r\nSapHana_LoadHistory_CL\r\n| where PROVIDER_INSTANCE_s in  ({Provider}) or '*' in ({Provider})\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n| summarize arg_max(TimeGenerated, *) by HOST_s\r\n| project [\"HANA Host\"]=HOST_s , [\"CPU used (%)\"]=CPU_d ,  [\"Memory used (%)\"]=round((MEMORY_USED_d/MEMORY_SIZE_d)*100,2),[\"Disk used (GB)\"]=DISK_USED_d  , [\"Network in (MB/s)\"]=NETWORK_IN_d , [\"Network out (MB/s)\"]=NETWORK_OUT_d \r\n| union   isfuzzy=true nodata  | where [\"HANA Host\"] <> \"N\\\\A\" ",
                 "size": 4,
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
@@ -645,8 +682,7 @@
                                 "showIcon": true
                             }
                         }
-                    ],
-                    "labelSettings": []
+                    ]
                 }
             },
             "conditionalVisibilities": [
@@ -671,10 +707,10 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let nodata = datatable(HOST_s:string,avg_CPU_d:real)\r\n[\r\n\"N\\\\A\",0,\r\n];\r\nSapHana_LoadHistory_CL\r\n| where TimeGenerated  {TimeRange}\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n| summarize avg(CPU_d) by HOST_s , bin(TimeGenerated, {Granularity})\r\n| union   isfuzzy=true nodata |where HOST_s <> \"N\\\\A\"",
+                "query": "let nodata = datatable(HOST_s:string,avg_CPU_d:real)\r\n[\r\n\"N\\\\A\",0,\r\n];\r\nSapHana_LoadHistory_CL\r\n| where TimeGenerated  {TimeRange}\r\n| where PROVIDER_INSTANCE_s in  ({Provider}) or '*' in ({Provider})\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n| summarize avg(CPU_d) by HOST_s , bin(TimeGenerated, {Granularity})\r\n| union   isfuzzy=true nodata |where HOST_s <> \"N\\\\A\"",
                 "size": 0,
                 "aggregation": 3,
-                "title": "CPU used (%)",
+                "title": "CPU utilizada (%)",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -720,10 +756,10 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let nodata = datatable(HOST_s:string, TimeGenerated:dynamic,avgCPU:dynamic,CPU_Forecast:dynamic)\r\n[\r\n\"N\\\\A\", \"[\\\"2019-09-01T00:00:00Z\\\",\\\"2019-09-02T00:00:00Z\\\"]\",\"[0,0,0,0]\",\"[0,0,0,0]\"\r\n];\r\nlet startDate = startofday(ago(7d)); // go back in time nn days\r\nlet endDate = now(); // what is the date now\r\nlet projectTo = now()+7d; // project forward nn days\r\nlet projectForward = 7; // must be same as projectTo value\r\nSapHana_LoadHistory_CL\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n|where TimeGenerated {TimeRange} //> ago(7d)\r\n| make-series avgCPU=avg(CPU_d) default=0 on TimeGenerated in range({TimeRange:start},projectTo, {TimeRange:grain}) by HOST_s\r\n| extend CPU_Forecast = series_decompose_forecast(avgCPU, projectForward*24)\r\n| union   isfuzzy=true nodata |where HOST_s <> \"N\\\\A\"",
+                "query": "let nodata = datatable(HOST_s:string, TimeGenerated:dynamic,avgCPU:dynamic,CPU_Forecast:dynamic)\r\n[\r\n\"N\\\\A\", \"[\\\"2019-09-01T00:00:00Z\\\",\\\"2019-09-02T00:00:00Z\\\"]\",\"[0,0,0,0]\",\"[0,0,0,0]\"\r\n];\r\nlet startDate = startofday(ago(7d)); // go back in time nn days\r\nlet endDate = now(); // what is the date now\r\nlet projectTo = now()+7d; // project forward nn days\r\nlet projectForward = 7; // must be same as projectTo value\r\nSapHana_LoadHistory_CL\r\n| where PROVIDER_INSTANCE_s in  ({Provider}) or '*' in ({Provider})\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n|where TimeGenerated {TimeRange} //> ago(7d)\r\n| make-series avgCPU=avg(CPU_d) default=0 on TimeGenerated in range({TimeRange:start},projectTo, {TimeRange:grain}) by HOST_s\r\n| extend CPU_Forecast = series_decompose_forecast(avgCPU, projectForward*24)\r\n| union   isfuzzy=true nodata |where HOST_s <> \"N\\\\A\"",
                 "size": 0,
                 "aggregation": 3,
-                "title": "CPU (%) - Actual vs. Forecast",
+                "title": "Porcentaje de CPU: uso real comparado con Forecast",
                 "color": "blue",
                 "timeContext": {
                     "durationMs": 0
@@ -770,9 +806,9 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let nodata = datatable(HOST_s:string,avgMEM:real)\r\n[\r\n\"N\\\\A\",0,\r\n];\r\nSapHana_LoadHistory_CL\r\n| where TimeGenerated  {TimeRange}\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n| summarize avgMEM=avg(MEMORY_USED_d/MEMORY_SIZE_d)*100 by HOST_s, bin(TimeGenerated, {Granularity})\r\n| union   isfuzzy=true nodata |where HOST_s <> \"N\\\\A\"",
+                "query": "let nodata = datatable(HOST_s:string,avgMEM:real)\r\n[\r\n\"N\\\\A\",0,\r\n];\r\nSapHana_LoadHistory_CL\r\n| where TimeGenerated  {TimeRange}\r\n| where PROVIDER_INSTANCE_s in  ({Provider}) or '*' in ({Provider})\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n| summarize avgMEM=avg(MEMORY_USED_d/MEMORY_SIZE_d)*100 by HOST_s, bin(TimeGenerated, {Granularity})\r\n| union   isfuzzy=true nodata |where HOST_s <> \"N\\\\A\"",
                 "size": 0,
-                "title": "Memory used (%)",
+                "title": "Memoria usada (%)",
                 "color": "orange",
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
@@ -815,9 +851,9 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let nodata = datatable(HOST_s:string, TimeGenerated:dynamic,avgMEM:dynamic,MEM_Forecast:dynamic)\r\n[\r\n\"N\\\\A\", \"[\\\"2019-09-01T00:00:00Z\\\",\\\"2019-09-02T00:00:00Z\\\"]\",\"[0,0,0,0]\",\"[0,0,0,0]\"\r\n];\r\nlet startDate = startofday(ago(7d)); // go back in time nn days\r\nlet endDate = now(); // what is the date now\r\nlet projectTo = now()+7d; // project forward nn days\r\nlet projectForward = 7; // must be same as projectTo value\r\nSapHana_LoadHistory_CL\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n|where TimeGenerated {TimeRange}\r\n| make-series avgMEM=avg(MEMORY_USED_d/MEMORY_SIZE_d)*100 default=0 on TimeGenerated in range({TimeRange:start},projectTo, {TimeRange:grain}) by HOST_s\r\n| extend MEM_Forecast = series_decompose_forecast(avgMEM, projectForward*24)\r\n| union   isfuzzy=true nodata |where HOST_s <> \"N\\\\A\"",
+                "query": "let nodata = datatable(HOST_s:string, TimeGenerated:dynamic,avgMEM:dynamic,MEM_Forecast:dynamic)\r\n[\r\n\"N\\\\A\", \"[\\\"2019-09-01T00:00:00Z\\\",\\\"2019-09-02T00:00:00Z\\\"]\",\"[0,0,0,0]\",\"[0,0,0,0]\"\r\n];\r\nlet startDate = startofday(ago(7d)); // go back in time nn days\r\nlet endDate = now(); // what is the date now\r\nlet projectTo = now()+7d; // project forward nn days\r\nlet projectForward = 7; // must be same as projectTo value\r\nSapHana_LoadHistory_CL\r\n| where PROVIDER_INSTANCE_s in  ({Provider}) or '*' in ({Provider})\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n|where TimeGenerated {TimeRange}\r\n| make-series avgMEM=avg(MEMORY_USED_d/MEMORY_SIZE_d)*100 default=0 on TimeGenerated in range({TimeRange:start},projectTo, {TimeRange:grain}) by HOST_s\r\n| extend MEM_Forecast = series_decompose_forecast(avgMEM, projectForward*24)\r\n| union   isfuzzy=true nodata |where HOST_s <> \"N\\\\A\"",
                 "size": 0,
-                "title": "Memory (%) - Actual vs. Forecast",
+                "title": "Porcentaje de memoria: uso real comparado con Forecast",
                 "color": "orange",
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
@@ -856,10 +892,10 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let nodata = datatable(HOST_s:string, [\"Allocation limit\"]:real, [\"Resident memory\"]:real, [\"Memory size\"]:real, [\"Total resident memory\"]:real, [\"Memory used\"]:real)\r\n[\r\n\"N\\\\A\",0,0,0,0,0\r\n];SapHana_LoadHistory_CL\r\n| where TimeGenerated  {TimeRange}\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n| summarize [\"Allocation limit\"]=avg(MEMORY_ALLOCATION_LIMIT_d/1024)  , [\"Resident memory\"]=avg(MEMORY_RESIDENT_d/1024)  , [\"Memory size\"]=avg(MEMORY_SIZE_d/1024)  , [\"Total resident memory\"]=avg(MEMORY_TOTAL_RESIDENT_d/1024)  , [\"Memory used\"]=avg(MEMORY_USED_d/1024) by HOST_s, bin(TimeGenerated, {Granularity})\r\n| union   isfuzzy=true nodata |where HOST_s <> \"N\\\\A\"",
+                "query": "let nodata = datatable(HOST_s:string, [\"Allocation limit\"]:real, [\"Resident memory\"]:real, [\"Memory size\"]:real, [\"Total resident memory\"]:real, [\"Memory used\"]:real)\r\n[\r\n\"N\\\\A\",0,0,0,0,0\r\n];SapHana_LoadHistory_CL\r\n| where TimeGenerated  {TimeRange}\r\n| where PROVIDER_INSTANCE_s in  ({Provider}) or '*' in ({Provider})\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n| summarize [\"Allocation limit\"]=avg(MEMORY_ALLOCATION_LIMIT_d/1024)  , [\"Resident memory\"]=avg(MEMORY_RESIDENT_d/1024)  , [\"Memory size\"]=avg(MEMORY_SIZE_d/1024)  , [\"Total resident memory\"]=avg(MEMORY_TOTAL_RESIDENT_d/1024)  , [\"Memory used\"]=avg(MEMORY_USED_d/1024) by HOST_s, bin(TimeGenerated, {Granularity})\r\n| union   isfuzzy=true nodata |where HOST_s <> \"N\\\\A\"",
                 "size": 0,
                 "aggregation": 3,
-                "title": "Memory used (GB)",
+                "title": "Memoria usada (GB)",
                 "color": "turquoise",
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
@@ -909,10 +945,10 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let nodata = datatable(HOST_s:string, [\"Network in\"]:real, [\"Network out\"]:real)\r\n[\r\n\"N\\\\A\",0,0\r\n];\r\nSapHana_LoadHistory_CL\r\n| where TimeGenerated  {TimeRange}\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n|where NETWORK_IN_d >= 0 and NETWORK_OUT_d >= 0\r\n| summarize [\"Network in\"]=avg(NETWORK_IN_d), [\"Network out\"]=avg(NETWORK_OUT_d) by HOST_s, bin(TimeGenerated, {Granularity}) \r\n| union   isfuzzy=true nodata |where HOST_s <> \"N\\\\A\"",
+                "query": "let nodata = datatable(HOST_s:string, [\"Network in\"]:real, [\"Network out\"]:real)\r\n[\r\n\"N\\\\A\",0,0\r\n];\r\nSapHana_LoadHistory_CL\r\n| where TimeGenerated  {TimeRange}\r\n| where PROVIDER_INSTANCE_s in  ({Provider}) or '*' in ({Provider})\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n|where NETWORK_IN_d >= 0 and NETWORK_OUT_d >= 0\r\n| summarize [\"Network in\"]=avg(NETWORK_IN_d), [\"Network out\"]=avg(NETWORK_OUT_d) by HOST_s, bin(TimeGenerated, {Granularity}) \r\n| union   isfuzzy=true nodata |where HOST_s <> \"N\\\\A\"",
                 "size": 0,
                 "aggregation": 3,
-                "title": "Network In/Out (MB/s)",
+                "title": "Entradas y salidas de la red (MB/s)",
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "visualization": "categoricalbar"
@@ -940,9 +976,9 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let nodata = datatable(HOST_s:string, avgDisk:real)\r\n[\r\n\"N\\\\A\",0\r\n];\r\nSapHana_LoadHistory_CL| where TimeGenerated  {TimeRange}\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n| summarize avgDisk=avg(DISK_USED_d) by HOST_s , bin(TimeGenerated, {Granularity})\r\n| union   isfuzzy=true nodata |where HOST_s <> \"N\\\\A\"",
+                "query": "let nodata = datatable(HOST_s:string, avgDisk:real)\r\n[\r\n\"N\\\\A\",0\r\n];\r\nSapHana_LoadHistory_CL| where TimeGenerated  {TimeRange}\r\n| where PROVIDER_INSTANCE_s in  ({Provider}) or '*' in ({Provider})\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n| summarize avgDisk=avg(DISK_USED_d) by HOST_s , bin(TimeGenerated, {Granularity})\r\n| union   isfuzzy=true nodata |where HOST_s <> \"N\\\\A\"",
                 "size": 0,
-                "title": "Disk used (GB)",
+                "title": "Disco usado (GB)",
                 "color": "turquoise",
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
@@ -981,9 +1017,9 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let nodata = datatable(HOST_s:string, TimeGenerated:dynamic,avgDiskUsed:dynamic,DiskUsed_Forecast:dynamic)\r\n[\r\n\"N\\\\A\", \"[\\\"2019-09-01T00:00:00Z\\\",\\\"2019-09-02T00:00:00Z\\\"]\",\"[0,0,0,0]\",\"[0,0,0,0]\"\r\n];\r\nlet startDate = startofday(ago(7d)); // go back in time nn days\r\nlet endDate = now(); // what is the date now\r\nlet projectTo = now()+7d; // project forward nn days\r\nlet projectForward = 7; // must be same as projectTo value\r\nSapHana_LoadHistory_CL\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n|where TimeGenerated {TimeRange}//> ago(7d)\r\n| make-series avgDiskUsed=avg(DISK_USED_d) default=0 on TimeGenerated in range({TimeRange:start},projectTo, {TimeRange:grain}) by HOST_s\r\n| extend DiskUsed_Forecast = series_decompose_forecast(avgDiskUsed, projectForward*24)\r\n| union   isfuzzy=true nodata |where HOST_s <> \"N\\\\A\"",
+                "query": "let nodata = datatable(HOST_s:string, TimeGenerated:dynamic,avgDiskUsed:dynamic,DiskUsed_Forecast:dynamic)\r\n[\r\n\"N\\\\A\", \"[\\\"2019-09-01T00:00:00Z\\\",\\\"2019-09-02T00:00:00Z\\\"]\",\"[0,0,0,0]\",\"[0,0,0,0]\"\r\n];\r\nlet startDate = startofday(ago(7d)); // go back in time nn days\r\nlet endDate = now(); // what is the date now\r\nlet projectTo = now()+7d; // project forward nn days\r\nlet projectForward = 7; // must be same as projectTo value\r\nSapHana_LoadHistory_CL\r\n| where PROVIDER_INSTANCE_s in  ({Provider}) or '*' in ({Provider})\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n|where TimeGenerated {TimeRange}//> ago(7d)\r\n| make-series avgDiskUsed=avg(DISK_USED_d) default=0 on TimeGenerated in range({TimeRange:start},projectTo, {TimeRange:grain}) by HOST_s\r\n| extend DiskUsed_Forecast = series_decompose_forecast(avgDiskUsed, projectForward*24)\r\n| union   isfuzzy=true nodata |where HOST_s <> \"N\\\\A\"",
                 "size": 0,
-                "title": "Disk (GB) - Actual vs. Forecast",
+                "title": "Disco (GB): uso real comparado con Forecast",
                 "color": "turquoise",
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
@@ -1029,7 +1065,7 @@
                         "id": "4ae6453c-91b4-4ab6-a3c8-2e110279df09",
                         "version": "KqlParameterItem/1.0",
                         "name": "AnomalyDetectionRange",
-                        "label": "Detection time period",
+                        "label": "Período de tiempo de detección",
                         "type": 4,
                         "value": {
                             "durationMs": 259200000
@@ -1066,7 +1102,8 @@
                         "timeContext": {
                             "durationMs": 0
                         },
-                        "timeContextFromParameter": "TimeRange"
+                        "timeContextFromParameter": "TimeRange",
+                        "resourceType": "microsoft.insights/components"
                     }
                 ],
                 "style": "pills",
@@ -1107,10 +1144,10 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let nodata = datatable(HOST_s:string, TimeGenerated:dynamic,avgCPU:dynamic,anomalies:dynamic)\r\n[\r\n\"N\\\\A\", \"[\\\"2019-09-01T00:00:00Z\\\",\\\"2019-09-02T00:00:00Z\\\"]\",\"[0,0,0,0]\",\"[0,0,0,0]\"\r\n];\r\nlet bucketsize=case(datetime_diff('day',{AnomalyDetectionRange:end},{AnomalyDetectionRange:start}) > 29 , 4h,datetime_diff('day',{AnomalyDetectionRange:end},{AnomalyDetectionRange:start}) > 6 , 1h ,30m);\r\nlet seasonalitybins=case(datetime_diff('day',{AnomalyDetectionRange:end},{AnomalyDetectionRange:start}) > 29 , 42,datetime_diff('day',{AnomalyDetectionRange:end},{AnomalyDetectionRange:start}) > 6 , 24 ,48);// for daily seasonality pattern\r\nSapHana_LoadHistory_CL\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n| where TimeGenerated {AnomalyDetectionRange}\r\n| make-series [\"Actual CPU (%)\"]=avg(CPU_d) default=0 on TimeGenerated in range({AnomalyDetectionRange:start},now(), bucketsize) by HOST_s\r\n| extend (flag, [\"Anomaly score\"], [\"Calculated baseline\"]) = series_decompose_anomalies([\"Actual CPU (%)\"],1.5,seasonalitybins)\r\n| project-away flag\r\n| union isfuzzy=true nodata | where HOST_s <> \"N\\\\A\"",
+                "query": "let nodata = datatable(HOST_s:string, TimeGenerated:dynamic,avgCPU:dynamic,anomalies:dynamic)\r\n[\r\n\"N\\\\A\", \"[\\\"2019-09-01T00:00:00Z\\\",\\\"2019-09-02T00:00:00Z\\\"]\",\"[0,0,0,0]\",\"[0,0,0,0]\"\r\n];\r\nlet bucketsize=case(datetime_diff('day',{AnomalyDetectionRange:end},{AnomalyDetectionRange:start}) > 29 , 4h,datetime_diff('day',{AnomalyDetectionRange:end},{AnomalyDetectionRange:start}) > 6 , 1h ,30m);\r\nlet seasonalitybins=case(datetime_diff('day',{AnomalyDetectionRange:end},{AnomalyDetectionRange:start}) > 29 , 42,datetime_diff('day',{AnomalyDetectionRange:end},{AnomalyDetectionRange:start}) > 6 , 24 ,48);// for daily seasonality pattern\r\nSapHana_LoadHistory_CL\r\n| where PROVIDER_INSTANCE_s in  ({Provider}) or '*' in ({Provider})\r\n| where TimeGenerated {AnomalyDetectionRange}\r\n| make-series [\"Actual CPU (%)\"]=avg(CPU_d) default=0 on TimeGenerated in range({AnomalyDetectionRange:start},now(), bucketsize) by HOST_s\r\n| extend (flag, [\"Anomaly score\"], [\"Calculated baseline\"]) = series_decompose_anomalies([\"Actual CPU (%)\"],1.5,seasonalitybins)\r\n| project-away flag\r\n| union isfuzzy=true nodata | where HOST_s <> \"N\\\\A\"",
                 "size": 0,
                 "aggregation": 3,
-                "title": "CPU Anomalies",
+                "title": "Anomalías de CPU",
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "visualization": "linechart",
@@ -1143,10 +1180,10 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "let nodata = datatable(HOST_s:string, TimeGenerated:dynamic,avgMEM:dynamic,anomalies:dynamic)\r\n[\r\n\"N\\\\A\", \"[\\\"2019-09-01T00:00:00Z\\\",\\\"2019-09-02T00:00:00Z\\\"]\",\"[0,0,0,0]\",\"[0,0,0,0]\"\r\n];\r\nlet bucketsize=case(datetime_diff('day',{AnomalyDetectionRange:end},{AnomalyDetectionRange:start}) > 29 , 4h,datetime_diff('day',{AnomalyDetectionRange:end},{AnomalyDetectionRange:start}) > 6 , 1h ,30m);\r\nlet seasonalitybins=case(datetime_diff('day',{AnomalyDetectionRange:end},{AnomalyDetectionRange:start}) > 29 , 42,datetime_diff('day',{AnomalyDetectionRange:end},{AnomalyDetectionRange:start}) > 6 , 24 ,48);// for daily seasonality pattern\r\nSapHana_LoadHistory_CL\r\n| where HOST_s in  ({Host}) or '*' in ({Host})\r\n| where TimeGenerated {AnomalyDetectionRange}\r\n| make-series [\"Actual memory (GB)\"]=avg(MEMORY_USED_d/MEMORY_SIZE_d)*100 default=0 on TimeGenerated in range({AnomalyDetectionRange:start},now(), bucketsize) by HOST_s\r\n| extend (flag, [\"Anomaly score\"], [\"Calculated baseline\"]) = series_decompose_anomalies([\"Actual memory (GB)\"],1.5,seasonalitybins)\r\n| project-away  flag\r\n| union   isfuzzy=true nodata | where HOST_s <> \"N\\\\A\"",
+                "query": "let nodata = datatable(HOST_s:string, TimeGenerated:dynamic,avgMEM:dynamic,anomalies:dynamic)\r\n[\r\n\"N\\\\A\", \"[\\\"2019-09-01T00:00:00Z\\\",\\\"2019-09-02T00:00:00Z\\\"]\",\"[0,0,0,0]\",\"[0,0,0,0]\"\r\n];\r\nlet bucketsize=case(datetime_diff('day',{AnomalyDetectionRange:end},{AnomalyDetectionRange:start}) > 29 , 4h,datetime_diff('day',{AnomalyDetectionRange:end},{AnomalyDetectionRange:start}) > 6 , 1h ,30m);\r\nlet seasonalitybins=case(datetime_diff('day',{AnomalyDetectionRange:end},{AnomalyDetectionRange:start}) > 29 , 42,datetime_diff('day',{AnomalyDetectionRange:end},{AnomalyDetectionRange:start}) > 6 , 24 ,48);// for daily seasonality pattern\r\nSapHana_LoadHistory_CL\r\n| where PROVIDER_INSTANCE_s in  ({Provider}) or '*' in ({Provider})\r\n| where TimeGenerated {AnomalyDetectionRange}\r\n| make-series [\"Actual memory (GB)\"]=avg(MEMORY_USED_d/MEMORY_SIZE_d)*100 default=0 on TimeGenerated in range({AnomalyDetectionRange:start},now(), bucketsize) by HOST_s\r\n| extend (flag, [\"Anomaly score\"], [\"Calculated baseline\"]) = series_decompose_anomalies([\"Actual memory (GB)\"],1.5,seasonalitybins)\r\n| project-away  flag\r\n| union   isfuzzy=true nodata | where HOST_s <> \"N\\\\A\"",
                 "size": 0,
                 "aggregation": 3,
-                "title": "Memory Anomalies",
+                "title": "Anomalías de memoria",
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "visualization": "linechart",
@@ -1176,6 +1213,5 @@
             "name": "Anomalies_Memory"
         }
     ],
-    "styleSettings": {},
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
 }

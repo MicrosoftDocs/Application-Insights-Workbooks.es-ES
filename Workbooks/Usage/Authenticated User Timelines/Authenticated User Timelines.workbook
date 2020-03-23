@@ -213,7 +213,7 @@
                             "formatter": 7,
                             "formatOptions": {
                                 "linkTarget": "SessionTimeline",
-                                "linkLabel": "Session timeline"
+                                "linkLabel": "Escala de tiempo de la sesión"
                             }
                         }
                     ]
