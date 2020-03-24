@@ -139,7 +139,7 @@
                         "value": {
                             "durationMs": 3600000
                         },
-                        "label": "Time Range"
+                        "label": "Intervalo de tiempo"
                     },
                     {
                         "id": "83eda9a9-8850-4fce-ad6b-aeb230f6471c",
@@ -252,7 +252,7 @@
                 "version": "KqlItem/1.0",
                 "query": "{\"version\":\"Merge/1.0\",\"merges\":[{\"id\":\"4e6b78ae-e9b4-4fd7-8162-3665f7d44b76\",\"mergeType\":\"table\",\"leftTable\":\"CPU data\"}],\"projectRename\":[{\"originalName\":\"[CPU data].Subscription\",\"mergedName\":\"Subscription\"},{\"originalName\":\"[CPU data].Name\",\"mergedName\":\"Name\"},{\"originalName\":\"[CPU data].microsoft.compute/virtualmachines--Percentage CPU\",\"mergedName\":\"Percentage CPU (Average)\",\"fromId\":\"unknown\"},{\"originalName\":\"[CPU data].microsoft.compute/virtualmachines--Percentage CPU Timeline\",\"mergedName\":\"Percentage CPU Timeline\",\"fromId\":\"unknown\"},{\"originalName\":\"[Added column]\",\"mergedName\":\"Text\",\"fromId\":null,\"isNewItem\":true,\"newItemData\":[{\"condition\":\"Percentage CPU (Average) is empty  Result is -\",\"newColumnContext\":{\"leftColumn\":\"Percentage CPU (Average)\",\"operator\":\"is Empty\",\"rightValType\":\"column\",\"resultValType\":\"static\",\"resultVal\":\"-\"}},{\"condition\":\"Default\",\"newColumnContext\":{\"operator\":\"Default\",\"rightValType\":\"column\",\"resultValType\":\"column\",\"resultVal\":\"Percentage CPU (Average)\"}}]},{\"originalName\":\"[Added column]\",\"mergedName\":\"Value\",\"fromId\":null,\"isNewItem\":true,\"newItemData\":[{\"condition\":\"Percentage CPU (Average) is empty  Result is 0\",\"newColumnContext\":{\"leftColumn\":\"Percentage CPU (Average)\",\"operator\":\"is Empty\",\"rightValType\":\"column\",\"resultValType\":\"static\",\"resultVal\":\"0\"}},{\"condition\":\"Default\",\"newColumnContext\":{\"operator\":\"Default\",\"rightValType\":\"column\",\"resultValType\":\"column\",\"resultVal\":\"Percentage CPU (Average)\"}}]},{\"originalName\":\"[CPU data].microsoft.compute/virtualmachines--Percentage CPU\"},{\"originalName\":\"[CPU data].microsoft.compute/virtualmachines--Percentage CPU Timeline\"},{\"originalName\":\"[CPU data].Percentage CPU (Average)\"},{\"originalName\":\"[CPU data].Percentage CPU Timeline\"}]}",
                 "size": 2,
-                "title": "CPU usage",
+                "title": "Uso de CPU",
                 "timeContext": {
                     "durationMs": 0
                 },
