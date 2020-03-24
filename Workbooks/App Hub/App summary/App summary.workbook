@@ -12,7 +12,7 @@
                         "id": "f3c4a813-95b0-4bfd-bedd-154609834857",
                         "version": "KqlParameterItem/1.0",
                         "name": "TimeRange",
-                        "label": "Time Range",
+                        "label": "Intervalo de tiempo",
                         "type": 4,
                         "value": {
                             "durationMs": 86400000
@@ -96,7 +96,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"applicationname\"></a><span data-ttu-id=\"43a22-101\">{Application:name}</span><span class=\"sxs-lookup\"><span data-stu-id=\"43a22-101\">{Application:name}</span></span>"
+                "json": "### {Application:name}"
             },
             "name": "text - 4"
         },
@@ -109,7 +109,7 @@
                     {
                         "cellValue": "{Application}",
                         "linkTarget": "Resource",
-                        "linkLabel": "Failures",
+                        "linkLabel": "Errores",
                         "subTarget": "failures",
                         "preText": "",
                         "style": "link"
@@ -117,21 +117,21 @@
                     {
                         "cellValue": "{Application}",
                         "linkTarget": "Resource",
-                        "linkLabel": "Performance",
+                        "linkLabel": "Rendimiento",
                         "subTarget": "performance",
                         "style": "link"
                     },
                     {
                         "cellValue": "{Application}",
                         "linkTarget": "Resource",
-                        "linkLabel": "Availability",
+                        "linkLabel": "Disponibilidad",
                         "subTarget": "availability",
                         "style": "link"
                     },
                     {
                         "cellValue": "{Application}",
                         "linkTarget": "Resource",
-                        "linkLabel": "Usage",
+                        "linkLabel": "Uso",
                         "subTarget": "segmentationUsers",
                         "style": "link"
                     }
@@ -171,7 +171,7 @@
                         "splitBy": null
                     }
                 ],
-                "title": "Failed requests"
+                "title": "Error en las solicitudes"
             },
             "showPin": true,
             "name": "Failed requests"
@@ -201,7 +201,7 @@
                         "splitBy": null
                     }
                 ],
-                "title": "Server response time"
+                "title": "Tiempo de respuesta del servidor"
             },
             "showPin": true,
             "name": "Server response time"
@@ -231,7 +231,7 @@
                         "splitBy": null
                     }
                 ],
-                "title": "Availability"
+                "title": "Disponibilidad"
             },
             "showPin": true,
             "name": "Availability"
@@ -261,7 +261,7 @@
                         "splitBy": null
                     }
                 ],
-                "title": "Users"
+                "title": "Usuarios"
             },
             "showPin": true,
             "name": "Users"

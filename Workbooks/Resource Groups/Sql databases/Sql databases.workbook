@@ -29,7 +29,7 @@
                         "id": "8f91c041-eceb-4159-903d-fbf0de6ecf69",
                         "version": "KqlParameterItem/1.0",
                         "name": "Resources",
-                        "label": "SQL databases",
+                        "label": "Bases de datos SQL",
                         "type": 5,
                         "isRequired": true,
                         "multiSelect": true,
@@ -55,7 +55,7 @@
                         "id": "2241c21b-5a59-4a42-b3a9-b503de023938",
                         "version": "KqlParameterItem/1.0",
                         "name": "TimeRange",
-                        "label": "Time Range",
+                        "label": "Intervalo de tiempo",
                         "type": 4,
                         "isRequired": true,
                         "value": {
