@@ -10,42 +10,42 @@
                     {
                         "cellValue": "Tabname",
                         "linkTarget": "parameter",
-                        "linkLabel": "Summary",
+                        "linkLabel": "Resumen",
                         "subTarget": "Summary",
                         "style": "link"
                     },
                     {
                         "cellValue": "Tabname",
                         "linkTarget": "parameter",
-                        "linkLabel": "Backup Items",
+                        "linkLabel": "Elementos de copia de seguridad",
                         "subTarget": "Backup Items",
                         "style": "link"
                     },
                     {
                         "cellValue": "Tabname",
                         "linkTarget": "parameter",
-                        "linkLabel": "Jobs",
+                        "linkLabel": "Trabajos",
                         "subTarget": "Jobs",
                         "style": "link"
                     },
                     {
                         "cellValue": "Tabname",
                         "linkTarget": "parameter",
-                        "linkLabel": "Alerts",
+                        "linkLabel": "Alertas",
                         "subTarget": "Alerts",
                         "style": "link"
                     },
                     {
                         "cellValue": "Tabname",
                         "linkTarget": "parameter",
-                        "linkLabel": "Policies",
+                        "linkLabel": "Directivas",
                         "subTarget": "Policies",
                         "style": "link"
                     },
                     {
                         "cellValue": "Tabname",
                         "linkTarget": "parameter",
-                        "linkLabel": "Backup Not Enabled",
+                        "linkLabel": "Copia de seguridad no habilitada",
                         "subTarget": "Backup Not Enabled",
                         "style": "link"
                     }
@@ -137,7 +137,7 @@
                         "id": "d8d14542-cdfb-4299-aa94-b633567ab68d",
                         "version": "KqlParameterItem/1.0",
                         "name": "Location",
-                        "label": "Vault Location",
+                        "label": "Ubicación del almacén",
                         "type": 2,
                         "description": "Seleccionar una o varias ubicaciones que tengan almacenes de Recovery Services",
                         "isRequired": true,
@@ -276,7 +276,7 @@
                         "id": "2a83acc5-2123-476f-8a4c-da2fddf231a1",
                         "version": "KqlParameterItem/1.0",
                         "name": "VMLocation",
-                        "label": "VM Location",
+                        "label": "Ubicación de máquina virtual",
                         "type": 2,
                         "description": "Seleccionar una o varias ubicaciones con máquinas virtuales",
                         "isRequired": true,
@@ -322,7 +322,7 @@
                         "id": "60a7f6fb-86ec-4e68-ac3e-d5f83419cc09",
                         "version": "KqlParameterItem/1.0",
                         "name": "BackupItemView",
-                        "label": "Backup Item View",
+                        "label": "Vista Elemento de copia de seguridad",
                         "type": 2,
                         "description": "Elija la vista avanzada para disponer de más filtros y columnas con los que interactuar",
                         "isRequired": true,
@@ -355,7 +355,7 @@
                         "id": "60a7f6fb-86ec-4e68-ac3e-d5f83419cc09",
                         "version": "KqlParameterItem/1.0",
                         "name": "PolicyView",
-                        "label": "Choose Policy View",
+                        "label": "Vista Elegir directiva",
                         "type": 2,
                         "description": "Elija la vista avanzada para disponer de más filtros y columnas con los que interactuar y ver los elementos de Backup relacionados con la directiva seleccionada",
                         "isRequired": true,
@@ -391,7 +391,7 @@
                         "id": "8c4ae44c-fa9a-4498-aedc-736a56e64b43",
                         "version": "KqlParameterItem/1.0",
                         "name": "TimeRange",
-                        "label": "Time Range",
+                        "label": "Intervalo de tiempo",
                         "type": 4,
                         "description": "Seleccionar el intervalo de tiempo para ver trabajos y alertas",
                         "isRequired": true,
@@ -457,7 +457,7 @@
                         "id": "60a7f6fb-86ec-4e68-ac3e-d5f83419cc09",
                         "version": "KqlParameterItem/1.0",
                         "name": "RowsPerPage",
-                        "label": "Rows Per Page",
+                        "label": "Filas por página",
                         "type": 2,
                         "description": "Número de filas que se van a mostrar en la vista de cuadrícula",
                         "isRequired": true,
@@ -677,7 +677,7 @@
                 "version": "KqlItem/1.0",
                 "query": "RecoveryServicesResources\r\n| where type == \"microsoft.recoveryservices/vaults/backupfabrics/protectioncontainers/protecteditems\"\r\n| where properties.backupManagementType == \"AzureIaasVM\"\r\n| extend vaultId = tolower(replace(\"\\\\/backupFabrics.*\",\"\",id))\r\n| where vaultId in ({Vault}) or (\"*\" in ({Vault}) and tostring(hash(vaultId)) in ({AllVaultHash}))\r\n| extend ProtectionState = iff(tostring(properties.protectionState) == \"IRPending\", \"Initial Backup Pending\", iff(tostring(properties.protectionState) == \"Protected\", \"Actively Protected\", iff(tostring(properties.protectionState) == \"ProtectionStopped\", \"Protection Stopped\", \"Actively Protected\")))\r\n| summarize BackupItems = count() by ProtectionState\r\n| sort by ProtectionState asc",
                 "size": 1,
-                "title": "Backup Items by Protection State",
+                "title": "Elementos de copia de seguridad por estado de protección",
                 "noDataMessage": "No BackupItems were found in the selected scope",
                 "exportFieldName": "",
                 "exportParameterName": "SummaryProtectionState",
@@ -768,7 +768,7 @@
                 "version": "KqlItem/1.0",
                 "query": "RecoveryServicesResources\r\n| where type == \"microsoft.recoveryservices/vaults/backupfabrics/protectioncontainers/protecteditems\"\r\n| where properties.backupManagementType == \"AzureIaasVM\"\r\n| extend vaultId = tolower(replace(\"\\\\/backupFabrics.*\",\"\",id))\r\n| where vaultId in ({Vault}) or (\"*\" in ({Vault}) and tostring(hash(vaultId)) in ({AllVaultHash}))\r\n| extend ProtectionState = iff(tostring(properties.protectionState) == \"IRPending\", \"Initial Backup Pending\", iff(tostring(properties.protectionState) == \"Protected\", \"Actively Protected\", iff(tostring(properties.protectionState) == \"ProtectionStopped\", \"Protection Stopped\", \"Actively Protected\")))\r\n| where ProtectionState == tostring(parse_json('{SummaryProtectionState}').label) or '{SummaryProtectionState}' contains \"*\"\r\n| extend a = split(tolower(tostring(properties.containerName)),\";\")\r\n| extend a = iff(array_length(a) == 4, tostring(hash(strcat(tolower(subscriptionId), tostring(a[2]), tostring(a[3])))), tostring(hash(strcat(tolower(subscriptionId), tostring(a[1]), tostring(a[2])))))\r\n| extend ResourceState = iff(a in ({VMHash}), \"VM Active\", \"VM Not Found\")\r\n| summarize BackupItems = count() by ResourceState\r\n| sort by ResourceState asc",
                 "size": 1,
-                "title": "Backup Items by Resource State",
+                "title": "Elementos de copia de seguridad por estado del recurso",
                 "noDataMessage": "No BackupItems were found in the selected scope",
                 "queryType": 1,
                 "resourceType": "microsoft.resourcegraph/resources",
@@ -852,7 +852,7 @@
                 "version": "KqlItem/1.0",
                 "query": "RecoveryServicesResources\r\n| where type == \"microsoft.recoveryservices/vaults/backupjobs\"\r\n| where properties.backupManagementType == \"AzureIaasVM\"\r\n| where todatetime(properties.startTime) {TimeRange}\r\n| where properties.status != \"InProgress\"\r\n| extend vaultId = tolower(replace(\"\\\\/backupJobs.*\",\"\",id))\r\n| where vaultId in ({Vault}) or (\"*\" in ({Vault}) and tostring(hash(vaultId)) in ({AllVaultHash}))\r\n| extend SubText = \"Jobs\"\r\n| summarize c=count() by status = tostring(properties.status)\r\n| sort by status asc\r\n",
                 "size": 1,
-                "title": "Jobs by Status",
+                "title": "Trabajos por estado",
                 "noDataMessage": "No jobs were found in the selected scope and time range",
                 "exportParameterName": "SummaryJobStatus",
                 "exportDefaultValue": "*",
@@ -929,7 +929,7 @@
                 "version": "KqlItem/1.0",
                 "query": "RecoveryServicesResources\r\n| where type == \"microsoft.recoveryservices/vaults/backupjobs\"\r\n| where properties.backupManagementType == \"AzureIaasVM\"\r\n| where todatetime(properties.startTime) {TimeRange}\r\n| where properties.status != \"InProgress\"\r\n| extend vaultId = tolower(replace(\"\\\\/backupJobs.*\",\"\",id))\r\n| where vaultId in ({Vault}) or (\"*\" in ({Vault}) and tostring(hash(vaultId)) in ({AllVaultHash}))\r\n| where tostring(properties.status) == tostring(parse_json('{SummaryJobStatus}').label) or '{SummaryJobStatus}' contains \"*\"\r\n| extend SubText = \"Jobs\"\r\n| summarize c=count() by operation = tostring(properties.operation)\r\n| sort by operation asc\r\n",
                 "size": 1,
-                "title": "Jobs by Operation",
+                "title": "Trabajos por operación",
                 "noDataMessage": "No jobs were found in the selected scope and time range",
                 "queryType": 1,
                 "resourceType": "microsoft.resourcegraph/resources",
@@ -1012,7 +1012,7 @@
                 "version": "KqlItem/1.0",
                 "query": "RecoveryServicesResources\r\n| where type == \"microsoft.recoveryservices/vaults/alerts\"\r\n| where properties.sourceType == \"IaaSVM\"\r\n| where todatetime(properties.initialOccurrenceTime) {TimeRange}\r\n| extend vaultId = tolower(replace(\"\\\\/alerts.*\",\"\",id))\r\n| where vaultId in ({Vault}) or (\"*\" in ({Vault}) and tostring(hash(vaultId)) in ({AllVaultHash}))\r\n| extend SubText = \"Alerts\", severity = iff(tolong(properties.severity) == 1, \"Critical\", iff(tolong(properties.severity) == 2, \"Warining\", \"Info\"))\r\n| summarize c=count() by severity\r\n| sort by severity\r\n",
                 "size": 4,
-                "title": "Alerts by Severity",
+                "title": "Alertas por gravedad",
                 "noDataMessage": "No alerts were found in the selected scope and time range",
                 "exportParameterName": "SummaryAlertSeverity",
                 "exportDefaultValue": "*",
@@ -1089,7 +1089,7 @@
                 "version": "KqlItem/1.0",
                 "query": "RecoveryServicesResources\r\n| where type == \"microsoft.recoveryservices/vaults/alerts\"\r\n| where properties.sourceType == \"IaaSVM\"\r\n| where todatetime(properties.initialOccurrenceTime) {TimeRange}\r\n| extend vaultId = tolower(replace(\"\\\\/alerts.*\",\"\",id))\r\n| where vaultId in ({Vault}) or (\"*\" in ({Vault}) and tostring(hash(vaultId)) in ({AllVaultHash}))\r\n| extend SubText = \"Alerts\", severity = iff(tolong(properties.severity) == 1, \"Critical\", iff(tolong(properties.severity) == 2, \"Warining\", \"Info\"))\r\n| where severity == tostring(parse_json('{SummaryAlertSeverity}').label) or '{SummaryAlertSeverity}' contains \"*\"\r\n| summarize c=count() by AlertName = tostring(properties.alertTitle)\r\n| sort by AlertName\r\n",
                 "size": 4,
-                "title": "Alerts by Alert Type",
+                "title": "Alertas por tipo de alerta",
                 "noDataMessage": "No alerts were found in the selected scope and time range",
                 "queryType": 1,
                 "resourceType": "microsoft.resourcegraph/resources",
@@ -1168,7 +1168,7 @@
                 "version": "KqlItem/1.0",
                 "query": "Resources\r\n| where type in (\"microsoft.compute/virtualmachines\", \"microsoft.classiccompute/virtualmachines\")\r\n| where tostring(hash(strcat(tolower(subscriptionId), tolower(resourceGroup), tolower(name)))) !in ({BackupItemHostHash})\r\n| project id, location\r\n| summarize c = count() by location\r\n| sort by c desc, location asc\r\n",
                 "size": 4,
-                "title": "Backup Not Enabled Machines by Location",
+                "title": "Máquinas con copia de seguridad deshabilitada por ubicación",
                 "exportParameterName": "SummaryNotEnabledLocation",
                 "exportDefaultValue": "*",
                 "queryType": 1,
@@ -1232,7 +1232,7 @@
                 "version": "KqlItem/1.0",
                 "query": "Resources\r\n| where type in (\"microsoft.compute/virtualmachines\", \"microsoft.classiccompute/virtualmachines\")\r\n| where tostring(hash(strcat(tolower(subscriptionId), tolower(resourceGroup), tolower(name)))) !in ({BackupItemHostHash})\r\n| where location == tostring(parse_json('{SummaryNotEnabledLocation}').label) or '{SummaryNotEnabledLocation}' contains \"*\" or '{SummaryNotEnabledLocation}' contains \"Other\"\r\n| project id, resourceGroup\r\n| summarize c = count() by resourceGroup\r\n| sort by c desc, resourceGroup asc\r\n",
                 "size": 4,
-                "title": "Backup Not Enabled Machines by Resource Group",
+                "title": "Máquinas con copia de seguridad deshabilitada por grupo de recursos",
                 "queryType": 1,
                 "resourceType": "microsoft.resourcegraph/resources",
                 "crossComponentResources": [
@@ -1300,7 +1300,7 @@
                         "id": "a29464c3-34f0-4d60-82bb-614b8128b7f9",
                         "version": "KqlParameterItem/1.0",
                         "name": "BackupItemName",
-                        "label": "Search Item or RG",
+                        "label": "Buscar elemento o grupo de recursos",
                         "type": 1,
                         "description": "Use para filtrar por BackupItem o grupo de recursos. <br/> Para filtrar un elemento específico de un grupo de recursos concreto, use &lt;resourceGroup&gt;;&lt;backupItem&gt;",
                         "timeContext": {
@@ -1313,7 +1313,7 @@
                         "id": "db5ab575-14f6-44d0-bbb9-71c59d0d86b2",
                         "version": "KqlParameterItem/1.0",
                         "name": "PolicyName",
-                        "label": "Search Vault or Policy",
+                        "label": "Buscar almacén o directiva",
                         "type": 1,
                         "description": "Use para filtrar por almacén o nombre de directiva. <br/>Para filtrar por una directiva dentro de un almacén, use &lt;Vault&gt;;&lt;Policy&gt;",
                         "value": "",
@@ -1326,7 +1326,7 @@
                         "id": "2fd2f893-b2e3-44d8-9326-5f6b9564b3c4",
                         "version": "KqlParameterItem/1.0",
                         "name": "ProtectionState",
-                        "label": "Protection State",
+                        "label": "Estado de protección",
                         "type": 2,
                         "description": "Usar para filtrar por estado de protección del elemento de copia de seguridad",
                         "isRequired": true,
@@ -1344,7 +1344,7 @@
                         "id": "ad30973f-5071-4ce4-9f2b-df9a93955879",
                         "version": "KqlParameterItem/1.0",
                         "name": "ResourceState",
-                        "label": "Resource State",
+                        "label": "Estado del recurso",
                         "type": 2,
                         "description": "Usar para filtrar por el estado actual del recurso del que se realiza la copia de seguridad",
                         "isRequired": true,
@@ -1362,7 +1362,7 @@
                         "id": "4c20879b-cb6e-4c9c-8923-0af5a1c063bd",
                         "version": "KqlParameterItem/1.0",
                         "name": "InDeferredDelete",
-                        "label": "Soft-deleted?",
+                        "label": "¿Eliminado temporalmente?",
                         "type": 2,
                         "description": "Usar para filtrar por elementos de copia de seguridad eliminados temporalmente",
                         "isRequired": true,
@@ -1380,7 +1380,7 @@
                         "id": "2a76174a-d5a5-41bb-99d2-9d2fce0e3167",
                         "version": "KqlParameterItem/1.0",
                         "name": "HealthCheck",
-                        "label": "Health Check Status",
+                        "label": "Estado de comprobación de mantenimiento",
                         "type": 2,
                         "description": "Usar para filtrar por estado de comprobación del elemento de copia de seguridad",
                         "isRequired": true,
@@ -1398,7 +1398,7 @@
                         "id": "ee5b73b4-8354-47fa-b98f-e4bd20332298",
                         "version": "KqlParameterItem/1.0",
                         "name": "LastBackup",
-                        "label": "Last Backup Status",
+                        "label": "Estado de la última copia de seguridad",
                         "type": 2,
                         "description": "Usar para filtrar por estado del último trabajo de copia de seguridad de cada elemento de copia de seguridad",
                         "isRequired": true,
@@ -1424,7 +1424,7 @@
                             "durationMs": 0
                         },
                         "timeContextFromParameter": "TimeRange",
-                        "label": "Min Daily Retention"
+                        "label": "Retención diaria mínima"
                     },
                     {
                         "id": "1fc96995-297e-476d-8964-83b0d0e3687c",
@@ -1438,7 +1438,7 @@
                             "durationMs": 0
                         },
                         "timeContextFromParameter": "TimeRange",
-                        "label": "Max Daily Retention"
+                        "label": "Retención diaria máxima"
                     },
                     {
                         "id": "1d767e68-5daf-4741-afa5-1dd017d68ba2",
@@ -1456,13 +1456,13 @@
                             "durationMs": 0
                         },
                         "timeContextFromParameter": "TimeRange",
-                        "label": "Snapshot Retention  Days"
+                        "label": "Días de retención de instantáneas"
                     },
                     {
                         "id": "2cdfb760-6c7c-4eab-a653-581a04640397",
                         "version": "KqlParameterItem/1.0",
                         "name": "BackupItemPageNumber",
-                        "label": "Page",
+                        "label": "Página",
                         "type": 2,
                         "description": "Seleccionar número de página",
                         "isRequired": true,
@@ -1806,59 +1806,59 @@
                     "labelSettings": [
                         {
                             "columnId": "Item",
-                            "label": "Backup Item"
+                            "label": "Elemento de copia de seguridad"
                         },
                         {
                             "columnId": "ResourceGroup",
-                            "label": "Resource Group"
+                            "label": "Grupo de recursos"
                         },
                         {
                             "columnId": "ProtectionState",
-                            "label": "Protection State"
+                            "label": "Estado de protección"
                         },
                         {
                             "columnId": "InDeferredDelete",
-                            "label": "Soft-Deleted?"
+                            "label": "¿Eliminado temporalmente?"
                         },
                         {
                             "columnId": "HealthCheck",
-                            "label": "Health Check Status"
+                            "label": "Estado de comprobación de estado"
                         },
                         {
                             "columnId": "LastBackup",
-                            "label": "Last Backup Status"
+                            "label": "Estado de la última copia de seguridad"
                         },
                         {
                             "columnId": "LastBackupTime",
-                            "label": "Last Backup Time [UTC]"
+                            "label": "Hora de la última copia de seguridad [UTC]"
                         },
                         {
                             "columnId": "LastRecoveryPoint",
-                            "label": "Latest Recovery Point [UTC]"
+                            "label": "Punto de recuperación más reciente [UTC]"
                         },
                         {
                             "columnId": "ResourceState",
-                            "label": "Resource State"
+                            "label": "Estado del recurso"
                         },
                         {
                             "columnId": "Host",
-                            "label": "Azure Resource"
+                            "label": "Recurso de Azure"
                         },
                         {
                             "columnId": "DailyRetention",
-                            "label": "Daily Retention"
+                            "label": "Retención diaria"
                         },
                         {
                             "columnId": "InstantRpRetention",
-                            "label": "Snapshot Retention"
+                            "label": "Retención de instantáneas"
                         },
                         {
                             "columnId": "PolicyName",
-                            "label": "Policy"
+                            "label": "Directiva"
                         },
                         {
                             "columnId": "vaultId",
-                            "label": "Vault"
+                            "label": "Almacén"
                         },
                         {
                             "columnId": "row_num"
@@ -1905,7 +1905,7 @@
                         "id": "a29464c3-34f0-4d60-82bb-614b8128b7f9",
                         "version": "KqlParameterItem/1.0",
                         "name": "BackupItemName",
-                        "label": "Search Item or RG",
+                        "label": "Buscar elemento o grupo de recursos",
                         "type": 1,
                         "description": "Use para filtrar por elemento de copia de seguridad o grupo de recursos. <br/> Para filtrar un elemento específico de un grupo de recursos concreto, use &lt;resourceGroup&gt;;&lt;backupItem&gt;",
                         "timeContext": {
@@ -1918,7 +1918,7 @@
                         "id": "db5ab575-14f6-44d0-bbb9-71c59d0d86b2",
                         "version": "KqlParameterItem/1.0",
                         "name": "PolicyName",
-                        "label": "Search Vault",
+                        "label": "Buscar almacén",
                         "type": 1,
                         "description": "Use para filtrar por almacén.",
                         "value": "",
@@ -1931,7 +1931,7 @@
                         "id": "2fd2f893-b2e3-44d8-9326-5f6b9564b3c4",
                         "version": "KqlParameterItem/1.0",
                         "name": "ProtectionState",
-                        "label": "Protection State",
+                        "label": "Estado de protección",
                         "type": 2,
                         "description": "Usar para filtrar por estado de protección del elemento de copia de seguridad",
                         "isRequired": true,
@@ -1949,7 +1949,7 @@
                         "id": "ad30973f-5071-4ce4-9f2b-df9a93955879",
                         "version": "KqlParameterItem/1.0",
                         "name": "ResourceState",
-                        "label": "Resource State",
+                        "label": "Estado del recurso",
                         "type": 2,
                         "description": "Usar para filtrar por el estado actual del recurso del que se realiza la copia de seguridad",
                         "isRequired": true,
@@ -1967,7 +1967,7 @@
                         "id": "2a76174a-d5a5-41bb-99d2-9d2fce0e3167",
                         "version": "KqlParameterItem/1.0",
                         "name": "HealthCheck",
-                        "label": "Health Check Status",
+                        "label": "Estado de comprobación de mantenimiento",
                         "type": 2,
                         "description": "Usar para filtrar por estado de comprobación del elemento de copia de seguridad",
                         "isRequired": true,
@@ -1985,7 +1985,7 @@
                         "id": "41c16426-7f19-4cbc-b72d-f65aaee5c034",
                         "version": "KqlParameterItem/1.0",
                         "name": "BackupItemPageNumber",
-                        "label": "Page",
+                        "label": "Página",
                         "type": 2,
                         "description": "Seleccionar número de página",
                         "isRequired": true,
@@ -2276,43 +2276,43 @@
                     "labelSettings": [
                         {
                             "columnId": "Item",
-                            "label": "Backup Item"
+                            "label": "Elemento de copia de seguridad"
                         },
                         {
                             "columnId": "ResourceGroup",
-                            "label": "Resource Group"
+                            "label": "Grupo de recursos"
                         },
                         {
                             "columnId": "ProtectionState",
-                            "label": "Protection State"
+                            "label": "Estado de protección"
                         },
                         {
                             "columnId": "HealthCheck",
-                            "label": "Health Check Status"
+                            "label": "Estado de comprobación de mantenimiento"
                         },
                         {
                             "columnId": "LastBackup",
-                            "label": "Last Backup Status"
+                            "label": "Estado de la última copia de seguridad"
                         },
                         {
                             "columnId": "LastBackupTime",
-                            "label": "Last Backup Time [UTC]"
+                            "label": "Hora de la última copia de seguridad [UTC]"
                         },
                         {
                             "columnId": "LastRecoveryPoint",
-                            "label": "Latest Recovery Point [UTC]"
+                            "label": "Punto de recuperación más reciente [UTC]"
                         },
                         {
                             "columnId": "ResourceState",
-                            "label": "Resource State"
+                            "label": "Estado del recurso"
                         },
                         {
                             "columnId": "Host",
-                            "label": "Azure Resource"
+                            "label": "Recurso de Azure"
                         },
                         {
                             "columnId": "vaultId",
-                            "label": "Vault"
+                            "label": "Almacén"
                         },
                         {
                             "columnId": "row_num"
@@ -2360,7 +2360,7 @@
                         "id": "a29464c3-34f0-4d60-82bb-614b8128b7f9",
                         "version": "KqlParameterItem/1.0",
                         "name": "BackupItemName",
-                        "label": "Search Item or RG",
+                        "label": "Buscar elemento o grupo de recursos",
                         "type": 1,
                         "description": "Usar para filtrar por elemento de copia de seguridad y/o grupo de recursos",
                         "timeContext": {
@@ -2439,7 +2439,7 @@
                         "id": "778135da-147b-4ea6-915e-218ff195521a",
                         "version": "KqlParameterItem/1.0",
                         "name": "JobPageNumber",
-                        "label": "Page",
+                        "label": "Página",
                         "type": 2,
                         "description": "Seleccionar número de página",
                         "isRequired": true,
@@ -2654,23 +2654,23 @@
                     "labelSettings": [
                         {
                             "columnId": "Name",
-                            "label": "Backup Item"
+                            "label": "Elemento de copia de seguridad"
                         },
                         {
                             "columnId": "StartTime",
-                            "label": "Start Time [UTC]"
+                            "label": "Hora de inicio [UTC]"
                         },
                         {
                             "columnId": "Duration",
-                            "label": "Duration [hh:mm:ss]"
+                            "label": "Duración [hh:mm:ss]"
                         },
                         {
                             "columnId": "Host",
-                            "label": "Azure Resource"
+                            "label": "Recurso de Azure"
                         },
                         {
                             "columnId": "vaultId",
-                            "label": "Vault"
+                            "label": "Almacén"
                         }
                     ]
                 },
@@ -2700,7 +2700,7 @@
                         "id": "a29464c3-34f0-4d60-82bb-614b8128b7f9",
                         "version": "KqlParameterItem/1.0",
                         "name": "BackupItemName",
-                        "label": "Search Item or RG",
+                        "label": "Buscar elemento o grupo de recursos",
                         "type": 1,
                         "description": "Use para filtrar por BackupItem o grupo de recursos. <br/> Para filtrar un elemento específico de un grupo de recursos concreto, use &lt;resourceGroup&gt;;&lt;backupItem&gt;",
                         "timeContext": {
@@ -2712,7 +2712,7 @@
                         "id": "2fd2f893-b2e3-44d8-9326-5f6b9564b3c4",
                         "version": "KqlParameterItem/1.0",
                         "name": "AlertName",
-                        "label": "Alert Type",
+                        "label": "Tipo de alerta",
                         "type": 2,
                         "description": "Usar para filtrar por tipo de alerta",
                         "isRequired": true,
@@ -2765,7 +2765,7 @@
                         "id": "39fac540-0eff-4d71-9192-44e1880f713e",
                         "version": "KqlParameterItem/1.0",
                         "name": "AlertPageNumber",
-                        "label": "Page",
+                        "label": "Página",
                         "type": 2,
                         "description": "Seleccionar número de página",
                         "isRequired": true,
@@ -3023,31 +3023,31 @@
                     "labelSettings": [
                         {
                             "columnId": "Item",
-                            "label": "Backup Item"
+                            "label": "Elemento de copia de seguridad"
                         },
                         {
                             "columnId": "ResourceGroup",
-                            "label": "Resource Group"
+                            "label": "Grupo de recursos"
                         },
                         {
                             "columnId": "AlertName",
-                            "label": "Alert Type"
+                            "label": "Tipo de alerta"
                         },
                         {
                             "columnId": "CreationTime",
-                            "label": "Creation Time [UTC]"
+                            "label": "Hora de creación [UTC]"
                         },
                         {
                             "columnId": "Duration",
-                            "label": "Duration [hh:mm:ss]"
+                            "label": "Duración [hh:mm:ss]"
                         },
                         {
                             "columnId": "Host",
-                            "label": "Azure Resource"
+                            "label": "Recurso de Azure"
                         },
                         {
                             "columnId": "vaultId",
-                            "label": "Vault"
+                            "label": "Almacén"
                         }
                     ]
                 }
@@ -3076,7 +3076,7 @@
                         "id": "a29464c3-34f0-4d60-82bb-614b8128b7f9",
                         "version": "KqlParameterItem/1.0",
                         "name": "VMName",
-                        "label": "Search Machine",
+                        "label": "Buscar máquina",
                         "type": 1,
                         "description": "Usar para filtrar por máquina",
                         "timeContext": {
@@ -3088,7 +3088,7 @@
                         "id": "6bfd6bdc-12c5-4e9d-9ed3-58fc3c790334",
                         "version": "KqlParameterItem/1.0",
                         "name": "Tags",
-                        "label": "Search Tags",
+                        "label": "Buscar etiquetas",
                         "type": 1,
                         "description": "Usar para filtrar por etiquetas de recurso",
                         "timeContext": {
@@ -3100,7 +3100,7 @@
                         "id": "6911ecd2-a87e-404e-b562-f8b8a6e4635b",
                         "version": "KqlParameterItem/1.0",
                         "name": "NotProtectedPageNumber",
-                        "label": "Page",
+                        "label": "Página",
                         "type": 2,
                         "description": "Seleccionar número de página",
                         "isRequired": true,
@@ -3261,31 +3261,31 @@
                     "labelSettings": [
                         {
                             "columnId": "id",
-                            "label": "Name"
+                            "label": "Nombre"
                         },
                         {
                             "columnId": "Name",
-                            "label": "VM Name"
+                            "label": "Nombre de la máquina virtual"
                         },
                         {
                             "columnId": "Type",
-                            "label": "VM Type"
+                            "label": "Tipo de máquina virtual"
                         },
                         {
                             "columnId": "ResourceGroup",
-                            "label": "Resource Group"
+                            "label": "Grupo de recursos"
                         },
                         {
                             "columnId": "TagDetails",
-                            "label": "Tag Details"
+                            "label": "Detalles de las etiquetas"
                         },
                         {
                             "columnId": "VmSize",
-                            "label": "VM Size"
+                            "label": "Tamaño de VM"
                         },
                         {
                             "columnId": "OsType",
-                            "label": "OS Type"
+                            "label": "Tipo de SO"
                         }
                     ]
                 },
@@ -3320,7 +3320,7 @@
                         "id": "db5ab575-14f6-44d0-bbb9-71c59d0d86b2",
                         "version": "KqlParameterItem/1.0",
                         "name": "PolicyName",
-                        "label": "Search Vault or Policy",
+                        "label": "Buscar almacén o directiva",
                         "type": 1,
                         "description": "Use para filtrar por almacén o nombre de directiva. <br/> Para filtrar por una directiva específica en un almacén concreto, use &lt;vault&gt;;&lt;policy&gt;",
                         "value": "",
@@ -3333,7 +3333,7 @@
                         "id": "0588c964-1b62-424b-aef3-34f05435548a",
                         "version": "KqlParameterItem/1.0",
                         "name": "HasProtectedItems",
-                        "label": "Has Protected Items?",
+                        "label": "¿Tiene elementos protegidos?",
                         "type": 2,
                         "description": "Usar para filtrar los resultados solo para las directivas asociadas a uno o varios elementos protegidos",
                         "isRequired": true,
@@ -3351,7 +3351,7 @@
                         "id": "2fd2f893-b2e3-44d8-9326-5f6b9564b3c4",
                         "version": "KqlParameterItem/1.0",
                         "name": "ScheduleFrequency",
-                        "label": "Schedule Frequency",
+                        "label": "Frecuencia de programación",
                         "type": 2,
                         "description": "Usar para filtrar por frecuencia de copia de seguridad de la directiva",
                         "isRequired": true,
@@ -3369,7 +3369,7 @@
                         "id": "0b064ac9-d8fa-4985-83e7-8f41dca55f02",
                         "version": "KqlParameterItem/1.0",
                         "name": "RetentionSchedule",
-                        "label": "Retention Type",
+                        "label": "Tipo de retención",
                         "type": 2,
                         "description": "Use para filtrar las directivas en las que se ha definido el tipo de retención seleccionado.",
                         "isRequired": true,
@@ -3387,7 +3387,7 @@
                         "id": "dd894ccd-2ec7-456b-941a-f3ca616ad9e3",
                         "version": "KqlParameterItem/1.0",
                         "name": "MinRetention",
-                        "label": "Min Retention",
+                        "label": "Retención mínima",
                         "type": 1,
                         "description": "Especifique el número mínimo de días, semanas, meses o años que se conserva la copia de seguridad en el almacén. Use el filtro MinMaxRetentionType para elegir el RetentionType diario/semanal/mensual/anual para aplicar al filtro. Use cero para no aplicar ningún filtro en la retención mínima con independencia de la elección del valor de filtro MinMaxRetentionType.",
                         "isRequired": true,
@@ -3401,7 +3401,7 @@
                         "id": "1fc96995-297e-476d-8964-83b0d0e3687c",
                         "version": "KqlParameterItem/1.0",
                         "name": "MaxRetention",
-                        "label": "Max Retention",
+                        "label": "Retención máxima",
                         "type": 1,
                         "description": "Especifique el número máximo de días, semanas, meses o años que se conserva la copia de seguridad en el almacén. Use el filtro MinMaxRetentionType para elegir el RetentionType diario/semanal/mensual/anual para aplicar al filtro. Use un valor grande para no aplicar ningún filtro en la retención máxima.",
                         "isRequired": true,
@@ -3415,7 +3415,7 @@
                         "id": "4c20879b-cb6e-4c9c-8923-0af5a1c063bd",
                         "version": "KqlParameterItem/1.0",
                         "name": "RetentionFilterType",
-                        "label": "Min Max Retention Filter Type",
+                        "label": "Tipo de filtro de retención mínimo y máximo",
                         "type": 2,
                         "description": "Use para especificar en qué tipo de retención se aplican los filtros de retención mínima y máxima.",
                         "isRequired": true,
@@ -3445,13 +3445,13 @@
                             "durationMs": 0
                         },
                         "timeContextFromParameter": "TimeRange",
-                        "label": "Snapshot Retention"
+                        "label": "Retención de instantáneas"
                     },
                     {
                         "id": "ad30973f-5071-4ce4-9f2b-df9a93955879",
                         "version": "KqlParameterItem/1.0",
                         "name": "RunDays",
-                        "label": "Scheduled day(s) of week",
+                        "label": "Días programados de la semana",
                         "type": 1,
                         "description": "Filtre por los días de la semana en los que está programada la copia de seguridad para ejecutarse. Usar cuando la frecuencia de programación sea semanal",
                         "timeContext": {
@@ -3463,7 +3463,7 @@
                         "id": "26872b3b-57d6-4f51-8d2a-52bd24811f1b",
                         "version": "KqlParameterItem/1.0",
                         "name": "PolicyPageNumber",
-                        "label": "Page",
+                        "label": "Página",
                         "type": 2,
                         "description": "Seleccionar número de página",
                         "isRequired": true,
@@ -3486,7 +3486,7 @@
                         "id": "bfe11186-998c-4f54-8e1d-6a58f0c3630a",
                         "version": "KqlParameterItem/1.0",
                         "name": "SelectedPolicyId",
-                        "label": "Search Policy",
+                        "label": "Búsqueda de directiva",
                         "type": 1,
                         "description": "Buscar por directiva",
                         "isHiddenWhenLocked": true,
@@ -3664,39 +3664,39 @@
                     "labelSettings": [
                         {
                             "columnId": "PolicyName",
-                            "label": "Policy"
+                            "label": "Directiva"
                         },
                         {
                             "columnId": "vaultId",
-                            "label": "Vault"
+                            "label": "Almacén"
                         },
                         {
                             "columnId": "ProtectedItems",
-                            "label": "# Protected Items"
+                            "label": "# <a name=\"protected-items\"></a>Elementos protegidos"
                         },
                         {
                             "columnId": "SnapshotRetention",
-                            "label": "Snapshot Retention"
+                            "label": "Retención de instantáneas"
                         },
                         {
                             "columnId": "MaxRetention",
-                            "label": "Max Retention"
+                            "label": "Retención máxima"
                         },
                         {
                             "columnId": "Retention",
-                            "label": "Retention [Daily Weekly Monthly Yearly]"
+                            "label": "Retención [diaria, semanal, mensual, anual]"
                         },
                         {
                             "columnId": "RunTime",
-                            "label": "Scheduled Time"
+                            "label": "Hora programada"
                         },
                         {
                             "columnId": "BackupFrequency",
-                            "label": "Backup Frequency"
+                            "label": "Frecuencia de copia de seguridad"
                         },
                         {
                             "columnId": "RunDays",
-                            "label": "Scheduled Day(s) Of Week"
+                            "label": "Días programados de la semana"
                         }
                     ]
                 },
@@ -3743,7 +3743,7 @@
                         "id": "db5ab575-14f6-44d0-bbb9-71c59d0d86b2",
                         "version": "KqlParameterItem/1.0",
                         "name": "PolicyName",
-                        "label": "Search Vault or Policy",
+                        "label": "Buscar almacén o directiva",
                         "type": 1,
                         "description": "Use para filtrar por almacén o nombre de directiva. <br/> Para filtrar por una directiva específica en un almacén concreto, use &lt;vault&gt;;&lt;policy&gt;",
                         "timeContext": {
@@ -3755,7 +3755,7 @@
                         "id": "0588c964-1b62-424b-aef3-34f05435548a",
                         "version": "KqlParameterItem/1.0",
                         "name": "HasProtectedItems",
-                        "label": "Has Protected Items?",
+                        "label": "¿Tiene elementos protegidos?",
                         "type": 2,
                         "description": "Usar para filtrar los resultados solo para las directivas asociadas a uno o varios elementos protegidos",
                         "isRequired": true,
@@ -3773,7 +3773,7 @@
                         "id": "2fd2f893-b2e3-44d8-9326-5f6b9564b3c4",
                         "version": "KqlParameterItem/1.0",
                         "name": "ScheduleFrequency",
-                        "label": "Schedule Frequency",
+                        "label": "Frecuencia de programación",
                         "type": 2,
                         "description": "Usar para filtrar por frecuencia de copia de seguridad de la directiva",
                         "isRequired": true,
@@ -3791,7 +3791,7 @@
                         "id": "0b064ac9-d8fa-4985-83e7-8f41dca55f02",
                         "version": "KqlParameterItem/1.0",
                         "name": "RetentionSchedule",
-                        "label": "Retention Type",
+                        "label": "Tipo de retención",
                         "type": 2,
                         "description": "Use para filtrar las directivas en las que se ha definido el tipo de retención seleccionado.",
                         "isRequired": true,
@@ -3821,13 +3821,13 @@
                             "durationMs": 0
                         },
                         "timeContextFromParameter": "TimeRange",
-                        "label": "Snapshot Retention"
+                        "label": "Retención de instantáneas"
                     },
                     {
                         "id": "e43d08b8-4fe9-44a0-9360-aa34ecd4823d",
                         "version": "KqlParameterItem/1.0",
                         "name": "PolicyPageNumber",
-                        "label": "Page",
+                        "label": "Página",
                         "type": 2,
                         "description": "Seleccionar número de página",
                         "isRequired": true,
@@ -4000,31 +4000,31 @@
                     "labelSettings": [
                         {
                             "columnId": "PolicyName",
-                            "label": "Policy"
+                            "label": "Directiva"
                         },
                         {
                             "columnId": "vaultId",
-                            "label": "Vault"
+                            "label": "Almacén"
                         },
                         {
                             "columnId": "ProtectedItems",
-                            "label": "# Protected Items"
+                            "label": "# <a name=\"protected-items\"></a>Elementos protegidos"
                         },
                         {
                             "columnId": "SnapshotRetention",
-                            "label": "Snapshot Retention"
+                            "label": "Retención de instantáneas"
                         },
                         {
                             "columnId": "MaxRetention",
-                            "label": "Max Retention"
+                            "label": "Retención máxima"
                         },
                         {
                             "columnId": "Retention",
-                            "label": "Retention [Daily Weekly Monthly Yearly]"
+                            "label": "Retención [diaria, semanal, mensual, anual]"
                         },
                         {
                             "columnId": "BackupFrequency",
-                            "label": "Backup Frequency"
+                            "label": "Frecuencia de copia de seguridad"
                         }
                     ]
                 }
@@ -4095,7 +4095,7 @@
                         "id": "93005650-7d74-4d70-8048-01749a5fb6f6",
                         "version": "KqlParameterItem/1.0",
                         "name": "RelatedBackupItemPageNumber",
-                        "label": "Page",
+                        "label": "Página",
                         "type": 2,
                         "isRequired": true,
                         "query": "RecoveryServicesResources\r\n| where type == \"microsoft.recoveryservices/vaults/backupfabrics/protectioncontainers/protecteditems\"\r\n| where properties.backupManagementType == \"AzureIaasVM\"\r\n| where tolower(properties.policyId) == tolower(\"{SelectedPolicyId}\")\r\n| extend vaultId = tolower(replace(\"\\\\/backupFabrics.*\",\"\",id))\r\n| extend a = split(tolower(tostring(properties.containerName)),\";\")\r\n| extend a = iff(array_length(a) == 4, tostring(hash(strcat(tolower(subscriptionId), tostring(a[2]), tostring(a[3])))), tostring(hash(strcat(tolower(subscriptionId), tostring(a[1]), tostring(a[2])))))\r\n| extend ResourceState = iff(a in ({VMHash}), \"VM Active\", \"VM Not Found\")\r\n| project backupItemId = id,\r\n\t\t  Name = replace(\"iaasvmcontainer;\",\"\",replace(\"iaasvmcontainerv2;\",\"\",tolower(tostring(properties.containerName)))),\r\n          ProtectionState = iff(tostring(properties.protectionState) == \"IRPending\", \"Initial Backup Pending\", iff(tostring(properties.protectionState) == \"Protected\", \"Actively Protected\", iff(tostring(properties.protectionState) == \"ProtectionStopped\", \"Protection Stopped\", \"Actively Protected\"))),\r\n          ResourceState,\r\n\t\t  HealthCheck = tostring(properties.healthStatus),\r\n\t\t  LastBackup = iff(isempty(tostring(properties.lastBackupStatus)),\"Unknown\",tostring(properties.lastBackupStatus)), \r\n\t\t  LastBackupTime = properties.lastBackupTime,\r\n          LastRecoveryPoint = properties.lastRecoveryPoint,\r\n\t\t  backupItemHostId = properties.sourceResourceId,\r\n\t\t  Host = iff(tostring(properties.protectedItemType) contains \"classic\", \"Classic VM\", \"VM\"),\r\n\t\t  policyId = tolower(tostring(properties.policyId)),\r\n\t\t  VaultName = replace(\".*\\\\/vaults\\\\/\",\"\",replace(\"\\\\/backupFabrics.*\",\"\",id)),\r\n\t\t  vaultId = replace(\"\\\\/backupFabrics.*\",\"\",id)\r\n| project backupItemId,\r\n\t\t  Name,\r\n          Item = tostring(split(Name,\";\")[1]),\r\n          ResourceGroup = tostring(split(Name,\";\")[0]),\r\n          ProtectionState,\r\n          ResourceState,\r\n\t\t  HealthCheck,\r\n\t\t  LastBackup, \r\n\t\t  LastBackupTime = todatetime(LastBackupTime),\r\n          LastRecoveryPoint = todatetime(LastRecoveryPoint),\r\n\t\t  Host = iff(ResourceState == \"VM Active\",backupItemHostId,\"\"),\r\n\t\t  vaultId\r\n| summarize c = count()\r\n| project num = (c-1)/{RowsPerPage} + 1\r\n| project nums = range(1,num,1), num\r\n| mvexpand nums\r\n| project nums = tostring(nums), num = strcat(tostring(nums),\" of \",tostring(num))",
@@ -4371,19 +4371,19 @@
                     "labelSettings": [
                         {
                             "columnId": "Item",
-                            "label": "Backup Item"
+                            "label": "Elemento de copia de seguridad"
                         },
                         {
                             "columnId": "ResourceGroup",
-                            "label": "Resource Group"
+                            "label": "Grupo de recursos"
                         },
                         {
                             "columnId": "ProtectionState",
-                            "label": "Protection State"
+                            "label": "Estado de protección"
                         },
                         {
                             "columnId": "HealthCheck",
-                            "label": "Health Check"
+                            "label": "Comprobación de estado"
                         },
                         {
                             "columnId": "LastBackupTime",
@@ -4395,15 +4395,15 @@
                         },
                         {
                             "columnId": "ResourceState",
-                            "label": "Resource State"
+                            "label": "Estado del recurso"
                         },
                         {
                             "columnId": "Host",
-                            "label": "Azure Resource"
+                            "label": "Recurso de Azure"
                         },
                         {
                             "columnId": "vaultId",
-                            "label": "Vault"
+                            "label": "Almacén"
                         }
                     ]
                 }

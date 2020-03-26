@@ -13,7 +13,7 @@
                         "id": "1f74ed9a-e3ed-498d-bd5b-f68f3836a117",
                         "version": "KqlParameterItem/1.0",
                         "name": "Subscription",
-                        "label": "Subscriptions",
+                        "label": "Suscripciones",
                         "type": 6,
                         "isRequired": true,
                         "multiSelect": true,
@@ -34,7 +34,7 @@
                         "id": "b616a3a3-4271-4208-b1a9-a92a78efed08",
                         "version": "KqlParameterItem/1.0",
                         "name": "ResourceGroups",
-                        "label": "Resource groups",
+                        "label": "Grupos de recursos",
                         "type": 2,
                         "isRequired": true,
                         "multiSelect": true,
@@ -60,7 +60,7 @@
                         "id": "0e85e0e4-a7e8-4ea8-b291-e444c317843a",
                         "version": "KqlParameterItem/1.0",
                         "name": "ResourceTypes",
-                        "label": "Resource types",
+                        "label": "Tipos de recursos",
                         "type": 7,
                         "isRequired": true,
                         "multiSelect": true,
@@ -103,7 +103,7 @@
                                 "value::all"
                             ],
                             "selectAllValue": "*",
-                            "defaultItemsText": "First 10"
+                            "defaultItemsText": "Primeros 10"
                         },
                         "queryType": 1,
                         "resourceType": "microsoft.resourcegraph/resources"
@@ -112,7 +112,7 @@
                         "id": "015d1a5e-357f-4e01-ac77-598e7b493db0",
                         "version": "KqlParameterItem/1.0",
                         "name": "timeRange",
-                        "label": "Time Range",
+                        "label": "Intervalo de tiempo",
                         "type": 4,
                         "isRequired": true,
                         "value": {
@@ -221,7 +221,7 @@
                             "version": "KqlItem/1.0",
                             "query": "AlertsManagementResources | where type =~ 'microsoft.alertsmanagement/alerts'\r\n| where properties.essentials.startDateTime {timeRange}  \r\n| where \"*\" in ({ResourceGroups}) or properties.essentials.targetResourceGroup in~ ({ResourceGroups})\r\n| where \"*\" in ({ResourceTypes}) or properties.essentials.targetResourceType in~ ({ResourceTypes})\r\n| where \"*\" in ({Resources}) or properties.essentials.targetResource in~ ({Resources})\r\n| extend State=tostring(properties.essentials.alertState)\r\n| where \"*\" in ({State}) or State in ({State})\r\n| summarize Count=count(), New=countif(State==\"New\"), \r\nAcknowledged=countif(State==\"Acknowledged\"), \r\nClosed=countif(State==\"Closed\") \r\nby Severity=tostring(properties.essentials.severity)\r\n| order by Severity asc",
                             "size": 3,
-                            "title": "Alert Summary",
+                            "title": "Resumen de alertas",
                             "noDataMessage": "No alerts found",
                             "exportMultipleValues": true,
                             "exportedParameters": [
@@ -295,14 +295,14 @@
                                 {
                                     "cellValue": "tab",
                                     "linkTarget": "parameter",
-                                    "linkLabel": "Alert Details",
+                                    "linkLabel": "Detalles de alerta",
                                     "subTarget": "details",
                                     "style": "link"
                                 },
                                 {
                                     "cellValue": "tab",
                                     "linkTarget": "parameter",
-                                    "linkLabel": "Alerts by Region",
+                                    "linkLabel": "Alertas por región",
                                     "subTarget": "location",
                                     "style": "link"
                                 }
@@ -320,7 +320,7 @@
                             "version": "KqlItem/1.0",
                             "query": "AlertsManagementResources | where type =~ 'microsoft.alertsmanagement/alerts'\r\n| where properties.essentials.startDateTime {timeRange}  \r\n| extend Severity=tostring(properties.essentials.severity)\r\n| where Severity in ({Severity})\r\n| extend State=tostring(properties.essentials.alertState)\r\n| where \"*\" in ({State}) or State in ({State})\r\n| where \"*\" in ({ResourceTypes}) or properties.essentials.targetResourceType in~ ({ResourceTypes})\r\n| where \"*\" in ({ResourceGroups}) or properties.essentials.targetResourceGroup in~ ({ResourceGroups})\r\n| where \"*\" in ({Resources}) or properties.essentials.targetResource in~ ({Resources})\r\n| project AlertId=id, StartTime=todatetime(tostring(properties.essentials.startDateTime)), Severity, State=tostring(properties.essentials.alertState), name, \r\n  TargetResource = tostring(properties.essentials.targetResource), \r\n  MonitorService = tostring(properties.essentials.monitorService),\r\n  SignalType=tostring(properties.essentials.signalType), Description=tostring(properties.essentials.description)\r\n| order by StartTime desc\r\n",
                             "size": 0,
-                            "title": "{$rowCount} {Severity} Alerts",
+                            "title": "{$rowCount} alertas de gravedad {Severity}",
                             "noDataMessage": "No alerts found",
                             "queryType": 1,
                             "resourceType": "microsoft.resourcegraph/resources",
@@ -433,7 +433,7 @@
                             "version": "KqlItem/1.0",
                             "query": "AlertsManagementResources | where type =~ 'microsoft.alertsmanagement/alerts'\r\n| where properties.essentials.startDateTime {timeRange}  \r\n| extend Severity=tostring(properties.essentials.severity)\r\n| where Severity in ({Severity})\r\n| extend State=tostring(properties.essentials.alertState)\r\n| where \"*\" in ({State}) or State in ({State})\r\n| where \"*\" in ({ResourceTypes}) or properties.essentials.targetResourceType in~ ({ResourceTypes})\r\n| where \"*\" in ({ResourceGroups}) or properties.essentials.targetResourceGroup in~ ({ResourceGroups})\r\n| where \"*\" in ({Resources}) or properties.essentials.targetResource in~ ({Resources})\r\n| summarize Alerts=count(), New=countif(State==\"New\"), \r\nAcknowledged=countif(State==\"Acknowledged\"), \r\nClosed=countif(State==\"Closed\")\r\nby Resource=tostring(properties.essentials.targetResource )\r\n| order by Alerts desc\r\n",
                             "size": 0,
-                            "title": "{Severity} Alerts by Region",
+                            "title": "Alertas con gravedad {Severity} por región",
                             "noDataMessage": "No alerts found",
                             "exportMultipleValues": true,
                             "exportAggregateParts": true,
@@ -535,7 +535,7 @@
                             "version": "KqlItem/1.0",
                             "query": "{\"version\":\"1.0.0\",\"content\":\"[{Selected}]\",\"transformers\":null}",
                             "size": 0,
-                            "title": "Resources with {Severity} Alerts in the Selected Regions",
+                            "title": "Recursos con alertas de gravedad {Severity} en las regiones seleccionadas",
                             "noDataMessage": "No alerts found",
                             "queryType": 8,
                             "resourceType": "microsoft.operationalinsights/workspaces",

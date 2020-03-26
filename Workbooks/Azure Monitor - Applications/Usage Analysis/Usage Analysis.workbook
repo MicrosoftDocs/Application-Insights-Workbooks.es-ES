@@ -362,7 +362,7 @@
         {
             "type": 1,
             "content": {
-                "json": "💡 _Seleccione una fila en la tabla anterior para ver más detalles._\n<br />\n<br />\n"
+                "json": "💡 _Seleccione una fila en la tabla anterior para ver más detalles_\n<br />\n<br />\n"
             },
             "conditionalVisibility": null
         },
@@ -376,7 +376,7 @@
                 "aggregation": 0,
                 "showAnnotations": false,
                 "showAnalytics": false,
-                "title": "Unique Users",
+                "title": "Usuarios únicos",
                 "color": "blue",
                 "noDataMessage": "The Application Insights resource you selected has no data.",
                 "timeContext": {
@@ -403,7 +403,7 @@
                 "aggregation": 0,
                 "showAnnotations": false,
                 "showAnalytics": false,
-                "title": "Unique Sessions",
+                "title": "Sesiones únicas",
                 "color": "green",
                 "noDataMessage": "The Application Insights resource you selected has no data.",
                 "timeContext": {
@@ -430,7 +430,7 @@
                 "aggregation": 0,
                 "showAnnotations": false,
                 "showAnalytics": false,
-                "title": "Views",
+                "title": "Vistas",
                 "color": "yellow",
                 "noDataMessage": "The Application Insights resource you selected has no data.",
                 "timeContext": {

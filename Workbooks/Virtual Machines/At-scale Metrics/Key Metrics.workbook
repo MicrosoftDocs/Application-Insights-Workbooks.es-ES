@@ -138,7 +138,7 @@
                         "value": {
                             "durationMs": 3600000
                         },
-                        "label": "Time Range"
+                        "label": "Intervalo de tiempo"
                     },
                     {
                         "id": "83eda9a9-8850-4fce-ad6b-aeb230f6471c",
@@ -179,7 +179,7 @@
                     {
                         "cellValue": "selectedTab",
                         "linkTarget": "parameter",
-                        "linkLabel": "Overview",
+                        "linkLabel": "Información general",
                         "subTarget": "Overview",
                         "style": "link",
                         "workbookContext": {},
@@ -189,7 +189,7 @@
                     {
                         "cellValue": "selectedTab",
                         "linkTarget": "parameter",
-                        "linkLabel": "Key metrics",
+                        "linkLabel": "Métricas clave",
                         "subTarget": "Details",
                         "style": "link"
                     },
@@ -206,7 +206,7 @@
                     {
                         "cellValue": "selectedTab",
                         "linkTarget": "parameter",
-                        "linkLabel": "Resource health",
+                        "linkLabel": "Estado de los recursos",
                         "subTarget": "Health",
                         "style": "link"
                     }
@@ -243,7 +243,7 @@
                                     "aggregation": 4
                                 }
                             ],
-                            "title": "CPU utilization of virtual machines",
+                            "title": "Uso de CPU de las máquinas virtuales",
                             "mapSettings": {
                                 "locInfo": "AzureResource",
                                 "locInfoColumn": "Name",
@@ -374,11 +374,11 @@
                                 "labelSettings": [
                                     {
                                         "columnId": "microsoft.compute/virtualmachines--Percentage CPU",
-                                        "label": "Percentage CPU (Average)"
+                                        "label": "Porcentaje de CPU (promedio)"
                                     },
                                     {
                                         "columnId": "microsoft.compute/virtualmachines--Percentage CPU Timeline",
-                                        "label": "Percentage CPU Timeline"
+                                        "label": "Escala de tiempo de porcentaje de CPU"
                                     }
                                 ]
                             },
@@ -409,7 +409,7 @@
             "content": {
                 "version": "NotebookGroup/1.0",
                 "groupType": "editable",
-                "title": "Highest CPU utilization by region",
+                "title": "Mayor uso de CPU por región",
                 "items": [
                     {
                         "type": 10,
@@ -501,11 +501,11 @@
                                 "labelSettings": [
                                     {
                                         "columnId": "microsoft.compute/virtualmachines--Percentage CPU",
-                                        "label": "Percentage CPU (Average)"
+                                        "label": "Porcentaje de CPU (promedio)"
                                     },
                                     {
                                         "columnId": "microsoft.compute/virtualmachines--Percentage CPU Timeline",
-                                        "label": "Percentage CPU Timeline"
+                                        "label": "Escala de tiempo de porcentaje de CPU"
                                     }
                                 ]
                             },
@@ -558,7 +558,7 @@
                                     "aggregation": 4
                                 }
                             ],
-                            "title": "Virtual machines in selected region",
+                            "title": "Máquinas virtuales de la región seleccionada",
                             "gridSettings": {
                                 "formatters": [
                                     {
@@ -638,11 +638,11 @@
                                 "labelSettings": [
                                     {
                                         "columnId": "microsoft.compute/virtualmachines--Percentage CPU",
-                                        "label": "Percentage CPU (Average)"
+                                        "label": "Porcentaje de CPU (promedio)"
                                     },
                                     {
                                         "columnId": "microsoft.compute/virtualmachines--Percentage CPU Timeline",
-                                        "label": "Percentage CPU Timeline"
+                                        "label": "Escala de tiempo de porcentaje de CPU"
                                     }
                                 ]
                             },
@@ -865,43 +865,43 @@
                                 "labelSettings": [
                                     {
                                         "columnId": "microsoft.compute/virtualmachines--Percentage CPU",
-                                        "label": "Percentage CPU (Average)"
+                                        "label": "Porcentaje de CPU (promedio)"
                                     },
                                     {
                                         "columnId": "microsoft.compute/virtualmachines--Percentage CPU Timeline",
-                                        "label": "Percentage CPU Timeline"
+                                        "label": "Escala de tiempo de porcentaje de CPU"
                                     },
                                     {
                                         "columnId": "microsoft.compute/virtualmachines--Disk Read Bytes",
-                                        "label": "Disk Read Bytes (Sum)"
+                                        "label": "Bytes de lectura de disco (Sum)"
                                     },
                                     {
                                         "columnId": "microsoft.compute/virtualmachines--Disk Read Bytes Timeline",
-                                        "label": "Disk Read Bytes Timeline"
+                                        "label": "Escala de tiempo de bytes de lectura de disco"
                                     },
                                     {
                                         "columnId": "microsoft.compute/virtualmachines--Disk Write Bytes",
-                                        "label": "Disk Write Bytes (Sum)"
+                                        "label": "Bytes de escritura en disco (Sum)"
                                     },
                                     {
                                         "columnId": "microsoft.compute/virtualmachines--Disk Write Bytes Timeline",
-                                        "label": "Disk Write Bytes Timeline"
+                                        "label": "Escala de tiempo de bytes de escritura en disco"
                                     },
                                     {
                                         "columnId": "microsoft.compute/virtualmachines--Network In Total",
-                                        "label": "Network In Total (Sum)"
+                                        "label": "Entrada de red total (Sum)"
                                     },
                                     {
                                         "columnId": "microsoft.compute/virtualmachines--Network In Total Timeline",
-                                        "label": "Network In Total Timeline"
+                                        "label": "Escala de tiempo de entrada de red total"
                                     },
                                     {
                                         "columnId": "microsoft.compute/virtualmachines--Network Out Total",
-                                        "label": "Network Out Total (Sum)"
+                                        "label": "Salida de red total (Sum)"
                                     },
                                     {
                                         "columnId": "microsoft.compute/virtualmachines--Network Out Total Timeline",
-                                        "label": "Network Out Total Timeline"
+                                        "label": "Escala de tiempo de salida de red total"
                                     }
                                 ]
                             },

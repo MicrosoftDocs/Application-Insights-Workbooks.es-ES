@@ -242,7 +242,7 @@
                         "id": "48e2b8b9-e618-480c-80e6-5cf1cee85ee9",
                         "version": "KqlParameterItem/1.0",
                         "name": "Test",
-                        "label": "Not Onboarded",
+                        "label": "No incorporado",
                         "type": 1,
                         "query": "VMBoundPort\r\n| take 1\r\n| summarize count()",
                         "crossComponentResources": [

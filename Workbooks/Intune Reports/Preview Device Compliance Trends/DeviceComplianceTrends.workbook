@@ -17,7 +17,7 @@
                         "id": "17a3f56c-2924-4ba7-a211-4cdf9ef3219c",
                         "version": "KqlParameterItem/1.0",
                         "name": "ComplianceState",
-                        "label": "Compliance status",
+                        "label": "Estado de cumplimiento",
                         "type": 2,
                         "isRequired": true,
                         "multiSelect": true,
@@ -84,7 +84,7 @@
                 "query": "{\"version\":\"IntuneQuery/1.0\",\"timeContext\":null,\"schema\":\"{Schema}\",\"environment\":\"{Environment}\",\"body\":\"{\\n    \\\"name\\\": \\\"deviceComplianceTrend\\\",\\n\\t\\\"filter\\\": \\\"({ComplianceState}) and ({OS})\\\",\\n\\t\\\"select\\\": [\\\"Date\\\", \\\"ComplianceState\\\", \\\"Count\\\"],\\n\\t\\\"top\\\": 10000\\n}\"}",
                 "size": 0,
                 "aggregation": 5,
-                "title": "Device compliance (60 day trend)",
+                "title": "Cumplimiento de dispositivos (tendencia de 60 días)",
                 "queryType": 11,
                 "visualization": "areachart",
                 "chartSettings": {

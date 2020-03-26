@@ -47,7 +47,7 @@
                         "id": "d04c2e2c-b67c-4ae1-9b80-a36e27310200",
                         "version": "KqlParameterItem/1.0",
                         "name": "TimeRange",
-                        "label": "Time Range",
+                        "label": "Intervalo de tiempo",
                         "type": 4,
                         "description": "Intervalo de tiempo para analizar",
                         "isRequired": true,
@@ -264,7 +264,7 @@
                 "version": "KqlItem/1.0",
                 "query": "{\"version\":\"AzureHealthQuery/1.0\",\"queryType\":\"Detailed\"}",
                 "size": 4,
-                "title": "Storage health",
+                "title": "Estado del almacenamiento",
                 "queryType": 4,
                 "resourceType": "microsoft.storage/storageaccounts",
                 "gridSettings": {
@@ -491,7 +491,7 @@
                 "version": "KqlItem/1.0",
                 "query": "{\"version\":\"Merge/1.0\",\"merges\":[{\"id\":\"3a881a4c-d5e3-4b9f-a456-eaf698410068\",\"mergeType\":\"table\",\"leftTable\":\"Availability data\"}],\"projectRename\":[{\"originalName\":\"[Availability data].Subscription\",\"mergedName\":\"Subscription\"},{\"originalName\":\"[Availability data].Name\",\"mergedName\":\"Name\"},{\"originalName\":\"[Availability data].Namespace\",\"mergedName\":\"Namespace\"},{\"originalName\":\"[Availability data].Metric\",\"mergedName\":\"Metric\"},{\"originalName\":\"[Availability data].Aggregation\",\"mergedName\":\"Aggregation\"},{\"originalName\":\"[Availability data].Segment Field\",\"mergedName\":\"Segment Field\"},{\"originalName\":\"[Availability data].Segment\",\"mergedName\":\"Segment\"},{\"originalName\":\"[Availability data].Value\",\"mergedName\":\"Availability (%)\"},{\"originalName\":\"[Availability data].Timeline\",\"mergedName\":\"Timeline\"}]}",
                 "size": 0,
-                "title": "Availability by API name",
+                "title": "Disponibilidad por nombre de API",
                 "queryType": 7,
                 "resourceType": "microsoft.storage/storageaccounts",
                 "gridSettings": {
@@ -665,7 +665,7 @@
                         "columnName": "Table availability"
                     }
                 ],
-                "title": "Availability trend",
+                "title": "Tendencia de disponibilidad",
                 "filters": []
             },
             "customWidth": "50",

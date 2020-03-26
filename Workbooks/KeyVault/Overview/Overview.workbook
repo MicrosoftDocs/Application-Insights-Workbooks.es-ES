@@ -13,7 +13,7 @@
                         "id": "65f81355-b707-45be-b7e1-f8450b537da4",
                         "version": "KqlParameterItem/1.0",
                         "name": "TimeRange",
-                        "label": "Time Range",
+                        "label": "Intervalo de tiempo",
                         "type": 4,
                         "isRequired": true,
                         "value": {
@@ -129,14 +129,14 @@
                     {
                         "cellValue": "selectedTab",
                         "linkTarget": "parameter",
-                        "linkLabel": "Overview",
+                        "linkLabel": "Información general",
                         "subTarget": "Overview",
                         "style": "link"
                     },
                     {
                         "cellValue": "selectedTab",
                         "linkTarget": "parameter",
-                        "linkLabel": "Operations",
+                        "linkLabel": "Operaciones",
                         "subTarget": "Operations",
                         "style": "link"
                     }
@@ -391,7 +391,7 @@
                         "splitBy": "ActivityName"
                     }
                 ],
-                "title": "Transactions Over Time",
+                "title": "Transacciones a lo largo del tiempo",
                 "showOpenInMe": true,
                 "gridSettings": {
                     "rowLimit": 10000
@@ -431,7 +431,7 @@
                         "splitBy": "ActivityName"
                     }
                 ],
-                "title": "Request Types over Time",
+                "title": "Tipos de solicitud a lo largo del tiempo",
                 "showOpenInMe": true,
                 "gridSettings": {
                     "rowLimit": 10000
@@ -472,7 +472,7 @@
                         "splitBy": null
                     }
                 ],
-                "title": "Availability",
+                "title": "Disponibilidad",
                 "showOpenInMe": true,
                 "gridSettings": {
                     "rowLimit": 10000
@@ -579,7 +579,7 @@
                     {
                         "cellValue": "{Vaults}",
                         "linkTarget": "Resource",
-                        "linkLabel": "Enable Logs for Monitoring",
+                        "linkLabel": "Habilitar registros para la supervisión",
                         "subTarget": "diagnostics",
                         "style": "primary"
                     }
@@ -634,7 +634,7 @@
                 "query": "let rawData = AzureDiagnostics \n// Ignore Authentication operations with a 401. This is normal when using Key Vault SDK, first an unauthenticated request is done then the response is used for authentication.\n| where Category==\"AuditEvent\" and not (OperationName == \"Authentication\" and httpStatusCode_d == 401)\n| where OperationName in ({Operations}) or '*' in ({Operations})\n// Create ResultStatus with all the 'success' results bucked as 'Success'\n// Certain operations like StorageAccountAutoSyncKey have no ResultSignature, for now set to 'Success' as well\n| extend ResultStatus = case ( ResultSignature == \"\", \"Success\",\n                               ResultSignature == \"OK\", \"Success\",\n                               ResultSignature == \"Accepted\", \"Success\",\n                               ResultSignature);                            \nrawData \n| make-series Trend = count() default = 0 on TimeGenerated from {TimeRange:start} to {TimeRange:end} step {TimeRange:grain} by ResultStatus\n| join kind = inner (rawData\n    | summarize Count = count() by ResultStatus\n    ) on ResultStatus\n| union (rawData\n| summarize Count = count()\n| extend jkey = 1\n| join kind=inner (rawData\n    | make-series Trend = count() default = 0 on TimeGenerated from {TimeRange:start} to {TimeRange:end} step {TimeRange:grain}\n    | extend jkey = 1 \n    ) on jkey\n    | extend ResultStatus = 'All'\n)\n| project ResultStatus, Count, Trend\n| order by Count desc;",
                 "size": 3,
                 "showAnalytics": true,
-                "title": "Operations by Result Status",
+                "title": "Operaciones por estado de resultados",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -1032,7 +1032,7 @@
                             "formatter": 7,
                             "formatOptions": {
                                 "linkTarget": "CellDetails",
-                                "linkLabel": "🔍 View Details",
+                                "linkLabel": "🔍 Ver detalles",
                                 "linkIsContextBlade": true,
                                 "showIcon": true
                             }

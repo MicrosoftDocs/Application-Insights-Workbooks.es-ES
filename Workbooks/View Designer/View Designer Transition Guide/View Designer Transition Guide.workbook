@@ -17,19 +17,19 @@
                     {
                         "cellValue": "why workbooks",
                         "linkTarget": "step",
-                        "linkLabel": "Why Workbooks?",
+                        "linkLabel": "Motivos para usar Workbooks",
                         "style": "link"
                     },
                     {
                         "cellValue": "quick start",
                         "linkTarget": "step",
-                        "linkLabel": "Quick Start Templates",
+                        "linkLabel": "Plantillas de inicio rápido",
                         "style": "link"
                     },
                     {
                         "cellValue": "edit mode",
                         "linkTarget": "step",
-                        "linkLabel": "Edit Mode",
+                        "linkLabel": "Modo de edición",
                         "style": "link",
                         "workbookContext": {},
                         "alertRuleContext": {}
@@ -37,7 +37,7 @@
                     {
                         "cellValue": "Parameters",
                         "linkTarget": "step",
-                        "linkLabel": "Parameters",
+                        "linkLabel": "Parámetros",
                         "style": "link",
                         "workbookContext": {},
                         "alertRuleContext": {}
@@ -45,13 +45,13 @@
                     {
                         "cellValue": "running queries",
                         "linkTarget": "step",
-                        "linkLabel": "Running Queries",
+                        "linkLabel": "Consultas en ejecución",
                         "style": "link"
                     },
                     {
                         "cellValue": "customizing",
                         "linkTarget": "step",
-                        "linkLabel": "Customizing Visualizations",
+                        "linkLabel": "Personalización de visualizaciones",
                         "style": "link",
                         "workbookContext": {},
                         "alertRuleContext": {}
@@ -59,7 +59,7 @@
                     {
                         "cellValue": "additional resources - Copy",
                         "linkTarget": "step",
-                        "linkLabel": "Additional Resources",
+                        "linkLabel": "Recursos adicionales",
                         "style": "link"
                     }
                 ]
@@ -99,7 +99,7 @@
                 "links": [
                     {
                         "linkTarget": "WorkbookTemplate",
-                        "linkLabel": "Tabbed Overview",
+                        "linkLabel": "Información general con pestañas",
                         "style": "primary",
                         "workbookContext": {
                             "componentIdSource": "workbook",
@@ -113,7 +113,7 @@
                     },
                     {
                         "linkTarget": "WorkbookTemplate",
-                        "linkLabel": "Vertical Overview",
+                        "linkLabel": "Introducción al diseño vertical",
                         "style": "primary",
                         "workbookContext": {
                             "componentIdSource": "workbook",
@@ -128,7 +128,7 @@
                     {
                         "cellValue": "",
                         "linkTarget": "WorkbookTemplate",
-                        "linkLabel": "Donut & List",
+                        "linkLabel": "Anillo y lista",
                         "style": "primary",
                         "workbookContext": {
                             "componentIdSource": "workbook",
@@ -141,7 +141,7 @@
                     },
                     {
                         "linkTarget": "WorkbookTemplate",
-                        "linkLabel": "Timeline & List",
+                        "linkLabel": "Escala de tiempo y lista",
                         "style": "primary",
                         "workbookContext": {
                             "componentIdSource": "workbook",
@@ -155,7 +155,7 @@
                     },
                     {
                         "linkTarget": "WorkbookTemplate",
-                        "linkLabel": "Number & List",
+                        "linkLabel": "Número y lista",
                         "style": "primary",
                         "workbookContext": {
                             "componentIdSource": "workbook",
@@ -168,7 +168,7 @@
                     },
                     {
                         "linkTarget": "WorkbookTemplate",
-                        "linkLabel": "Two Numbers & List",
+                        "linkLabel": "Dos números y lista",
                         "style": "primary",
                         "workbookContext": {
                             "componentIdSource": "workbook",
@@ -182,7 +182,7 @@
                     },
                     {
                         "linkTarget": "WorkbookTemplate",
-                        "linkLabel": "Line Chart, Callout, & List",
+                        "linkLabel": "Gráfico de líneas, llamada y lista",
                         "style": "primary",
                         "workbookContext": {
                             "componentIdSource": "workbook",
@@ -207,16 +207,16 @@
                     {
                         "cellValue": "https://docs.microsoft.com/en-us/azure/azure-monitor/platform/view-designer-conversion-overview",
                         "linkTarget": "Url",
-                        "linkLabel": "View Designer transition documentation",
-                        "preText": "For additional assistance, please reference the ",
+                        "linkLabel": "Documentación de transición del Diseñador de vistas",
+                        "preText": "Para obtener ayuda adicional, consulte la ",
                         "postText": "",
                         "style": "link"
                     },
                     {
                         "cellValue": "https://docs.microsoft.com/en-us/azure/azure-monitor/app/usage-workbooks",
                         "linkTarget": "Url",
-                        "linkLabel": "Workbooks documentation",
-                        "preText": " or the ",
+                        "linkLabel": "documentación de Workbooks",
+                        "preText": " o el ",
                         "style": "link"
                     }
                 ]
@@ -398,7 +398,7 @@
                 "version": "KqlItem/1.0",
                 "query": "search *\r\n| summarize AggregatedValue = count() by Type \r\n| order by AggregatedValue desc",
                 "size": 1,
-                "title": "An Example Pie Chart",
+                "title": "Un gráfico circular de ejemplo",
                 "timeContext": {
                     "durationMs": 86400000
                 },
@@ -421,7 +421,7 @@
                 "version": "KqlItem/1.0",
                 "query": "search *\r\n| summarize AggregatedValue = count() by Type\r\n| order by AggregatedValue desc",
                 "size": 0,
-                "title": "One Example Bar Chart",
+                "title": "Un gráfico de barras de ejemplo",
                 "timeContext": {
                     "durationMs": 86400000
                 },
@@ -439,7 +439,7 @@
                 "query": "search *\r\n| summarize AggregatedValue = count() by Type\r\n| order by AggregatedValue desc",
                 "size": 3,
                 "showAnalytics": true,
-                "title": "Another Example Bar Chart",
+                "title": "Otro gráfico de barras de ejemplo",
                 "timeContext": {
                     "durationMs": 86400000
                 },
@@ -473,16 +473,16 @@
                     {
                         "cellValue": "https://docs.microsoft.com/en-us/azure/azure-monitor/platform/view-designer-conversion-overview",
                         "linkTarget": "Url",
-                        "linkLabel": "View Designer transition documentation",
-                        "preText": "For additional assistance, please reference the ",
+                        "linkLabel": "Documentación de transición del Diseñador de vistas",
+                        "preText": "Para obtener ayuda adicional, consulte la ",
                         "postText": "",
                         "style": "link"
                     },
                     {
                         "cellValue": "https://docs.microsoft.com/en-us/azure/azure-monitor/app/usage-workbooks",
                         "linkTarget": "Url",
-                        "linkLabel": "Workbooks documentation",
-                        "preText": " or the ",
+                        "linkLabel": "documentación de Workbooks",
+                        "preText": " o el ",
                         "style": "link"
                     }
                 ]

@@ -94,7 +94,7 @@
                 "query": "metrics_kafka_CL\r\n| where InstanceName_s == \"kafka-KafkaController-ActiveControllerCount-Value\" or InstanceName_s == \"kafka-ReplicaManager-LeaderCount-Value\" or InstanceName_s == \"kafka-ReplicaManager-PartitionCount-Value\" or InstanceName_s == \"kafka-ReplicaManager-UnderReplicatedPartitions-Value\" or InstanceName_s == \"kafka-KafkaController-OfflinePartitionsCount-Value\"\r\n| summarize arg_max(TimeGenerated, *) by InstanceName_s, HostName_s\r\n| summarize \r\nAggControllerCount=avg(kafka_KafkaController_ActiveControllerCount_Value_value_d), \r\nAggLeaderCount=avg(kafka_ReplicaManager_LeaderCount_Value_value_d),\r\nAggPartitionCount=avg(kafka_ReplicaManager_PartitionCount_Value_value_d),\r\nAggUnderReplicatedPartitionCount=avg(kafka_ReplicaManager_UnderReplicatedPartitions_Value_value_d),\r\nAggOfflinePartitionCount=avg(kafka_KafkaController_OfflinePartitionsCount_Value_value_d)\r\nby bin(TimeGenerated, 5m), ClusterName_s, HostName_s\r\n| summarize \r\nActiveControllerCount=sum(AggControllerCount),\r\nLeaderCount=sum(AggLeaderCount),\r\nPartitionCount=sum(AggLeaderCount),\r\nUnderReplicatedPartitionCount=sum(AggUnderReplicatedPartitionCount),\r\nOfflinePartitionCount=sum(AggOfflinePartitionCount)\r\nby ClusterName_s\r\n| join kind=leftouter (\r\n   metrics_kafka_CL\r\n    | where InstanceName_s == \"kafka-ReplicaManager-PartitionCount-Value\"\r\n    | distinct HostName_s, ClusterName_s\r\n    | summarize BrokerCount=count() by ClusterName_s\r\n) on ClusterName_s\r\n| extend first6 = substring(ClusterName_s, 0, 6)\r\n| join kind=leftouter (\r\n    Perf\r\n    | where ObjectName == \"Logical Disk\" and (CounterName == \"Free Megabytes\" or CounterName == \"% Free Space\") and InstanceName contains \"data_disk\" and Computer               startswith_cs \"wn\"\r\n    | summarize arg_max(TimeGenerated, *) by Computer, CounterName, InstanceName\r\n    | extend PercentFree=iff(CounterName == \"% Free Space\", CounterValue, real(0)), FreeMegabytes=iff(CounterName == \"Free Megabytes\", CounterValue, real(0))\r\n    | summarize PercentFree=sum(PercentFree), FreeMegabytes=sum(FreeMegabytes) by Computer, InstanceName\r\n    | extend TotalMegabytes=round(FreeMegabytes / PercentFree * 100)\r\n    | extend first6 = trim_start(\".*-\", Computer)\r\n    | summarize FreeMegabytesPerCluster = sum(FreeMegabytes), TotalMegabytesPerCluster = sum(TotalMegabytes) by first6\r\n    | extend DiskPercentFree = round(FreeMegabytesPerCluster/TotalMegabytesPerCluster*100)\r\n) on first6\r\n| project Name=ClusterName_s, ActiveControllerCount, DiskPercentFree, PartitionsPerBroker=round(PartitionCount/BrokerCount), PartitionCount, UnderReplicatedPartitionCount, OfflinePartitionCount, LeaderCount\r\n\r\n",
                 "size": 3,
                 "aggregation": 5,
-                "title": "Kafka clusters overview - current status",
+                "title": "Información general de los clústeres de Kafka: estado actual",
                 "color": "blue",
                 "noDataMessage": "No HDInsight Kafka clusters found linked to this workspace.",
                 "timeContext": {
@@ -279,7 +279,7 @@
                         "id": "c43a8974-87d7-49ab-ace0-c15e4e5ec6ca",
                         "version": "KqlParameterItem/1.0",
                         "name": "Clusters",
-                        "label": "Cluster(s)",
+                        "label": "Clústeres",
                         "type": 2,
                         "isRequired": true,
                         "multiSelect": true,
@@ -305,7 +305,7 @@
                         "id": "6609fb2f-e23e-4c52-a0dd-c4ce30d9a145",
                         "version": "KqlParameterItem/1.0",
                         "name": "TimeRange",
-                        "label": "Time Range",
+                        "label": "Intervalo de tiempo",
                         "type": 4,
                         "isRequired": true,
                         "value": {
@@ -355,7 +355,7 @@
                 "query": "metrics_kafka_CL\r\n| where iff(\"{Clusters}\" == \"\", true, ClusterName_s in ({Clusters}))\r\n| where InstanceName_s == \"kafka-BrokerTopicMetrics-MessagesInPerSec-Count\"\r\n| summarize AggregatedValue = avg(kafka_BrokerTopicMetrics_MessagesInPerSec_Count_value_d) by ClusterName_s, HostName_s, bin(TimeGenerated, 1m)\r\n| summarize IncomingBytesPerSec=sum(AggregatedValue) by TimeGenerated, ClusterName_s\r\n| where TimeGenerated < ago(3m)\r\n| order by TimeGenerated desc",
                 "size": 0,
                 "aggregation": 5,
-                "title": "Incoming messages per second by cluster",
+                "title": "Mensajes entrantes por segundo por clúster",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -383,7 +383,7 @@
                 "query": "let Clusters = \"{Clusters}\";\r\nlet oneClusterSelected = indexof(Clusters, \",\") == -1;\r\nlet multipleClusters =\r\nPerf\r\n| extend first6 = trim_start(\".*-\", Computer)\r\n| where indexof(Clusters, first6) >= 0\r\n| where ObjectName == \"Logical Disk\" and CounterName == \"Free Megabytes\" and InstanceName contains \"data_disk\" and Computer startswith_cs \"wn\"\r\n| extend internalRG = extract(\"resourcegroups/(.*?)/\", 1, _ResourceId)\r\n//| extend clusterNameStartIndex=indexof(Clusters, first6)\r\n//| extend clusterName=substring(Clusters, clusterNameStartIndex, indexof(Clusters,\",\",clusterNameStartIndex)-clusterNameStartIndex)\r\n| summarize AggFreeMemoryPerDisk = avg(CounterValue) by bin(TimeGenerated, 1m), Computer, InstanceName, internalRG, first6\r\n| summarize FreeMemoryPerNode = sum(AggFreeMemoryPerDisk) by TimeGenerated, Computer, internalRG, first6\r\n| summarize FreeMemory = sum(FreeMemoryPerNode)/1000 by TimeGenerated, internalRG, first6\r\n| project-rename Name=first6;\r\nlet oneCluster =\r\nPerf\r\n| extend first6 = trim_start(\".*-\", Computer)\r\n| where indexof(Clusters, first6) >= 0\r\n| where ObjectName == \"Logical Disk\" and CounterName == \"Free Megabytes\" and InstanceName contains \"data_disk\" and Computer startswith_cs \"wn\"\r\n| summarize AggFreeMemoryPerDisk = avg(CounterValue) by bin(TimeGenerated, 1m), Computer, InstanceName\r\n| summarize FreeMemory = sum(AggFreeMemoryPerDisk)/1000 by TimeGenerated, Computer\r\n| project-rename Name=Computer;\r\nunion (oneCluster | where oneClusterSelected == true), (multipleClusters | where oneClusterSelected == false)\r\n| where TimeGenerated < ago(3m)\r\n| sort by TimeGenerated desc, Name asc",
                 "size": 0,
                 "aggregation": 5,
-                "title": "Disk usage - free GB",
+                "title": "Uso de disco: GB libres",
                 "noDataMessage": "To see disk usage data, enable the \"Logical Disk(*)\\% Free Space\" and \"Logical Disk(*)\\Free Megabytes\" Linux performance counters. See instructions here: https://docs.microsoft.com/en-us/azure/azure-monitor/platform/data-sources-performance-counters <a href=https://docs.microsoft.com/en-us/azure/azure-monitor/platform/data-sources-performance-counters>See instructions here.</a>",
                 "timeContext": {
                     "durationMs": 0
@@ -438,7 +438,7 @@
                 "query": "metrics_kafka_CL\r\n| where iff(\"{Clusters}\" == \"\", true, ClusterName_s in ({Clusters}))\r\n| where InstanceName_s == \"kafka-BrokerTopicMetrics-BytesInPerSec-Count\"\r\n| summarize AggregatedValue = avg(kafka_BrokerTopicMetrics_BytesInPerSec_Count_value_d) by ClusterName_s, HostName_s, bin(TimeGenerated, 1m)\r\n| summarize IncomingBytesPerSec=sum(AggregatedValue)/toint('{Units}') by TimeGenerated, ClusterName_s\r\n| where TimeGenerated < ago(3m)\r\n| order by TimeGenerated desc",
                 "size": 0,
                 "aggregation": 5,
-                "title": "Incoming data per second by cluster",
+                "title": "Datos entrantes por segundo por clúster",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -487,7 +487,7 @@
                 "query": "metrics_kafka_CL\r\n| where iff(\"{Clusters}\" == \"\", true, ClusterName_s in ({Clusters}))\r\n| where InstanceName_s == \"kafka-BrokerTopicMetrics-BytesOutPerSec-Count\"\r\n| summarize AggregatedValue = avg(kafka_BrokerTopicMetrics_BytesOutPerSec_Count_value_d) by ClusterName_s, HostName_s, bin(TimeGenerated, 1m)\r\n| summarize IncomingBytesPerSec=sum(AggregatedValue)/toint('{Units}') by TimeGenerated, ClusterName_s\r\n| where TimeGenerated < ago(3m)\r\n| order by TimeGenerated desc",
                 "size": 0,
                 "aggregation": 5,
-                "title": "Outgoing data per second by cluster",
+                "title": "Datos salientes por segundo por clúster",
                 "timeContext": {
                     "durationMs": 0
                 },

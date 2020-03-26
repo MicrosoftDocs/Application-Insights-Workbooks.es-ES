@@ -88,7 +88,7 @@
                 "size": 1,
                 "aggregation": 3,
                 "showAnalytics": true,
-                "title": "Data Type Distribution",
+                "title": "Distribución de tipos de datos",
                 "timeContext": {
                     "durationMs": 0
                 },

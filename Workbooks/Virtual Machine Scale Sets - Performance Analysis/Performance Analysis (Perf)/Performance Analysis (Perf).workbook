@@ -517,7 +517,7 @@
                             "formatter": 7,
                             "formatOptions": {
                                 "linkTarget": "CellDetails",
-                                "linkLabel": "ℹ️ Info"
+                                "linkLabel": "ℹ️ Información"
                             }
                         },
                         {
@@ -757,7 +757,7 @@
                             "formatter": 7,
                             "formatOptions": {
                                 "linkTarget": "CellDetails",
-                                "linkLabel": "️️️ℹ Info"
+                                "linkLabel": "️️️ℹ Información"
                             }
                         },
                         {

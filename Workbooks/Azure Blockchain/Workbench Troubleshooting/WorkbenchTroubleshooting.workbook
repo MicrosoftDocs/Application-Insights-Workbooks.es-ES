@@ -94,7 +94,7 @@
                 "aggregation": 0,
                 "showAnnotations": false,
                 "showAnalytics": true,
-                "title": "Workbench Logs",
+                "title": "Registros de Workbench",
                 "noDataMessage": "Please enter a valid requestId above.",
                 "timeContext": {
                     "durationMs": 0,
@@ -181,7 +181,7 @@
                 "aggregation": 0,
                 "showAnnotations": false,
                 "showAnalytics": true,
-                "title": "TryCommitContractAction Counter",
+                "title": "Contador TryCommitContractAction",
                 "noDataMessage": "No liveness issues detected!",
                 "timeContextFromParameter": null,
                 "resourceType": "microsoft.insights/components",

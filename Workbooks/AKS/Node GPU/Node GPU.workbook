@@ -10,7 +10,7 @@
                         "id": "5de17819-f869-4a42-9c3d-27cf8f9085f0",
                         "version": "KqlParameterItem/1.0",
                         "name": "timeRange",
-                        "label": "Time Range",
+                        "label": "Intervalo de tiempo",
                         "type": 4,
                         "description": "Filtrar datos por intervalo de tiempo",
                         "isRequired": true,
@@ -72,7 +72,7 @@
                         "id": "bb8ed6dc-807e-4566-be76-26ac6ee7f90f",
                         "version": "KqlParameterItem/1.0",
                         "name": "selectedNodes",
-                        "label": "GPU Node",
+                        "label": "Nodo con GPU",
                         "type": 2,
                         "description": "Filtrar por nodo con GPU",
                         "multiSelect": true,
@@ -149,7 +149,7 @@
                 "aggregation": 5,
                 "showAnnotations": true,
                 "showAnalytics": true,
-                "title": "GPU Usage",
+                "title": "Uso de GPU",
                 "color": "turquoise",
                 "queryType": 0,
                 "resourceType": "microsoft.containerservice/managedclusters",
@@ -230,7 +230,7 @@
                 "aggregation": 5,
                 "showAnnotations": true,
                 "showAnalytics": true,
-                "title": "GPU Memory Usage",
+                "title": "Uso de memoria de GPU",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -264,7 +264,7 @@
                 "aggregation": 5,
                 "showAnnotations": true,
                 "showAnalytics": true,
-                "title": "GPU Node Count by Node Status",
+                "title": "Número de nodos con GPU por estado de nodo",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -334,7 +334,7 @@
                 "aggregation": 5,
                 "showAnnotations": true,
                 "showAnalytics": true,
-                "title": "GPU Pod Count by Pod Status",
+                "title": "Número de pods con GPU por estado de pod",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -377,7 +377,7 @@
                 "aggregation": 5,
                 "showAnnotations": true,
                 "showAnalytics": true,
-                "title": "GPU Pod Count by Kubernetes Namespace",
+                "title": "Número de pods con GPU por espacio de nombres de Kubernetes",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -473,7 +473,7 @@
                 "aggregation": 5,
                 "showAnnotations": true,
                 "showAnalytics": true,
-                "title": "GPU Count by Make",
+                "title": "Número de GPU por instrucciones Make",
                 "color": "blue",
                 "timeContext": {
                     "durationMs": 0
@@ -518,7 +518,7 @@
                     "labelSettings": [
                         {
                             "columnId": "gpuVendor",
-                            "label": "Make",
+                            "label": "Asegúrese",
                             "comment": ""
                         },
                         {

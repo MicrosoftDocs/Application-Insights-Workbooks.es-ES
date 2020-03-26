@@ -173,7 +173,7 @@
                 "exportFieldName": "name",
                 "exportParameterName": "SelectedOperation",
                 "showAnalytics": false,
-                "title": "Usage Summary",
+                "title": "Resumen de uso",
                 "resourceType": "microsoft.insights/components",
                 "crossComponentResources": [
                     "{App}"
@@ -263,7 +263,7 @@
                 "aggregation": 3,
                 "showAnnotations": false,
                 "showAnalytics": false,
-                "title": "Unique Users",
+                "title": "Usuarios únicos",
                 "resourceType": "microsoft.insights/components",
                 "crossComponentResources": [
                     "{App}"
@@ -283,7 +283,7 @@
                 "aggregation": 3,
                 "showAnnotations": false,
                 "showAnalytics": false,
-                "title": "Activities Trend",
+                "title": "Tendencia de actividades",
                 "resourceType": "microsoft.insights/components",
                 "crossComponentResources": [
                     "{App}"

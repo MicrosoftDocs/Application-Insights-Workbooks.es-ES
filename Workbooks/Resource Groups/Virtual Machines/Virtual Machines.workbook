@@ -54,7 +54,7 @@
                         "id": "2241c21b-5a59-4a42-b3a9-b503de023938",
                         "version": "KqlParameterItem/1.0",
                         "name": "TimeRange",
-                        "label": "Time Range",
+                        "label": "Intervalo de tiempo",
                         "type": 4,
                         "isRequired": true,
                         "value": {
@@ -166,7 +166,7 @@
                         "splitByLimit": 5
                     }
                 ],
-                "title": "Virtual machine metrics",
+                "title": "Métricas de máquina virtual",
                 "gridSettings": {
                     "formatters": [
                         {

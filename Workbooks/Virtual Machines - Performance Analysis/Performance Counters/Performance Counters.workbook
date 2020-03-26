@@ -259,7 +259,7 @@
                             "additionalResourceOptions": []
                         },
                         "jsonData": "[\r\n    {\r\n        \"label\": \"1 minute\",\r\n        \"value\": \"1m\"\r\n    },\r\n    {\r\n        \"label\": \"5 minutes\",\r\n        \"value\": \"5m\"\r\n    },\r\n    {\r\n        \"label\": \"15 minutes\",\r\n        \"value\": \"15m\"\r\n    },\r\n    {\r\n        \"label\": \"30 minutes\",\r\n        \"value\": \"30m\"\r\n    },\r\n    {\r\n        \"label\": \"1 hour\",\r\n        \"value\": \"1h\"\r\n    }\r\n]",
-                        "label": "Time Grain"
+                        "label": "Intervalo de agregación"
                     },
                     {
                         "id": "112823d7-bf58-4604-a299-78ccc5899516",
@@ -284,7 +284,7 @@
                         "name": "ComputerNameContains",
                         "type": 1,
                         "value": "",
-                        "label": "Computer Name Contains"
+                        "label": "El nombre de equipo contiene"
                     },
                     {
                         "id": "8e436ee8-ba56-4fe5-8a2b-46f77ad405ee",
@@ -387,7 +387,7 @@
                         "id": "48e2b8b9-e618-480c-80e6-5cf1cee85ee9",
                         "version": "KqlParameterItem/1.0",
                         "name": "Test",
-                        "label": "Not Onboarded",
+                        "label": "No incorporado",
                         "type": 1,
                         "query": "InsightsMetrics\r\n| take 1\r\n| summarize count()",
                         "crossComponentResources": [
@@ -436,7 +436,7 @@
                         "id": "aa2368fc-ad30-4608-b96a-72abf7b1e1af",
                         "version": "KqlParameterItem/1.0",
                         "name": "Counter1",
-                        "label": "Counter",
+                        "label": "Contador",
                         "type": 2,
                         "isRequired": true,
                         "query": "InsightsMetrics\r\n| summarize by Name, Namespace, CounterText = Name\r\n| order by Namespace asc, CounterText asc\r\n| project Counter = pack('counter', Name, 'object', Namespace), CounterText, group = Namespace",
@@ -457,7 +457,7 @@
                         "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
                         "version": "KqlParameterItem/1.0",
                         "name": "TrendAggregator1",
-                        "label": "Trend Aggregator",
+                        "label": "Agregador de tendencias",
                         "type": 2,
                         "isRequired": true,
                         "typeSettings": {
@@ -591,7 +591,7 @@
                         "id": "aa2368fc-ad30-4608-b96a-72abf7b1e1af",
                         "version": "KqlParameterItem/1.0",
                         "name": "Counter2",
-                        "label": "Counter",
+                        "label": "Contador",
                         "type": 2,
                         "isRequired": true,
                         "query": "InsightsMetrics\r\n| summarize by Name, Namespace, CounterText = Name\r\n| order by Namespace asc, CounterText asc\r\n| project Counter = pack('counter', Name, 'object', Namespace), CounterText, group = Namespace",
@@ -612,7 +612,7 @@
                         "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
                         "version": "KqlParameterItem/1.0",
                         "name": "TrendAggregator2",
-                        "label": "Trend Aggregator",
+                        "label": "Agregador de tendencias",
                         "type": 2,
                         "isRequired": true,
                         "typeSettings": {
@@ -664,7 +664,7 @@
                         "id": "d026cf36-d22e-4f92-a577-94220726ba3f",
                         "version": "KqlParameterItem/1.0",
                         "name": "Visualization2",
-                        "label": "Visualization",
+                        "label": "Visualización",
                         "type": 2,
                         "isRequired": true,
                         "typeSettings": {
@@ -750,7 +750,7 @@
                         "id": "aa2368fc-ad30-4608-b96a-72abf7b1e1af",
                         "version": "KqlParameterItem/1.0",
                         "name": "Counter3",
-                        "label": "Counter",
+                        "label": "Contador",
                         "type": 2,
                         "isRequired": true,
                         "query": "InsightsMetrics\r\n| summarize by Name, Namespace, CounterText = Name\r\n| order by Namespace asc, CounterText asc\r\n| project Counter = pack('counter', Name, 'object', Namespace), CounterText, group = Namespace",
@@ -771,7 +771,7 @@
                         "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
                         "version": "KqlParameterItem/1.0",
                         "name": "TrendAggregator3",
-                        "label": "Trend Aggregator",
+                        "label": "Agregador de tendencias",
                         "type": 2,
                         "isRequired": true,
                         "typeSettings": {
@@ -823,7 +823,7 @@
                         "id": "d026cf36-d22e-4f92-a577-94220726ba3f",
                         "version": "KqlParameterItem/1.0",
                         "name": "Visualization3",
-                        "label": "Visualization",
+                        "label": "Visualización",
                         "type": 2,
                         "isRequired": true,
                         "typeSettings": {
@@ -906,7 +906,7 @@
                         "id": "aa2368fc-ad30-4608-b96a-72abf7b1e1af",
                         "version": "KqlParameterItem/1.0",
                         "name": "Counter4",
-                        "label": "Counter",
+                        "label": "Contador",
                         "type": 2,
                         "isRequired": true,
                         "query": "InsightsMetrics\r\n| summarize by Name, Namespace, CounterText = Name\r\n| order by Namespace asc, CounterText asc\r\n| project Counter = pack('counter', Name, 'object', Namespace), CounterText, group = Namespace",
@@ -927,7 +927,7 @@
                         "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
                         "version": "KqlParameterItem/1.0",
                         "name": "TrendAggregator4",
-                        "label": "Trend Aggregator",
+                        "label": "Agregador de tendencias",
                         "type": 2,
                         "isRequired": true,
                         "typeSettings": {
@@ -979,7 +979,7 @@
                         "id": "d026cf36-d22e-4f92-a577-94220726ba3f",
                         "version": "KqlParameterItem/1.0",
                         "name": "Visualization4",
-                        "label": "Visualization",
+                        "label": "Visualización",
                         "type": 2,
                         "isRequired": true,
                         "typeSettings": {
@@ -1290,7 +1290,7 @@
                         "id": "aa2368fc-ad30-4608-b96a-72abf7b1e1af",
                         "version": "KqlParameterItem/1.0",
                         "name": "Counter5",
-                        "label": "Counter",
+                        "label": "Contador",
                         "type": 2,
                         "isRequired": true,
                         "query": "InsightsMetrics\r\n| summarize by Name, Namespace, CounterText = Name\r\n| order by Namespace asc, CounterText asc\r\n| project Counter = pack('counter', Name, 'object', Namespace), CounterText, group = Namespace",
@@ -1311,7 +1311,7 @@
                         "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
                         "version": "KqlParameterItem/1.0",
                         "name": "TrendAggregator5",
-                        "label": "Trend Aggregator",
+                        "label": "Agregador de tendencias",
                         "type": 2,
                         "isRequired": true,
                         "typeSettings": {
@@ -1363,7 +1363,7 @@
                         "id": "d026cf36-d22e-4f92-a577-94220726ba3f",
                         "version": "KqlParameterItem/1.0",
                         "name": "Visualization5",
-                        "label": "Visualization",
+                        "label": "Visualización",
                         "type": 2,
                         "isRequired": true,
                         "typeSettings": {
@@ -1446,7 +1446,7 @@
                         "id": "aa2368fc-ad30-4608-b96a-72abf7b1e1af",
                         "version": "KqlParameterItem/1.0",
                         "name": "Counter6",
-                        "label": "Counter",
+                        "label": "Contador",
                         "type": 2,
                         "isRequired": true,
                         "query": "InsightsMetrics\r\n| summarize by Name, Namespace, CounterText = Name\r\n| order by Namespace asc, CounterText asc\r\n| project Counter = pack('counter', Name, 'object', Namespace), CounterText, group = Namespace",
@@ -1467,7 +1467,7 @@
                         "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
                         "version": "KqlParameterItem/1.0",
                         "name": "TrendAggregator6",
-                        "label": "Trend Aggregator",
+                        "label": "Agregador de tendencias",
                         "type": 2,
                         "isRequired": true,
                         "typeSettings": {
@@ -1519,7 +1519,7 @@
                         "id": "d026cf36-d22e-4f92-a577-94220726ba3f",
                         "version": "KqlParameterItem/1.0",
                         "name": "Visualization6",
-                        "label": "Visualization",
+                        "label": "Visualización",
                         "type": 2,
                         "isRequired": true,
                         "typeSettings": {
@@ -1602,7 +1602,7 @@
                         "id": "aa2368fc-ad30-4608-b96a-72abf7b1e1af",
                         "version": "KqlParameterItem/1.0",
                         "name": "Counter7",
-                        "label": "Counter",
+                        "label": "Contador",
                         "type": 2,
                         "isRequired": true,
                         "query": "InsightsMetrics\r\n| summarize by Name, Namespace, CounterText = Name\r\n| order by Namespace asc, CounterText asc\r\n| project Counter = pack('counter', Name, 'object', Namespace), CounterText, group = Namespace",
@@ -1623,7 +1623,7 @@
                         "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
                         "version": "KqlParameterItem/1.0",
                         "name": "TrendAggregator7",
-                        "label": "Trend Aggregator",
+                        "label": "Agregador de tendencias",
                         "type": 2,
                         "isRequired": true,
                         "typeSettings": {
@@ -1675,7 +1675,7 @@
                         "id": "d026cf36-d22e-4f92-a577-94220726ba3f",
                         "version": "KqlParameterItem/1.0",
                         "name": "Visualization7",
-                        "label": "Visualization",
+                        "label": "Visualización",
                         "type": 2,
                         "isRequired": true,
                         "typeSettings": {
@@ -1758,7 +1758,7 @@
                         "id": "aa2368fc-ad30-4608-b96a-72abf7b1e1af",
                         "version": "KqlParameterItem/1.0",
                         "name": "Counter8",
-                        "label": "Counter",
+                        "label": "Contador",
                         "type": 2,
                         "isRequired": true,
                         "query": "InsightsMetrics\r\n| summarize by Name, Namespace, CounterText = Name\r\n| order by Namespace asc, CounterText asc\r\n| project Counter = pack('counter', Name, 'object', Namespace), CounterText, group = Namespace",
@@ -1779,7 +1779,7 @@
                         "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
                         "version": "KqlParameterItem/1.0",
                         "name": "TrendAggregator8",
-                        "label": "Trend Aggregator",
+                        "label": "Agregador de tendencias",
                         "type": 2,
                         "isRequired": true,
                         "typeSettings": {
@@ -1831,7 +1831,7 @@
                         "id": "d026cf36-d22e-4f92-a577-94220726ba3f",
                         "version": "KqlParameterItem/1.0",
                         "name": "Visualization8",
-                        "label": "Visualization",
+                        "label": "Visualización",
                         "type": 2,
                         "isRequired": true,
                         "typeSettings": {
