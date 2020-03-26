@@ -418,7 +418,7 @@
                 "aggregation": 0,
                 "showAnnotations": false,
                 "showAnalytics": false,
-                "title": "Dependency Performance Trend (ms)",
+                "title": "Tendencia de rendimiento de la dependencia (ms)",
                 "resourceType": "microsoft.insights/components",
                 "visualization": "areachart"
             },
@@ -439,7 +439,7 @@
                 "aggregation": 0,
                 "showAnnotations": false,
                 "showAnalytics": false,
-                "title": "Dependency Performance - Summary",
+                "title": "Rendimiento de la dependencia: resumen",
                 "resourceType": "microsoft.insights/components",
                 "visualization": "table",
                 "gridSettings": {
@@ -458,7 +458,7 @@
                             "formatter": 7,
                             "formatOptions": {
                                 "linkTarget": "DependencyDetails",
-                                "linkLabel": "Sample"
+                                "linkLabel": "Muestra"
                             }
                         }
                     ]

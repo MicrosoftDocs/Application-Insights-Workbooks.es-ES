@@ -35,7 +35,7 @@
                         "id": "3be310b0-14a6-416f-ae3c-0a98fda5c729",
                         "version": "KqlParameterItem/1.0",
                         "name": "ResourceGroups",
-                        "label": "Resource groups",
+                        "label": "Grupos de recursos",
                         "type": 2,
                         "isRequired": true,
                         "multiSelect": true,
@@ -63,7 +63,7 @@
                         "id": "827a53dc-62fe-49ee-88a6-f9f751ed5ab3",
                         "version": "KqlParameterItem/1.0",
                         "name": "Vaults",
-                        "label": "Key vaults",
+                        "label": "Almacenes de claves",
                         "type": 5,
                         "isRequired": true,
                         "multiSelect": true,
@@ -87,7 +87,7 @@
                         "id": "65f81355-b707-45be-b7e1-f8450b537da4",
                         "version": "KqlParameterItem/1.0",
                         "name": "TimeRange",
-                        "label": "Time Range",
+                        "label": "Intervalo de tiempo",
                         "type": 4,
                         "isRequired": true,
                         "value": {
@@ -214,7 +214,7 @@
                                     "id": "862be1c5-1cd0-42cb-be09-436a38a9d161",
                                     "version": "KqlParameterItem/1.0",
                                     "name": "ResourceScope",
-                                    "label": "Resource scope",
+                                    "label": "Ámbito de recursos",
                                     "type": 7,
                                     "isRequired": true,
                                     "multiSelect": true,
@@ -357,21 +357,21 @@
                                 {
                                     "cellValue": "selectedTab",
                                     "linkTarget": "parameter",
-                                    "linkLabel": "Overview",
+                                    "linkLabel": "Información general",
                                     "subTarget": "Overview",
                                     "style": "link"
                                 },
                                 {
                                     "cellValue": "selectedTab",
                                     "linkTarget": "parameter",
-                                    "linkLabel": "Failures",
+                                    "linkLabel": "Errores",
                                     "subTarget": "Failures",
                                     "style": "link"
                                 },
                                 {
                                     "cellValue": "selectedTab",
                                     "linkTarget": "parameter",
-                                    "linkLabel": "Operations & Latency",
+                                    "linkLabel": "Operaciones y latencia",
                                     "subTarget": "Diagnose",
                                     "style": "link"
                                 }
@@ -632,19 +632,19 @@
                                     },
                                     {
                                         "columnId": "Api hits Timeline",
-                                        "label": "Requests timeline"
+                                        "label": "Escala de tiempo de solicitudes"
                                     },
                                     {
                                         "columnId": "Api hit failures",
-                                        "label": "Request failures"
+                                        "label": "Errores de solicitud"
                                     },
                                     {
                                         "columnId": "microsoft.keyvault/vaults--ServiceApiLatency",
-                                        "label": "Average latency (worst rolled up)"
+                                        "label": "Promedio de latencia (peor acumulado)"
                                     },
                                     {
                                         "columnId": "microsoft.keyvault/vaults--ServiceApiLatency Timeline",
-                                        "label": "Overall Service Api Latency (Average) Timeline"
+                                        "label": "Escala de tiempo de latencia general de la API de servicio (promedio)"
                                     }
                                 ]
                             },
@@ -996,15 +996,15 @@
                                     },
                                     {
                                         "columnId": "microsoft.keyvault/vaults--ServiceApiHit",
-                                        "label": "Total Service Api Hits (Sum)"
+                                        "label": "Número total de visitas de la API de servicio (Sum)"
                                     },
                                     {
                                         "columnId": "microsoft.keyvault/vaults--ServiceApiHit Timeline",
-                                        "label": "Total Service Api Hits Timeline"
+                                        "label": "Escala de tiempo del número total de visitas de la API de servicio"
                                     },
                                     {
                                         "columnId": "Authentication",
-                                        "label": "Authentication Errors"
+                                        "label": "Errores de autenticación"
                                     }
                                 ]
                             },
@@ -1037,7 +1037,7 @@
                             "version": "KqlItem/1.0",
                             "query": "let MissingTable = datatable(ResourceId: string) [];\r\nlet onboardedResources = union isfuzzy=true MissingTable, (AzureDiagnostics\r\n| extend ResourceId = tolower(column_ifexists('ResourceId', ''))\r\n| where ResourceId in~({Vaults})\r\n| summarize by ResourceId);\r\nlet data = range i from 1 to 1 step 1\r\n| project resource = todynamic(tolower(strcat('[', '{Vaults}', ']')))\r\n| mvexpand resource to typeof(string) limit 10000\r\n| join kind = fullouter (onboardedResources) on $left.resource == $right.ResourceId;\r\ndata\r\n| summarize Resources = countif(isnotempty(ResourceId))\r\n| extend Rank = 1, Title = 'Enabled'\r\n| union (data\r\n| summarize Resources = countif(isempty(ResourceId))\r\n| extend Rank = 2, Title = 'Disabled', Footer = 'Change')\r\n| order by Rank asc\r\n| extend Subtitle = '⎯⎯⎯'",
                             "size": 4,
-                            "title": "Key vaults with diagnostic logs collection",
+                            "title": "Almacenes de claves con recopilación de registros de diagnóstico",
                             "timeContext": {
                                 "durationMs": 0
                             },
@@ -1171,7 +1171,7 @@
                             "links": [
                                 {
                                     "linkTarget": "WorkbookTemplate",
-                                    "linkLabel": "Enable Logs for Monitoring",
+                                    "linkLabel": "Habilitar registros para la supervisión",
                                     "style": "primary",
                                     "workbookContext": {
                                         "componentIdSource": "workbook",
@@ -1394,7 +1394,7 @@
                             "version": "KqlItem/1.0",
                             "query": "let data = AzureDiagnostics \r\n| where TimeGenerated {TimeRange}\r\n// Ignore Authentication operations with a 401. This is normal when using Key Vault SDK, first an unauthenticated request is done then the response is used for authentication.\r\n| where Category==\"AuditEvent\" and not (OperationName == \"Authentication\" and httpStatusCode_d == 401)\r\n// Create ResultStatus with all the 'success' results bucked as 'Success'\r\n// Certain operations like StorageAccountAutoSyncKey have no ResultSignature, for now set to 'Success' as well\r\n| extend ResultStatus = case ( ResultSignature == \"\", \"Success\",\r\n                               ResultSignature == \"OK\", \"Success\",\r\n                               ResultSignature == \"Accepted\", \"Success\",\r\n                               ResultSignature)\r\n| where ResultStatus == '{ResultStatus}' or '{ResultStatus}' == 'All';\r\n// Data aggregated to the Resource\r\nlet resourceData = data\r\n| summarize OperationCount = count(), SuccessCount = countif(ResultStatus == \"Success\"), FailureCount = countif(ResultStatus != \"Success\"), PDurationMs = percentile(DurationMs, 99) by Resource, ResourceId\r\n| join kind=inner (data \r\n  | make-series Trend = count() default = 0 on TimeGenerated from {TimeRange:start} to {TimeRange:end} step {TimeRange:grain} by Resource\r\n  | project-away TimeGenerated) on Resource\r\n| order by OperationCount desc\r\n| project Name = strcat('☁️ ', Resource), Id = Resource, Type = Resource, ParentId = '', OperationCount, Trend, SuccessCount, FailureCount, PDurationMs, ResourceId;\r\ndata\r\n// Data aggregated to the Resource, OperationName\r\n| summarize OperationCount = count(), SuccessCount = countif(ResultStatus == \"Success\"), FailureCount = countif(ResultStatus != \"Success\"), PDurationMs = percentile(DurationMs, 99) by Resource, OperationName\r\n| join kind=inner (data\r\n  | make-series Trend = count() default = 0 on TimeGenerated from {TimeRange:start} to {TimeRange:end} step {TimeRange:grain} by Resource, OperationName\r\n  | project-away TimeGenerated) on Resource, OperationName\r\n| order by OperationCount desc, Resource asc\r\n| project Name = strcat('⚡ ', OperationName), Id = strcat(Resource, '/', OperationName), ParentId = Resource, OperationCount, Trend, SuccessCount, FailureCount, PDurationMs\r\n| union (resourceData)\r\n| project Name, Id, ParentId, ['Operation count'] = OperationCount, ['Operation count trend'] = Trend, ['Success count'] = SuccessCount, ['Failure count'] = FailureCount, ['p99 Duration'] = PDurationMs, ResourceId",
                             "size": 0,
-                            "title": "Operations and Status codes",
+                            "title": "Operaciones y códigos de estado",
                             "noDataMessage": "Either there are no operations selected or there is no Key Vault log data for this resource.  To begin collecting Key Vault data, select the \"Begin Enabling\" link. ",
                             "timeContext": {
                                 "durationMs": 0
@@ -1711,7 +1711,7 @@
                             "version": "KqlItem/1.0",
                             "query": "let gridRowSelected = dynamic({GridRow});\r\nlet resourceName = split(gridRowSelected.Id, \"/\")[0];\r\nlet operationName = split(gridRowSelected.Id, \"/\")[1];\r\nAzureDiagnostics \r\n| where TimeGenerated {TimeRange}\r\n// Ignore Authentication operations with a 401. This is normal when using Key Vault SDK, first an unauthenticated request is done then the response is used for authentication.\r\n| where Category==\"AuditEvent\" and not (OperationName == \"Authentication\" and httpStatusCode_d == 401)\r\n| where resourceName == \"*\" or Resource == resourceName\r\n| where operationName == \"\" or OperationName == operationName\r\n// Create ResultStatus with all the 'success' results bucked as 'Success'\r\n// Certain operations like StorageAccountAutoSyncKey have no ResultSignature, for now set to 'Success' as well\r\n| extend ResultStatus = case ( ResultSignature == \"\", \"Success\",\r\n                               ResultSignature == \"OK\", \"Success\",\r\n                               ResultSignature == \"Accepted\", \"Success\",\r\n                               ResultSignature)\r\n| where ResultStatus == '{ResultStatus}' or '{ResultStatus}' == 'All'\r\n| extend p = pack_all()\r\n| mv-apply p on \r\n( \r\n    extend key = tostring(bag_keys(p)[0])\r\n    | where isnotempty(p[key]) and isnotnull(p[key])\r\n    | where key !in (\"SourceSystem\",\"Type\")\r\n    | summarize make_bag(p)\r\n)\r\n| project Time=TimeGenerated, Vault=Resource, Operation=OperationName, Result=ResultSignature, Duration = DurationMs, [\"Details\"]=bag_p\r\n| sort by Time desc",
                             "size": 0,
-                            "title": "Logs",
+                            "title": "Registros",
                             "noDataMessage": "Either there are no operations selected or there is no Key Vault log data for this resource.  To begin collecting Key Vault data, select the \"Begin Enabling\" link. ",
                             "timeContext": {
                                 "durationMs": 0
@@ -1809,7 +1809,7 @@
                                         "formatter": 7,
                                         "formatOptions": {
                                             "linkTarget": "CellDetails",
-                                            "linkLabel": "Details",
+                                            "linkLabel": "Detalles",
                                             "linkIsContextBlade": true,
                                             "showIcon": true
                                         }

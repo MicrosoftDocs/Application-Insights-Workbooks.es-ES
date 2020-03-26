@@ -198,7 +198,7 @@
                             ],
                             "allowCustom": true
                         },
-                        "label": "Time Range"
+                        "label": "Intervalo de tiempo"
                     },
                     {
                         "id": "db9b2f1d-188a-4dda-af4a-b39deeb34da3",
@@ -257,7 +257,7 @@
                             "additionalResourceOptions": []
                         },
                         "jsonData": "[\r\n    {\r\n        \"label\": \"Only Malicious Connections\",\r\n        \"value\": \" | where MaliciousConnectionsCount >= 1\"\r\n    },\r\n    {\r\n        \"label\": \"Only Links Failed\",\r\n        \"value\": \" | where LinksFailed >= 1\"\r\n    }\r\n]",
-                        "label": "Table Filter"
+                        "label": "Filtro de tabla"
                     }
                 ],
                 "style": "above",
@@ -641,7 +641,7 @@
                             "formatter": 5,
                             "formatOptions": {
                                 "linkTarget": "CellDetails",
-                                "linkLabel": "ℹ️ Info",
+                                "linkLabel": "ℹ️ Información",
                                 "showIcon": true
                             }
                         },
@@ -687,7 +687,7 @@
                         },
                         {
                             "columnId": "RemoteIp",
-                            "label": "RemoteIp"
+                            "label": "RemoteIP"
                         },
                         {
                             "columnId": "DestinationPort",
@@ -695,11 +695,11 @@
                         },
                         {
                             "columnId": "Name",
-                            "label": "Name"
+                            "label": "Nombre"
                         },
                         {
                             "columnId": "Type",
-                            "label": "Type"
+                            "label": "Tipo"
                         },
                         {
                             "columnId": "MaliciousConnections",
@@ -707,7 +707,7 @@
                         },
                         {
                             "columnId": "Responses",
-                            "label": "Responses"
+                            "label": "Respuestas"
                         },
                         {
                             "columnId": "MaxLinksLive",
@@ -731,11 +731,11 @@
                         },
                         {
                             "columnId": "Info",
-                            "label": "Info"
+                            "label": "Información"
                         },
                         {
                             "columnId": "Key",
-                            "label": "Key"
+                            "label": "Clave"
                         },
                         {
                             "columnId": "ParentKey",

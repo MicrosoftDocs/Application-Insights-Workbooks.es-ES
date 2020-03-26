@@ -13,7 +13,7 @@
                         "id": "1f74ed9a-e3ed-498d-bd5b-f68f3836a117",
                         "version": "KqlParameterItem/1.0",
                         "name": "InputContext",
-                        "label": "Input context",
+                        "label": "Contexto de entrada",
                         "type": 5,
                         "description": "Todas las suscripciones con cuentas de almacenamiento",
                         "isRequired": true,
@@ -30,7 +30,7 @@
                         "id": "102e5ff4-5a4b-4186-87ea-e4ccb0392e2c",
                         "version": "KqlParameterItem/1.0",
                         "name": "ResourceGraphQuery",
-                        "label": "Resource graph query snippet",
+                        "label": "Fragmento de código de consulta de Resource Graph",
                         "type": 1,
                         "query": "Resources\r\n| take 1\r\n| project InputContext = tolower('{InputContext}')\r\n| extend ResourceQueryId = extract(@'(/subscriptions/.+/resourcegroups/.+/providers/microsoft.resourcegraph/queries/.+)', 1, InputContext)\r\n| project QuerySnippet = iff(ResourceQueryId == '', 'Resources | where id startswith \"{InputContext}\"', strcat('{', '{','{InputContext}', '}', '}'))",
                         "crossComponentResources": [
@@ -44,7 +44,7 @@
                         "id": "e94aafa3-c5d9-4523-89f0-4e87aa754511",
                         "version": "KqlParameterItem/1.0",
                         "name": "StorageAccounts",
-                        "label": "Storage Accounts",
+                        "label": "Cuentas de almacenamiento",
                         "type": 5,
                         "isRequired": true,
                         "multiSelect": true,
@@ -147,7 +147,7 @@
                         "value": {
                             "durationMs": 14400000
                         },
-                        "label": "Time Range"
+                        "label": "Intervalo de tiempo"
                     },
                     {
                         "id": "63640264-0edc-4e98-bba7-d8056705e70e",
@@ -191,7 +191,7 @@
                     {
                         "cellValue": "selectedTab",
                         "linkTarget": "parameter",
-                        "linkLabel": "Overview",
+                        "linkLabel": "Información general",
                         "subTarget": "Overview"
                     },
                     {
@@ -434,27 +434,27 @@
                         },
                         {
                             "columnId": "microsoft.storage/storageaccounts-Transaction-Transactions",
-                            "label": "Transactions"
+                            "label": "Transacciones"
                         },
                         {
                             "columnId": "microsoft.storage/storageaccounts-Transaction-Transactions Timeline",
-                            "label": "Transactions Timeline"
+                            "label": "Escala de tiempo de transacciones"
                         },
                         {
                             "columnId": "microsoft.storage/storageaccounts-Transaction-SuccessE2ELatency",
-                            "label": "E2E Latency"
+                            "label": "Latencia de E2E"
                         },
                         {
                             "columnId": "microsoft.storage/storageaccounts-Transaction-SuccessE2ELatency Timeline",
-                            "label": "E2E Latency Timeline"
+                            "label": "Escala de tiempo de latencia de E2E"
                         },
                         {
                             "columnId": "microsoft.storage/storageaccounts-Transaction-SuccessServerLatency",
-                            "label": "Server Latency"
+                            "label": "Latencia de servidor"
                         },
                         {
                             "columnId": "microsoft.storage/storageaccounts-Transaction-SuccessServerLatency Timeline",
-                            "label": "Server Latency Timeline"
+                            "label": "Escala de tiempo de latencia de servidor"
                         },
                         {
                             "columnId": "Success/Errors"
@@ -669,43 +669,43 @@
                         },
                         {
                             "columnId": "microsoft.storage/storageaccounts-Capacity-UsedCapacity",
-                            "label": "Account used capacity"
+                            "label": "Capacidad usada de la cuenta"
                         },
                         {
                             "columnId": "microsoft.storage/storageaccounts-Capacity-UsedCapacity Timeline",
-                            "label": "Account used capacity timeline"
+                            "label": "Escala de tiempo de la capacidad usada de la cuenta"
                         },
                         {
                             "columnId": "microsoft.storage/storageaccounts/blobservices-Capacity-BlobCapacity",
-                            "label": "Blob capacity"
+                            "label": "Capacidad de blob"
                         },
                         {
                             "columnId": "microsoft.storage/storageaccounts/blobservices-Capacity-BlobCapacity Timeline",
-                            "label": "Blob capacity Timeline"
+                            "label": "Escala de tiempo de capacidad de blob"
                         },
                         {
                             "columnId": "microsoft.storage/storageaccounts/fileservices-Capacity-FileCapacity",
-                            "label": "File capacity"
+                            "label": "Capacidad de archivo"
                         },
                         {
                             "columnId": "microsoft.storage/storageaccounts/fileservices-Capacity-FileCapacity Timeline",
-                            "label": "File capacity Timeline"
+                            "label": "Escala de tiempo de capacidad de archivo"
                         },
                         {
                             "columnId": "microsoft.storage/storageaccounts/queueservices-Capacity-QueueCapacity",
-                            "label": "Queue capacity"
+                            "label": "Capacidad de cola"
                         },
                         {
                             "columnId": "microsoft.storage/storageaccounts/queueservices-Capacity-QueueCapacity Timeline",
-                            "label": "Queue capacity Timeline"
+                            "label": "Escala de tiempo de capacidad de cola"
                         },
                         {
                             "columnId": "microsoft.storage/storageaccounts/tableservices-Capacity-TableCapacity",
-                            "label": "Table capacity"
+                            "label": "Capacidad de tabla"
                         },
                         {
                             "columnId": "microsoft.storage/storageaccounts/tableservices-Capacity-TableCapacity Timeline",
-                            "label": "Table capacity Timeline"
+                            "label": "Escala de tiempo de capacidad de tabla"
                         }
                     ]
                 },

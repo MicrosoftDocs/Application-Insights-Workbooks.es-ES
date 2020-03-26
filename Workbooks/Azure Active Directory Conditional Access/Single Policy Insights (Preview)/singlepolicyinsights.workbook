@@ -17,16 +17,16 @@
                     {
                         "cellValue": "https://portal.azure.com/?reportonlypolicies=true#blade/Microsoft_AAD_IAM/ConditionalAccessBlade/Policies",
                         "linkTarget": "Url",
-                        "linkLabel": "visit the Conditional Access blade.",
-                        "preText": "Select a conditional access policy to evaluate its impact. To modify or enforce a policy",
+                        "linkLabel": "visite la hoja Acceso condicional.",
+                        "preText": "Seleccione una directiva de acceso condicional para evaluar su impacto. Para modificar o aplicar una directiva",
                         "postText": "",
                         "style": "link"
                     },
                     {
                         "cellValue": "https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR-yNf4bujCxMnnpOaB92Gr5UN0Y2TjAxSE1CODY3QzE1OEg2Q0lEQkdPSi4u",
                         "linkTarget": "Url",
-                        "linkLabel": "here.",
-                        "preText": "Submit private preview feedback ",
+                        "linkLabel": "aquí.",
+                        "preText": "Enviar comentarios de versión preliminar privada ",
                         "postText": "",
                         "style": "link"
                     }
@@ -43,7 +43,7 @@
                         "id": "9b8cc3f0-ebab-482e-be6d-903f3e066c99",
                         "version": "KqlParameterItem/1.0",
                         "name": "Policy",
-                        "label": "Conditional Access Policy",
+                        "label": "Directiva de acceso condicional",
                         "type": 2,
                         "isRequired": true,
                         "query": "SigninLogs\r\n| project ConditionalAccessPolicies, CreatedDateTime, ClientAppUsed\r\n| where ConditionalAccessPolicies != \"[]\"\r\n| where ClientAppUsed == \"Browser\"\r\n| top 1 by CreatedDateTime\r\n| project-away CreatedDateTime\r\n| mv-expand ConditionalAccessPolicies\r\n| where ConditionalAccessPolicies[\"result\"] !contains \"reportOnly\" and ConditionalAccessPolicies[\"result\"] !contains \"notEnabled\"\r\n| project name = ConditionalAccessPolicies[\"displayName\"]\r\n| project Value = name, Label = strcat(name, ' - (Enabled)'), selected = true, displayOrder = \"1\", group = \"Enabled policies\"\r\n| union (\r\nSigninLogs\r\n| project ConditionalAccessPolicies, CreatedDateTime, ClientAppUsed\r\n| where ConditionalAccessPolicies != \"[]\"\r\n| where ClientAppUsed == \"Browser\"\r\n| top 1 by CreatedDateTime\r\n| project-away CreatedDateTime\r\n| mv-expand ConditionalAccessPolicies\r\n| where ConditionalAccessPolicies[\"result\"] contains \"reportOnly\"\r\n| project name = ConditionalAccessPolicies[\"displayName\"]\r\n| project Value = name, Label = strcat(name, ' - (Report-only)'), selected = false, displayOrder = \"2\", group = \"Report-only policies\"\r\n)\r\n| sort by displayOrder asc, Label asc\r\n\r\n",
@@ -61,7 +61,7 @@
                         "id": "17196e4b-f291-46a5-9e00-0b5e0d8943e8",
                         "version": "KqlParameterItem/1.0",
                         "name": "TimeRange",
-                        "label": "Time Range",
+                        "label": "Intervalo de tiempo",
                         "type": 4,
                         "isRequired": true,
                         "value": {
@@ -141,7 +141,7 @@
                         "id": "db042271-d62d-45ee-ab7f-56fef70dc459",
                         "version": "KqlParameterItem/1.0",
                         "name": "unit",
-                        "label": "Data view",
+                        "label": "Vista de datos",
                         "type": 2,
                         "description": "Mostrar resultados por número de usuarios o de inicios de sesión",
                         "isRequired": true,
@@ -678,7 +678,7 @@
                 "query": "SigninLogs\r\n| where CreatedDateTime {TimeRange:value}\r\n| project ConditionalAccessPolicies, UserDisplayName, AppDisplayName\r\n| where ConditionalAccessPolicies != \"[]\"\r\n| where \"{User:escape}\" == \"All users\" or UserDisplayName contains \"{User:escape}\"\r\n| where \"{App:escape}\" == \"All apps\" or AppDisplayName contains \"{App:escape}\"\r\n| project-away AppDisplayName\r\n| mv-expand ConditionalAccessPolicies\r\n| where ConditionalAccessPolicies[\"displayName\"] == \"{Policy:escape}\"\r\n| extend result = ConditionalAccessPolicies[\"result\"]\r\n| project-away ConditionalAccessPolicies\r\n| extend filterResult = case(\"{resultName}\" == \"Total\",\"successfailureinterruptreportOnlySuccessreportOnlyFailurereportOnlyInterruptedreportOnlyNotAppliednotEnabled\", \"{resultName}\" == \"Success\", \"successreportOnlySuccess\", \"{resultName}\" == \"Failure\", \"failurereportOnlyFailure\", \"{resultName}\" == \"User action required\", \"interruptreportOnlyInterrupted\",\"notAppliedreportOnlyNotAppliednotEnabled\")\r\n| where filterResult contains result\r\n| summarize Count = count() by UserDisplayName\r\n| sort by Count desc",
                 "size": 0,
                 "showAnalytics": true,
-                "title": "User sign-in count",
+                "title": "Número de inicios de sesión del usuario",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -726,7 +726,7 @@
                 "query": "SigninLogs\r\n| where CreatedDateTime {TimeRange:value}\r\n| project ConditionalAccessPolicies, CreatedDateTime, UserDisplayName, AppDisplayName, CorrelationId, Status\r\n| where ConditionalAccessPolicies != \"[]\"\r\n| where '{user:escape}' == '*' or '{user:escape}' == UserDisplayName\r\n| where \"{User:escape}\" == \"All users\" or UserDisplayName contains \"{User:escape}\"\r\n| where \"{App:escape}\" == \"All apps\" or AppDisplayName contains \"{App:escape}\"\r\n| mv-expand ConditionalAccessPolicies\r\n| where ConditionalAccessPolicies[\"displayName\"] == \"{Policy:escape}\"\r\n| extend result = ConditionalAccessPolicies[\"result\"], failureReason = tostring(Status[\"failureReason\"])\r\n| project-away ConditionalAccessPolicies\r\n| extend filterResult = case(\"{resultName}\" == \"Total\",\"successfailureinterruptreportOnlySuccessreportOnlyFailurereportOnlyInterruptedreportOnlyNotAppliednotEnabled\", \"{resultName}\" == \"Success\", \"successreportOnlySuccess\", \"{resultName}\" == \"Failure\", \"failurereportOnlyFailure\", \"{resultName}\" == \"User action required\", \"interruptreportOnlyInterrupted\",\"notAppliedreportOnlyNotAppliednotEnabled\")\r\n| where filterResult contains result\r\n| project CreatedDateTime, UserDisplayName, AppDisplayName, result, CorrelationId",
                 "size": 0,
                 "showAnalytics": true,
-                "title": "Sign-in events",
+                "title": "Eventos de inicio de sesión",
                 "timeContext": {
                     "durationMs": 0
                 },

@@ -54,7 +54,7 @@
                         "id": "2241c21b-5a59-4a42-b3a9-b503de023938",
                         "version": "KqlParameterItem/1.0",
                         "name": "TimeRange",
-                        "label": "Time Range",
+                        "label": "Intervalo de tiempo",
                         "type": 4,
                         "isRequired": true,
                         "value": {
@@ -105,7 +105,7 @@
                         "id": "1b3b41aa-801b-45bb-b608-bf0668ddcbc3",
                         "version": "KqlParameterItem/1.0",
                         "name": "CpuThreshold",
-                        "label": "Cpu Threshold",
+                        "label": "Umbral de CPU",
                         "type": 1,
                         "value": "70"
                     }
@@ -286,7 +286,7 @@
                 "size": 2,
                 "exportFieldName": "Name",
                 "exportParameterName": "SelectedVM",
-                "title": "Percentage CPU heatmap",
+                "title": "Mapa térmico de porcentaje de la CPU",
                 "timeContext": {
                     "durationMs": 0
                 },

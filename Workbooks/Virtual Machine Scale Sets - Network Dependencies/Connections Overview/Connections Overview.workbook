@@ -675,7 +675,7 @@
                             "formatter": 5,
                             "formatOptions": {
                                 "linkTarget": "CellDetails",
-                                "linkLabel": "ℹ️ Info"
+                                "linkLabel": "ℹ️ Información"
                             }
                         },
                         {

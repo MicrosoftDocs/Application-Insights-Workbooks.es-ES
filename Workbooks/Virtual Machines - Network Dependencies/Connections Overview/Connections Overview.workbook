@@ -138,7 +138,7 @@
                         "queryType": 0,
                         "resourceType": "microsoft.operationalinsights/workspaces",
                         "value": null,
-                        "label": "Not Onboarded"
+                        "label": "No incorporado"
                     }
                 ],
                 "style": "above",
@@ -279,7 +279,7 @@
                             ],
                             "allowCustom": true
                         },
-                        "label": "Time Range"
+                        "label": "Intervalo de tiempo"
                     },
                     {
                         "id": "db9b2f1d-188a-4dda-af4a-b39deeb34da3",
@@ -299,7 +299,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "ComputerNameContains",
                         "type": 1,
-                        "label": "Computer Name Contains"
+                        "label": "El nombre de equipo contiene"
                     },
                     {
                         "id": "b141bd6c-cd8d-488e-a5f6-83ab00d31161",
@@ -371,7 +371,7 @@
                             "additionalResourceOptions": []
                         },
                         "jsonData": "[\r\n    {\r\n        \"label\": \"Only Malicious Connections\",\r\n        \"value\": \" | where MaliciousConnectionsCount >= 1\"\r\n    },\r\n    {\r\n        \"label\": \"Only Links Failed\",\r\n        \"value\": \" | where LinksFailed >= 1\"\r\n    }\r\n]",
-                        "label": "Table Filter"
+                        "label": "Filtro de tabla"
                     }
                 ],
                 "style": "above",
@@ -781,7 +781,7 @@
                             "formatter": 5,
                             "formatOptions": {
                                 "linkTarget": "CellDetails",
-                                "linkLabel": "ℹ️ Info"
+                                "linkLabel": "ℹ️ Información"
                             }
                         },
                         {

@@ -20,7 +20,7 @@
                         "id": "f4d0d58a-e35f-4659-a490-5da142c9a6d2",
                         "version": "KqlParameterItem/1.0",
                         "name": "TimeRange",
-                        "label": "Time Range",
+                        "label": "Intervalo de tiempo",
                         "type": 4,
                         "value": {
                             "durationMs": 2592000000
@@ -71,7 +71,7 @@
                         "id": "6b6b0bb3-667f-4fb8-9911-3b7f115c89ff",
                         "version": "KqlParameterItem/1.0",
                         "name": "UserName",
-                        "label": "User Name",
+                        "label": "Nombre de usuario",
                         "type": 2,
                         "isRequired": true,
                         "multiSelect": true,
@@ -99,7 +99,7 @@
                         "id": "c5bb7341-72dd-479b-b001-c58652ac709b",
                         "version": "KqlParameterItem/1.0",
                         "name": "AppName1",
-                        "label": "App Name",
+                        "label": "Nombre de la aplicación",
                         "type": 2,
                         "isRequired": true,
                         "multiSelect": true,
@@ -127,7 +127,7 @@
                         "id": "56de0861-b28c-4408-9c22-6612b1bad38e",
                         "version": "KqlParameterItem/1.0",
                         "name": "ScopeName1",
-                        "label": "Scope Name",
+                        "label": "Nombre de ámbito",
                         "type": 2,
                         "isRequired": true,
                         "multiSelect": true,
@@ -155,7 +155,7 @@
                         "id": "c1dfae76-fa0a-48c4-aa22-2006c098d8a5",
                         "version": "KqlParameterItem/1.0",
                         "name": "API_Name1",
-                        "label": "API Name",
+                        "label": "Nombre de la API",
                         "type": 2,
                         "isRequired": true,
                         "multiSelect": true,
@@ -183,7 +183,7 @@
                         "id": "07ba0b97-f870-4238-a950-e3bf31fe8a6b",
                         "version": "KqlParameterItem/1.0",
                         "name": "Consent_Type1",
-                        "label": "Consent Type",
+                        "label": "Tipo de consentimiento",
                         "type": 2,
                         "isRequired": true,
                         "multiSelect": true,
@@ -225,7 +225,7 @@
                 "query": "AuditLogs\r\n| where OperationName contains \"Consent\"\r\n// user name \r\n| extend initby = parse_json(InitiatedBy) | extend userinfo1 = initby.user | extend userinfo2 = parse_json(userinfo1) \r\n| extend username = userinfo2.userPrincipalName\r\n// app name \r\n| extend tr = parse_json(TargetResources) | mvexpand tr | extend appname = tostring(tr.displayName)\r\n| extend mp = tr.modifiedProperties | mvexpand mp\r\n| extend actinfo = mp.displayName\r\n// consent and scope information \r\n| extend value1 = parse_json(mp) | extend val1 = value1.newValue\r\n| where actinfo == \"ConsentAction.Permissions\"\r\n| parse val1 with * \"ResourceId:\" Resourceid1 \", ConsentType: \" ConsentType \", Scope:\" Scope \"]\" * \r\n| extend Scope1 = split(Scope, \" \")\r\n| mvexpand Scope1 \r\n| where Scope1 != \"\"\r\n| project OperationName , username, appname, actinfo, Resourceid1, ConsentType, Scope1, CorrelationId\r\n| where username in ({UserName}) or '*' in  ({UserName})\r\n| where ConsentType in ({Consent_Type1}) or '*' in ({Consent_Type1})\r\n| where appname in ({AppName1}) or '*' in ({AppName1})\r\n| where Scope1 in ({ScopeName1}) or '*' in ({ScopeName1})\r\n| join kind = leftouter \r\n(\r\nAuditLogs\r\n| where OperationName contains \"oAuth2\"\r\n| extend tr = parse_json(TargetResources) | mvexpand tr | extend apiname = tostring(tr.displayName)\r\n| where apiname != \"\"\r\n| project OperationName , apiname , CorrelationId\r\n| where apiname in ({API_Name1}) or '*' in ({API_Name1})\r\n)\r\non $left.CorrelationId == $right.CorrelationId\r\n| join kind = leftouter\r\n(\r\nSigninLogs\r\n| summarize distinctUserSignInCount=dcount(UserId), signInCount=count() by AppDisplayName \r\n) \r\non $left.appname == $right.AppDisplayName\r\n//| extend api_scope = strcat(apiname, \" - \", Scope1) \r\n| extend Scope = tostring(Scope1)\r\n//| distinct Scope, appname, distinctUserSignInCount, signInCount, ConsentType \r\n| summarize Appcount=dcount(appname) by Scope\r\n| sort by Appcount desc\r\n",
                 "size": 1,
                 "showAnalytics": true,
-                "title": "Scope by Unique App Consent Requests",
+                "title": "Ámbito por solicitudes de consentimiento de aplicación únicas",
                 "timeContext": {
                     "durationMs": 2592000000
                 },
@@ -260,7 +260,7 @@
                     "labelSettings": [
                         {
                             "columnId": "Scope",
-                            "label": "Scope"
+                            "label": "Ámbito"
                         },
                         {
                             "columnId": "Appcount",
@@ -279,7 +279,7 @@
                 "query": "AuditLogs\r\n| where OperationName contains \"Consent\"\r\n// user name \r\n| extend initby = parse_json(InitiatedBy) | extend userinfo1 = initby.user | extend userinfo2 = parse_json(userinfo1) \r\n| extend username = userinfo2.userPrincipalName\r\n// app name \r\n| extend tr = parse_json(TargetResources) | mvexpand tr | extend appname = tostring(tr.displayName)\r\n| extend mp = tr.modifiedProperties | mvexpand mp\r\n| extend actinfo = mp.displayName\r\n// consent and scope information \r\n| extend value1 = parse_json(mp) | extend val1 = value1.newValue\r\n| where actinfo == \"ConsentAction.Permissions\"\r\n| parse val1 with * \"ResourceId:\" Resourceid1 \", ConsentType: \" ConsentType \", Scope:\" Scope \"]\" * \r\n| extend Scope1 = split(Scope, \" \")\r\n| mvexpand Scope1 \r\n| where Scope1 != \"\"\r\n| project OperationName , username, appname, actinfo, Resourceid1, ConsentType, Scope1, CorrelationId \r\n| where username in ({UserName}) or '*' in  ({UserName})\r\n| where ConsentType in ({Consent_Type1}) or '*' in ({Consent_Type1})\r\n| where appname in ({AppName1}) or '*' in ({AppName1})\r\n| where Scope1 in ({ScopeName1}) or '*' in ({ScopeName1})\r\n| join kind = leftouter \r\n(\r\nAuditLogs\r\n| where OperationName contains \"oAuth2\"\r\n| extend tr = parse_json(TargetResources) | mvexpand tr | extend apiname = tostring(tr.displayName)\r\n| where apiname != \"\"\r\n| project OperationName , apiname , CorrelationId\r\n| where apiname in ({API_Name1}) or '*' in ({API_Name1})\r\n)\r\non $left.CorrelationId == $right.CorrelationId\r\n| join kind = leftouter\r\n(\r\nSigninLogs\r\n| summarize distinctUserSignInCount=dcount(UserId), signInCount=count() by AppDisplayName \r\n) \r\non $left.appname == $right.AppDisplayName\r\n| extend api_scope = tostring(Scope1), API = tostring(apiname) \r\n| distinct  appname, distinctUserSignInCount\r\n",
                 "size": 1,
                 "showAnalytics": true,
-                "title": "Applications by Unique User Sign Ins",
+                "title": "Aplicaciones por inicios de sesión de usuario únicos",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -355,7 +355,7 @@
                 "query": "AuditLogs\r\n| where OperationName contains \"Consent\"\r\n// user name \r\n| extend initby = parse_json(InitiatedBy) | extend userinfo1 = initby.user | extend userinfo2 = parse_json(userinfo1) \r\n| extend username = userinfo2.userPrincipalName\r\n// app name \r\n| extend tr = parse_json(TargetResources) | mvexpand tr | extend appname = tostring(tr.displayName)\r\n| extend mp = tr.modifiedProperties | mvexpand mp\r\n| extend actinfo = mp.displayName\r\n// consent and scope information \r\n| extend value1 = parse_json(mp) | extend val1 = value1.newValue\r\n| where actinfo == \"ConsentAction.Permissions\"\r\n| parse val1 with * \"ResourceId:\" Resourceid1 \", ConsentType: \" ConsentType \", Scope:\" Scope \"]\" * \r\n| extend Scope1 = split(Scope, \" \")\r\n| mvexpand Scope1 \r\n| where Scope1 != \"\"\r\n| project OperationName , username, appname, actinfo, Resourceid1, ConsentType, Scope1, CorrelationId \r\n| where username in ({UserName}) or '*' in  ({UserName})\r\n| where ConsentType in ({Consent_Type1}) or '*' in ({Consent_Type1})\r\n| where appname in ({AppName1}) or '*' in ({AppName1})\r\n| where Scope1 in ({ScopeName1}) or '*' in ({ScopeName1})\r\n| join kind = leftouter \r\n(\r\nAuditLogs\r\n| where OperationName contains \"oAuth2\"\r\n| extend tr = parse_json(TargetResources) | mvexpand tr | extend apiname = tostring(tr.displayName)\r\n| where apiname != \"\"\r\n| project OperationName , apiname , CorrelationId\r\n| where apiname in ({API_Name1}) or '*' in ({API_Name1})\r\n)\r\non $left.CorrelationId == $right.CorrelationId\r\n|project UserName = tostring(username),  AppName = appname, ConsentType,  Scope = tostring(Scope1), API = apiname\r\n|distinct UserName, AppName, ConsentType, Scope, API",
                 "size": 1,
                 "showAnalytics": true,
-                "title": "Users by Application, API, Scope, Sign In Counts",
+                "title": "Usuarios por recuentos de aplicaciones, API, ámbitos, inicios de sesión",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -381,7 +381,7 @@
                         },
                         {
                             "columnId": "Scope",
-                            "label": "Scope"
+                            "label": "Ámbito"
                         },
                         {
                             "columnId": "API",
@@ -401,7 +401,7 @@
                         "id": "2ecf7153-2928-43d0-8159-ae085e546259",
                         "version": "KqlParameterItem/1.0",
                         "name": "UserDisplayName",
-                        "label": "User Display Name",
+                        "label": "Nombre para mostrar del usuario",
                         "type": 2,
                         "multiSelect": true,
                         "quote": "'",
@@ -438,7 +438,7 @@
                 "query": "let SinginConsentTimes = SigninLogs\r\n| join kind = inner\r\n(\r\nSigninLogs\r\n|extend errorCode = Status.errorCode\r\n|where errorCode == 90094 \r\n|distinct CorrelationId \r\n)\r\non $left.CorrelationId == $right.CorrelationId\r\n| summarize maxTime = max(TimeGenerated) by CorrelationId, UserId\r\n| extend corrIDMaxTime = strcat(CorrelationId, maxTime)\r\n| project corrIDMaxTime;\r\nSigninLogs\r\n| extend corrIDTime = strcat(CorrelationId, TimeGenerated)\r\n| where corrIDTime in (SinginConsentTimes)\r\n| project AppDisplayName, UserId, CorrelationId, ResultType, UserDisplayName\r\n| where AppDisplayName in ({AppName1}) or '*' in ({AppName1})\r\n| where UserDisplayName in ({UserDisplayName}) or '*' in ({UserDisplayName})\r\n//| summarize cnt = count() by ResultType\r\n//| extend SigninStatus = case(ResultType == 0, \"Success\", \"Failure\")\r\n//| summarize cnt = count() by AppDisplayName, SigninStatus\r\n| summarize TotalFlows = count(), TotalUsers = dcount(UserId) by AppDisplayName\r\n",
                 "size": 0,
                 "showAnalytics": true,
-                "title": "Count of access attempts where user needs admin consent for access",
+                "title": "Recuento de los intentos de acceso en los que el usuario necesita el consentimiento del administrador para acceder",
                 "noDataMessage": "There were no access attempts in the time range",
                 "timeContext": {
                     "durationMs": 0

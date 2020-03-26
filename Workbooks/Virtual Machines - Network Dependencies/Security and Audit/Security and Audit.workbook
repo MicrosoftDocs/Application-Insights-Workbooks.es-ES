@@ -251,7 +251,7 @@
                         "isHiddenWhenLocked": true,
                         "queryType": 0,
                         "resourceType": "microsoft.operationalinsights/workspaces",
-                        "label": "Not Onboarded"
+                        "label": "No incorporado"
                     }
                 ],
                 "style": "above",

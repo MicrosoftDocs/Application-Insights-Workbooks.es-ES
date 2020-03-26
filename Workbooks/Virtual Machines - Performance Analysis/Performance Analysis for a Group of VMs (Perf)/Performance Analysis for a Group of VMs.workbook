@@ -335,7 +335,7 @@
                         "id": "41bb3710-5e9e-4b66-91fd-e11435899880",
                         "version": "KqlParameterItem/1.0",
                         "name": "ComputerNameContains",
-                        "label": "Computer Name Contains",
+                        "label": "El nombre de equipo contiene",
                         "type": 1,
                         "description": "Se filtrarán los equipos cuyo nombre contengan la palabra clave. Se volverán a consultar todas las máquinas en el área de trabajo.",
                         "value": ""
@@ -608,7 +608,7 @@
                             "formatter": 7,
                             "formatOptions": {
                                 "linkTarget": "CellDetails",
-                                "linkLabel": "ℹ️ Info"
+                                "linkLabel": "ℹ️ Información"
                             }
                         },
                         {
@@ -748,11 +748,11 @@
                     "labelSettings": [
                         {
                             "columnId": "ResourceName",
-                            "label": "ResourceName"
+                            "label": "nombreDelRecurso"
                         },
                         {
                             "columnId": "Type",
-                            "label": "Type"
+                            "label": "Tipo"
                         },
                         {
                             "columnId": "Average",
@@ -768,11 +768,11 @@
                         },
                         {
                             "columnId": "Trend (Average)",
-                            "label": "Trend (Average)"
+                            "label": "Tendencia (promedio)"
                         },
                         {
                             "columnId": "Properties",
-                            "label": "Properties"
+                            "label": "Propiedades"
                         }
                     ]
                 }
@@ -880,7 +880,7 @@
                             "formatter": 7,
                             "formatOptions": {
                                 "linkTarget": "CellDetails",
-                                "linkLabel": "️️️ℹ Info",
+                                "linkLabel": "️️️ℹ Información",
                                 "showIcon": true
                             }
                         },

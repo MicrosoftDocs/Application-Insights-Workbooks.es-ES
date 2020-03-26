@@ -245,7 +245,7 @@
                 "exportParameterName": "ErrorCode",
                 "exportDefaultValue": "*",
                 "showAnalytics": true,
-                "title": "Summary of top errors",
+                "title": "Resumen de los errores principales",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -280,7 +280,7 @@
                 "query": "SigninLogs \r\n|where AppDisplayName in ({Apps}) or '*' in ({Apps})\r\n|where UserDisplayName in ({Users}) or '*' in ({Users})\r\n| extend ErrorCode = tostring(Status.errorCode) \r\n| extend FailureReason = tostring(Status.failureReason) \r\n| where ErrorCode !in (\"0\",\"50058\",\"50148\",\"50140\", \"51006\", \"50059\", \"65001\", \"52004\", \"50055\", \"50144\",\"50072\", \"50074\", \"16000\",\"16001\", \"16003\", \"50127\", \"50125\", \"50129\",\"50143\", \"81010\", \"81014\", \"81012\") \r\n| where '{ErrorCode}' == '*' or '{ErrorCode}' == ErrorCode\r\n| top 200 by TimeGenerated desc\r\n| extend TimeFromNow = now() - TimeGenerated\r\n| extend TimeAgo = strcat(case(TimeFromNow < 2m, strcat(toint(TimeFromNow / 1m), ' seconds'), TimeFromNow < 2h, strcat(toint(TimeFromNow / 1m), ' minutes'), TimeFromNow < 2d, strcat(toint(TimeFromNow / 1h), ' hours'), strcat(toint(TimeFromNow / 1d), ' days')), ' ago')\r\n| project User = UserDisplayName, ['❌ Error Code'] = ErrorCode, ['Sign-in Time'] = TimeAgo, App = AppDisplayName, ['Error code'] = ErrorCode, ['Result type'] = ResultType, ['Result signature'] = ResultSignature, ['Result description'] = ResultDescription, ['Conditional access policies'] = ConditionalAccessPolicies, ['Conditional access status'] = ConditionalAccessStatus, ['Operating system'] = DeviceDetail.operatingSystem, Browser = DeviceDetail.browser, ['Country or region'] = LocationDetails.countryOrRegion, ['State'] = LocationDetails.state, ['City'] = LocationDetails.city, ['Time generated'] = TimeGenerated, Status, ['User principal name'] = UserPrincipalName\r\n\r\n\r\n",
                 "size": 1,
                 "showAnalytics": true,
-                "title": "Sign-ins with errors",
+                "title": "Inicios de sesión con errores",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -421,7 +421,7 @@
                 "exportParameterName": "InterruptErrorCode",
                 "exportDefaultValue": "*",
                 "showAnalytics": true,
-                "title": "Summary of sign-ins waiting on user action",
+                "title": "Resumen de los inicios de sesión a la espera de una acción del usuario",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -454,7 +454,7 @@
                 "query": "SigninLogs \r\n|where AppDisplayName in ({Apps}) or '*' in ({Apps})\r\n|where UserDisplayName in ({Users}) or '*' in ({Users})\r\n| extend ErrorCode = tostring(Status.errorCode) \r\n| extend FailureReason = Status.failureReason \r\n| where ErrorCode in (\"50058\",\"50140\", \"51006\", \"50059\", \"65001\", \"52004\", \"50055\", \"50144\",\"50072\", \"50074\", \"16000\",\"16001\", \"16003\", \"50127\", \"50125\", \"50129\",\"50143\", \"81010\", \"81014\", \"81012\") \r\n| where '{InterruptErrorCode}' == '*' or '{InterruptErrorCode}' == ErrorCode\r\n| top 200 by TimeGenerated desc\r\n| extend TimeFromNow = now() - TimeGenerated\r\n| extend TimeAgo = strcat(case(TimeFromNow < 2m, strcat(toint(TimeFromNow / 1m), ' seconds'), TimeFromNow < 2h, strcat(toint(TimeFromNow / 1m), ' minutes'), TimeFromNow < 2d, strcat(toint(TimeFromNow / 1h), ' hours'), strcat(toint(TimeFromNow / 1d), ' days')), ' ago')\r\n| project User = UserDisplayName, ['❌ Error Code'] = ErrorCode, ['Sign-in Time'] = TimeAgo, App = AppDisplayName, ['Error code'] = ErrorCode, ['Result type'] = ResultType, ['Result signature'] = ResultSignature, ['Result description'] = ResultDescription, ['Conditional access policies'] = ConditionalAccessPolicies, ['Conditional access status'] = ConditionalAccessStatus, ['Operating system'] = DeviceDetail.operatingSystem, Browser = DeviceDetail.browser, ['Country or region'] = LocationDetails.countryOrRegion, ['State'] = LocationDetails.state, ['City'] = LocationDetails.city, ['Time generated'] = TimeGenerated, Status, ['User principal name'] = UserPrincipalName\r\n\r\n",
                 "size": 1,
                 "showAnalytics": true,
-                "title": "Sign-ins waiting on user action",
+                "title": "Inicios de sesión a la espera de una acción del usuario",
                 "timeContext": {
                     "durationMs": 0
                 },

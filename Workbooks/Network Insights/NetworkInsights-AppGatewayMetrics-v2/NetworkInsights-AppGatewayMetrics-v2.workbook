@@ -12,7 +12,7 @@
                         "id": "e4451e8e-9f93-40c2-a17f-1233c5f17c83",
                         "version": "KqlParameterItem/1.0",
                         "name": "HideVMSS",
-                        "label": "Hide VMSS",
+                        "label": "Ocultar VMSS",
                         "type": 1,
                         "value": "false",
                         "isHiddenWhenLocked": true,
@@ -25,7 +25,7 @@
                         "id": "b3055533-5851-4f02-99ce-37feda2db2a3",
                         "version": "KqlParameterItem/1.0",
                         "name": "HideVMs",
-                        "label": "Hide VMs",
+                        "label": "Ocultar máquinas virtuales",
                         "type": 1,
                         "value": "false",
                         "isHiddenWhenLocked": true,
@@ -38,7 +38,7 @@
                         "id": "96e858f6-378f-4b1d-8c2a-e625929ce826",
                         "version": "KqlParameterItem/1.0",
                         "name": "HidePublicIPs",
-                        "label": "Hide PublicIPs",
+                        "label": "Ocultar IP públicas",
                         "type": 1,
                         "value": "true",
                         "isHiddenWhenLocked": true,
@@ -65,7 +65,7 @@
                         "id": "51f9f779-6b41-40ef-a8f0-aac280110a08",
                         "version": "KqlParameterItem/1.0",
                         "name": "ApplicationGateway",
-                        "label": "Application gateway",
+                        "label": "puerta de enlace de aplicaciones",
                         "type": 5,
                         "isRequired": true,
                         "multiSelect": true,
@@ -135,7 +135,7 @@
                             ],
                             "allowCustom": true
                         },
-                        "label": "Time range",
+                        "label": "Intervalo de horas",
                         "value": {
                             "durationMs": 86400000
                         }
@@ -1266,15 +1266,15 @@
                         },
                         {
                             "columnId": "Name",
-                            "label": "Name"
+                            "label": "Nombre"
                         },
                         {
                             "columnId": "microsoft.network/applicationgateways--BackendResponseStatus",
-                            "label": "Backend Response Status (Sum)"
+                            "label": "Estado de respuesta de back-end (Sum)"
                         },
                         {
                             "columnId": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
-                            "label": "Backend Response Status Timeline"
+                            "label": "Escala de tiempo de estado de respuesta de back-end"
                         }
                     ]
                 }
@@ -1350,15 +1350,15 @@
                         },
                         {
                             "columnId": "Name",
-                            "label": "Name"
+                            "label": "Nombre"
                         },
                         {
                             "columnId": "microsoft.network/applicationgateways--BackendResponseStatus",
-                            "label": "Backend Response Status (Sum)"
+                            "label": "Estado de respuesta de back-end (Sum)"
                         },
                         {
                             "columnId": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
-                            "label": "Backend Response Status Timeline"
+                            "label": "Escala de tiempo de estado de respuesta de back-end"
                         }
                     ]
                 }
@@ -1434,15 +1434,15 @@
                         },
                         {
                             "columnId": "Name",
-                            "label": "Name"
+                            "label": "Nombre"
                         },
                         {
                             "columnId": "microsoft.network/applicationgateways--BackendResponseStatus",
-                            "label": "Backend Response Status (Sum)"
+                            "label": "Estado de respuesta de back-end (Sum)"
                         },
                         {
                             "columnId": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
-                            "label": "Backend Response Status Timeline"
+                            "label": "Escala de tiempo de estado de respuesta de back-end"
                         }
                     ]
                 }
@@ -1518,15 +1518,15 @@
                         },
                         {
                             "columnId": "Name",
-                            "label": "Name"
+                            "label": "Nombre"
                         },
                         {
                             "columnId": "microsoft.network/applicationgateways--BackendResponseStatus",
-                            "label": "Backend Response Status (Sum)"
+                            "label": "Estado de respuesta de back-end (Sum)"
                         },
                         {
                             "columnId": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
-                            "label": "Backend Response Status Timeline"
+                            "label": "Escala de tiempo de estado de respuesta de back-end"
                         }
                     ]
                 }
@@ -1550,7 +1550,7 @@
                         "id": "2e739e26-0168-4a42-a226-f400147bebbb",
                         "version": "KqlParameterItem/1.0",
                         "name": "BackendVMSS",
-                        "label": "Backend VMSS",
+                        "label": "Virtual Machine Scale Sets de back-end",
                         "type": 5,
                         "multiSelect": true,
                         "quote": "'",
@@ -1623,7 +1623,7 @@
                         "splitBy": null
                     }
                 ],
-                "title": "VMSS metrics",
+                "title": "Métricas de VMSS",
                 "resourceLimit": 10000,
                 "gridSettings": {
                     "formatters": [
@@ -1750,39 +1750,39 @@
                         },
                         {
                             "columnId": "Name",
-                            "label": "Name"
+                            "label": "Nombre"
                         },
                         {
                             "columnId": "microsoft.compute/virtualmachinescalesets--Percentage CPU",
-                            "label": "Percentage CPU (Average)"
+                            "label": "Porcentaje de CPU (promedio)"
                         },
                         {
                             "columnId": "microsoft.compute/virtualmachinescalesets--Percentage CPU Timeline",
-                            "label": "Percentage CPU Timeline"
+                            "label": "Escala de tiempo de porcentaje de CPU"
                         },
                         {
                             "columnId": "microsoft.compute/virtualmachinescalesets--Network In Total",
-                            "label": "Network In Total (Sum)"
+                            "label": "Entrada de red total (Sum)"
                         },
                         {
                             "columnId": "microsoft.compute/virtualmachinescalesets--Network In Total Timeline",
-                            "label": "Network In Total Timeline"
+                            "label": "Escala de tiempo de entrada de red total"
                         },
                         {
                             "columnId": "microsoft.compute/virtualmachinescalesets--Network Out Total",
-                            "label": "Network Out Total (Sum)"
+                            "label": "Salida de red total (Sum)"
                         },
                         {
                             "columnId": "microsoft.compute/virtualmachinescalesets--Network Out Total Timeline",
-                            "label": "Network Out Total Timeline"
+                            "label": "Escala de tiempo de salida de red total"
                         },
                         {
                             "columnId": "microsoft.compute/virtualmachinescalesets--Disk Read Bytes",
-                            "label": "Disk Read Bytes (Sum)"
+                            "label": "Bytes de lectura de disco (Sum)"
                         },
                         {
                             "columnId": "microsoft.compute/virtualmachinescalesets--Disk Read Bytes Timeline",
-                            "label": "Disk Read Bytes Timeline"
+                            "label": "Escala de tiempo de bytes de lectura de disco"
                         }
                     ]
                 },
@@ -1805,7 +1805,7 @@
                         "id": "3230e948-6be0-4be7-b468-7aaccb128d88",
                         "version": "KqlParameterItem/1.0",
                         "name": "BackendVMs",
-                        "label": "Backend VMs",
+                        "label": "Máquinas virtuales de back-end",
                         "type": 5,
                         "multiSelect": true,
                         "quote": "'",
@@ -1878,7 +1878,7 @@
                         "splitBy": null
                     }
                 ],
-                "title": "VM Metrics",
+                "title": "Métricas de máquina virtual",
                 "resourceLimit": 10000,
                 "gridSettings": {
                     "formatters": [
@@ -2011,39 +2011,39 @@
                         },
                         {
                             "columnId": "Name",
-                            "label": "Name"
+                            "label": "Nombre"
                         },
                         {
                             "columnId": "microsoft.compute/virtualmachines--Percentage CPU",
-                            "label": "Percentage CPU (Average)"
+                            "label": "Porcentaje de CPU (promedio)"
                         },
                         {
                             "columnId": "microsoft.compute/virtualmachines--Percentage CPU Timeline",
-                            "label": "Percentage CPU Timeline"
+                            "label": "Escala de tiempo de porcentaje de CPU"
                         },
                         {
                             "columnId": "microsoft.compute/virtualmachines--Network In Total",
-                            "label": "Network In Total (Sum)"
+                            "label": "Entrada de red total (Sum)"
                         },
                         {
                             "columnId": "microsoft.compute/virtualmachines--Network In Total Timeline",
-                            "label": "Network In Total Timeline"
+                            "label": "Escala de tiempo de entrada de red total"
                         },
                         {
                             "columnId": "microsoft.compute/virtualmachines--Network Out Total",
-                            "label": "Network Out Total (Sum)"
+                            "label": "Salida de red total (Sum)"
                         },
                         {
                             "columnId": "microsoft.compute/virtualmachines--Network Out Total Timeline",
-                            "label": "Network Out Total Timeline"
+                            "label": "Escala de tiempo de salida de red total"
                         },
                         {
                             "columnId": "microsoft.compute/virtualmachines--Disk Read Bytes",
-                            "label": "Disk Read Bytes (Sum)"
+                            "label": "Bytes de lectura de disco (Sum)"
                         },
                         {
                             "columnId": "microsoft.compute/virtualmachines--Disk Read Bytes Timeline",
-                            "label": "Disk Read Bytes Timeline"
+                            "label": "Escala de tiempo de bytes de lectura de disco"
                         }
                     ]
                 },
@@ -2072,7 +2072,7 @@
                         "id": "0acb058c-1c01-4235-8379-71a9cef263ea",
                         "version": "KqlParameterItem/1.0",
                         "name": "BackendPublicIPs",
-                        "label": "Backend Public IPs",
+                        "label": "Direcciones IP públicas de back-end",
                         "type": 5,
                         "multiSelect": true,
                         "quote": "'",
@@ -2146,7 +2146,7 @@
                         "splitBy": null
                     }
                 ],
-                "title": "Public IP Metrics",
+                "title": "Métricas de direcciones IP públicas",
                 "resourceLimit": 10000,
                 "gridSettings": {
                     "formatters": [

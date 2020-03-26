@@ -86,7 +86,7 @@
                 "query": "search * | summarize AggregatedValue = count() by Type | order by AggregatedValue desc",
                 "size": 1,
                 "showAnalytics": true,
-                "title": "Data Type Distribution",
+                "title": "Distribución de tipo de datos",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -164,7 +164,7 @@
                 "query": "search *\r\n| summarize AggregatedValue = count() by Type, bin(TimeGenerated, 1h)\r\n| sort by TimeGenerated desc",
                 "size": 1,
                 "showAnalytics": true,
-                "title": "Data Types Over Time",
+                "title": "Tipos de datos con el tiempo",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -241,7 +241,7 @@
                 "query": "search * | summarize Count = count() by Computer, bin(TimeGenerated,{TimeRange:grain})",
                 "size": 1,
                 "showAnalytics": true,
-                "title": "Data Type Distribution",
+                "title": "Distribución de tipos de datos",
                 "timeContext": {
                     "durationMs": 0
                 },
@@ -315,7 +315,7 @@
                 "query": "search * \r\n| summarize AggregatedValue = count() by Computer \r\n| summarize Count = count() ",
                 "size": 0,
                 "showAnalytics": true,
-                "title": "Computers sending data",
+                "title": "Computers sending data (Equipos que envían datos)",
                 "timeContext": {
                     "durationMs": 0
                 },

@@ -86,7 +86,7 @@
                 "version": "KqlItem/1.0",
                 "query": "search * \r\n| summarize AggregatedValue = count() by Computer \r\n| summarize Count = count() ",
                 "size": 1,
-                "title": "Average per hour",
+                "title": "Promedio por hora",
                 "timeContext": {
                     "durationMs": 0
                 },
