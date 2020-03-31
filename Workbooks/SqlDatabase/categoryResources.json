@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Investigación",
+        "description": "Busque problemas comunes en sus bases de datos.",
+        "order": 200
+    }
+}

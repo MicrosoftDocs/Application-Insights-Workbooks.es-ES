@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Uso",
+        "description": "Proporciona información detallada sobre el uso de su directorio.",
+        "order": 100
+    }
+}
