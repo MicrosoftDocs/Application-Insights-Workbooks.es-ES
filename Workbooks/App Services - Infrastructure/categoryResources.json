@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Infraestructura",
+        "description": "Investigue los problemas de la infraestructura en la que se ejecuta su aplicación.",
+        "order": 200
+    }
+}

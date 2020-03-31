@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Informes de Intune",
+        "description": "Proporciona información detallada sobre distintas métricas de Intune.",
+        "order": 100
+    }
+}

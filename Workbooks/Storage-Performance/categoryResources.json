@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Consulte las métricas de rendimiento del almacenamiento de claves.",
+        "description": "",
+        "order": 100
+    }
+}

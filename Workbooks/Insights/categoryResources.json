@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Información detallada",
+        "description": "Proporciona información detallada sobre los recursos de Azure.",
+        "order": 2000
+    }
+}

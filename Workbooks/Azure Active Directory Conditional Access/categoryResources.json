@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Acceso condicional",
+        "description": "Proporciona información detallada sobre los inicios de sesión de acceso condicional.",
+        "order": 150
+    }
+}

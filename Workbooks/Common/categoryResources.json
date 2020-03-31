@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Comunes",
+        "description": "Todas las plantillas de libro comunes que se pueden cargar en otros libros.",
+        "order": 100
+    }
+}

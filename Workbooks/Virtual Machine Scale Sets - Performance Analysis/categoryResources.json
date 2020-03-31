@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Análisis de rendimiento",
+        "description": "Busque problemas comunes en su conjunto de escalado de máquinas virtuales mediante las métricas.",
+        "order": 200
+    }
+}

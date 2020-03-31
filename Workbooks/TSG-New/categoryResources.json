@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Cree una guía de solución de problemas personalizada para su aplicación.",
+        "description": "",
+        "order": 200
+    }
+}
