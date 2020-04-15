@@ -86,7 +86,7 @@
                 "query": "search * | summarize AggregatedValue = count() by Type | order by AggregatedValue desc",
                 "size": 1,
                 "showAnalytics": true,
-                "title": "Distribución de tipo de datos",
+                "title": "Distribución de tipos de datos",
                 "timeContext": {
                     "durationMs": 0
                 },

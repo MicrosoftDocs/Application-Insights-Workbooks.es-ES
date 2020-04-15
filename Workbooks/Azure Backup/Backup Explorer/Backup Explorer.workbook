@@ -1822,7 +1822,7 @@
                         },
                         {
                             "columnId": "HealthCheck",
-                            "label": "Estado de comprobación de estado"
+                            "label": "Estado de comprobación de mantenimiento"
                         },
                         {
                             "columnId": "LastBackup",

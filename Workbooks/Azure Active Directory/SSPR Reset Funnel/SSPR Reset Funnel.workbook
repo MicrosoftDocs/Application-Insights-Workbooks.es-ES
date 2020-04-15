@@ -669,7 +669,7 @@
                         },
                         {
                             "columnId": "Inprogress",
-                            "label": "InProgress"
+                            "label": "Inprogress"
                         },
                         {
                             "columnId": "Success",
