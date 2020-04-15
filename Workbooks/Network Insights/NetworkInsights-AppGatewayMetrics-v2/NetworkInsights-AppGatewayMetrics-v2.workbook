@@ -448,7 +448,7 @@
         {
             "type": 1,
             "content": {
-                "json": "### <a name=\"active-connections\"></a>Conexiones activas"
+                "json": "### <a name=\"active-connections\"></a>Las conexiones activas"
             },
             "name": "text - 17 - Copy - Copy - Copy - Copy"
         },

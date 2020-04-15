@@ -99,7 +99,7 @@
                     {
                         "cellValue": "selectedTab",
                         "linkTarget": "parameter",
-                        "linkLabel": "Distribución de tipo de datos",
+                        "linkLabel": "Distribución de tipos de datos",
                         "subTarget": "DataType",
                         "style": "link"
                     },
