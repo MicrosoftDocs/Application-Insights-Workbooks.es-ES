@@ -214,7 +214,7 @@
         {
             "type": 1,
             "content": {
-                "json": "💡 *Haga clic en las filas de la tabla de arriba para ver los detalles de otras operaciones*"
+                "json": "💡 *Haga clic en las filas de la tabla de arriba para ver los detalles de otras operaciones.*"
             },
             "conditionalVisibility": null
         },
