@@ -1,0 +1,64 @@
+{
+    "categories": [
+        {
+            "key": "YourUniqueCategoryKey",
+            "settings": {
+                "en-us": {
+                    "name": "Your category name",
+                    "description": "Descripción de la categoría",
+                    "order": 100
+                }
+            }
+        },
+        {
+            "key": "azureMonitorVirtualMachines",
+            "settings": {
+                "en-us": {
+                    "name": "Virtual Machines",
+                    "description": "Análisis de los datos de supervisión de las máquinas virtuales",
+                    "order": 100
+                }
+            }
+        },
+        {
+            "key": "azureMonitorVirtualMachinesPerf",
+            "settings": {
+                "en-us": {
+                    "name": "Virtual Machines (Perf)",
+                    "description": "Análisis de los datos de supervisión de las máquinas virtuales",
+                    "order": 105
+                }
+            }
+        },
+        {
+            "key": "azureMonitorInsights",
+            "settings": {
+                "en-us": {
+                    "name": "Insights",
+                    "description": "Proporciona información detallada sobre los recursos de Azure.",
+                    "order": 2000
+                }
+            }
+        },
+        {
+            "key": "vmInsightsVirtualMachinesInsightsMetrics",
+            "settings": {
+                "en-us": {
+                    "name": "Performance Analysis (Insights Metrics)",
+                    "description": "Busque problemas comunes en su máquina virtual mediante las métricas.",
+                    "order": 205
+                }
+            }
+        },
+        {
+            "key": "vmInsightsVirtualMachinesPerf",
+            "settings": {
+                "en-us": {
+                    "name": "Performance Analysis (Perf)",
+                    "description": "Busque problemas comunes en su máquina virtual mediante las métricas.",
+                    "order": 205
+                }
+            }
+        }
+    ]
+}
