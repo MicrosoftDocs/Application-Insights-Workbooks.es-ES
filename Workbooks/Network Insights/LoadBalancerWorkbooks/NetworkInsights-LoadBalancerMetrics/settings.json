@@ -1,0 +1,17 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "LoadBalancers de Network Insights",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "microsoft.network/loadbalancers",
+            "order": 100
+        },
+        {
+            "type": "workbook",
+            "resourceType": "Network Insights LoadBalancers",
+            "order": 100
+        }
+    ]
+}
