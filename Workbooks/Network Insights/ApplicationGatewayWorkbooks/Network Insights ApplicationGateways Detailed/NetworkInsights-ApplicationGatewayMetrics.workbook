@@ -1,0 +1,3135 @@
+{
+    "version": "Notebook/1.0",
+    "items": [
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "crossComponentResources": [
+                    "{ApplicationGateway}"
+                ],
+                "parameters": [
+                    {
+                        "id": "51f9f779-6b41-40ef-a8f0-aac280110a08",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "ApplicationGateway",
+                        "label": "puerta de enlace de aplicaciones",
+                        "type": 5,
+                        "isRequired": true,
+                        "value": null,
+                        "typeSettings": {
+                            "resourceTypeFilter": {
+                                "microsoft.network/applicationgateways": true,
+                                "Microsoft.Network/applicationGateways": true
+                            },
+                            "additionalResourceOptions": []
+                        },
+                        "resourceType": "microsoft.insights/components"
+                    },
+                    {
+                        "id": "ff3fae89-1243-4701-afe2-97ac8648120e",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "SKU",
+                        "type": 1,
+                        "query": "resources\r\n| where type =~ \"microsoft.network/applicationgateways\" and id =~ '{ApplicationGateway}'\r\n| extend tier = parse_json(properties).sku.tier\r\n| project SKU = iff(tier contains \"v2\", \"v2\", \"v1\")",
+                        "crossComponentResources": [
+                            "value::all"
+                        ],
+                        "isHiddenWhenLocked": true,
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    },
+                    {
+                        "id": "4fad9342-29f1-445d-a22d-063a6eb69637",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "TimeRange",
+                        "label": "Intervalo de horas",
+                        "type": 4,
+                        "typeSettings": {
+                            "selectableValues": [
+                                {
+                                    "durationMs": 300000
+                                },
+                                {
+                                    "durationMs": 900000
+                                },
+                                {
+                                    "durationMs": 1800000
+                                },
+                                {
+                                    "durationMs": 3600000
+                                },
+                                {
+                                    "durationMs": 14400000
+                                },
+                                {
+                                    "durationMs": 43200000
+                                },
+                                {
+                                    "durationMs": 86400000
+                                },
+                                {
+                                    "durationMs": 172800000
+                                },
+                                {
+                                    "durationMs": 259200000
+                                },
+                                {
+                                    "durationMs": 604800000
+                                },
+                                {
+                                    "durationMs": 1209600000
+                                },
+                                {
+                                    "durationMs": 2419200000
+                                },
+                                {
+                                    "durationMs": 2592000000
+                                },
+                                {
+                                    "durationMs": 5184000000
+                                },
+                                {
+                                    "durationMs": 7776000000
+                                }
+                            ],
+                            "allowCustom": true
+                        },
+                        "resourceType": "microsoft.insights/components",
+                        "value": {
+                            "durationMs": 604800000
+                        }
+                    },
+                    {
+                        "id": "9d2e04fb-eb7e-402c-867e-564bd62a7c78",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "isDiagnosticLogsEnabled",
+                        "type": 1,
+                        "query": "let hasNonEmptyTable = (T:string) \r\n{ \r\n   toscalar( union isfuzzy=true ( table(T) | count as Count ), (print Count=0) | summarize sum(Count) ) > 0\r\n};\r\nlet TableName = 'AzureDiagnostics';\r\nprint isDiagnosticLogsEnabled=iif(hasNonEmptyTable(TableName), \"y\", \"n\")",
+                        "crossComponentResources": [
+                            "{ApplicationGateway}"
+                        ],
+                        "isHiddenWhenLocked": true,
+                        "timeContext": {
+                            "durationMs": 0
+                        },
+                        "timeContextFromParameter": "TimeRange",
+                        "queryType": 0,
+                        "resourceType": "microsoft.network/applicationgateways"
+                    }
+                ],
+                "style": "pills",
+                "queryType": 0,
+                "resourceType": "microsoft.insights/components"
+            },
+            "name": "ApplicationGatewaysParam"
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "{\"version\":\"AzureHealthQuery/1.0\",\"queryType\":\"Detailed\"}",
+                "size": 4,
+                "queryType": 4,
+                "resourceType": "microsoft.network/applicationgateways",
+                "crossComponentResources": [
+                    "{ApplicationGateway}"
+                ],
+                "visualization": "table",
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "Availability state",
+                            "formatter": 11,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Detailed status",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Reason chronicity",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Reason type",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Title",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Resource group",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Subscription",
+                            "formatter": 5,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
+                        }
+                    ]
+                }
+            },
+            "name": "query - 67"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook3a9ecfeb-92d9-453f-8775-4fb95816eea2",
+                "version": "MetricsItem/2.0",
+                "size": 4,
+                "chartType": -1,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--UnhealthyHostCount",
+                        "aggregation": 4
+                    },
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--FailedRequests",
+                        "aggregation": 1
+                    },
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--CapacityUnits",
+                        "aggregation": 4
+                    },
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--ComputeUnits",
+                        "aggregation": 4
+                    },
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--Throughput",
+                        "aggregation": 4
+                    },
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--CurrentConnections",
+                        "aggregation": 1
+                    }
+                ],
+                "title": "Métricas clave",
+                "gridFormatType": 1,
+                "tileSettings": {
+                    "titleContent": {
+                        "columnMatch": "Metric",
+                        "formatter": 1,
+                        "formatOptions": {
+                            "showIcon": true
+                        }
+                    },
+                    "leftContent": {
+                        "columnMatch": "Value",
+                        "formatter": 12,
+                        "formatOptions": {
+                            "palette": "auto",
+                            "showIcon": true
+                        },
+                        "numberFormat": {
+                            "unit": 17,
+                            "options": {
+                                "maximumSignificantDigits": 3,
+                                "maximumFractionDigits": 2
+                            }
+                        }
+                    },
+                    "showBorder": false
+                },
+                "mapSettings": {
+                    "locInfo": "AzureResource",
+                    "sizeSettings": "Value",
+                    "sizeAggregation": "Sum",
+                    "legendMetric": "Value",
+                    "legendAggregation": "Sum",
+                    "itemColorSettings": {
+                        "type": "heatmap",
+                        "colorAggregation": "Sum",
+                        "nodeColorField": "Value",
+                        "heatmapPalette": "greenRed"
+                    },
+                    "locInfoColumn": "Name"
+                },
+                "graphSettings": {
+                    "type": 0,
+                    "topContent": {
+                        "columnMatch": "Subscription",
+                        "formatter": 1
+                    },
+                    "centerContent": {
+                        "columnMatch": "Value",
+                        "formatter": 1,
+                        "numberFormat": {
+                            "unit": 17,
+                            "options": {
+                                "maximumSignificantDigits": 3,
+                                "maximumFractionDigits": 2
+                            }
+                        }
+                    }
+                },
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "Subscription",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "Name",
+                            "formatter": 13,
+                            "formatOptions": {
+                                "linkTarget": "Resource"
+                            }
+                        },
+                        {
+                            "columnMatch": "Metric",
+                            "formatter": 1
+                        },
+                        {
+                            "columnMatch": "Aggregation",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "Value",
+                            "formatter": 1
+                        },
+                        {
+                            "columnMatch": "Timeline",
+                            "formatter": 9
+                        }
+                    ],
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibility": {
+                "parameterName": "SKU",
+                "comparison": "isEqualTo",
+                "value": "v2"
+            },
+            "name": "Key metrics"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook716592f8-5cde-444d-acb1-ce90e48e0b10",
+                "version": "MetricsItem/2.0",
+                "size": 4,
+                "chartType": -1,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--UnhealthyHostCount",
+                        "aggregation": 4
+                    },
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--FailedRequests",
+                        "aggregation": 1
+                    },
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--Throughput",
+                        "aggregation": 4
+                    },
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--CurrentConnections",
+                        "aggregation": 1
+                    },
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--CpuUtilization",
+                        "aggregation": 4
+                    }
+                ],
+                "title": "Métricas clave",
+                "gridFormatType": 1,
+                "tileSettings": {
+                    "titleContent": {
+                        "columnMatch": "Metric",
+                        "formatter": 13,
+                        "formatOptions": {
+                            "linkTarget": null,
+                            "showIcon": true
+                        }
+                    },
+                    "leftContent": {
+                        "columnMatch": "Value",
+                        "formatter": 12,
+                        "formatOptions": {
+                            "palette": "auto",
+                            "showIcon": true
+                        },
+                        "numberFormat": {
+                            "unit": 17,
+                            "options": {
+                                "maximumSignificantDigits": 3,
+                                "maximumFractionDigits": 2
+                            }
+                        }
+                    },
+                    "showBorder": false
+                },
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibility": {
+                "parameterName": "SKU",
+                "comparison": "isEqualTo",
+                "value": "v1"
+            },
+            "name": "Key metrics"
+        },
+        {
+            "type": 11,
+            "content": {
+                "version": "LinkItem/1.0",
+                "style": "tabs",
+                "links": [
+                    {
+                        "cellValue": "Help",
+                        "linkTarget": "parameter",
+                        "linkLabel": "Rendimiento",
+                        "subTarget": "1",
+                        "style": "link"
+                    },
+                    {
+                        "cellValue": "Help",
+                        "linkTarget": "parameter",
+                        "linkLabel": "Latencia",
+                        "subTarget": "2",
+                        "style": "link"
+                    },
+                    {
+                        "cellValue": "Help",
+                        "linkTarget": "parameter",
+                        "linkLabel": "Tráfico",
+                        "subTarget": "3",
+                        "style": "link"
+                    },
+                    {
+                        "cellValue": "Help",
+                        "linkTarget": "parameter",
+                        "linkLabel": "Back-end",
+                        "subTarget": "4",
+                        "style": "link"
+                    },
+                    {
+                        "cellValue": "Help",
+                        "linkTarget": "parameter",
+                        "linkLabel": "Facturación",
+                        "subTarget": "5",
+                        "style": "link"
+                    }
+                ]
+            },
+            "name": "links - 72",
+            "styleSettings": {
+                "showBorder": true
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "<h6></h6>\n\n    v1 SKU of Application Gateway does not support latency metrics."
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v1"
+                },
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "SKU",
+                "comparison": "isEqualTo",
+                "value": "v1"
+            },
+            "name": "text - 65"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "#### <a name=\"application-gateway-total-time-vs-backend-last-byte-response-time\"></a>Tiempo total de Application Gateway en comparación con el tiempo de respuesta del último byte de back-end.\n\n*El tiempo total de Application Gateway* es el intervalo que abarca desde el momento en que Application Gateway recibe el primer byte de la solicitud HTTP hasta el momento en que se envía el último byte de respuesta al cliente. Esto es igual al *tiempo de respuesta del último byte de back-end* + el tiempo de procesamiento que tarda Application Gateway + el *RTT de cliente* (solo cuando el tamaño de ventana de la solicitud TCP del cliente es pequeño en relación con la respuesta). Compare las 2 métricas para determinar si el problema está relacionado con Application Gateway o con el back-end.\nSi el *tiempo total de Application Gateway* tiene un pico, pero el tiempo de respuesta del último byte de back-end es estable, puede indicar un cuello de botella de rendimiento en Application Gateway o un cuello de botella en la red entre el cliente y Application Gateway (solo si el tamaño de ventana de la solicitud TCP del cliente es pequeño en relación con la respuesta). "
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "2"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "2"
+            },
+            "name": "text - 1 - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook98d25674-6f30-4208-9e34-918de0b31f5c",
+                "version": "MetricsItem/2.0",
+                "size": 0,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--ApplicationGatewayTotalTime",
+                        "aggregation": 4,
+                        "splitBy": null,
+                        "columnName": ""
+                    },
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--BackendLastByteResponseTime",
+                        "aggregation": 4
+                    }
+                ],
+                "gridFormatType": 1,
+                "tileSettings": {
+                    "showBorder": false,
+                    "titleContent": {
+                        "columnMatch": "Name",
+                        "formatter": 13
+                    },
+                    "leftContent": {
+                        "columnMatch": "Value",
+                        "formatter": 12,
+                        "formatOptions": {
+                            "palette": "auto"
+                        },
+                        "numberFormat": {
+                            "unit": 17,
+                            "options": {
+                                "maximumSignificantDigits": 3,
+                                "maximumFractionDigits": 2
+                            }
+                        }
+                    }
+                },
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "Subscription",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "Name",
+                            "formatter": 13,
+                            "formatOptions": {
+                                "linkTarget": "Resource"
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--ApplicationGatewayTotalTime Timeline",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--ApplicationGatewayTotalTime",
+                            "formatter": 1,
+                            "numberFormat": {
+                                "unit": 23,
+                                "options": null
+                            }
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--BackendLastByteResponseTime Timeline",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--BackendLastByteResponseTime",
+                            "formatter": 1,
+                            "numberFormat": {
+                                "unit": 23,
+                                "options": null
+                            }
+                        }
+                    ],
+                    "rowLimit": 10000,
+                    "labelSettings": [
+                        {
+                            "columnId": "microsoft.network/applicationgateways--ApplicationGatewayTotalTime",
+                            "label": "Tiempo total de Application Gateway (promedio)"
+                        },
+                        {
+                            "columnId": "microsoft.network/applicationgateways--ApplicationGatewayTotalTime Timeline",
+                            "label": "Escala de tiempo total de Application Gateway"
+                        },
+                        {
+                            "columnId": "microsoft.network/applicationgateways--BackendLastByteResponseTime",
+                            "label": "Tiempo de respuesta del último byte de back-end (promedio)"
+                        },
+                        {
+                            "columnId": "microsoft.network/applicationgateways--BackendLastByteResponseTime Timeline",
+                            "label": "Escala de tiempo de respuesta del último byte de back-end"
+                        }
+                    ]
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "2"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "2"
+            },
+            "name": "metric - 0"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "#### <a name=\"backend-connect-time-vs-backend-first-byte-response-time-vs-backend-last-byte-response-time\"></a>Tiempo de conexión de back-end frente a tiempo de respuesta del primer byte de back-end y este frente a tiempo de respuesta del último byte de back-end\n\nEl **tiempo de conexión de back-end** es el tiempo empleado en establecer una conexión con la aplicación de back-end. Esto incluye la latencia de red, así como el tiempo que tarda la pila TCP del servidor back-end en establecer nuevas conexiones. En el caso de TLS, incluye también el tiempo empleado en el protocolo de enlace.\n\nEl **tiempo de respuesta del primer byte de back-end** es el intervalo de tiempo entre el inicio del establecimiento de una conexión al servidor de back-end y la recepción del primer byte del encabezado de respuesta. Esto es aproximadamente la suma del *tiempo de conexión de back-end*, el tiempo que tarda la solicitud en alcanzar el back-end desde Application Gateway, el tiempo que tarda la aplicación de back-end en responder (el tiempo que el servidor tardó en generar contenido, y posiblemente capturar las consultas de la base de datos) y el tiempo que tarda el primer byte de la respuesta en llegar a Application Gateway desde el back-end.\n\nEl **tiempo de respuesta del último byte del back-end** es el intervalo de tiempo entre el inicio del establecimiento de una conexión con el servidor back-end y la recepción del último byte del cuerpo de la respuesta. Se aproxima a la suma de *Tiempo de respuesta del primer byte de back-end* y el tiempo de transferencia de datos (este número puede variar en gran medida según el tamaño de los objetos solicitados y la latencia de la red del servidor).\n\nSi hay un pico en la tendencia del tiempo de respuesta del primer byte de back-end, pero la tendencia del tiempo de conexión de back-end es estable, se puede deducir que la latencia de Application Gateway al back-end y el tiempo necesario para establecer la conexión son estables, y el pico se debe a un aumento en el tiempo de respuesta de la aplicación de back-end. Por otro lado, si el pico en el tiempo de respuesta del primer byte de back-end está asociado a un pico correspondiente en el tiempo de conexión de back-end, se puede deducir que la red entre Application Gateway y el servidor back-end o la pila TCP del servidor back-end se ha saturado. Si observa un pico en el tiempo de respuesta del último byte de back-end, pero el tiempo de respuesta del primer byte de back-end es estable, se puede deducir que el pico se debe a que se está solicitando un archivo más grande.\n\n"
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "2"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "2"
+            },
+            "name": "text - 1 - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook41f05d96-2803-4be8-97d7-7bfcc22d0761",
+                "version": "MetricsItem/2.0",
+                "size": 0,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--BackendFirstByteResponseTime",
+                        "aggregation": 4,
+                        "splitBy": null
+                    },
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--BackendLastByteResponseTime",
+                        "aggregation": 4
+                    },
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--BackendConnectTime",
+                        "aggregation": 4
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "2"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "2"
+            },
+            "name": "metric - 4"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"cpu-utilization\"></a>Uso de CPU\nMuestra el uso de las CPU asignadas a Application Gateway. En condiciones normales, el uso de CPU no debe superar con regularidad el 90 %, ya que esto puede provocar latencia en los sitios web hospedados tras Application Gateway e interrumpir la experiencia del cliente. Para controlar o mejorar indirectamente el uso de CPU, puede modificar la configuración de Application Gateway aumentando el número de instancias o pasando a un tamaño de SKU mayor, o bien haciendo ambas cosas."
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "1"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v1"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "1"
+            },
+            "name": "text - 17 - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook92487899-602c-440d-a537-13c6349351f4",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--CpuUtilization",
+                        "aggregation": 4,
+                        "splitBy": null
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "1"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v1"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "1"
+            },
+            "name": "metric - 72"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"capacity-units\"></a>Unidades de capacidad\nLas unidades de capacidad que utiliza Application Gateway se determinan mediante 3 dimensiones: *unidad de proceso*, *conexiones actuales* y *rendimiento*. Cada unidad de capacidad se compone a lo sumo de: 1 *unidad de proceso*, o 2500 *conexiones actuales*, o *rendimiento* de 2,22 Mbps. Compruebe el valor de las siguientes tres métricas para inferir qué variación en cualquiera de ellas produjo cambios en las *unidades de capacidad*."
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "1"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "1"
+            },
+            "customWidth": "100",
+            "name": "text - 17 - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--CapacityUnits",
+                        "aggregation": 4,
+                        "splitBy": null
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "1"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "1"
+            },
+            "customWidth": "100",
+            "name": "metric - 18 - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"compute-units\"></a>Unidades de proceso\nLa *unidad de proceso* es una medida de la capacidad de procesador consumida. Los factores que afectan a la unidad de proceso son las conexiones TLS/seg, los cálculos de reescritura de direcciones URL y el procesamiento de reglas de WAF."
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "1"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "1"
+            },
+            "customWidth": "100",
+            "name": "text - 17 - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--ComputeUnits",
+                        "aggregation": 4,
+                        "splitBy": null
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "1"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "1"
+            },
+            "customWidth": "100",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"current-connections\"></a>Conexiones actuales\nLas *conexiones actuales* son una medida de las conexiones TCP establecidas con Application Gateway."
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "1"
+            },
+            "name": "text - 17 - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--CurrentConnections",
+                        "aggregation": 1,
+                        "splitBy": null
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "1"
+            },
+            "name": "metric - 18 - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"throughput\"></a>Throughput\nEl *rendimiento* es el promedio de megabits/seg procesados por Application Gateway."
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "1"
+            },
+            "name": "text - 17"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--Throughput",
+                        "aggregation": 4,
+                        "splitBy": null
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "1"
+            },
+            "name": "metric - 18"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "#### <a name=\"sent-bytes\"></a>Bytes enviados"
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "1"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "1"
+            },
+            "customWidth": "50",
+            "name": "text - 17 - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "#### <a name=\"received-bytes\"></a>Bytes recibidos"
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "1"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "1"
+            },
+            "customWidth": "50",
+            "name": "text - 17 - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--BytesSent",
+                        "aggregation": 1,
+                        "splitBy": null
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "1"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "1"
+            },
+            "customWidth": "50",
+            "name": "metric - 18 - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--BytesReceived",
+                        "aggregation": 1,
+                        "splitBy": null
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "1"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "1"
+            },
+            "customWidth": "50",
+            "name": "metric - 18 - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"total-requests\"></a>Total de solicitudes\n"
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "50",
+            "name": "text - 1 - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"failed-requests\"></a>Error en las solicitudes\n"
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "50",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--TotalRequests",
+                        "aggregation": 1,
+                        "splitBy": null
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "50",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--FailedRequests",
+                        "aggregation": 1,
+                        "splitBy": null
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "50",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"response-status-2xx\"></a>Estado de respuesta 2xx\n"
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "25",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"response-status-3xx\"></a>Estado de respuesta 3xx\n"
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "25",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"response-status-4xx\"></a>Estado de respuesta 4xx\n"
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "25",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"response-status-5xx\"></a>Estado de respuesta 5xx\n"
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "25",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--ResponseStatus",
+                        "aggregation": 1,
+                        "splitBy": null
+                    }
+                ],
+                "filters": [
+                    {
+                        "id": "2",
+                        "key": "HttpStatusGroup",
+                        "operator": 0,
+                        "values": [
+                            "2xx"
+                        ]
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "25",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--ResponseStatus",
+                        "aggregation": 1,
+                        "splitBy": null
+                    }
+                ],
+                "filters": [
+                    {
+                        "id": "2",
+                        "key": "HttpStatusGroup",
+                        "operator": 0,
+                        "values": [
+                            "3xx"
+                        ]
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "25",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--ResponseStatus",
+                        "aggregation": 1,
+                        "splitBy": null
+                    }
+                ],
+                "filters": [
+                    {
+                        "id": "2",
+                        "key": "HttpStatusGroup",
+                        "operator": 0,
+                        "values": [
+                            "4xx"
+                        ]
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "25",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--ResponseStatus",
+                        "aggregation": 1,
+                        "splitBy": null
+                    }
+                ],
+                "filters": [
+                    {
+                        "id": "2",
+                        "key": "HttpStatusGroup",
+                        "operator": 0,
+                        "values": [
+                            "5xx"
+                        ]
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "25",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"non-tls-requests\"></a>Solicitudes que no son de TLS\n"
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "25",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"tls-version-10\"></a>TLS versión 1.0\n"
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "25",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"tls-version-11\"></a>TLS versión 1.1\n"
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "25",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"tls-version-12\"></a>TLS versión 1.2\n"
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "25",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--TlsProtocol",
+                        "aggregation": 1,
+                        "splitBy": null
+                    }
+                ],
+                "filters": [
+                    {
+                        "id": "4",
+                        "key": "TlsProtocol",
+                        "operator": 0,
+                        "values": [
+                            "nontls"
+                        ]
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "25",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--TlsProtocol",
+                        "aggregation": 1,
+                        "splitBy": null
+                    }
+                ],
+                "filters": [
+                    {
+                        "id": "2",
+                        "key": "TlsProtocol",
+                        "operator": 0,
+                        "values": [
+                            "tlsv1"
+                        ]
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "25",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--TlsProtocol",
+                        "aggregation": 1,
+                        "splitBy": null
+                    }
+                ],
+                "filters": [
+                    {
+                        "id": "2",
+                        "key": "TlsProtocol",
+                        "operator": 0,
+                        "values": [
+                            "tlsv1.1"
+                        ]
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "25",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--TlsProtocol",
+                        "aggregation": 1,
+                        "splitBy": null
+                    }
+                ],
+                "filters": [
+                    {
+                        "id": "2",
+                        "key": "TlsProtocol",
+                        "operator": 0,
+                        "values": [
+                            "tlsv1.2"
+                        ]
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "customWidth": "25",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"client-errors-vs-server-errors\"></a>Errores de cliente frente a errores de servidor\n"
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "name": "text - 1 - Copy - Copy - Copy"
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "AzureDiagnostics\r\n| where ResourceType == \"APPLICATIONGATEWAYS\" and OperationName == \"ApplicationGatewayAccess\" and httpStatus_d > 399\r\n| summarize AggregatedValue = count() by Resource",
+                "size": 1,
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "queryType": 0,
+                "resourceType": "microsoft.network/applicationgateways",
+                "crossComponentResources": [
+                    "{ApplicationGateway}"
+                ],
+                "visualization": "piechart",
+                "chartSettings": {}
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                },
+                {
+                    "parameterName": "isDiagnosticLogsEnabled",
+                    "comparison": "isEqualTo",
+                    "value": "y"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "name": "query - 5"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "<h6></h6>\n\n    This view is supprted only if you have configured sending the Access logs to Log Analytics for this Application Gateway."
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "isDiagnosticLogsEnabled",
+                    "comparison": "isEqualTo",
+                    "value": "n"
+                },
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "isDiagnosticLogsEnabled",
+                "comparison": "isEqualTo",
+                "value": "n"
+            },
+            "name": "text - 66"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"errors-by-user-agent\"></a>Errores por agente de usuario\n"
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "name": "text - 1 - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "<h6></h6>\n\n    This view is supprted only if you have configured sending the Access logs to Log Analytics for this Application Gateway."
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "isDiagnosticLogsEnabled",
+                    "comparison": "isEqualTo",
+                    "value": "n"
+                },
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "isDiagnosticLogsEnabled",
+                "comparison": "isEqualTo",
+                "value": "n"
+            },
+            "name": "text - 66 - Copy"
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "AzureDiagnostics\r\n| where ResourceType == \"APPLICATIONGATEWAYS\" and OperationName == \"ApplicationGatewayAccess\" and httpStatus_d > 399\r\n| summarize AggregatedValue = count() by userAgent_s\r\n| sort by AggregatedValue desc",
+                "size": 1,
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "queryType": 0,
+                "resourceType": "microsoft.network/applicationgateways",
+                "crossComponentResources": [
+                    "{ApplicationGateway}"
+                ]
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                },
+                {
+                    "parameterName": "isDiagnosticLogsEnabled",
+                    "comparison": "isEqualTo",
+                    "value": "y"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "name": "query - 8"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"top-user-agents\"></a>Agentes de usuario principales\n"
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "<h6></h6>\n\n    This view is supprted only if you have configured sending the Access logs to Log Analytics for this Application Gateway."
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "isDiagnosticLogsEnabled",
+                    "comparison": "isEqualTo",
+                    "value": "n"
+                },
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "isDiagnosticLogsEnabled",
+                "comparison": "isEqualTo",
+                "value": "n"
+            },
+            "name": "text - 66 - Copy - Copy"
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "AzureDiagnostics\r\n| where ResourceType == \"APPLICATIONGATEWAYS\" and OperationName == \"ApplicationGatewayAccess\" \r\n| summarize AggregatedValue = count() by userAgent_s\r\n| sort by AggregatedValue desc",
+                "size": 1,
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "queryType": 0,
+                "resourceType": "microsoft.network/applicationgateways",
+                "crossComponentResources": [
+                    "{ApplicationGateway}"
+                ]
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                },
+                {
+                    "parameterName": "isDiagnosticLogsEnabled",
+                    "comparison": "isEqualTo",
+                    "value": "y"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "name": "query - 8 - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"top-uris\"></a>Identificadores URI principales\n"
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "<h6></h6>\n\n    This view is supprted only if you have configured sending the Access logs to Log Analytics for this Application Gateway."
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "isDiagnosticLogsEnabled",
+                    "comparison": "isEqualTo",
+                    "value": "n"
+                },
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "isDiagnosticLogsEnabled",
+                "comparison": "isEqualTo",
+                "value": "n"
+            },
+            "name": "text - 66 - Copy - Copy - Copy"
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "\t\tAzureDiagnostics\r\n\t\t| where ResourceType == \"APPLICATIONGATEWAYS\" and OperationName == \"ApplicationGatewayAccess\"\r\n| summarize AggregatedValue = count() by requestUri_s",
+                "size": 1,
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "queryType": 0,
+                "resourceType": "microsoft.network/applicationgateways",
+                "crossComponentResources": [
+                    "{ApplicationGateway}"
+                ]
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                },
+                {
+                    "parameterName": "isDiagnosticLogsEnabled",
+                    "comparison": "isEqualTo",
+                    "value": "y"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "name": "query - 11"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"server-failures-by-uri\"></a>Errores del servidor por URI\n"
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "<h6></h6>\n\n    This view is supprted only if you have configured sending the Access logs to Log Analytics for this Application Gateway."
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "isDiagnosticLogsEnabled",
+                    "comparison": "isEqualTo",
+                    "value": "n"
+                },
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "isDiagnosticLogsEnabled",
+                "comparison": "isEqualTo",
+                "value": "n"
+            },
+            "name": "text - 66 - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "\t\tAzureDiagnostics\r\n\t\t| where ResourceType == \"APPLICATIONGATEWAYS\" and OperationName == \"ApplicationGatewayAccess\" and httpStatus_d > 499\r\n| summarize AggregatedValue = count() by requestUri_s",
+                "size": 1,
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "queryType": 0,
+                "resourceType": "microsoft.network/applicationgateways",
+                "crossComponentResources": [
+                    "{ApplicationGateway}"
+                ]
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "3"
+                },
+                {
+                    "parameterName": "isDiagnosticLogsEnabled",
+                    "comparison": "isEqualTo",
+                    "value": "y"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "3"
+            },
+            "name": "query - 9"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"healthy-host-count\"></a>Recuento de hosts con estado correcto\n"
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "4"
+            },
+            "customWidth": "50",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"unhealthy-host-count\"></a>Recuento de hosts con estado incorrecto\n"
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "4"
+            },
+            "customWidth": "50",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--HealthyHostCount",
+                        "aggregation": 4,
+                        "splitBy": null
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "4"
+            },
+            "customWidth": "50",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--UnhealthyHostCount",
+                        "aggregation": 4,
+                        "splitBy": null
+                    }
+                ],
+                "gridSettings": {
+                    "rowLimit": 10000
+                }
+            },
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "4"
+            },
+            "customWidth": "50",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"backend-response-status-2xx\"></a>Estado de respuesta de back-end 2xx\n"
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "4"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "4"
+            },
+            "customWidth": "25",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"backend-response-status-3xx\"></a>Estado de respuesta de back-end 3xx\n"
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "4"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "4"
+            },
+            "customWidth": "25",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"backend-response-status-4xx\"></a>Estado de respuesta de back-end 4xx\n"
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "4"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "4"
+            },
+            "customWidth": "25",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"backend-response-status-5xx\"></a>Estado de respuesta de back-end 5xx\n"
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "4"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "4"
+            },
+            "customWidth": "25",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--BackendResponseStatus",
+                        "aggregation": 1,
+                        "splitBy": null,
+                        "filters": [
+                            {
+                                "key": "HttpStatusGroup",
+                                "operator": 0,
+                                "values": []
+                            },
+                            {
+                                "key": "BackendServer",
+                                "operator": 0,
+                                "values": []
+                            }
+                        ]
+                    }
+                ],
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "Subscription",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--BackendResponseStatus",
+                            "formatter": 1,
+                            "numberFormat": {
+                                "unit": 0,
+                                "options": null
+                            }
+                        }
+                    ],
+                    "rowLimit": 10000,
+                    "labelSettings": [
+                        {
+                            "columnId": "microsoft.network/applicationgateways--BackendResponseStatus",
+                            "label": "Estado de respuesta de back-end (Sum)"
+                        },
+                        {
+                            "columnId": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
+                            "label": "Escala de tiempo de estado de respuesta de back-end"
+                        }
+                    ]
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "4"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "4"
+            },
+            "customWidth": "25",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--BackendResponseStatus",
+                        "aggregation": 1,
+                        "splitBy": null,
+                        "filters": [
+                            {
+                                "key": "HttpStatusGroup",
+                                "operator": 0,
+                                "values": []
+                            }
+                        ]
+                    }
+                ],
+                "filters": [
+                    {
+                        "id": "2",
+                        "key": "HttpStatusGroup",
+                        "operator": 0,
+                        "values": [
+                            "3xx"
+                        ]
+                    }
+                ],
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "Subscription",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--BackendResponseStatus",
+                            "formatter": 1,
+                            "numberFormat": {
+                                "unit": 0,
+                                "options": null
+                            }
+                        }
+                    ],
+                    "rowLimit": 10000,
+                    "labelSettings": [
+                        {
+                            "columnId": "microsoft.network/applicationgateways--BackendResponseStatus",
+                            "label": "Estado de respuesta de back-end (Sum)"
+                        },
+                        {
+                            "columnId": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
+                            "label": "Escala de tiempo de estado de respuesta de back-end"
+                        }
+                    ]
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "4"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "4"
+            },
+            "customWidth": "25",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--BackendResponseStatus",
+                        "aggregation": 1,
+                        "splitBy": null,
+                        "filters": [
+                            {
+                                "key": "HttpStatusGroup",
+                                "operator": 0,
+                                "values": []
+                            }
+                        ]
+                    }
+                ],
+                "filters": [
+                    {
+                        "id": "2",
+                        "key": "HttpStatusGroup",
+                        "operator": 0,
+                        "values": [
+                            "4xx"
+                        ]
+                    }
+                ],
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "Subscription",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--BackendResponseStatus",
+                            "formatter": 1,
+                            "numberFormat": {
+                                "unit": 0,
+                                "options": null
+                            }
+                        }
+                    ],
+                    "rowLimit": 10000,
+                    "labelSettings": [
+                        {
+                            "columnId": "microsoft.network/applicationgateways--BackendResponseStatus",
+                            "label": "Estado de respuesta de back-end (Sum)"
+                        },
+                        {
+                            "columnId": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
+                            "label": "Escala de tiempo de estado de respuesta de back-end"
+                        }
+                    ]
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "4"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "4"
+            },
+            "customWidth": "25",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--BackendResponseStatus",
+                        "aggregation": 1,
+                        "splitBy": null,
+                        "filters": [
+                            {
+                                "key": "HttpStatusGroup",
+                                "operator": 0,
+                                "values": []
+                            }
+                        ]
+                    }
+                ],
+                "filters": [
+                    {
+                        "id": "2",
+                        "key": "HttpStatusGroup",
+                        "operator": 0,
+                        "values": [
+                            "5xx"
+                        ]
+                    }
+                ],
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "Subscription",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--BackendResponseStatus",
+                            "formatter": 1,
+                            "numberFormat": {
+                                "unit": 0,
+                                "options": null
+                            }
+                        }
+                    ],
+                    "rowLimit": 10000,
+                    "labelSettings": [
+                        {
+                            "columnId": "microsoft.network/applicationgateways--BackendResponseStatus",
+                            "label": "Estado de respuesta de back-end (Sum)"
+                        },
+                        {
+                            "columnId": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
+                            "label": "Escala de tiempo de estado de respuesta de back-end"
+                        }
+                    ]
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "4"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "4"
+            },
+            "customWidth": "25",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"estimated-billed-capacity-units\"></a>Unidades de capacidad facturadas estimadas\nCon el SKU de la versión 2, el modelo de precios está determinado por el consumo. Las unidades de capacidad miden el costo basado en el consumo, que se suma al costo fijo. Las unidades de capacidad facturadas estimadas indican el número de unidades de capacidad que se usa para estimar la facturación. Se calcula como el valor mayor entre las *unidades de capacidad actuales* (unidades de capacidad necesarias para equilibrar la carga del tráfico) y las *unidades de capacidad facturables fijas* (unidades de capacidad mínimas mantenidas).\n"
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "5"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "5"
+            },
+            "customWidth": "100",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--EstimatedBilledCapacityUnits",
+                        "aggregation": 4,
+                        "splitBy": null
+                    }
+                ],
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "Subscription",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--BackendResponseStatus",
+                            "formatter": 1,
+                            "numberFormat": {
+                                "unit": 0,
+                                "options": null
+                            }
+                        }
+                    ],
+                    "rowLimit": 10000,
+                    "labelSettings": [
+                        {
+                            "columnId": "microsoft.network/applicationgateways--BackendResponseStatus",
+                            "label": "Estado de respuesta de back-end (Sum)"
+                        },
+                        {
+                            "columnId": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
+                            "label": "Escala de tiempo de estado de respuesta de back-end"
+                        }
+                    ]
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "5"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "5"
+            },
+            "customWidth": "100",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"current-capacity-units\"></a>Unidades de capacidad actuales\nRecuento de unidades de capacidad consumidas para equilibrar la carga del tráfico. Hay tres determinantes para la unidad de capacidad: *unidades de proceso*, *conexiones actuales* y *rendimiento*. Cada unidad de capacidad se compone a lo sumo de: 1 *unidad de proceso*, o 2500 *conexiones actuales*, o *rendimiento* de 2,22 Mbps.\n"
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "5"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "5"
+            },
+            "customWidth": "100",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--CapacityUnits",
+                        "aggregation": 4,
+                        "splitBy": null
+                    }
+                ],
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "Subscription",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--BackendResponseStatus",
+                            "formatter": 1,
+                            "numberFormat": {
+                                "unit": 0,
+                                "options": null
+                            }
+                        }
+                    ],
+                    "rowLimit": 10000,
+                    "labelSettings": [
+                        {
+                            "columnId": "microsoft.network/applicationgateways--BackendResponseStatus",
+                            "label": "Estado de respuesta de back-end (Sum)"
+                        },
+                        {
+                            "columnId": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
+                            "label": "Escala de tiempo de estado de respuesta de back-end"
+                        }
+                    ]
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "5"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "5"
+            },
+            "customWidth": "100",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### <a name=\"fixed-billable-capacity-units\"></a>Unidades de capacidad facturables fijas\nEl número mínimo de unidades de capacidad que se mantienen aprovisionadas según la configuración de *Unidades de escalado mínimas* (una instancia se traduce en 10 unidades de capacidad) en la configuración de Application Gateway.\n"
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "5"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "5"
+            },
+            "customWidth": "100",
+            "name": "text - 1 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 10,
+            "content": {
+                "chartId": "workbook0ddd8479-2964-47ef-9986-933092a15168",
+                "version": "MetricsItem/2.0",
+                "size": 1,
+                "chartType": 2,
+                "metricScope": 0,
+                "resourceIds": [
+                    "{ApplicationGateway}"
+                ],
+                "timeContext": {
+                    "durationMs": 0
+                },
+                "timeContextFromParameter": "TimeRange",
+                "resourceType": "microsoft.network/applicationgateways",
+                "resourceParameter": "ApplicationGateway",
+                "metrics": [
+                    {
+                        "namespace": "microsoft.network/applicationgateways",
+                        "metric": "microsoft.network/applicationgateways--FixedBillableCapacityUnits",
+                        "aggregation": 4,
+                        "splitBy": null
+                    }
+                ],
+                "gridSettings": {
+                    "formatters": [
+                        {
+                            "columnMatch": "Subscription",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
+                            "formatter": 5
+                        },
+                        {
+                            "columnMatch": "microsoft.network/applicationgateways--BackendResponseStatus",
+                            "formatter": 1,
+                            "numberFormat": {
+                                "unit": 0,
+                                "options": null
+                            }
+                        }
+                    ],
+                    "rowLimit": 10000,
+                    "labelSettings": [
+                        {
+                            "columnId": "microsoft.network/applicationgateways--BackendResponseStatus",
+                            "label": "Estado de respuesta de back-end (Sum)"
+                        },
+                        {
+                            "columnId": "microsoft.network/applicationgateways--BackendResponseStatus Timeline",
+                            "label": "Escala de tiempo de estado de respuesta de back-end"
+                        }
+                    ]
+                }
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "5"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v2"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "5"
+            },
+            "customWidth": "100",
+            "name": "metric - 18 - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy - Copy"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "<h6></h6>\n\n    v1 SKU of Application Gateway does not support billing metrics."
+            },
+            "conditionalVisibilities": [
+                {
+                    "parameterName": "Help",
+                    "comparison": "isEqualTo",
+                    "value": "5"
+                },
+                {
+                    "parameterName": "SKU",
+                    "comparison": "isEqualTo",
+                    "value": "v1"
+                }
+            ],
+            "conditionalVisibility": {
+                "parameterName": "Help",
+                "comparison": "isEqualTo",
+                "value": "5"
+            },
+            "name": "text - 77"
+        }
+    ],
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
