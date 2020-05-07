@@ -452,6 +452,15 @@
                                     "splitBy": "ActivityName",
                                     "splitBySortOrder": -1,
                                     "splitByLimit": 5
+                                },
+                                {
+                                    "namespace": "microsoft.keyvault/vaults",
+                                    "metric": "microsoft.keyvault/vaults--SaturationShoebox",
+                                    "aggregation": 4,
+                                    "splitBy": "ActivityName",
+                                    "splitBySortOrder": 2,
+                                    "splitByLimit": 5,
+                                    "columnName": "Saturation"
                                 }
                             ],
                             "gridFormatType": 2,
@@ -569,6 +578,53 @@
                                     },
                                     {
                                         "columnMatch": "microsoft.keyvault/vaults--ServiceApiLatency Timeline",
+                                        "formatter": 5,
+                                        "formatOptions": {
+                                            "showIcon": true
+                                        }
+                                    },
+                                    {
+                                        "columnMatch": "Saturation",
+                                        "formatter": 18,
+                                        "formatOptions": {
+                                            "min": 0,
+                                            "max": 100,
+                                            "palette": "greenRed",
+                                            "showIcon": true,
+                                            "thresholdsOptions": "icons",
+                                            "thresholdsGrid": [
+                                                {
+                                                    "operator": ">",
+                                                    "thresholdValue": "75",
+                                                    "representation": "2",
+                                                    "text": "{0}{1}"
+                                                },
+                                                {
+                                                    "operator": "is Empty",
+                                                    "representation": "success",
+                                                    "text": "{0}{1}"
+                                                },
+                                                {
+                                                    "operator": "Default",
+                                                    "thresholdValue": null,
+                                                    "representation": "success",
+                                                    "text": "{0}{1}"
+                                                }
+                                            ],
+                                            "aggregation": "Average"
+                                        },
+                                        "numberFormat": {
+                                            "unit": 1,
+                                            "options": {
+                                                "style": "decimal",
+                                                "useGrouping": false,
+                                                "maximumFractionDigits": 1
+                                            },
+                                            "emptyValCustomText": "0%"
+                                        }
+                                    },
+                                    {
+                                        "columnMatch": "Saturation Timeline",
                                         "formatter": 5,
                                         "formatOptions": {
                                             "showIcon": true
@@ -1560,7 +1616,7 @@
                                 {
                                     "type": 1,
                                     "content": {
-                                        "json": "#### <a name=\"no-logs-are-currently-available-for-the-selected-key-vaults-click-below-to-enable-logs-for-monitoring\"></a>Actualmente no hay ningún registro disponible para los almacenes de claves seleccionados. Haga clic a continuación para habilitar los registros para la supervisión."
+                                        "json": "#### <a name=\"no-logs-are-currently-available-for-the-selected-key-vaults-resources-click-below-to-enable-logs-for-monitoring\"></a>Actualmente no hay ningún registro disponible para los recursos de Key Vault seleccionados. Haga clic a continuación para habilitar los registros para la supervisión.\n\n#### <a name=\"if-you-have-too-many-subscriptions-or-key-vault-resources-selected-then-you-may-need-to-reduce-the-number-of-subscriptions-or-key-vault-esources-selected-in-order-to-view-your-data\"></a>Si tiene demasiadas suscripciones o recursos de Key Vault seleccionados, puede que necesite reducir su número para poder ver los datos."
                                     },
                                     "conditionalVisibility": {
                                         "parameterName": "Enabled",
