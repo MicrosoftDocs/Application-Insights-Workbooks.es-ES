@@ -1,11 +1,17 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Conclusión sobre Key Vault",
+    "name": "Introducción a Key Vault",
     "author": "Microsoft",
     "galleries": [
         {
             "type": "keyvaults-insights",
             "resourceType": "Azure Monitor",
+            "order": 100
+        },
+        {
+            "type": "workbook",
+            "resourceType": "Azure Monitor",
+            "categoryKey": "azureMonitorInsights",
             "order": 100
         }
     ]
