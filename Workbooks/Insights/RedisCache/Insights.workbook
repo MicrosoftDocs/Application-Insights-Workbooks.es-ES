@@ -15,7 +15,7 @@
                         "name": "Subscription",
                         "label": "Suscripciones",
                         "type": 6,
-                        "description": "Todas las suscripciones con Redis Cache",
+                        "description": "Todas las suscripciones con Azure Cache for Redis",
                         "isRequired": true,
                         "multiSelect": true,
                         "quote": "'",
@@ -35,7 +35,7 @@
                         "id": "f60ea0a0-3703-44ca-a59b-df0246423f41",
                         "version": "KqlParameterItem/1.0",
                         "name": "Resources",
-                        "label": "Cachés de Redis Cache",
+                        "label": "Azure Cache for Redis",
                         "type": 5,
                         "isRequired": true,
                         "multiSelect": true,
@@ -119,16 +119,16 @@
                         "name": "ResourceName",
                         "type": 1,
                         "description": "Se usa para la plantilla \"No Subscriptions\" del libro",
-                        "value": "Redis Cache",
+                        "value": "Azure Cache for Redis",
                         "isHiddenWhenLocked": true,
                         "criteriaData": [
                             {
-                                "condition": "else result = 'Redis Cache'",
+                                "condition": "else result = 'Azure Cache for Redis'",
                                 "criteriaContext": {
                                     "operator": "Default",
                                     "rightValType": "param",
                                     "resultValType": "static",
-                                    "resultVal": "Redis Cache"
+                                    "resultVal": "Azure Cache for Redis"
                                 }
                             }
                         ]
@@ -179,7 +179,7 @@
                     {
                         "type": 1,
                         "content": {
-                            "json": "{Message}\n_Azure Redis Cache_\n<br />\n<br />"
+                            "json": "{Message}\n_Azure Cache for Redis_\n<br />\n<br />"
                         },
                         "name": "text - 5",
                         "styleSettings": {
@@ -493,7 +493,8 @@
                                 },
                                 "labelSettings": [
                                     {
-                                        "columnId": "Subscription"
+                                        "columnId": "Subscription",
+                                        "label": "Subscription"
                                     },
                                     {
                                         "columnId": "Name"
@@ -749,7 +750,8 @@
                                 ],
                                 "labelSettings": [
                                     {
-                                        "columnId": "Subscription"
+                                        "columnId": "Subscription",
+                                        "label": "Subscription"
                                     },
                                     {
                                         "columnId": "Name"
@@ -983,7 +985,8 @@
                                 ],
                                 "labelSettings": [
                                     {
-                                        "columnId": "Subscription"
+                                        "columnId": "Subscription",
+                                        "label": "Subscription"
                                     },
                                     {
                                         "columnId": "Name"
@@ -1148,7 +1151,8 @@
                                 },
                                 "labelSettings": [
                                     {
-                                        "columnId": "Subscription"
+                                        "columnId": "Subscription",
+                                        "label": "Subscription"
                                     },
                                     {
                                         "columnId": "Name"
@@ -1181,7 +1185,7 @@
                 "comparison": "isNotEqualTo",
                 "value": ""
             },
-            "name": "Redis Cache Resources"
+            "name": "Azure Cache for Redis Resources"
         }
     ],
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"

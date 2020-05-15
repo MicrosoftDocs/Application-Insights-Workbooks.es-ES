@@ -1,11 +1,17 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Información general",
+    "name": "Introducción a las cuentas de almacenamiento",
     "author": "Microsoft",
     "galleries": [
         {
             "type": "storage-insights",
             "resourceType": "Azure Monitor",
+            "order": 100
+        },
+        {
+            "type": "workbook",
+            "resourceType": "Azure Monitor",
+            "categoryKey": "azureMonitorInsights",
             "order": 100
         }
     ]
