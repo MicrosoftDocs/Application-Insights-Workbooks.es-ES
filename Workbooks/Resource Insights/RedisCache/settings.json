@@ -1,8 +1,7 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Información sobre los recursos de Redis Cache",
+    "name": "Introducción a los recursos de Azure Cache for Redis",
     "author": "Microsoft",
-    "isPreview": true,
     "galleries": [
         {
             "type": "workbook",
