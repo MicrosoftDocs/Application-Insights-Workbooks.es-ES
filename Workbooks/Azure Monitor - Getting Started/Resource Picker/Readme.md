@@ -6,7 +6,7 @@ La plantilla `Resource Picker` le permite empezar a usar la suscripción, el gru
 
 ## <a name="setting-up-the-resource-type-to-pick"></a>Configuración del tipo de recurso que desea seleccionar
 
-1. Pulse `Edit` en la barra de herramientas del libro.
+1. Use `Edit` en la barra de herramientas del libro.
 2. Ahora podrá ver una lista desplegable `Resource type` antes de `Subscriptions`:
 
     ![Imagen](Parameter.png)
@@ -17,7 +17,7 @@ La plantilla `Resource Picker` le permite empezar a usar la suscripción, el gru
 
 ## <a name="selecting-more-or-less-than-10-resources-by-default"></a>Selección de aproximadamente 10 recursos de forma predeterminada
 
-1. Pulse `Edit` en la barra de herramientas del libro.
+1. Use `Edit` en la barra de herramientas del libro.
 2. Haga clic en el botón `Edit` situado en la parte inferior derecha del control de parámetros.
 3. En la cuadrícula de parámetros, seleccione la fila de `Resources`
 4. Haga clic en el icono de `Edit` (icono de lápiz) en la barra de herramientas del control.
