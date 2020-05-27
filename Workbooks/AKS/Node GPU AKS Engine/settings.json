@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "GPU de nodo",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "container-insights",
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "order": 500
+        }
+    ]
+}
