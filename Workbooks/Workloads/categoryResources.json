@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Supervisión de cargas de trabajo",
+        "description": "",
+        "order": 150
+    }
+}
