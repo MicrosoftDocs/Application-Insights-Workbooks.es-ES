@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Incorporación de MS SQL Insights",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workload-insights",
+            "resourceType": "Azure Monitor",
+            "order": 400
+        }
+    ]
+}

@@ -1,0 +1,282 @@
+{
+    "version": "Notebook/1.0",
+    "items": [
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "parameters": [
+                    {
+                        "id": "0d87fd70-3f59-4824-b3ac-9867394090a5",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "VirtualMachine",
+                        "type": 5,
+                        "isRequired": true,
+                        "value": "value::1",
+                        "typeSettings": {
+                            "resourceTypeFilter": {
+                                "microsoft.compute/virtualmachines": true
+                            },
+                            "additionalResourceOptions": [
+                                "value::1"
+                            ]
+                        },
+                        "resourceType": "microsoft.insights/components"
+                    },
+                    {
+                        "id": "5f0382e3-69e0-40be-ad21-cca781fe81e1",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Workspace",
+                        "type": 5,
+                        "isRequired": true,
+                        "query": "Resources\r\n| where type =~ 'microsoft.compute/virtualmachines/extensions' and name =~ 'OmsAgentForLinux' and id startswith '{VirtualMachine}'\r\n| project WorkspaceId = tostring(properties.settings.workspaceId)\r\n| join kind = inner (Resources\r\n| where type =~ 'microsoft.operationalinsights/workspaces'\r\n| project id, WorkspaceId = tostring(properties.customerId)) on WorkspaceId\r\n| project value = id, label = id, selected = true",
+                        "crossComponentResources": [
+                            "value::all"
+                        ],
+                        "typeSettings": {
+                            "additionalResourceOptions": [],
+                            "showDefault": false
+                        },
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    },
+                    {
+                        "id": "b189ae66-10a0-417b-8e1e-dc3b9b4ae028",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "WorkspaceLocation",
+                        "type": 8,
+                        "isRequired": true,
+                        "query": "Resources\r\n| where id =~ '{Workspace}'\r\n| project value = location, label = location, selected = true\r\n",
+                        "crossComponentResources": [
+                            "value::all"
+                        ],
+                        "typeSettings": {
+                            "additionalResourceOptions": [],
+                            "showDefault": false
+                        },
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    },
+                    {
+                        "id": "7b1d0a3f-4341-47a5-9f2c-990d5b1faaab",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "VmName",
+                        "type": 1,
+                        "isRequired": true,
+                        "query": "Resources\r\n| where id =~ '{VirtualMachine}'\r\n| project name",
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    },
+                    {
+                        "id": "504c4e1f-42e8-4628-adfe-17fa76991377",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "ResourceGroup",
+                        "type": 1,
+                        "isRequired": true,
+                        "query": "Resources\r\n| where id =~ '{VirtualMachine}'\r\n| project rg = strcat('/subscriptions/', subscriptionId, '/resourceGroups/', resourceGroup)",
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    }
+                ],
+                "style": "above",
+                "queryType": 1,
+                "resourceType": "microsoft.resourcegraph/resources"
+            },
+            "conditionalVisibility": {
+                "parameterName": "1",
+                "comparison": "isEqualTo",
+                "value": "2"
+            },
+            "name": "parameters - 0"
+        },
+        {
+            "type": 12,
+            "content": {
+                "version": "NotebookGroup/1.0",
+                "groupType": "editable",
+                "items": [
+                    {
+                        "type": 1,
+                        "content": {
+                            "json": "## <a name=\"azure-monitor-for-redis\"></a>Azure Monitor para Redis"
+                        },
+                        "name": "text - 2"
+                    },
+                    {
+                        "type": 1,
+                        "content": {
+                            "json": "![Logotipo de Redis](https://raw.githubusercontent.com/acearun/managedsolutions/master/Templates/Logos/redis-logo.jpg)\n"
+                        },
+                        "name": "text - 2 - Copy",
+                        "styleSettings": {
+                            "margin": "20px 0 0 20px"
+                        }
+                    },
+                    {
+                        "type": 11,
+                        "content": {
+                            "version": "LinkItem/1.0",
+                            "style": "tabs",
+                            "links": [
+                                {
+                                    "cellValue": "selectedTab",
+                                    "linkTarget": "parameter",
+                                    "linkLabel": "Información general",
+                                    "subTarget": "Overview",
+                                    "style": "link"
+                                },
+                                {
+                                    "cellValue": "selectedTab",
+                                    "linkTarget": "parameter",
+                                    "linkLabel": "Prerrequisitos",
+                                    "subTarget": "Prerequisites",
+                                    "style": "link"
+                                },
+                                {
+                                    "cellValue": "selectedTab",
+                                    "linkTarget": "parameter",
+                                    "linkLabel": "Configuración de la supervisión",
+                                    "subTarget": "Configure",
+                                    "style": "link"
+                                }
+                            ]
+                        },
+                        "name": "links - 5",
+                        "styleSettings": {
+                            "margin": "15px 0 0 0"
+                        }
+                    },
+                    {
+                        "type": 12,
+                        "content": {
+                            "version": "NotebookGroup/1.0",
+                            "groupType": "editable",
+                            "items": [
+                                {
+                                    "type": 1,
+                                    "content": {
+                                        "json": "NGINX Plus es un equilibrador de carga de software, un servidor web y una caché de contenido que se basa en NGINX de código abierto. NGINX Plus tiene características de nivel empresarial exclusivas que superan lo que está disponible en la oferta de código abierto, como la persistencia de la sesión, la configuración mediante API y las comprobaciones de estado activas. Use NGINX Plus en lugar de su equilibrador de carga de hardware y consiga una mayor libertad para innovar sin las limitaciones de la infraestructura.\n\nCon Azure Monitor para NGINX Plus, puede administrar el clúster de NGINX a la vez que obtiene también visibilidad sobre el sistema operativo, Windows o Linux. Simplifique la configuración con plantillas, alertas automatizadas y acciones personalizables. Dedique menos tiempo a resolver problemas graves mediante el diagnóstico preciso de problemas de rendimiento históricos y en tiempo real del equilibrador de carga, y céntrese en otras medidas más proactivas como el ajuste del escalado horizontal.\n<br />\n<br />\n[Ver el vídeo]()<br />\n[Más información]()<br />\n[Documentación]()<br />"
+                                    },
+                                    "name": "text - 0"
+                                }
+                            ]
+                        },
+                        "conditionalVisibility": {
+                            "parameterName": "selectedTab",
+                            "comparison": "isEqualTo",
+                            "value": "Overview"
+                        },
+                        "name": "Overview group"
+                    },
+                    {
+                        "type": 12,
+                        "content": {
+                            "version": "NotebookGroup/1.0",
+                            "groupType": "editable",
+                            "items": [
+                                {
+                                    "type": 1,
+                                    "content": {
+                                        "json": "Azure Monitor necesita una cadena de conexión para conectarse al servidor de Redis local."
+                                    },
+                                    "name": "text - 3"
+                                },
+                                {
+                                    "type": 9,
+                                    "content": {
+                                        "version": "KqlParameterItem/1.0",
+                                        "parameters": [
+                                            {
+                                                "id": "0fcd1a59-1ca7-4e29-a0c7-6eb5b032ef6a",
+                                                "version": "KqlParameterItem/1.0",
+                                                "name": "RedisServer",
+                                                "label": "Dirección URL del servidor de Redis",
+                                                "type": 1,
+                                                "resourceType": "microsoft.insights/components",
+                                                "value": "tcp://:password@127.0.0.1:6379"
+                                            }
+                                        ],
+                                        "style": "above",
+                                        "queryType": 0,
+                                        "resourceType": "microsoft.compute/virtualmachines"
+                                    },
+                                    "name": "parameters - 1"
+                                },
+                                {
+                                    "type": 11,
+                                    "content": {
+                                        "version": "LinkItem/1.0",
+                                        "style": "paragraph",
+                                        "links": [
+                                            {
+                                                "cellValue": "f",
+                                                "linkTarget": "ArmTemplate",
+                                                "linkLabel": "Habilitar supervisión de Redis",
+                                                "style": "primary",
+                                                "linkIsContextBlade": true,
+                                                "templateRunContext": {
+                                                    "componentIdSource": "parameter",
+                                                    "componentId": "ResourceGroup",
+                                                    "templateUriSource": "static",
+                                                    "templateUri": "https://raw.githubusercontent.com/acearun/managedsolutions/master/Templates/Redis/azuredeploy.json",
+                                                    "templateParameters": [
+                                                        {
+                                                            "name": "vmName",
+                                                            "source": "parameter",
+                                                            "value": "VmName"
+                                                        },
+                                                        {
+                                                            "name": "omsWorkspaceId",
+                                                            "source": "parameter",
+                                                            "value": "Workspace"
+                                                        },
+                                                        {
+                                                            "name": "workspaceRegion",
+                                                            "source": "parameter",
+                                                            "value": "WorkspaceLocation"
+                                                        },
+                                                        {
+                                                            "name": "RedisServer",
+                                                            "source": "parameter",
+                                                            "value": "RedisServer"
+                                                        }
+                                                    ],
+                                                    "titleSource": "static",
+                                                    "title": "Habilitar Azure Monitor para NGINX",
+                                                    "descriptionSource": "static",
+                                                    "description": "![Logotipo de Redis](https://raw.githubusercontent.com/acearun/managedsolutions/master/Templates/Logos/redis-logo.jpg)\n\n<br/>\n<br/>\nEstamos preparados para habilitar Azure Monitor para Redis en su máquina virtual. Elija **Habilitar supervisión** para iniciar la supervisión con la configuración recomendada.\n",
+                                                    "runLabelSource": "static",
+                                                    "runLabel": "Enable monitoring"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "name": "links - 4",
+                                    "styleSettings": {
+                                        "margin": "20px 0 0 0"
+                                    }
+                                },
+                                {
+                                    "type": 1,
+                                    "content": {
+                                        "json": "Especifique el servidor con una dirección URL que coincida con este formato: `[protocol://][:password]@address[:port]`"
+                                    },
+                                    "name": "text - 3"
+                                }
+                            ]
+                        },
+                        "conditionalVisibility": {
+                            "parameterName": "selectedTab",
+                            "comparison": "isEqualTo",
+                            "value": "Configure"
+                        },
+                        "name": "Configure group"
+                    }
+                ]
+            },
+            "customWidth": "60",
+            "name": "Overview group"
+        }
+    ],
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
