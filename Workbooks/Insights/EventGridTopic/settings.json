@@ -1,16 +1,18 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Introducción a las cuentas de almacenamiento",
+    "name": "Introducción sobre Event Hubs",
+    "isPreview": true,
     "author": "Microsoft",
     "galleries": [
         {
             "type": "workbook",
-            "resourceType": "microsoft.storage/storageaccounts",
+            "resourceType": "Azure Monitor",
+            "categoryKey": "azureMonitorInsights",
             "order": 100
         },
         {
-            "type": "storage-insights",
-            "resourceType": "microsoft.storage/storageaccounts",
+            "type": "eventgridtopics-insights",
+            "resourceType": "Azure Monitor",
             "order": 100
         }
     ]
