@@ -32,7 +32,7 @@
                         "name": "Workspace",
                         "type": 5,
                         "isRequired": true,
-                        "query": "Resources\r\n| where type =~ 'microsoft.compute/virtualmachines/extensions' and name in~ ('omsagentforlinux', 'OMSExtension') and id startswith '{VirtualMachine}'\r\n| project WorkspaceId = tostring(properties.settings.workspaceId)\r\n| join kind = inner (Resources\r\n| where type =~ 'microsoft.operationalinsights/workspaces'\r\n| project id, WorkspaceId = tostring(properties.customerId)) on WorkspaceId\r\n| project value = id, label = id, selected = true",
+                        "query": "Resources\r\n| where type =~ 'microsoft.compute/virtualmachines/extensions' and properties.type == 'OmsAgentForLinux' and properties.publisher == 'Microsoft.EnterpriseCloud.Monitoring' and id startswith '{VirtualMachine}'\r\n| project WorkspaceId = tostring(properties.settings.workspaceId)\r\n| join kind = inner (Resources\r\n| where type =~ 'microsoft.operationalinsights/workspaces'\r\n| project id, WorkspaceId = tostring(properties.customerId)) on WorkspaceId\r\n| project value = id, label = id, selected = true",
                         "crossComponentResources": [
                             "value::all"
                         ],
@@ -131,7 +131,7 @@
                                 {
                                     "cellValue": "selectedTab",
                                     "linkTarget": "parameter",
-                                    "linkLabel": "Prerrequisitos",
+                                    "linkLabel": "Requisitos previos",
                                     "subTarget": "Prerequisites",
                                     "style": "link"
                                 },
@@ -158,7 +158,7 @@
                                 {
                                     "type": 1,
                                     "content": {
-                                        "json": "Los entornos de SQL Server son cada vez más complejos a la vez que continúan siendo un componente crítico de la arquitectura de la aplicación. Es difícil mantenerse al día con este crecimiento continuo sin las herramientas de supervisión de SQL adecuadas. ¿Qué ocurriría si pudiera administrar de forma proactiva el entorno de SQL Server y diagnosticar problemas de rendimiento de la base de datos mediante la visualización del estado de todas las instancias de SQL Server en una sola pantalla, en todo momento, en cualquier lugar y en cualquier dispositivo? Ahora puede hacerlo con la herramienta de supervisión de SQL Server adecuada.\n\nCon Azure Monitor para SQL Server, puede administrar el entorno de SQL Server a la vez que obtiene visibilidad sobre el sistema operativo (Windows o Linux) y supervisa también su infraestructura de virtualización. Simplifique la configuración con plantillas, alertas automatizadas y acciones personalizables. Dedique menos tiempo a resolver problemas graves mediante el diagnóstico preciso de problemas de rendimiento históricos y en tiempo real de la base de datos, y céntrese en otras medidas más proactivas como el ajuste de las consultas.\n\n[Ver el vídeo]()<br />\n[Más información]()<br />\n[Documentación]()<br />"
+                                        "json": "Los entornos de SQL Server son cada vez más complejos a la vez que continúan siendo un componente crítico de la arquitectura de la aplicación. Es difícil mantenerse al día con este crecimiento continuo sin las herramientas de supervisión de SQL adecuadas. ¿Qué ocurriría si pudiera administrar de forma proactiva el entorno de SQL Server y diagnosticar problemas de rendimiento de la base de datos mediante la visualización del estado de todas las instancias de SQL Server en una sola pantalla, en todo momento, en cualquier lugar y en cualquier dispositivo? Ahora puede hacerlo con la herramienta de supervisión de SQL Server adecuada.\n\nCon Azure Monitor para SQL Server, puede administrar el entorno de SQL Server a la vez que obtiene visibilidad sobre el sistema operativo (Windows o Linux) y supervisa también su infraestructura de virtualización. Simplifique la configuración con plantillas, alertas automatizadas y acciones personalizables. Dedique menos tiempo a resolver problemas graves mediante el diagnóstico preciso de problemas de rendimiento históricos y en tiempo real de la base de datos, y céntrese en otras medidas más proactivas como el ajuste de las consultas.\n\n"
                                     },
                                     "name": "text - 0"
                                 }
@@ -218,11 +218,15 @@
                                                 "label": "Cadenas de conexión SQL",
                                                 "type": 1,
                                                 "isRequired": true,
-                                                "resourceType": "microsoft.insights/components",
-                                                "value": ""
+                                                "value": "",
+                                                "typeSettings": {
+                                                    "multiLineText": true,
+                                                    "editorLanguage": "text"
+                                                },
+                                                "resourceType": "microsoft.insights/components"
                                             }
                                         ],
-                                        "style": "above",
+                                        "style": "formVertical",
                                         "queryType": 0,
                                         "resourceType": "microsoft.insights/components"
                                     },
@@ -287,6 +291,10 @@
                                             }
                                         ]
                                     },
+                                    "conditionalVisibility": {
+                                        "parameterName": "SqlConnectionString",
+                                        "comparison": "isNotEqualTo"
+                                    },
                                     "name": "links - 4",
                                     "styleSettings": {
                                         "margin": "20px 0 0 0"
@@ -295,7 +303,7 @@
                                 {
                                     "type": 1,
                                     "content": {
-                                        "json": "<br />\n**Más información acerca de las cadenas de conexión**\n\nProporcione la cadena de conexión utilizada para conectarse al servidor de SQL Server en el formato siguiente:\n\n```\nServer=mysqlserver.database.windows.net;Port=1433;database=mydb;User Id=<user>;Password=<pw>;app name=telegraf;log=1; \n```\nO bien,\n```\nServer=127.0.0.1;Port=1433;database=mydb;User Id=<user>;Password=<pw>;app name=telegraf;log=1;\n```\n\n\nConsulte https://github.com/denisenkom/go-mssqldb para obtener parámetros de conexión detallados."
+                                        "json": "<br />\n**Más información acerca de las cadenas de conexión**\n\nProporcione una o varias cadenas de conexión como una colección de cadenas separadas por comas (entre comillas dobles):\n\n```\n\"Server=mysqlserver.database.windows.net;Port=1433;database=mydb;User Id=<user>;Password=<pw>;app name=telegraf;log=1;\",\n\"Server=myothersqlserver.database.windows.net;Port=1433;database=mydb3;User Id=<user>;Password=<pw>;app name=telegraf;log=1;\"\n```\nO bien,\n```\n\"Server=127.0.0.1;Port=1433;database=mydb;User Id=<user>;Password=<pw>;app name=telegraf;log=1;\"\n```\n\n\nConsulte https://github.com/denisenkom/go-mssqldb para obtener parámetros de conexión detallados."
                                     },
                                     "name": "text - 3"
                                 }

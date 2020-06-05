@@ -29,7 +29,7 @@
                         "name": "Workspace",
                         "type": 5,
                         "isRequired": true,
-                        "query": "Resources\r\n| where type =~ 'microsoft.compute/virtualmachines/extensions' and name =~ 'OmsAgentForLinux' and id startswith '{VirtualMachine}'\r\n| project WorkspaceId = tostring(properties.settings.workspaceId)\r\n| join kind = inner (Resources\r\n| where type =~ 'microsoft.operationalinsights/workspaces'\r\n| project id, WorkspaceId = tostring(properties.customerId)) on WorkspaceId\r\n| project value = id, label = id, selected = true",
+                        "query": "Resources\r\n| where type =~ 'microsoft.compute/virtualmachines/extensions' and properties.type == 'OmsAgentForLinux' and properties.publisher == 'Microsoft.EnterpriseCloud.Monitoring' and id startswith '{VirtualMachine}'\r\n| project WorkspaceId = tostring(properties.settings.workspaceId)\r\n| join kind = inner (Resources\r\n| where type =~ 'microsoft.operationalinsights/workspaces'\r\n| project id, WorkspaceId = tostring(properties.customerId)) on WorkspaceId\r\n| project value = id, label = id, selected = true",
                         "crossComponentResources": [
                             "value::all"
                         ],
@@ -60,10 +60,10 @@
                     {
                         "id": "7b1d0a3f-4341-47a5-9f2c-990d5b1faaab",
                         "version": "KqlParameterItem/1.0",
-                        "name": "VmName",
+                        "name": "VmRegion",
                         "type": 1,
                         "isRequired": true,
-                        "query": "Resources\r\n| where id =~ '{VirtualMachine}'\r\n| project name",
+                        "query": "Resources\r\n| where id =~ '{VirtualMachine}'\r\n| project location",
                         "queryType": 1,
                         "resourceType": "microsoft.resourcegraph/resources"
                     },
@@ -87,7 +87,7 @@
                 "comparison": "isEqualTo",
                 "value": "2"
             },
-            "name": "parameters - 0"
+            "name": "armparameters"
         },
         {
             "type": 12,
@@ -100,14 +100,14 @@
                         "content": {
                             "json": "## <a name=\"azure-monitor-for-redis\"></a>Azure Monitor para Redis"
                         },
-                        "name": "text - 2"
+                        "name": "infoText"
                     },
                     {
                         "type": 1,
                         "content": {
                             "json": "![Logotipo de Redis](https://raw.githubusercontent.com/acearun/managedsolutions/master/Templates/Logos/redis-logo.jpg)\n"
                         },
-                        "name": "text - 2 - Copy",
+                        "name": "redislogo",
                         "styleSettings": {
                             "margin": "20px 0 0 20px"
                         }
@@ -128,7 +128,7 @@
                                 {
                                     "cellValue": "selectedTab",
                                     "linkTarget": "parameter",
-                                    "linkLabel": "Prerrequisitos",
+                                    "linkLabel": "Requisitos previos",
                                     "subTarget": "Prerequisites",
                                     "style": "link"
                                 },
@@ -141,7 +141,7 @@
                                 }
                             ]
                         },
-                        "name": "links - 5",
+                        "name": "tabs",
                         "styleSettings": {
                             "margin": "15px 0 0 0"
                         }
@@ -155,9 +155,9 @@
                                 {
                                     "type": 1,
                                     "content": {
-                                        "json": "NGINX Plus es un equilibrador de carga de software, un servidor web y una caché de contenido que se basa en NGINX de código abierto. NGINX Plus tiene características de nivel empresarial exclusivas que superan lo que está disponible en la oferta de código abierto, como la persistencia de la sesión, la configuración mediante API y las comprobaciones de estado activas. Use NGINX Plus en lugar de su equilibrador de carga de hardware y consiga una mayor libertad para innovar sin las limitaciones de la infraestructura.\n\nCon Azure Monitor para NGINX Plus, puede administrar el clúster de NGINX a la vez que obtiene también visibilidad sobre el sistema operativo, Windows o Linux. Simplifique la configuración con plantillas, alertas automatizadas y acciones personalizables. Dedique menos tiempo a resolver problemas graves mediante el diagnóstico preciso de problemas de rendimiento históricos y en tiempo real del equilibrador de carga, y céntrese en otras medidas más proactivas como el ajuste del escalado horizontal.\n<br />\n<br />\n[Ver el vídeo]()<br />\n[Más información]()<br />\n[Documentación]()<br />"
+                                        "json": "Redis es un almacén de estructuras de datos en memoria de código abierto que ha adquirido popularidad rápidamente entre los desarrolladores. Redis es conocido por su rápido rendimiento y por un producto específico de un sistema que actúa como almacén y almacenamiento en caché. Redis funciona más habitualmente como una base de datos de pares clave-valor, pero también ha ganado notoriedad como una potente base de datos NoSQL.\n\nAzure Monitor para Redis combina toda la información importante que necesita para administrar los servidores de Redis. Azure Monitor para Redis resalta las métricas de rendimiento importantes para asegurarse de que el servidor de Redis se está ejecutando en niveles óptimos. Simplifique la configuración con plantillas, alertas automatizadas y acciones personalizables.\n\n"
                                     },
-                                    "name": "text - 0"
+                                    "name": "redisinformation"
                                 }
                             ]
                         },
@@ -177,9 +177,31 @@
                                 {
                                     "type": 1,
                                     "content": {
-                                        "json": "Azure Monitor necesita una cadena de conexión para conectarse al servidor de Redis local."
+                                        "json": "La configuración de una contraseña de Redis permite el acceso seguro a Redis. Esto se puede llevar a cabo mediante la edición del archivo de configuración de Redis: \n\n ```nano /etc/redis/redis.conf```\n\n Quite la marca de comentario a la siguiente directiva: \n\n ```requirepass <password>```\n\n Reinicie el servicio Redis:\n\n ```sudo systemctl restart redis.service```\n\n Esta misma contraseña es necesaria para configurar la supervisión en el paso siguiente."
                                     },
-                                    "name": "text - 3"
+                                    "name": "prerequisitesredis"
+                                }
+                            ]
+                        },
+                        "conditionalVisibility": {
+                            "parameterName": "selectedTab",
+                            "comparison": "isEqualTo",
+                            "value": "Prerequisites"
+                        },
+                        "name": "Prerequisites group"
+                    },
+                    {
+                        "type": 12,
+                        "content": {
+                            "version": "NotebookGroup/1.0",
+                            "groupType": "editable",
+                            "items": [
+                                {
+                                    "type": 1,
+                                    "content": {
+                                        "json": "Especifique el servidor con una dirección URL que coincida con este formato: \n\n```\n[protocol://][:password]@address[:port]\n```\nPor ejemplo,\n```\ntcp://:password@127.0.0.1:6379/\n```"
+                                    },
+                                    "name": "samplelocalredisurl"
                                 },
                                 {
                                     "type": 9,
@@ -189,18 +211,23 @@
                                             {
                                                 "id": "0fcd1a59-1ca7-4e29-a0c7-6eb5b032ef6a",
                                                 "version": "KqlParameterItem/1.0",
-                                                "name": "RedisServer",
-                                                "label": "Dirección URL del servidor de Redis",
+                                                "name": "TelegrafConfig",
+                                                "label": "Configuración de Telegraf para Redis",
                                                 "type": 1,
-                                                "resourceType": "microsoft.insights/components",
-                                                "value": "tcp://:password@127.0.0.1:6379"
+                                                "isRequired": true,
+                                                "value": "[inputs.redis]\r\n   servers = [\"tcp://:password@127.0.0.1:6379\"]\r\n\r\n[inputs.redis.tags]\r\n   insight = 'redis'\r\n\r\n[inputs.mem.tags]\r\n   insight = 'redis'\r\n\r\n[inputs.netstat.tags]\r\n   insight = 'redis'\r\n\r\n[inputs.net.tags]\r\n   insight = 'redis'",
+                                                "typeSettings": {
+                                                    "multiLineText": true,
+                                                    "editorLanguage": "text"
+                                                },
+                                                "resourceType": "microsoft.insights/components"
                                             }
                                         ],
-                                        "style": "above",
+                                        "style": "formVertical",
                                         "queryType": 0,
-                                        "resourceType": "microsoft.compute/virtualmachines"
+                                        "resourceType": "microsoft.insights/components"
                                     },
-                                    "name": "parameters - 1"
+                                    "name": "telegrafconfigfield"
                                 },
                                 {
                                     "type": 11,
@@ -218,31 +245,41 @@
                                                     "componentIdSource": "parameter",
                                                     "componentId": "ResourceGroup",
                                                     "templateUriSource": "static",
-                                                    "templateUri": "https://raw.githubusercontent.com/acearun/managedsolutions/master/Templates/Redis/azuredeploy.json",
+                                                    "templateUri": "https://azmonsolutions.blob.core.windows.net/workloadinsights/RedisWorkload.json",
                                                     "templateParameters": [
                                                         {
-                                                            "name": "vmName",
+                                                            "name": "vmId",
                                                             "source": "parameter",
-                                                            "value": "VmName"
+                                                            "value": "VirtualMachine",
+                                                            "kind": "value"
                                                         },
                                                         {
                                                             "name": "omsWorkspaceId",
                                                             "source": "parameter",
-                                                            "value": "Workspace"
+                                                            "value": "Workspace",
+                                                            "kind": "value"
                                                         },
                                                         {
                                                             "name": "workspaceRegion",
                                                             "source": "parameter",
-                                                            "value": "WorkspaceLocation"
+                                                            "value": "WorkspaceLocation",
+                                                            "kind": "value"
                                                         },
                                                         {
-                                                            "name": "RedisServer",
+                                                            "name": "serializedTelegrafConfig",
                                                             "source": "parameter",
-                                                            "value": "RedisServer"
+                                                            "value": "TelegrafConfig",
+                                                            "kind": "value"
+                                                        },
+                                                        {
+                                                            "name": "vmRegion",
+                                                            "source": "parameter",
+                                                            "value": "VmRegion",
+                                                            "kind": "value"
                                                         }
                                                     ],
                                                     "titleSource": "static",
-                                                    "title": "Habilitar Azure Monitor para NGINX",
+                                                    "title": "Habilitar Azure Monitor para Redis",
                                                     "descriptionSource": "static",
                                                     "description": "![Logotipo de Redis](https://raw.githubusercontent.com/acearun/managedsolutions/master/Templates/Logos/redis-logo.jpg)\n\n<br/>\n<br/>\nEstamos preparados para habilitar Azure Monitor para Redis en su máquina virtual. Elija **Habilitar supervisión** para iniciar la supervisión con la configuración recomendada.\n",
                                                     "runLabelSource": "static",
@@ -251,17 +288,40 @@
                                             }
                                         ]
                                     },
-                                    "name": "links - 4",
+                                    "conditionalVisibility": {
+                                        "parameterName": "TelegrafConfig",
+                                        "comparison": "isNotEqualTo"
+                                    },
+                                    "conditionalVisibilities": [
+                                        {
+                                            "parameterName": "TelegrafConfig",
+                                            "comparison": "isNotEqualTo"
+                                        },
+                                        {
+                                            "parameterName": "VirtualMachine",
+                                            "comparison": "isNotEqualTo"
+                                        },
+                                        {
+                                            "parameterName": "Workspace",
+                                            "comparison": "isNotEqualTo"
+                                        },
+                                        {
+                                            "parameterName": "WorkspaceLocation",
+                                            "comparison": "isNotEqualTo"
+                                        },
+                                        {
+                                            "parameterName": "VmRegion",
+                                            "comparison": "isNotEqualTo"
+                                        },
+                                        {
+                                            "parameterName": "ResourceGroup",
+                                            "comparison": "isNotEqualTo"
+                                        }
+                                    ],
+                                    "name": "enableredismonitoringlink",
                                     "styleSettings": {
                                         "margin": "20px 0 0 0"
                                     }
-                                },
-                                {
-                                    "type": 1,
-                                    "content": {
-                                        "json": "Especifique el servidor con una dirección URL que coincida con este formato: `[protocol://][:password]@address[:port]`"
-                                    },
-                                    "name": "text - 3"
                                 }
                             ]
                         },
@@ -274,7 +334,6 @@
                     }
                 ]
             },
-            "customWidth": "60",
             "name": "Overview group"
         }
     ],

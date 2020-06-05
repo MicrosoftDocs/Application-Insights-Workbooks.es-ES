@@ -1,0 +1,19 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Introducción a los dominios de Event Grid",
+    "isPreview": true,
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "Azure Monitor",
+            "categoryKey": "azureMonitorInsights",
+            "order": 100
+        },
+        {
+            "type": "eventgriddomain-insights",
+            "resourceType": "Azure Monitor",
+            "order": 100
+        }
+    ]
+}
