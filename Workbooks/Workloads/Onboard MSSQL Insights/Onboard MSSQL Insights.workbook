@@ -225,7 +225,7 @@
                                                 "label": "Cadenas de conexión de MSSQL",
                                                 "type": 1,
                                                 "isRequired": true,
-                                                "value": "[[inputs.sqlserver]]\r\n  servers = [\r\n   'Server=mysqlserver.database.windows.net;Port=1433;database=mydb;User Id=<user>;Password=<pw>;app name=telegraf;log=1;',\r\n  ]\r\n  query_version = 2\r\n  exclude_query = [ 'Schedulers' , 'SqlRequests']\r\n\r\n  [inputs.sqlserver.tags]\r\n    insight = \"mssql\"",
+                                                "value": "[[inputs.sqlserver]]\r\n  servers = [\r\n   'Server=sqlserver.database.windows.net;Port=1433;database=mydb;User Id=<user>;Password=<pw>;app name=telegraf;log=1;',\r\n  ]\r\n  query_version = 2\r\n  exclude_query = [ 'Schedulers' , 'SqlRequests']\r\n\r\n  [inputs.sqlserver.tags]\r\n    insight = \"mssql\"",
                                                 "typeSettings": {
                                                     "multiLineText": true,
                                                     "editorLanguage": "text"
@@ -238,7 +238,7 @@
                                                 "name": "ServerUpdated",
                                                 "type": 1,
                                                 "isRequired": true,
-                                                "query": "Resources\n| take 1\n| project x = iff(\"{TelegrafConfig:escapejson}\" !contains \"Server=mysqlserver.database.windows.net;Port=1433;database=mydb;User Id=<user>;Password=<pw>;app name=telegraf;log=1;\", \"updated\", \"not updated\")",
+                                                "query": "Resources\n| take 1\n| project x = iff(\"{TelegrafConfig:escapejson}\" !contains \"Server=sqlserver.database.windows.net;Port=1433;database=mydb;User Id=<user>;Password=<pw>;app name=telegraf;log=1;\", \"updated\", \"not updated\")",
                                                 "crossComponentResources": [
                                                     "value::all"
                                                 ],
@@ -367,7 +367,7 @@
                                 {
                                     "type": 1,
                                     "content": {
-                                        "json": "<br />\n**Más información acerca de las cadenas de conexión**\n\nProporcione una o varias cadenas de conexión como una colección de cadenas separadas por comas (entre comillas dobles):\n\n```\n\"Server=mysqlserver.database.windows.net;Port=1433;database=mydb;User Id=<user>;Password=<pw>;app name=telegraf;log=1;\",\n\"Server=myothersqlserver.database.windows.net;Port=1433;database=mydb3;User Id=<user>;Password=<pw>;app name=telegraf;log=1;\"\n```\nO bien,\n```\n\"Server=127.0.0.1;Port=1433;database=mydb;User Id=<user>;Password=<pw>;app name=telegraf;log=1;\"\n```\n\n\nConsulte https://github.com/denisenkom/go-mssqldb para obtener parámetros de conexión detallados."
+                                        "json": "<br />\n**Más información acerca de las cadenas de conexión**\n\nProporcione una o varias cadenas de conexión como una colección de cadenas separadas por comas (entre comillas dobles):\n\n```\n\"Server=sqlserver.database.windows.net;Port=1433;database=mydb;User Id=<user>;Password=<pw>;app name=telegraf;log=1;\",\n\"Server=myothersqlserver.database.windows.net;Port=1433;database=mydb3;User Id=<user>;Password=<pw>;app name=telegraf;log=1;\"\n```\nO bien,\n```\n\"Server=127.0.0.1;Port=1433;database=mydb;User Id=<user>;Password=<pw>;app name=telegraf;log=1;\"\n```\n\n\nConsulte https://github.com/denisenkom/go-mssqldb para obtener parámetros de conexión detallados."
                                     },
                                     "name": "mysqlsampleconnectionstring"
                                 }
