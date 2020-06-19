@@ -8,6 +8,11 @@
             "type": "workbook",
             "resourceType": "Azure Monitor",
             "order": 400
+        },
+        {
+            "type": "workload-insights",
+            "resourceType": "Azure Monitor",
+            "order": 400
         }
     ]
 }
