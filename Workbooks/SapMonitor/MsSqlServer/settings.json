@@ -1,0 +1,13 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Microsoft SQL Server",
+    "description": "Muestra las métricas de SQL Server",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "Microsoft.HanaOnAzure/sapMonitors",
+            "order": 200
+        }
+    ]
+}

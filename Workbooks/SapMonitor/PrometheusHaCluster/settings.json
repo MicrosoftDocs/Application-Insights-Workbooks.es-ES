@@ -1,0 +1,13 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Clúster de alta disponibilidad",
+    "description": "Muestra el estado del clúster de Pacemaker",
+    "author": "Microsoft",
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "Microsoft.HanaOnAzure/sapMonitors",
+            "order": 300
+        }
+    ]
+}
