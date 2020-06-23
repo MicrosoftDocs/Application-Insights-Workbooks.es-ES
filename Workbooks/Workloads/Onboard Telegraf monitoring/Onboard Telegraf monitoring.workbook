@@ -1,0 +1,298 @@
+{
+    "version": "Notebook/1.0",
+    "items": [
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "parameters": [
+                    {
+                        "id": "0d87fd70-3f59-4824-b3ac-9867394090a5",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "VirtualMachine",
+                        "type": 5,
+                        "isRequired": true,
+                        "value": "value::1",
+                        "typeSettings": {
+                            "resourceTypeFilter": {
+                                "microsoft.compute/virtualmachines": true
+                            },
+                            "additionalResourceOptions": [
+                                "value::1"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "5f0382e3-69e0-40be-ad21-cca781fe81e1",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Workspace",
+                        "type": 5,
+                        "isRequired": true,
+                        "query": "Resources\r\n| where type =~ 'microsoft.compute/virtualmachines/extensions' and properties.type == 'OmsAgentForLinux' and properties.publisher == 'Microsoft.EnterpriseCloud.Monitoring' and id startswith '{VirtualMachine}'\r\n| project WorkspaceId = tostring(properties.settings.workspaceId)\r\n| join kind = inner (Resources\r\n| where type =~ 'microsoft.operationalinsights/workspaces'\r\n| project id, WorkspaceId = tostring(properties.customerId)) on WorkspaceId\r\n| project value = id, label = id, selected = true",
+                        "crossComponentResources": [
+                            "value::all"
+                        ],
+                        "typeSettings": {
+                            "additionalResourceOptions": [],
+                            "showDefault": false
+                        },
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    },
+                    {
+                        "id": "b189ae66-10a0-417b-8e1e-dc3b9b4ae028",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "WorkspaceLocation",
+                        "type": 8,
+                        "isRequired": true,
+                        "query": "Resources\r\n| where id =~ '{Workspace}'\r\n| project value = location, label = location, selected = true\r\n",
+                        "crossComponentResources": [
+                            "value::all"
+                        ],
+                        "typeSettings": {
+                            "additionalResourceOptions": [],
+                            "showDefault": false
+                        },
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    },
+                    {
+                        "id": "7b1d0a3f-4341-47a5-9f2c-990d5b1faaab",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "VmRegion",
+                        "type": 1,
+                        "isRequired": true,
+                        "query": "Resources\r\n| where id =~ '{VirtualMachine}'\r\n| project location",
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    },
+                    {
+                        "id": "504c4e1f-42e8-4628-adfe-17fa76991377",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "ResourceGroup",
+                        "type": 1,
+                        "isRequired": true,
+                        "query": "Resources\r\n| where id =~ '{VirtualMachine}'\r\n| project rg = strcat('/subscriptions/', subscriptionId, '/resourceGroups/', resourceGroup)",
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    }
+                ],
+                "style": "above",
+                "queryType": 1,
+                "resourceType": "microsoft.resourcegraph/resources"
+            },
+            "conditionalVisibility": {
+                "parameterName": "1",
+                "comparison": "isEqualTo",
+                "value": "2"
+            },
+            "name": "armparameters"
+        },
+        {
+            "type": 12,
+            "content": {
+                "version": "NotebookGroup/1.0",
+                "groupType": "editable",
+                "items": [
+                    {
+                        "type": 1,
+                        "content": {
+                            "json": "## <a name=\"enable-telegraf-based-data-collection\"></a>Habilitar la recopilación de datos basada en Telegraf"
+                        },
+                        "name": "infoText"
+                    },
+                    {
+                        "type": 1,
+                        "content": {
+                            "json": "![Logotipo de Telegraf](https://raw.githubusercontent.com/acearun/managedsolutions/master/Templates/Logos/telegraf-logo.png)\n"
+                        },
+                        "name": "nginxlogo",
+                        "styleSettings": {
+                            "margin": "20px 0 0 20px"
+                        }
+                    },
+                    {
+                        "type": 11,
+                        "content": {
+                            "version": "LinkItem/1.0",
+                            "style": "tabs",
+                            "links": [
+                                {
+                                    "cellValue": "selectedTab",
+                                    "linkTarget": "parameter",
+                                    "linkLabel": "Información general",
+                                    "subTarget": "Overview",
+                                    "style": "link"
+                                },
+                                {
+                                    "cellValue": "selectedTab",
+                                    "linkTarget": "parameter",
+                                    "linkLabel": "Configuración de la supervisión",
+                                    "subTarget": "Configure",
+                                    "style": "link"
+                                }
+                            ]
+                        },
+                        "name": "tabs",
+                        "styleSettings": {
+                            "margin": "15px 0 0 0"
+                        }
+                    },
+                    {
+                        "type": 12,
+                        "content": {
+                            "version": "NotebookGroup/1.0",
+                            "groupType": "editable",
+                            "items": [
+                                {
+                                    "type": 1,
+                                    "content": {
+                                        "json": "Telegraf es un agente de servidor controlado por complementos para recopilar y enviar métricas y eventos de bases de datos, sistemas y sensores de IoT.\n\nAzure Monitor le permite configurar e implementar fácilmente la recopilación de datos de Telegraf en máquinas virtuales de Azure. Solo tiene que proporcionar la configuración de Telegraf en la pestaña `Enable monitoring` y estará preparado. Todos los datos irán a la tabla `InsighsMetrics` del área de trabajo de Log Analytics configurada con la máquina virtual.\n\n"
+                                    },
+                                    "name": "NginxInformation"
+                                }
+                            ]
+                        },
+                        "conditionalVisibility": {
+                            "parameterName": "selectedTab",
+                            "comparison": "isEqualTo",
+                            "value": "Overview"
+                        },
+                        "name": "Overview group"
+                    },
+                    {
+                        "type": 12,
+                        "content": {
+                            "version": "NotebookGroup/1.0",
+                            "groupType": "editable",
+                            "items": [
+                                {
+                                    "type": 9,
+                                    "content": {
+                                        "version": "KqlParameterItem/1.0",
+                                        "parameters": [
+                                            {
+                                                "id": "0fcd1a59-1ca7-4e29-a0c7-6eb5b032ef6a",
+                                                "version": "KqlParameterItem/1.0",
+                                                "name": "TelegrafConfig",
+                                                "label": "Configuración de Telegraf",
+                                                "type": 1,
+                                                "isRequired": true,
+                                                "value": "[inputs.cpu]\r\n   percpu = true\r\n   totalcpu = true\r\n   collect_cpu_time = false\r\n   report_active = false\r\n\r\n[[inputs.mem]]\r\n\r\n[[inputs.netstat]]",
+                                                "typeSettings": {
+                                                    "multiLineText": true,
+                                                    "editorLanguage": "text"
+                                                }
+                                            }
+                                        ],
+                                        "style": "formVertical",
+                                        "queryType": 0
+                                    },
+                                    "name": "telegrafconfigfield"
+                                },
+                                {
+                                    "type": 11,
+                                    "content": {
+                                        "version": "LinkItem/1.0",
+                                        "style": "paragraph",
+                                        "links": [
+                                            {
+                                                "cellValue": "f",
+                                                "linkTarget": "ArmTemplate",
+                                                "linkLabel": "Habilitar la supervisión de Telegraf",
+                                                "style": "primary",
+                                                "linkIsContextBlade": true,
+                                                "templateRunContext": {
+                                                    "componentIdSource": "parameter",
+                                                    "componentId": "ResourceGroup",
+                                                    "templateUriSource": "static",
+                                                    "templateUri": "https://azmonsolutions.blob.core.windows.net/workloadinsights/TelegrafWorkload.json",
+                                                    "templateParameters": [
+                                                        {
+                                                            "name": "vmId",
+                                                            "source": "parameter",
+                                                            "value": "VirtualMachine",
+                                                            "kind": "value"
+                                                        },
+                                                        {
+                                                            "name": "omsWorkspaceId",
+                                                            "source": "parameter",
+                                                            "value": "Workspace",
+                                                            "kind": "value"
+                                                        },
+                                                        {
+                                                            "name": "workspaceRegion",
+                                                            "source": "parameter",
+                                                            "value": "WorkspaceLocation",
+                                                            "kind": "value"
+                                                        },
+                                                        {
+                                                            "name": "serializedTelegrafConfig",
+                                                            "source": "parameter",
+                                                            "value": "TelegrafConfig",
+                                                            "kind": "value"
+                                                        },
+                                                        {
+                                                            "name": "vmRegion",
+                                                            "source": "parameter",
+                                                            "value": "VmRegion",
+                                                            "kind": "value"
+                                                        }
+                                                    ],
+                                                    "titleSource": "static",
+                                                    "title": "Habilitar la recopilación de datos de Telegraf",
+                                                    "descriptionSource": "static",
+                                                    "description": "![Logotipo de Telegraf](https://raw.githubusercontent.com/acearun/managedsolutions/master/Templates/Logos/telegraf-logo.png)\n\n<br/>\n<br/>\nEstamos listos para implementar la recopilación de datos de Telegraf en la máquina virtual. Elija **Habilitar supervisión** para iniciar la supervisión.\n",
+                                                    "runLabelSource": "static",
+                                                    "runLabel": "Enable monitoring"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "conditionalVisibilities": [
+                                        {
+                                            "parameterName": "TelegrafConfig",
+                                            "comparison": "isNotEqualTo"
+                                        },
+                                        {
+                                            "parameterName": "VirtualMachine",
+                                            "comparison": "isNotEqualTo"
+                                        },
+                                        {
+                                            "parameterName": "Workspace",
+                                            "comparison": "isNotEqualTo"
+                                        },
+                                        {
+                                            "parameterName": "WorkspaceLocation",
+                                            "comparison": "isNotEqualTo"
+                                        },
+                                        {
+                                            "parameterName": "VmRegion",
+                                            "comparison": "isNotEqualTo"
+                                        },
+                                        {
+                                            "parameterName": "ResourceGroup",
+                                            "comparison": "isNotEqualTo"
+                                        }
+                                    ],
+                                    "name": "enablenginxmonitoringlink",
+                                    "styleSettings": {
+                                        "margin": "20px 0 0 0"
+                                    }
+                                }
+                            ]
+                        },
+                        "conditionalVisibility": {
+                            "parameterName": "selectedTab",
+                            "comparison": "isEqualTo",
+                            "value": "Configure"
+                        },
+                        "name": "Configure group"
+                    }
+                ]
+            },
+            "name": "Overview group"
+        }
+    ],
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
