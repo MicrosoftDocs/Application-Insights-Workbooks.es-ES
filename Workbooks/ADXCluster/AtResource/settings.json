@@ -1,18 +1,16 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Introducción a Azure Data Explorer",
-    "isPreview": true,
+    "name": "Introducción al recurso de clúster de Azure Data Explorer",
     "author": "Microsoft",
+    "isPreview": true,
     "galleries": [
         {
             "type": "workbook",
-            "resourceType": "Azure Monitor",
-            "categoryKey": "azureMonitorInsights",
-            "order": 100
+            "resourceType": "microsoft.kusto/clusters"
         },
         {
             "type": "adxcluster-insights",
-            "resourceType": "Azure Monitor",
+            "resourceType": "microsoft.kusto/clusters",
             "order": 100
         }
     ]
