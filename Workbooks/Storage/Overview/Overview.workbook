@@ -467,7 +467,7 @@
                                 "labelSettings": [
                                     {
                                         "columnId": "Subscription",
-                                        "label": "Subscription"
+                                        "label": "Suscripción"
                                     },
                                     {
                                         "columnId": "Name",
@@ -628,7 +628,7 @@
                                             }
                                         },
                                         "numberFormat": {
-                                            "unit": 36,
+                                            "unit": 2,
                                             "options": {
                                                 "style": "decimal",
                                                 "maximumFractionDigits": 1
@@ -692,7 +692,7 @@
                                 "labelSettings": [
                                     {
                                         "columnId": "Subscription",
-                                        "label": "Subscription"
+                                        "label": "Suscripción"
                                     },
                                     {
                                         "columnId": "Name"
