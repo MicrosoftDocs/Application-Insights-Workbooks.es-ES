@@ -3528,6 +3528,17 @@
                             "groupType": "editable",
                             "items": [
                                 {
+                                    "type": 1,
+                                    "content": {
+                                        "json": "Azure Monitor admite la recopilación de métricas de rendimiento, uso y estado de las bases de datos SQL con una máquina virtual remota. Para iniciar la supervisión, seleccione las bases de datos que desea supervisar y seleccione el botón `Enable monitoring` debajo de la tabla."
+                                    },
+                                    "conditionalVisibility": {
+                                        "parameterName": "SqlDatabase",
+                                        "comparison": "isEqualTo"
+                                    },
+                                    "name": "Begin monitoring message"
+                                },
+                                {
                                     "type": 3,
                                     "content": {
                                         "version": "KqlItem/1.0",
@@ -3634,17 +3645,6 @@
                                         "comparison": "isNotEqualTo"
                                     },
                                     "name": "Enable monitoring button"
-                                },
-                                {
-                                    "type": 1,
-                                    "content": {
-                                        "json": "💡 Seleccione las bases de datos SQL que se van a supervisar"
-                                    },
-                                    "conditionalVisibility": {
-                                        "parameterName": "SqlDatabase",
-                                        "comparison": "isEqualTo"
-                                    },
-                                    "name": "Begin monitoring message"
                                 }
                             ]
                         },
