@@ -32,7 +32,7 @@
                         "id": "138881c1-d041-4acd-acc9-e7a7af02d2ef",
                         "version": "KqlParameterItem/1.0",
                         "name": "CosmosDB",
-                        "label": "Azure Cosmos DB",
+                        "label": "Azure Cosmos DB",
                         "type": 5,
                         "isRequired": true,
                         "multiSelect": true,
@@ -568,7 +568,7 @@
                                 "labelSettings": [
                                     {
                                         "columnId": "Subscription",
-                                        "label": "Subscription"
+                                        "label": "Suscripción"
                                     },
                                     {
                                         "columnId": "Segment",
@@ -792,7 +792,7 @@
                                 "labelSettings": [
                                     {
                                         "columnId": "Subscription",
-                                        "label": "Subscription"
+                                        "label": "Suscripción"
                                     },
                                     {
                                         "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
@@ -1032,7 +1032,7 @@
                                 "labelSettings": [
                                     {
                                         "columnId": "Subscription",
-                                        "label": "Subscription"
+                                        "label": "Suscripción"
                                     },
                                     {
                                         "columnId": "Name"
@@ -1225,7 +1225,7 @@
                                 "labelSettings": [
                                     {
                                         "columnId": "Subscription",
-                                        "label": "Subscription"
+                                        "label": "Suscripción"
                                     },
                                     {
                                         "columnId": "microsoft.documentdb/databaseaccounts-Requests-TotalRequests",
@@ -1263,5 +1263,6 @@
             "name": "Azure Cosmos DB accounts"
         }
     ],
+    "workbookPin": "cosmosDB account metrics",
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
 }
