@@ -148,7 +148,7 @@
                                 {
                                     "type": 1,
                                     "content": {
-                                        "json": "#### <a name=\"create-sql-user-accounts\"></a>Creación de cuentas de usuario de SQL\nTiene que crear un inicio de sesión en cada instancia que desee supervisar con el siguiente script:\n\n```\nCREATE USER [telegraf] WITH PASSWORD = N'mystrongpassword';\nGO\nGRANT VIEW DATABASE STATE TO [telegraf];\nGO\n```\n\n#### <a name=\"enable-firewall-rules\"></a>Habilitar reglas de firewall\nHabilite las reglas de firewall para permitir que la máquina virtual de supervisión remota acceda a la instancia de SQL Server."
+                                        "json": "#### <a name=\"create-sql-user-accounts\"></a>Creación de cuentas de usuario de SQL\nTiene que crear un inicio de sesión en cada instancia que desee supervisar con el siguiente script:\n\n```\nCREATE USER [telegraf] WITH PASSWORD = N'mystrongpassword';\nGO\nGRANT VIEW DATABASE STATE TO [telegraf];\nGO\n```\n\n#### <a name=\"firewall-rules-for-sql-database\"></a>Reglas de firewall para bases de datos SQL\nActualice las reglas de firewall para permitir que la máquina virtual de supervisión remota acceda a la instancia de SQL Server.\n\n#### <a name=\"outbound-network-settings-for-the-remote-virtual-machine\"></a>Configuración de red de salida para la máquina virtual remota\nCompruebe que la máquina virtual tenga especificado el puerto de salida en la configuración de SQL Telegraf en el paso siguiente."
                                     },
                                     "name": "prerequisitessqlazureremote"
                                 }
