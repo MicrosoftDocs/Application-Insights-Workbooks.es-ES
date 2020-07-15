@@ -776,7 +776,7 @@
                             "query": "InsightsMetrics\r\n| where (Computer in ({OnboardedComputers}) or '*' in ({OnboardedComputers})) and Namespace == \"mysql\"\r\n| where Name == \"com_show_slave_status\"\r\n| order by Computer asc, Name asc, TimeGenerated asc\r\n| extend Value = iff(Computer == prev(Computer) and Name == prev(Name) and Val > prev(Val), Val - prev(Val), real(null))\r\n| where isnull(Value) == false\r\n| make-series Connections = sum(Value) default = 0 on TimeGenerated from {TimeRange:start} to {TimeRange:end} step {TimeRange:grain} by Computer\r\n",
                             "size": 0,
                             "showAnalytics": true,
-                            "title": "Estado esclavo",
+                            "title": "Estado subordinado",
                             "noDataMessage": "No slave data available",
                             "timeContext": {
                                 "durationMs": 0
