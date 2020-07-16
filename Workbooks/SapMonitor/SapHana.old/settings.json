@@ -7,7 +7,7 @@
         {
             "type": "workbook",
             "resourceType": "Microsoft.HanaOnAzure/sapMonitors",
-            "order": 50
+            "order": 900
         }
     ]
 }
