@@ -7,7 +7,7 @@
         {
             "type": "vm-insights",
             "resourceType": "Azure Monitor",
-            "categoryKey": "vmInsightsVirtualMachinesPerf",
+            "categoryKey": "vmInsightsVirtualMachines",
             "order": 200
         }
     ]

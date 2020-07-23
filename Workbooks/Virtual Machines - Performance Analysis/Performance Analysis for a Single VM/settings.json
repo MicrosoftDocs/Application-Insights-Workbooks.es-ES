@@ -6,13 +6,13 @@
         {
             "type": "performance-vm",
             "resourceType": "microsoft.compute/virtualmachines",
-            "categoryKey": "vmInsightsVirtualMachinesInsightsMetrics",
+            "categoryKey": "vmInsightsVirtualMachines",
             "order": 200
         },
         {
             "type": "insights",
             "resourceType": "microsoft.compute/virtualmachines",
-            "categoryKey": "vmInsightsVirtualMachinesInsightsMetrics",
+            "categoryKey": "vmInsightsVirtualMachines",
             "order": 200
         }
     ]

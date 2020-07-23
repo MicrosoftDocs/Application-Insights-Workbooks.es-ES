@@ -7,7 +7,7 @@
         {
             "type": "insights",
             "resourceType": "microsoft.compute/virtualmachinescalesets",
-            "categoryKey": "vmInsightsVirtualMachinesInsightsMetrics",
+            "categoryKey": "vmInsightsVirtualMachines",
             "order": 200
         }
     ]
