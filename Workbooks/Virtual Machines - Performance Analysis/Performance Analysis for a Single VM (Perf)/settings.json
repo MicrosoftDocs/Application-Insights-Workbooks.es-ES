@@ -1,19 +1,19 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Rendimiento",
+    "name": "Contadores de rendimiento",
     "author": "Microsoft",
     "galleries": [
         {
             "type": "performance-vm",
             "resourceType": "microsoft.compute/virtualmachines",
-            "categoryKey": "vmInsightsVirtualMachinesPerf",
-            "order": 200
+            "categoryKey": "vmInsightsVirtualMachines",
+            "order": 210
         },
         {
             "type": "insights",
             "resourceType": "microsoft.compute/virtualmachines",
-            "categoryKey": "vmInsightsVirtualMachinesPerf",
-            "order": 200
+            "categoryKey": "vmInsightsVirtualMachines",
+            "order": 210
         }
     ]
 }
