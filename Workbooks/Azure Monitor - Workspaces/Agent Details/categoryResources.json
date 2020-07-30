@@ -1,8 +1,8 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
     "en-us": {
-        "name": "Informes de áreas de trabajo.",
+        "name": "Áreas de trabajo de Log Analytics",
         "description": "",
-        "order": 1200
+        "order": 1000
     }
 }
