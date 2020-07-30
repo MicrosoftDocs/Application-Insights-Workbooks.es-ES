@@ -6,7 +6,7 @@
         {
             "type": "workbook",
             "resourceType": "microsoft.operationalinsights/workspaces",
-            "order": 100
+            "order": 200
         }
     ]
 }
