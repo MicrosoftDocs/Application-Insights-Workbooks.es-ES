@@ -4,7 +4,7 @@
         {
             "type": 1,
             "content": {
-                "json": "## <a name=\"agent-health\"></a>Estado del agente\nUse este informe para más información sobre el estado de los agentes del área de trabajo. \n<br/>\n<br/>"
+                "json": "## <a name=\"agent-health\"></a>Estado del agente\nUse este informe para más información sobre el estado de los agentes del área de trabajo. Este informe está en desuso y se ha sustituido por el nuevo libro de Agent Health para Log Analytics.<br/>\n<br/>"
             },
             "name": "text - 0"
         },
