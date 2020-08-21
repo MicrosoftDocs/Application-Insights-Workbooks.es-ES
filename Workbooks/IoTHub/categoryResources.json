@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Libros de Azure Monitor Workbooks para IoT",
+        "description": "Proporciona información sobre las métricas de IoT",
+        "order": 100
+    }
+}

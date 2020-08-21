@@ -1,16 +1,11 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Configuración del administrador de directivas de redes (NPM)",
+    "name": "Configuración del administrador de directivas de red",
     "author": "Microsoft",
     "isPreview": true,
     "galleries": [
         {
             "type": "container-insights",
-            "resourceType": "Microsoft.ContainerService/managedClusters",
-            "order": 800
-        },
-        {
-            "type": "workbook",
             "resourceType": "Microsoft.ContainerService/managedClusters",
             "order": 800
         }
