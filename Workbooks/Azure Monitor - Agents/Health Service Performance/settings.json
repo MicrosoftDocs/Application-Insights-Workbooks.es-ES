@@ -1,6 +1,6 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Agent Health para Log Analytics: Servicio de mantenimiento",
+    "name": "Rendimiento del servicio de mantenimiento",
     "author": "Microsoft",
     "isPreview": true,
     "galleries": [
