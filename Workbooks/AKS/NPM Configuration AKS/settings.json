@@ -8,6 +8,16 @@
             "type": "container-insights",
             "resourceType": "Microsoft.ContainerService/managedClusters",
             "order": 800
+        },
+        {
+            "type": "container-insights",
+            "resourceType": "Microsoft.Kubernetes/connectedClusters",
+            "order": 800
+        },
+        {
+            "type": "workbook",
+            "resourceType": "Microsoft.Kubernetes/connectedClusters",
+            "order": 800
         }
     ]
 }
