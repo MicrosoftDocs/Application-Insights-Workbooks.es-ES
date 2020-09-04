@@ -1,8 +1,8 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
     "en-us": {
-        "name": "AKS",
-        "description": "Libros relacionados con AKS",
+        "name": "Servicios de Kubernetes",
+        "description": "Libros relacionados con los servicios de Kubernetes",
         "order": 100
     }
 }
