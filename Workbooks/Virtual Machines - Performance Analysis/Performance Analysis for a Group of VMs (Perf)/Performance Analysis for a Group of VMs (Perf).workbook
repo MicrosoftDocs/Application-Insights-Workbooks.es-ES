@@ -5,28 +5,48 @@
             "type": 9,
             "content": {
                 "version": "KqlParameterItem/1.0",
-                "query": "",
                 "crossComponentResources": [
-                    "value::selected"
+                    "value::all"
                 ],
                 "parameters": [
                     {
                         "id": "688dc7cb-bea3-41ae-ae94-32d22e09568c",
                         "version": "KqlParameterItem/1.0",
-                        "name": "Resource",
+                        "name": "DefaultWorkspace",
                         "type": 5,
                         "isRequired": true,
                         "value": "value::1",
                         "isHiddenWhenLocked": true,
                         "typeSettings": {
                             "resourceTypeFilter": {
-                                "microsoft.compute/virtualmachinescalesets": true
+                                "microsoft.operationalinsights/workspaces": true
                             },
                             "additionalResourceOptions": [
                                 "value::1"
                             ]
-                        },
-                        "timeContextFromParameter": null
+                        }
+                    },
+                    {
+                        "id": "c11b5651-cf86-4865-b23d-9ecc4f16b712",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "ContextFree",
+                        "type": 1,
+                        "query": "{\"version\":\"1.0.0\",\"content\":\"\\\"{DefaultWorkspace}\\\"\"}",
+                        "isHiddenWhenLocked": true,
+                        "queryType": 8
+                    },
+                    {
+                        "id": "bbbc300a-6f91-4b2b-b4b5-842b4bf8577a",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Selection",
+                        "type": 1,
+                        "query": "where type =~ 'microsoft.operationalinsights/workspaces'\r\n| extend match = strcat(\"'\", id, \"'\") =~ \"{DefaultWorkspace:value}\"\r\n| order by match desc, name asc\r\n| take 1\r\n| project value = tostring(pack('sub', subscriptionId, 'rg', resourceGroup, 'ws', id))",
+                        "crossComponentResources": [
+                            "value::all"
+                        ],
+                        "isHiddenWhenLocked": true,
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
                     }
                 ],
                 "style": "above",
@@ -56,21 +76,59 @@
             "type": 9,
             "content": {
                 "version": "KqlParameterItem/1.0",
-                "query": "",
                 "crossComponentResources": [
-                    "{Resource}"
+                    "{Workspaces}"
                 ],
                 "parameters": [
+                    {
+                        "id": "1db5ee15-fe52-458b-91d1-7ee39d8c2cd3",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Subscriptions",
+                        "type": 6,
+                        "isRequired": true,
+                        "multiSelect": true,
+                        "quote": "'",
+                        "delimiter": ",",
+                        "query": "summarize by subscriptionId\r\n| project value = strcat('/subscriptions/', subscriptionId), label = subscriptionId, selected = iff(subscriptionId =~ todynamic('{Selection}').sub, true, false)",
+                        "crossComponentResources": [
+                            "value::all"
+                        ],
+                        "typeSettings": {
+                            "additionalResourceOptions": []
+                        },
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    },
+                    {
+                        "id": "9732eff8-fb57-4cbd-8ade-5ae746f33760",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Workspaces",
+                        "type": 5,
+                        "isRequired": true,
+                        "multiSelect": true,
+                        "quote": "'",
+                        "delimiter": ",",
+                        "query": "where type =~ 'microsoft.operationalinsights/workspaces'\r\n| summarize by id, name\r\n| project id, selected = iff(id =~ todynamic('{Selection}').ws, true, false)",
+                        "crossComponentResources": [
+                            "{Subscriptions}"
+                        ],
+                        "typeSettings": {
+                            "resourceTypeFilter": {
+                                "microsoft.operationalinsights/workspaces": true
+                            },
+                            "additionalResourceOptions": []
+                        },
+                        "queryType": 1,
+                        "resourceType": "microsoft.resourcegraph/resources"
+                    },
                     {
                         "id": "5f8cce4b-9c4c-47da-8683-7e5ccc9faed3",
                         "version": "KqlParameterItem/1.0",
                         "name": "TimeRange",
                         "type": 4,
-                        "isRequired": false,
                         "value": {
-                            "durationMs": 1800000
+                            "durationMs": 14400000
                         },
-                        "isHiddenWhenLocked": false,
                         "typeSettings": {
                             "selectableValues": [
                                 {
@@ -174,34 +232,67 @@
                             ],
                             "allowCustom": true
                         }
-                    },
-                    {
-                        "id": "d6de19ff-cde4-41c2-9fba-b441312ea5c9",
-                        "version": "KqlParameterItem/1.0",
-                        "name": "Test",
-                        "type": 1,
-                        "isRequired": false,
-                        "query": "Perf\r\n| take 1\r\n| summarize count()",
-                        "crossComponentResources": [
-                            "{Resource}"
-                        ],
-                        "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
-                        "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
                     }
                 ],
                 "style": "above",
                 "queryType": 0,
-                "resourceType": "microsoft.compute/virtualmachinescalesets"
+                "resourceType": "microsoft.operationalinsights/workspaces"
             },
-            "conditionalVisibility": null,
             "name": "parameters - 2"
+        },
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "crossComponentResources": [
+                    "{Workspaces}"
+                ],
+                "parameters": [
+                    {
+                        "id": "e36a2c69-a3c1-4b0c-b758-b37bc16b4669",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Test",
+                        "type": 1,
+                        "query": "let perf = Perf\r\n| where TimeGenerated {TimeRange}\r\n| take 1;\r\nlet servicemap = VMComputer | extend ResourceId=strcat('machines/', Machine) | extend Bitness=columnifexists('Bitness', '')\r\n| where TimeGenerated {TimeRange}\r\n| take 1;\r\nperf\r\n| union servicemap",
+                        "crossComponentResources": [
+                            "{Workspaces}"
+                        ],
+                        "isHiddenWhenLocked": true,
+                        "timeContext": {
+                            "durationMs": 0
+                        },
+                        "timeContextFromParameter": "TimeRange",
+                        "queryType": 0,
+                        "resourceType": "microsoft.operationalinsights/workspaces"
+                    }
+                ],
+                "style": "pills",
+                "queryType": 0,
+                "resourceType": "microsoft.operationalinsights/workspaces"
+            },
+            "conditionalVisibility": {
+                "parameterName": "_",
+                "comparison": "isEqualTo",
+                "value": "_"
+            },
+            "name": "parameters - 30"
         },
         {
             "type": 1,
             "content": {
-                "json": "⚠ Este libro requiere que se habilite [Azure Monitor para VM (versión preliminar)](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview) para mostrar información precisa y completa de las máquinas virtuales. Siga el vínculo para incorporar las máquinas o seleccione otra área de trabajo."
+                "json": "⚠ Aún no se ha seleccionado una suscripción. Seleccione una suscripción en el menú desplegable `Subscriptions` o actualice el libro."
+            },
+            "conditionalVisibility": {
+                "parameterName": "Subscriptions",
+                "comparison": "isEqualTo",
+                "value": null
+            },
+            "name": "text - 29"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "⚠ No se han detectado contadores de rendimiento en el área de trabajo seleccionada durante el período de tiempo (`{TimeRange:label}`). Pruebe un intervalo de tiempo más amplio, seleccione otra área de trabajo o incorpore máquinas virtuales al área de trabajo seleccionada `{Workspaces:label}`.\n\nSi decide incorporar máquinas virtuales al área de trabajo `{Workspaces:label}`, siga las instrucciones del siguiente vínculo: [Azure Monitor para VM (versión preliminar)](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview)."
             },
             "conditionalVisibility": {
                 "parameterName": "Test",
@@ -215,7 +306,10 @@
             "content": {
                 "json": "---"
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "name": "text - 4"
         },
         {
@@ -223,81 +317,96 @@
             "content": {
                 "json": "<h2 style=\"margin-bottom:0;padding-bottom:0;\">100 primeras máquinas</h2>"
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "name": "text - 5"
         },
         {
             "type": 9,
             "content": {
                 "version": "KqlParameterItem/1.0",
-                "query": "",
                 "crossComponentResources": [
-                    "{Resource}"
+                    "{Workspaces}"
                 ],
                 "parameters": [
+                    {
+                        "id": "41bb3710-5e9e-4b66-91fd-e11435899880",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "ComputerNameContains",
+                        "label": "El nombre de equipo contiene",
+                        "type": 1,
+                        "description": "Se filtrarán los equipos cuyo nombre contengan la palabra clave. Se volverán a consultar todas las máquinas en el área de trabajo.",
+                        "value": ""
+                    },
+                    {
+                        "id": "b533865a-3539-42b1-8dcd-33ca0d481c2a",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "ComputerFilter",
+                        "type": 1,
+                        "query": "{\"version\":\"1.0.0\",\"content\":\"{\\\"snippet\\\": \\\"| where Computer contains '{ComputerNameContains}'\\\"}\"}",
+                        "crossComponentResources": [
+                            "{Workspaces}"
+                        ],
+                        "isHiddenWhenLocked": true,
+                        "queryType": 8
+                    },
                     {
                         "id": "aa2368fc-ad30-4608-b96a-72abf7b1e1af",
                         "version": "KqlParameterItem/1.0",
                         "name": "Counter",
                         "type": 2,
                         "description": "Seleccione un contador de rendimiento de máquina virtual para la tabla siguiente.",
-                        "isRequired": false,
-                        "query": "// {Resource} {Test}\r\nPerf\r\n| where TimeGenerated {TimeRange}\r\n| where ObjectName != 'Network' and ObjectName != 'Network Interface'\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
+                        "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
-                        "isHiddenWhenLocked": false,
+                        "value": "{\"counter\":\"% Processor Time\",\"object\":\"Processor\"}",
                         "typeSettings": {
                             "additionalResourceOptions": []
                         },
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "974d5ac2-4fc5-48e7-a8f7-16fc9dddc4ac",
                         "version": "KqlParameterItem/1.0",
                         "name": "CounterText",
                         "type": 1,
-                        "isRequired": false,
                         "query": "let metric = dynamic({Counter});\r\nrange Steps from 1 to 1 step 1\r\n| project strcat(metric.object, \" > \", metric.counter)",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "ce228deb-88eb-4438-9dce-6c6d1972ff09",
                         "version": "KqlParameterItem/1.0",
                         "name": "IsNetworkCounter",
                         "type": 1,
-                        "isRequired": false,
-                        "query": "let counter = dynamic({Counter});\r\nprint tostring(counter.object == 'Network Adapter')",
+                        "query": "let metric = dynamic({Counter});\r\nprint tostring((metric.object == 'Network Adapter' and (metric.counter == 'Bytes Received/sec' or metric.counter == 'Bytes Sent/sec')) or (metric.object == 'Network' and (metric.counter == 'Total Bytes Received' or metric.counter == 'Total Bytes Transmitted')))",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "3b23aa7a-2afd-40ba-a710-0e2cc73c764b",
                         "version": "KqlParameterItem/1.0",
                         "name": "NetworkDirection",
                         "type": 1,
-                        "isRequired": false,
-                        "query": "let metric = dynamic({Counter});\r\nprint(iff(metric.counter == 'Bytes Received/sec', 'Received', 'Sent'))",
+                        "query": "let metric = dynamic({Counter});\r\nprint(iff(metric.counter == 'Bytes Received/sec' or metric.counter == 'Total Bytes Received', 'Received', 'Sent'))",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "9ad8858d-8ef3-4144-94b1-66a8bf9fa9c9",
@@ -309,12 +418,10 @@
                         "multiSelect": true,
                         "quote": "",
                         "delimiter": ",",
-                        "isHiddenWhenLocked": false,
                         "typeSettings": {
                             "additionalResourceOptions": []
                         },
-                        "jsonData": "[\r\n    { \"value\":\"Average\", \"label\":\"Average\", \"selected\": true },\r\n    { \"value\":\"P5th\", \"label\":\"P5th\", \"selected\": false },\r\n    { \"value\":\"P10th\", \"label\":\"P10th\", \"selected\": false },\r\n    { \"value\":\"P50th\", \"label\":\"P50th\", \"selected\": false },\r\n    { \"value\":\"P80th\", \"label\":\"P80th\", \"selected\": false },\r\n    { \"value\":\"P90th\", \"label\":\"P90th\", \"selected\": false },\r\n    { \"value\":\"P95th\", \"label\":\"P95th\", \"selected\": true },\r\n    { \"value\":\"Min\", \"label\":\"Min\", \"selected\": false },\r\n    { \"value\":\"Max\", \"label\":\"Max\", \"selected\": true }\r\n]",
-                        "timeContextFromParameter": null
+                        "jsonData": "[\r\n    { \"value\":\"Average\", \"label\":\"Average\", \"selected\": true },\r\n    { \"value\":\"P5th\", \"label\":\"P5th\", \"selected\": false },\r\n    { \"value\":\"P10th\", \"label\":\"P10th\", \"selected\": false },\r\n    { \"value\":\"P50th\", \"label\":\"P50th\", \"selected\": false },\r\n    { \"value\":\"P80th\", \"label\":\"P80th\", \"selected\": false },\r\n    { \"value\":\"P90th\", \"label\":\"P90th\", \"selected\": false },\r\n    { \"value\":\"P95th\", \"label\":\"P95th\", \"selected\": true },\r\n    { \"value\":\"Min\", \"label\":\"Min\", \"selected\": false },\r\n    { \"value\":\"Max\", \"label\":\"Max\", \"selected\": true }\r\n]"
                     },
                     {
                         "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
@@ -323,92 +430,80 @@
                         "type": 2,
                         "description": "Seleccione un percentil para mostrar en la columna de tendencia en la tabla siguiente.",
                         "isRequired": true,
-                        "isHiddenWhenLocked": false,
                         "typeSettings": {
                             "additionalResourceOptions": []
                         },
-                        "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\", \"selected\": true },\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\", \"selected\": false },\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\", \"selected\": false },\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\", \"selected\": false },\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\", \"selected\": false },\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\", \"selected\": false },\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\", \"selected\": false }\r\n]",
-                        "timeContextFromParameter": null
+                        "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\", \"selected\": true },\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\", \"selected\": false },\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\", \"selected\": false },\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\", \"selected\": false },\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\", \"selected\": false },\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\", \"selected\": false },\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\", \"selected\": false }\r\n]"
                     },
                     {
                         "id": "0327f26e-cdde-4b48-b512-6c35f06ad1d0",
                         "version": "KqlParameterItem/1.0",
                         "name": "tableTrendOrder",
                         "type": 1,
-                        "isRequired": false,
                         "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{TableTrend}' contains 'P5th'  or '{TableTrend}' contains 'P10th', 'asc', 'desc')",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "c2f05b6d-970d-4fde-88b0-868387c02250",
                         "version": "KqlParameterItem/1.0",
                         "name": "mergedAggregators",
                         "type": 1,
-                        "isRequired": false,
                         "query": "let aggregators = iff('{Aggregators}' contains '{TableTrend:label}', '{Aggregators}', '{Aggregators},{TableTrend:label}');\r\nrange Steps from 1 to 1 step 1\r\n| project aggregators",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "69c79551-68b9-4c84-bf57-202540482a02",
                         "version": "KqlParameterItem/1.0",
                         "name": "ShowTable",
                         "type": 1,
-                        "isRequired": false,
                         "query": "print iff(\"{Test:value}\" == \"\", \"False\", iff(\"{IsNetworkCounter:value}\" == \"False\", \"True\", \"False\"))",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "6b664a24-d9a3-47b0-9d94-9cada9ddb8ce",
                         "version": "KqlParameterItem/1.0",
                         "name": "ShowNetworkTable",
                         "type": 1,
-                        "isRequired": false,
                         "query": "print iff(\"{Test:value}\" == \"\", \"False\", \"{IsNetworkCounter:value}\")",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "343c4eae-e482-4678-a936-c4ad43b2ec19",
                         "version": "KqlParameterItem/1.0",
                         "name": "CounterTest",
                         "type": 1,
-                        "isRequired": false,
                         "query": "Perf\r\n| take 1",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     }
                 ],
                 "style": "above",
                 "queryType": 0,
-                "resourceType": "microsoft.compute/virtualmachinescalesets"
+                "resourceType": "microsoft.operationalinsights/workspaces"
             },
             "conditionalVisibility": {
                 "parameterName": "Test",
@@ -433,13 +528,13 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "// {Resource} {Test}\r\nlet metric = dynamic({Counter}); \r\nlet maxResultCount = 100; let summaryPerComputer = totable(Perf      | where TimeGenerated {TimeRange}       | where ObjectName == metric.object and CounterName == metric.counter     | summarize hint.shufflekey = Computer Average = avg(CounterValue), Max = max(CounterValue), Min = min(CounterValue), percentiles(CounterValue, 5, 10, 50, 80, 90, 95) by Computer      | project Computer, Average, Max, Min, P5th = percentile_CounterValue_5, P10th = percentile_CounterValue_10, P50th = percentile_CounterValue_50, P80th = percentile_CounterValue_80, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95      | order by {TableTrend:label} {tableTrendOrder}, Computer      | limit maxResultCount);  let computerList = summaryPerComputer      | project Computer;  let MachineSummary = VMComputer | extend ResourceId=strcat('machines/', Machine) | extend Bitness=columnifexists('Bitness', '')     | where TimeGenerated {TimeRange}     | where Computer in (computerList)     | summarize arg_max(TimeGenerated, *) by Computer     | project Computer, MachineSummary = pack('Fully Qualified Domain Name', Computer, 'OS Type', OperatingSystemFamily, 'Operating System', OperatingSystemFullName, 'Ipv4 Addresses', Ipv4Addresses,         'Ipv6 Addresses', Ipv6Addresses, 'Mac Addresses', MacAddresses, 'DNS Names', DnsNames, 'CPUs', strcat(Cpus, ' @ ', CpuSpeed, ' MHz'), 'Bitness', Bitness,         'Physcial Memory', strcat(PhysicalMemoryMB, ' MB'), 'Virtualization State', VirtualizationState, 'VM Type', VirtualMachineType, 'OMS Agent', split(Machine, 'm-')[1]); let EmptyNodeIdentityAndProps = datatable(Computer:string, NodeId:string, NodeProps:dynamic, Priority: long) []; let OmsNodeIdentityAndProps = computerList     | extend NodeId = Computer     | extend Priority = 1     | extend NodeProps = pack('type', 'StandAloneNode', 'name', Computer); let ServiceMapNodeIdentityAndProps = VMComputer | extend ResourceId=strcat('machines/', Machine) | extend Bitness=columnifexists('Bitness', '')     | where TimeGenerated {TimeRange}     | where Computer in (computerList)     | summarize arg_max(TimeGenerated, *) by Computer     | extend AzureCloudServiceNodeIdentity = iif(isnotempty(AzureCloudServiceName), strcat(AzureCloudServiceInstanceId, '|',                     AzureCloudServiceDeployment), ''),          AzureScaleSetNodeIdentity = iif(isnotempty(AzureVmScaleSetName),              strcat(AzureVmScaleSetInstanceId, '|',                     AzureVmScaleSetDeployment), ''),          ComputerProps =              pack('type', 'StandAloneNode',                   'name', Computer,                   'mappingResourceId', ResourceId,                   'subscriptionId', AzureSubscriptionId,                   'resourceGroup', AzureResourceGroup,                   'azureResourceId', columnifexists('_ResourceId', '')),          AzureCloudServiceNodeProps =              pack('type', 'AzureCloudServiceNode',                   'cloudServiceInstanceId', AzureCloudServiceInstanceId,                   'cloudServiceRoleName', columnifexists('AzureCloudServiceRoleName', ''),                   'cloudServiceDeploymentId', AzureCloudServiceDeployment,                   'cloudServiceName', AzureCloudServiceName,                   'mappingResourceId', ResourceId),          AzureScaleSetNodeProps =               pack('type', 'AzureScaleSetNode',                   'scaleSetInstanceId', columnifexists('Computer', ''),                   'vmScaleSetDeploymentId', AzureVmScaleSetDeployment,                   'vmScaleSetName', AzureVmScaleSetName,                   'serviceFabricClusterName', AzureServiceFabricClusterName,                   'vmScaleSetResourceId', AzureVmScaleSetResourceId,                   'resourceGroupName', columnifexists('AzureResourceGroup', ''),                   'subscriptionId', columnifexists('AzureSubscriptionId', ''),                   'mappingResourceId', ResourceId)| project   Computer,            NodeId = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeIdentity,                       isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeIdentity, Computer),            NodeProps = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeProps,                          isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeProps, ComputerProps),            Priority = 2; let NodeIdentityAndProps = union kind=inner isfuzzy = true                                  EmptyNodeIdentityAndProps, OmsNodeIdentityAndProps, ServiceMapNodeIdentityAndProps                                 | summarize arg_max(Priority, *) by Computer;  let NodeIdentityAndPropsMin = NodeIdentityAndProps     | extend Type = iff(NodeProps.type == 'StandAloneNode', iff(NodeProps.azureResourceId == '', 'Non-Azure Virtual Machine', 'Azure Virtual Machine'), NodeProps.type),      ResourceId = iff(NodeProps.type == 'AzureScaleSetNode', NodeProps.vmScaleSetResourceId,          iff(NodeProps.type == 'AzureCloudServiceNode', NodeProps.cloudServiceDeploymentId, Computer)),     ResourceName = iff(NodeProps.type == 'AzureScaleSetNode', strcat(NodeProps.vmScaleSetName, ' | ', NodeProps.scaleSetInstanceId),          iff(NodeProps.type == 'AzureCloudServiceNode', strcat(NodeProps.cloudServiceRoleName, ' | ', NodeProps.cloudServiceInstanceId), Computer))     | project Computer, Type, ResourceId, ResourceName; let trend = Perf          | where TimeGenerated {TimeRange}         | where Computer in (computerList)          | where ObjectName == metric.object and CounterName == metric.counter        | make-series {TableTrend} default = 0 on TimeGenerated in range({TimeRange:start}, {TimeRange:end}, {TimeRange:grain}) by Computer     | project Computer, ['Trend ({TableTrend:label})'] = {TableTrend:label}; summaryPerComputer     | join kind=leftouter (trend) on Computer     | join kind=leftouter (NodeIdentityAndProps) on Computer     | join kind=leftouter (NodeIdentityAndPropsMin) on Computer     | join kind=leftouter (MachineSummary) on Computer     | project ResourceName, Type, {mergedAggregators}, ['Trend ({TableTrend:label})'], Properties = MachineSummary     | sort by {TableTrend:label} {tableTrendOrder} | limit maxResultCount",
+                "query": "let maxResultCount = 100; \r\nlet metric = dynamic({Counter}); \r\nlet summaryPerComputer = totable(Perf      | where TimeGenerated {TimeRange}   {ComputerFilter}    | where ObjectName == metric.object and CounterName == metric.counter     | summarize hint.shufflekey = Computer Average = avg(CounterValue), Max = max(CounterValue), Min = min(CounterValue), percentiles(CounterValue, 5, 10, 50, 80, 90, 95) by Computer      | project Computer, Average, Max, Min, P5th = percentile_CounterValue_5, P10th = percentile_CounterValue_10, P50th = percentile_CounterValue_50, P80th = percentile_CounterValue_80, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95      | order by {TableTrend:label} {tableTrendOrder}, Computer      | limit maxResultCount);  let computerList = summaryPerComputer      | project Computer;  let MachineSummary = VMComputer | extend ResourceId=strcat('machines/', Machine) | extend Bitness=columnifexists('Bitness', '')     | where TimeGenerated {TimeRange}     | where Computer in (computerList)     | summarize arg_max(TimeGenerated, *) by Computer     | project Computer, MachineSummary = pack('Fully Qualified Domain Name', Computer, 'OS Type', OperatingSystemFamily, 'Operating System', OperatingSystemFullName, 'Ipv4 Addresses', Ipv4Addresses,         'Ipv6 Addresses', Ipv6Addresses, 'Mac Addresses', MacAddresses, 'DNS Names', DnsNames, 'CPUs', strcat(Cpus, ' @ ', CpuSpeed, ' MHz'), 'Bitness', Bitness,         'Physcial Memory', strcat(PhysicalMemoryMB, ' MB'), 'Virtualization State', VirtualizationState, 'VM Type', VirtualMachineType, 'OMS Agent', split(Machine, 'm-')[1]); let EmptyNodeIdentityAndProps = datatable(Computer:string, NodeId:string, NodeProps:dynamic, Priority: long) []; let OmsNodeIdentityAndProps = computerList     | extend NodeId = Computer     | extend Priority = 1     | extend NodeProps = pack('type', 'StandAloneNode', 'name', Computer); let ServiceMapNodeIdentityAndProps = VMComputer | extend ResourceId=strcat('machines/', Machine) | extend Bitness=columnifexists('Bitness', '')     | where TimeGenerated {TimeRange}     | where Computer in (computerList)     | summarize arg_max(TimeGenerated, *) by Computer     | extend AzureCloudServiceNodeIdentity = iif(isnotempty(AzureCloudServiceName), strcat(AzureCloudServiceInstanceId, '|',                     AzureCloudServiceDeployment), ''),          AzureScaleSetNodeIdentity = iif(isnotempty(AzureVmScaleSetName),              strcat(AzureVmScaleSetInstanceId, '|',                     AzureVmScaleSetDeployment), ''),          ComputerProps =              pack('type', 'StandAloneNode',                   'name', Computer,                   'mappingResourceId', ResourceId,                   'subscriptionId', AzureSubscriptionId,                   'resourceGroup', AzureResourceGroup,                   'azureResourceId', columnifexists('_ResourceId', '')),          AzureCloudServiceNodeProps =              pack('type', 'AzureCloudServiceNode',                   'cloudServiceInstanceId', AzureCloudServiceInstanceId,                   'cloudServiceRoleName', columnifexists('AzureCloudServiceRoleName', ''),                   'cloudServiceDeploymentId', AzureCloudServiceDeployment,                   'cloudServiceName', AzureCloudServiceName,                   'mappingResourceId', ResourceId),          AzureScaleSetNodeProps =               pack('type', 'AzureScaleSetNode',                   'scaleSetInstanceId', columnifexists('Computer', ''),                   'vmScaleSetDeploymentId', AzureVmScaleSetDeployment,                   'vmScaleSetName', AzureVmScaleSetName,                   'serviceFabricClusterName', AzureServiceFabricClusterName,                   'vmScaleSetResourceId', AzureVmScaleSetResourceId,                   'resourceGroupName', columnifexists('AzureResourceGroup', ''),                   'subscriptionId', columnifexists('AzureSubscriptionId', ''),                   'mappingResourceId', ResourceId)| project   Computer,            NodeId = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeIdentity,                       isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeIdentity, Computer),            NodeProps = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeProps,                          isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeProps, ComputerProps),            Priority = 2; let NodeIdentityAndProps = union kind=inner isfuzzy = true                                  EmptyNodeIdentityAndProps, OmsNodeIdentityAndProps, ServiceMapNodeIdentityAndProps                                 | summarize arg_max(Priority, *) by Computer;  let NodeIdentityAndPropsMin = NodeIdentityAndProps     | extend Type = iff(NodeProps.type == 'StandAloneNode', iff(NodeProps.azureResourceId == '', 'Non-Azure Virtual Machine', 'Azure Virtual Machine'), NodeProps.type),      ResourceId = iff(NodeProps.type == 'AzureScaleSetNode', NodeProps.vmScaleSetResourceId,          iff(NodeProps.type == 'AzureCloudServiceNode', NodeProps.cloudServiceDeploymentId, Computer)),     ResourceName = iff(NodeProps.type == 'AzureScaleSetNode', strcat(NodeProps.vmScaleSetName, ' | ', NodeProps.scaleSetInstanceId),          iff(NodeProps.type == 'AzureCloudServiceNode', strcat(NodeProps.cloudServiceRoleName, ' | ', NodeProps.cloudServiceInstanceId), Computer))     | project Computer, Type, ResourceId, ResourceName; let trend = Perf          | where TimeGenerated {TimeRange}         | where Computer in (computerList)          | where ObjectName == metric.object and CounterName == metric.counter        | make-series {TableTrend} default = 0 on TimeGenerated in range({TimeRange:start}, {TimeRange:end}, {TimeRange:grain}) by Computer     | project Computer, ['Trend ({TableTrend:label})'] = {TableTrend:label}; summaryPerComputer     | join kind=leftouter (trend) on Computer     | join kind=leftouter (NodeIdentityAndProps) on Computer     | join kind=leftouter (NodeIdentityAndPropsMin) on Computer     | join kind=leftouter (MachineSummary) on Computer     | project ResourceName, Type, {mergedAggregators}, ['Trend ({TableTrend:label})'], Properties = MachineSummary     | sort by {TableTrend:label} {tableTrendOrder} | limit maxResultCount",
                 "size": 0,
                 "noDataMessage": "There is no data for this counter, either enable the counter or onboard machines to this workspace",
                 "queryType": 0,
-                "resourceType": "microsoft.compute/virtualmachinescalesets",
+                "resourceType": "microsoft.operationalinsights/workspaces",
                 "crossComponentResources": [
-                    "{Resource}"
+                    "{Workspaces}"
                 ],
                 "visualization": "table",
                 "gridSettings": {
@@ -623,6 +718,36 @@
                                 "palette": "blue"
                             }
                         }
+                    ],
+                    "labelSettings": [
+                        {
+                            "columnId": "ResourceName",
+                            "label": "nombreDelRecurso"
+                        },
+                        {
+                            "columnId": "Type",
+                            "label": "Tipo"
+                        },
+                        {
+                            "columnId": "Average",
+                            "label": "Average"
+                        },
+                        {
+                            "columnId": "P95th",
+                            "label": "P95th"
+                        },
+                        {
+                            "columnId": "Max",
+                            "label": "Max"
+                        },
+                        {
+                            "columnId": "Trend (Average)",
+                            "label": "Tendencia (promedio)"
+                        },
+                        {
+                            "columnId": "Properties",
+                            "label": "Propiedades"
+                        }
                     ]
                 }
             },
@@ -636,7 +761,7 @@
         {
             "type": 1,
             "content": {
-                "json": "#### <a name=\"-total-bytes-no_loc_phnetworkdirectionno_loc_ph-counters-are-also-being-utilized-to-display-the-network-table-the-delta-of-total-bytes-no_loc_phnetworkdirectionno_loc_ph-over-a-time-period-is-being-calculated-to-match-up-with-the-bytes-no_loc_phnetworkdirectionno_loc_phsec-counter-to-display-an-accurate-representation-of-network-activity-over-all-machines\"></a>Los contadores ℹ `Total Bytes {NetworkDirection}` también se utilizan para mostrar la tabla de la red. Se calculan las diferencias de `Total Bytes {NetworkDirection}` durante un período de tiempo para que coincida con el contador `Bytes {NetworkDirection}/sec` y poder mostrar una representación precisa de la actividad de red en todas las máquinas."
+                "json": "#### <a name=\"-total-bytes-no_loc_phnetworkdirectionno_loc_ph-and-bytes-no_loc_phnetworkdirectionno_loc_phsec-counters-are-both-being-utilized-to-display-the-network-table-the-delta-of-total-bytes-no_loc_phnetworkdirectionno_loc_ph-over-a-time-period-is-being-calculated-to-match-up-with-the-bytes-no_loc_phnetworkdirectionno_loc_phsec-counter-to-display-an-accurate-representation-of-network-activity-over-all-machines\"></a>Los contadores ℹ `Total Bytes {NetworkDirection}` y `Bytes {NetworkDirection}/sec` también se utilizan para mostrar la tabla de la red. Se calculan las diferencias de `Total Bytes {NetworkDirection}` durante un período de tiempo para que coincida con el contador `Bytes {NetworkDirection}/sec` y poder mostrar una representación precisa de la actividad de red en todas las máquinas."
             },
             "conditionalVisibility": {
                 "parameterName": "ShowNetworkTable",
@@ -649,40 +774,37 @@
             "type": 3,
             "content": {
                 "version": "KqlItem/1.0",
-                "query": "// {Resource} {Test}\r\nlet timeRangeStart = {TimeRange:start};\r\nlet timeRangeEnd = {TimeRange:end};\r\nlet timeRangeGrain = {TimeRange:grain};    \r\nlet maxResultCount = 100; \r\nlet linuxMetric = iff('{NetworkDirection}' == 'Received', dynamic({'object': 'Network', 'counter': 'Total Bytes Received'}), dynamic({'object': 'Network', 'counter': 'Total Bytes Transmitted'}));\r\nlet windowsMetric = iff('{NetworkDirection}' == 'Received', dynamic({\"counter\":\"Bytes Received/sec\",\"object\":\"Network Adapter\"}), dynamic({\"counter\":\"Bytes Sent/sec\",\"object\":\"Network Adapter\"}));\r\nlet Network = materialize(Perf            \r\n| where TimeGenerated {TimeRange}   \r\n| where ObjectName == linuxMetric.object and CounterName == linuxMetric.counter            \r\n| extend ComputerId = iff(isempty(_ResourceId), Computer, _ResourceId)           \r\n| order by CounterName asc, InstanceName, ComputerId asc, TimeGenerated asc             \r\n| extend prev_ComputerId=prev(ComputerId), prev_Value=prev(CounterValue), prev_t=prev(TimeGenerated), prev_instance=prev(InstanceName)             \r\n| project   TimeGenerated, ComputerId, Computer, _ResourceId,                        cValue = iff(prev_ComputerId == ComputerId and prev_instance == InstanceName and CounterValue >= prev_Value and TimeGenerated > prev_t, (CounterValue-prev_Value)/((TimeGenerated-prev_t)/1s), real(0))            \r\n| summarize CounterValue = sum(cValue) by ComputerId, Computer, _ResourceId, bin(TimeGenerated, 2s)        \r\n| union (Perf            \r\n| where TimeGenerated {TimeRange}   \r\n| where ObjectName == windowsMetric.object and CounterName == windowsMetric.counter            \r\n| extend ComputerId = iff(isempty(_ResourceId), Computer, _ResourceId))            \r\n| summarize CounterValue = sum(CounterValue) by ComputerId, Computer, _ResourceId, bin(TimeGenerated, 2s));    \r\nlet summaryPerComputer = totable(Network            \r\n| summarize hint.shufflekey = ComputerId Average = avg(CounterValue), Max = max(CounterValue), percentiles(CounterValue, 50, 90, 95) by ComputerId, Computer, _ResourceId            \r\n| project ComputerId, Computer, Average, Max, P50th = percentile_CounterValue_50, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95, ResourceId = _ResourceId            \r\n| order by {TableTrend:label} {tableTrendOrder}, Computer            \r\n| limit maxResultCount);    \r\nlet computerList = summaryPerComputer \r\n| project ComputerId, Computer;\r\nlet MachineSummary = VMComputer | extend ResourceId=strcat('machines/', Machine) | extend Bitness=columnifexists('Bitness', '')     | where TimeGenerated {TimeRange} | extend ComputerId = iff(isempty(_ResourceId), Computer, _ResourceId)    | where ComputerId in (computerList)     | summarize arg_max(TimeGenerated, *) by Computer     | project Computer, MachineSummary = pack('Fully Qualified Domain Name', Computer, 'OS Type', OperatingSystemFamily, 'Operating System', OperatingSystemFullName, 'Ipv4 Addresses', Ipv4Addresses,         'Ipv6 Addresses', Ipv6Addresses, 'Mac Addresses', MacAddresses, 'DNS Names', DnsNames, 'CPUs', strcat(Cpus, ' @ ', CpuSpeed, ' MHz'), 'Bitness', Bitness,         'Physcial Memory', strcat(PhysicalMemoryMB, ' MB'), 'Virtualization State', VirtualizationState, 'VM Type', VirtualMachineType, 'OMS Agent', split(Machine, 'm-')[1]); let EmptyNodeIdentityAndProps = datatable(Computer:string, NodeId:string, NodeProps:dynamic, Priority: long) []; let OmsNodeIdentityAndProps = computerList     | extend NodeId = Computer     | extend Priority = 1     | extend NodeProps = pack('type', 'StandAloneNode', 'name', Computer); let ServiceMapNodeIdentityAndProps = VMComputer | extend ResourceId=strcat('machines/', Machine) | extend Bitness=columnifexists('Bitness', '')     | where TimeGenerated {TimeRange}     | where Computer in (computerList)     | summarize arg_max(TimeGenerated, *) by Computer     | extend AzureCloudServiceNodeIdentity = iif(isnotempty(AzureCloudServiceName), strcat(AzureCloudServiceInstanceId, '|',                     AzureCloudServiceDeployment), ''),          AzureScaleSetNodeIdentity = iif(isnotempty(AzureVmScaleSetName),              strcat(AzureVmScaleSetInstanceId, '|',                     AzureVmScaleSetDeployment), ''),          ComputerProps =              pack('type', 'StandAloneNode',                   'name', Computer,                   'mappingResourceId', ResourceId,                   'subscriptionId', AzureSubscriptionId,                   'resourceGroup', AzureResourceGroup,                   'azureResourceId', columnifexists('_ResourceId', '')),          AzureCloudServiceNodeProps =              pack('type', 'AzureCloudServiceNode',                   'cloudServiceInstanceId', AzureCloudServiceInstanceId,                   'cloudServiceRoleName', columnifexists('AzureCloudServiceRoleName', ''),                   'cloudServiceDeploymentId', AzureCloudServiceDeployment,                   'cloudServiceName', AzureCloudServiceName,                   'mappingResourceId', ResourceId),          AzureScaleSetNodeProps =               pack('type', 'AzureScaleSetNode',                   'scaleSetInstanceId', columnifexists('Computer', ''),                   'vmScaleSetDeploymentId', AzureVmScaleSetDeployment,                   'vmScaleSetName', AzureVmScaleSetName,                   'serviceFabricClusterName', AzureServiceFabricClusterName,                   'vmScaleSetResourceId', AzureVmScaleSetResourceId,                   'resourceGroupName', columnifexists('AzureResourceGroup', ''),                   'subscriptionId', columnifexists('AzureSubscriptionId', ''),                   'mappingResourceId', ResourceId)| project   Computer,            NodeId = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeIdentity,                       isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeIdentity, Computer),            NodeProps = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeProps,                          isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeProps, ComputerProps),            Priority = 2; let NodeIdentityAndProps = union kind=inner isfuzzy = true                                  EmptyNodeIdentityAndProps, OmsNodeIdentityAndProps, ServiceMapNodeIdentityAndProps                                 | summarize arg_max(Priority, *) by Computer;  let NodeIdentityAndPropsMin = NodeIdentityAndProps     | extend Type = iff(NodeProps.type == 'StandAloneNode', iff(NodeProps.azureResourceId == '', 'Non-Azure Virtual Machine', 'Azure Virtual Machine'), NodeProps.type),      ResourceId = iff(NodeProps.type == 'AzureScaleSetNode', NodeProps.vmScaleSetResourceId,          iff(NodeProps.type == 'AzureCloudServiceNode', NodeProps.cloudServiceDeploymentId, Computer)),     ResourceName = iff(NodeProps.type == 'AzureScaleSetNode', strcat(NodeProps.vmScaleSetName, ' | ', NodeProps.scaleSetInstanceId),          iff(NodeProps.type == 'AzureCloudServiceNode', strcat(NodeProps.cloudServiceRoleName, ' | ', NodeProps.cloudServiceInstanceId), Computer))     | project Computer, Type, ResourceId, ResourceName; \r\nlet trend = Network                \r\n| where ComputerId in (computerList)                \r\n| summarize hint.shufflekey = ComputerId {TableTrend} by ComputerId, Computer, bin(TimeGenerated, timeRangeGrain)    \r\n| project ComputerId, Computer, {TableTrend:label}                \r\n| summarize hint.shufflekey = ComputerId trendList = makelist({TableTrend:label}) by ComputerId, Computer;    \r\nsummaryPerComputer    \r\n| join (trend) on Computer    \r\n| join (NodeIdentityAndProps) on Computer  \r\n| join kind=leftouter (NodeIdentityAndPropsMin) on Computer \r\n| join kind=leftouter (MachineSummary) on Computer\r\n| project ResourceName, Type, {mergedAggregators}, ['Trend ({TableTrend:label})'] = trendList, Properties = MachineSummary\r\n| sort by {TableTrend:label} {tableTrendOrder} | limit maxResultCount",
+                "query": "let timeRangeStart = {TimeRange:start};\r\nlet timeRangeEnd = {TimeRange:end};\r\nlet timeRangeGrain = {TimeRange:grain};    \r\nlet maxResultCount = 100; \r\nlet linuxMetric = iff('{NetworkDirection}' == 'Received', dynamic({'object': 'Network', 'counter': 'Total Bytes Received'}), dynamic({'object': 'Network', 'counter': 'Total Bytes Transmitted'}));\r\nlet windowsMetric = iff('{NetworkDirection}' == 'Received', dynamic({\"counter\":\"Bytes Received/sec\",\"object\":\"Network Adapter\"}), dynamic({\"counter\":\"Bytes Sent/sec\",\"object\":\"Network Adapter\"}));\r\nlet Network = materialize(Perf            \r\n| where TimeGenerated {TimeRange}   {ComputerFilter}            \r\n| where ObjectName == linuxMetric.object and CounterName == linuxMetric.counter            \r\n| extend ComputerId = iff(isempty(_ResourceId), Computer, _ResourceId)           \r\n| order by CounterName asc, InstanceName, ComputerId asc, TimeGenerated asc             \r\n| extend prev_ComputerId=prev(ComputerId), prev_Value=prev(CounterValue), prev_t=prev(TimeGenerated), prev_instance=prev(InstanceName)             \r\n| project   TimeGenerated, ComputerId, Computer, _ResourceId,                        cValue = iff(prev_ComputerId == ComputerId and prev_instance == InstanceName and CounterValue >= prev_Value and TimeGenerated > prev_t, (CounterValue-prev_Value)/((TimeGenerated-prev_t)/1s), real(0))            \r\n| summarize CounterValue = sum(cValue) by ComputerId, Computer, _ResourceId, bin(TimeGenerated, 2s)        \r\n| union (Perf            \r\n| where TimeGenerated {TimeRange}   {ComputerFilter}            \r\n| where ObjectName == windowsMetric.object and CounterName == windowsMetric.counter            \r\n| extend ComputerId = iff(isempty(_ResourceId), Computer, _ResourceId))            \r\n| summarize CounterValue = sum(CounterValue) by ComputerId, Computer, _ResourceId, bin(TimeGenerated, 2s));    \r\nlet summaryPerComputer = totable(Network            \r\n| summarize hint.shufflekey = ComputerId Average = avg(CounterValue), Max = max(CounterValue), percentiles(CounterValue, 50, 90, 95) by ComputerId, Computer, _ResourceId            \r\n| project ComputerId, Computer, Average, Max, P50th = percentile_CounterValue_50, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95, ResourceId = _ResourceId            \r\n| order by {TableTrend:label} {tableTrendOrder}, Computer            \r\n| limit maxResultCount);    \r\nlet computerList = summaryPerComputer \r\n| project ComputerId, Computer;\r\nlet MachineSummary = VMComputer | extend ResourceId=strcat('machines/', Machine) | extend Bitness=columnifexists('Bitness', '')     | where TimeGenerated {TimeRange} | extend ComputerId = iff(isempty(_ResourceId), Computer, _ResourceId)    | where ComputerId in (computerList)     | summarize arg_max(TimeGenerated, *) by Computer     | project Computer, MachineSummary = pack('Fully Qualified Domain Name', Computer, 'OS Type', OperatingSystemFamily, 'Operating System', OperatingSystemFullName, 'Ipv4 Addresses', Ipv4Addresses,         'Ipv6 Addresses', Ipv6Addresses, 'Mac Addresses', MacAddresses, 'DNS Names', DnsNames, 'CPUs', strcat(Cpus, ' @ ', CpuSpeed, ' MHz'), 'Bitness', Bitness,         'Physcial Memory', strcat(PhysicalMemoryMB, ' MB'), 'Virtualization State', VirtualizationState, 'VM Type', VirtualMachineType, 'OMS Agent', split(Machine, 'm-')[1]); let EmptyNodeIdentityAndProps = datatable(Computer:string, NodeId:string, NodeProps:dynamic, Priority: long) []; let OmsNodeIdentityAndProps = computerList     | extend NodeId = Computer     | extend Priority = 1     | extend NodeProps = pack('type', 'StandAloneNode', 'name', Computer); let ServiceMapNodeIdentityAndProps = VMComputer | extend ResourceId=strcat('machines/', Machine) | extend Bitness=columnifexists('Bitness', '')     | where TimeGenerated {TimeRange}     | where Computer in (computerList)     | summarize arg_max(TimeGenerated, *) by Computer     | extend AzureCloudServiceNodeIdentity = iif(isnotempty(AzureCloudServiceName), strcat(AzureCloudServiceInstanceId, '|',                     AzureCloudServiceDeployment), ''),          AzureScaleSetNodeIdentity = iif(isnotempty(AzureVmScaleSetName),              strcat(AzureVmScaleSetInstanceId, '|',                     AzureVmScaleSetDeployment), ''),          ComputerProps =              pack('type', 'StandAloneNode',                   'name', Computer,                   'mappingResourceId', ResourceId,                   'subscriptionId', AzureSubscriptionId,                   'resourceGroup', AzureResourceGroup,                   'azureResourceId', columnifexists('_ResourceId', '')),          AzureCloudServiceNodeProps =              pack('type', 'AzureCloudServiceNode',                   'cloudServiceInstanceId', AzureCloudServiceInstanceId,                   'cloudServiceRoleName', columnifexists('AzureCloudServiceRoleName', ''),                   'cloudServiceDeploymentId', AzureCloudServiceDeployment,                   'cloudServiceName', AzureCloudServiceName,                   'mappingResourceId', ResourceId),          AzureScaleSetNodeProps =               pack('type', 'AzureScaleSetNode',                   'scaleSetInstanceId', columnifexists('Computer', ''),                   'vmScaleSetDeploymentId', AzureVmScaleSetDeployment,                   'vmScaleSetName', AzureVmScaleSetName,                   'serviceFabricClusterName', AzureServiceFabricClusterName,                   'vmScaleSetResourceId', AzureVmScaleSetResourceId,                   'resourceGroupName', columnifexists('AzureResourceGroup', ''),                   'subscriptionId', columnifexists('AzureSubscriptionId', ''),                   'mappingResourceId', ResourceId)| project   Computer,            NodeId = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeIdentity,                       isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeIdentity, Computer),            NodeProps = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeProps,                          isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeProps, ComputerProps),            Priority = 2; let NodeIdentityAndProps = union kind=inner isfuzzy = true                                  EmptyNodeIdentityAndProps, OmsNodeIdentityAndProps, ServiceMapNodeIdentityAndProps                                 | summarize arg_max(Priority, *) by Computer;  let NodeIdentityAndPropsMin = NodeIdentityAndProps     | extend Type = iff(NodeProps.type == 'StandAloneNode', iff(NodeProps.azureResourceId == '', 'Non-Azure Virtual Machine', 'Azure Virtual Machine'), NodeProps.type),      ResourceId = iff(NodeProps.type == 'AzureScaleSetNode', NodeProps.vmScaleSetResourceId,          iff(NodeProps.type == 'AzureCloudServiceNode', NodeProps.cloudServiceDeploymentId, Computer)),     ResourceName = iff(NodeProps.type == 'AzureScaleSetNode', strcat(NodeProps.vmScaleSetName, ' | ', NodeProps.scaleSetInstanceId),          iff(NodeProps.type == 'AzureCloudServiceNode', strcat(NodeProps.cloudServiceRoleName, ' | ', NodeProps.cloudServiceInstanceId), Computer))     | project Computer, Type, ResourceId, ResourceName; \r\nlet trend = Network                \r\n| where ComputerId in (computerList)                \r\n| summarize hint.shufflekey = ComputerId {TableTrend} by ComputerId, Computer, bin(TimeGenerated, timeRangeGrain)    \r\n| project ComputerId, Computer, {TableTrend:label}                \r\n| summarize hint.shufflekey = ComputerId trendList = makelist({TableTrend:label}) by ComputerId, Computer;    \r\nsummaryPerComputer    \r\n| join (trend) on Computer    \r\n| join (NodeIdentityAndProps) on Computer  \r\n| join kind=leftouter (NodeIdentityAndPropsMin) on Computer \r\n| join kind=leftouter (MachineSummary) on Computer\r\n| project ResourceName, Type, {mergedAggregators}, ['Trend ({TableTrend:label})'] = trendList, Properties = MachineSummary\r\n| sort by {TableTrend:label} {tableTrendOrder} | limit maxResultCount",
                 "size": 0,
                 "noDataMessage": "There is no data for this counter, either enable the counter or onboard machines to this workspace",
                 "queryType": 0,
-                "resourceType": "microsoft.compute/virtualmachinescalesets",
+                "resourceType": "microsoft.operationalinsights/workspaces",
                 "crossComponentResources": [
-                    "{Resource}"
+                    "{Workspaces}"
                 ],
                 "visualization": "table",
                 "gridSettings": {
                     "formatters": [
                         {
-                            "columnMatch": "Type",
-                            "formatter": 1,
-                            "formatOptions": {}
+                            "columnMatch": "ResourceName",
+                            "formatter": 0,
+                            "formatOptions": {
+                                "showIcon": true
+                            }
                         },
                         {
-                            "columnMatch": "P95th",
-                            "formatter": 8,
+                            "columnMatch": "Type",
+                            "formatter": 1,
                             "formatOptions": {
-                                "palette": "blue"
-                            },
-                            "numberFormat": {
-                                "unit": 2,
-                                "options": {
-                                    "style": "decimal"
-                                }
+                                "showIcon": true
                             }
                         },
                         {
                             "columnMatch": "Average",
                             "formatter": 1,
                             "formatOptions": {
-                                "palette": "greenRed"
+                                "palette": "greenRed",
+                                "showIcon": true
                             },
                             "numberFormat": {
                                 "unit": 2,
@@ -692,9 +814,56 @@
                             }
                         },
                         {
+                            "columnMatch": "P95th",
+                            "formatter": 8,
+                            "formatOptions": {
+                                "palette": "blue",
+                                "showIcon": true
+                            },
+                            "numberFormat": {
+                                "unit": 2,
+                                "options": {
+                                    "style": "decimal"
+                                }
+                            }
+                        },
+                        {
+                            "columnMatch": "Max",
+                            "formatter": 1,
+                            "formatOptions": {
+                                "palette": "greenRed",
+                                "showIcon": true
+                            },
+                            "numberFormat": {
+                                "unit": 2,
+                                "options": {
+                                    "style": "decimal"
+                                }
+                            }
+                        },
+                        {
+                            "columnMatch": "Trend (Average)",
+                            "formatter": 10,
+                            "formatOptions": {
+                                "palette": "blue",
+                                "showIcon": true
+                            }
+                        },
+                        {
+                            "columnMatch": "Properties",
+                            "formatter": 7,
+                            "formatOptions": {
+                                "linkTarget": "CellDetails",
+                                "linkLabel": "️️️ℹ Información",
+                                "showIcon": true
+                            }
+                        },
+                        {
                             "columnMatch": "P10th",
                             "formatter": 1,
-                            "formatOptions": {},
+                            "formatOptions": {
+                                "showIcon": true
+                            },
                             "numberFormat": {
                                 "unit": 2,
                                 "options": {
@@ -706,7 +875,8 @@
                             "columnMatch": "P50th",
                             "formatter": 1,
                             "formatOptions": {
-                                "palette": "greenRed"
+                                "palette": "greenRed",
+                                "showIcon": true
                             },
                             "numberFormat": {
                                 "unit": 2,
@@ -719,22 +889,16 @@
                             "columnMatch": "Trend (P95th)",
                             "formatter": 10,
                             "formatOptions": {
-                                "palette": "blue"
-                            }
-                        },
-                        {
-                            "columnMatch": "Properties",
-                            "formatter": 7,
-                            "formatOptions": {
-                                "linkTarget": "CellDetails",
-                                "linkLabel": "️️️ℹ Información"
+                                "palette": "blue",
+                                "showIcon": true
                             }
                         },
                         {
                             "columnMatch": "P5th",
                             "formatter": 8,
                             "formatOptions": {
-                                "palette": "blue"
+                                "palette": "blue",
+                                "showIcon": true
                             },
                             "numberFormat": {
                                 "unit": 2,
@@ -747,7 +911,8 @@
                             "columnMatch": "P80th",
                             "formatter": 1,
                             "formatOptions": {
-                                "palette": "greenRed"
+                                "palette": "greenRed",
+                                "showIcon": true
                             },
                             "numberFormat": {
                                 "unit": 2,
@@ -760,7 +925,8 @@
                             "columnMatch": "P90th",
                             "formatter": 1,
                             "formatOptions": {
-                                "palette": "greenRed"
+                                "palette": "greenRed",
+                                "showIcon": true
                             },
                             "numberFormat": {
                                 "unit": 2,
@@ -772,19 +938,8 @@
                         {
                             "columnMatch": "Min",
                             "formatter": 1,
-                            "formatOptions": {},
-                            "numberFormat": {
-                                "unit": 2,
-                                "options": {
-                                    "style": "decimal"
-                                }
-                            }
-                        },
-                        {
-                            "columnMatch": "Max",
-                            "formatter": 1,
                             "formatOptions": {
-                                "palette": "greenRed"
+                                "showIcon": true
                             },
                             "numberFormat": {
                                 "unit": 2,
@@ -797,42 +952,40 @@
                             "columnMatch": "Trend (P5th)",
                             "formatter": 10,
                             "formatOptions": {
-                                "palette": "blue"
+                                "palette": "blue",
+                                "showIcon": true
                             }
                         },
                         {
                             "columnMatch": "Trend (P90th)",
                             "formatter": 10,
                             "formatOptions": {
-                                "palette": "blue"
+                                "palette": "blue",
+                                "showIcon": true
                             }
                         },
                         {
                             "columnMatch": "Trend (P80th)",
                             "formatter": 10,
                             "formatOptions": {
-                                "palette": "blue"
+                                "palette": "blue",
+                                "showIcon": true
                             }
                         },
                         {
                             "columnMatch": "Trend (P50th)",
                             "formatter": 10,
                             "formatOptions": {
-                                "palette": "blue"
+                                "palette": "blue",
+                                "showIcon": true
                             }
                         },
                         {
                             "columnMatch": "Trend (P10th)",
                             "formatter": 10,
                             "formatOptions": {
-                                "palette": "blue"
-                            }
-                        },
-                        {
-                            "columnMatch": "Trend (Average)",
-                            "formatter": 10,
-                            "formatOptions": {
-                                "palette": "blue"
+                                "palette": "blue",
+                                "showIcon": true
                             }
                         }
                     ]
@@ -850,7 +1003,10 @@
             "content": {
                 "json": "---\n## <a name=\"top-10-machines\"></a>10 primeras máquinas"
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "name": "text - 11"
         },
         {
@@ -858,7 +1014,10 @@
             "content": {
                 "json": "### <a name=\"cpu-utilization-\"></a>% de uso de CPU"
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "text - 12"
         },
@@ -867,7 +1026,10 @@
             "content": {
                 "json": "### <a name=\"available-memory\"></a>Memoria disponible"
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "text - 13"
         },
@@ -875,9 +1037,8 @@
             "type": 9,
             "content": {
                 "version": "KqlParameterItem/1.0",
-                "query": "",
                 "crossComponentResources": [
-                    "{Resource}"
+                    "{Workspaces}"
                 ],
                 "parameters": [
                     {
@@ -887,27 +1048,23 @@
                         "type": 2,
                         "isRequired": true,
                         "value": "P95th = round(percentile(CounterValue, 95), 2)",
-                        "isHiddenWhenLocked": false,
                         "typeSettings": {
                             "additionalResourceOptions": []
                         },
-                        "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\"},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\"},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\"},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\"},\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\"},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\"},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\"}\r\n]",
-                        "timeContextFromParameter": null
+                        "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\"},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\"},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\"},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\"},\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\"},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\"},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\"}\r\n]"
                     },
                     {
                         "id": "27345375-4376-4e2f-8ac4-59d4eab9d235",
                         "version": "KqlParameterItem/1.0",
                         "name": "aggregateOrderLeft",
                         "type": 1,
-                        "isRequired": false,
                         "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{Aggregate}' contains 'P5th'  or '{Aggregate}' contains 'P10th', 'asc', 'desc')",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "4d9ba0ec-9d22-4fec-9f85-4be334f42d91",
@@ -917,12 +1074,11 @@
                         "isRequired": true,
                         "query": "print \"{Aggregate:value}\"",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "50242f48-6c7d-449b-ad93-838c94e615a0",
@@ -932,19 +1088,21 @@
                         "isRequired": true,
                         "query": "print \"{Aggregate:label}\"",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     }
                 ],
                 "style": "above",
                 "queryType": 0,
-                "resourceType": "microsoft.compute/virtualmachinescalesets"
+                "resourceType": "microsoft.operationalinsights/workspaces"
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "parameters - 14"
         },
@@ -952,9 +1110,8 @@
             "type": 9,
             "content": {
                 "version": "KqlParameterItem/1.0",
-                "query": "",
                 "crossComponentResources": [
-                    "{Resource}"
+                    "{Workspaces}"
                 ],
                 "parameters": [
                     {
@@ -964,27 +1121,23 @@
                         "type": 2,
                         "isRequired": true,
                         "value": "P95th = round(percentile(CounterValue, 95), 2)",
-                        "isHiddenWhenLocked": false,
                         "typeSettings": {
                             "additionalResourceOptions": []
                         },
-                        "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\"},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\"},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\"},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\"},\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\"},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\"},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\"}\r\n]",
-                        "timeContextFromParameter": null
+                        "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\"},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\"},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\"},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\"},\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\"},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\"},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\"}\r\n]"
                     },
                     {
                         "id": "a23b29a5-5e4a-4d8e-ba73-bfdf27b2980e",
                         "version": "KqlParameterItem/1.0",
                         "name": "aggregateOrderRight",
                         "type": 1,
-                        "isRequired": false,
                         "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{Aggregate}' contains 'P5th'  or '{Aggregate}' contains 'P10th', 'asc', 'desc')",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "cc8dfabc-9eb9-4227-97bb-f5e9319030ec",
@@ -994,12 +1147,11 @@
                         "isRequired": true,
                         "query": "print \"{Aggregate:value}\"",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "ff7a79ff-742a-4c6e-8628-c52f45b3bf71",
@@ -1009,19 +1161,21 @@
                         "isRequired": true,
                         "query": "print \"{Aggregate:label}\"",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     }
                 ],
                 "style": "above",
                 "queryType": 0,
-                "resourceType": "microsoft.compute/virtualmachinescalesets"
+                "resourceType": "microsoft.operationalinsights/workspaces"
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "parameters - 15"
         },
@@ -1035,9 +1189,9 @@
                 "showAnnotations": true,
                 "noDataMessage": "There is no data for this counter, either enable the counter or onboard machines to this workspace",
                 "queryType": 0,
-                "resourceType": "microsoft.compute/virtualmachinescalesets",
+                "resourceType": "microsoft.operationalinsights/workspaces",
                 "crossComponentResources": [
-                    "{Resource}"
+                    "{Workspaces}"
                 ],
                 "visualization": "linechart",
                 "tileSettings": {
@@ -1062,7 +1216,10 @@
                     }
                 }
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "query - 16"
         },
@@ -1076,9 +1233,9 @@
                 "showAnnotations": true,
                 "noDataMessage": "There is no data for this counter, either enable the counter or onboard machines to this workspace",
                 "queryType": 0,
-                "resourceType": "microsoft.compute/virtualmachinescalesets",
+                "resourceType": "microsoft.operationalinsights/workspaces",
                 "crossComponentResources": [
-                    "{Resource}"
+                    "{Workspaces}"
                 ],
                 "visualization": "linechart",
                 "tileSettings": {
@@ -1103,7 +1260,10 @@
                     }
                 }
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "query - 17"
         },
@@ -1112,7 +1272,10 @@
             "content": {
                 "json": "### <a name=\"bytes-sent-rate\"></a>Tasa de bytes enviados"
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "text - 18"
         },
@@ -1121,7 +1284,10 @@
             "content": {
                 "json": "### <a name=\"bytes-received-rate\"></a>Tasa de bytes recibidos"
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "text - 19"
         },
@@ -1129,9 +1295,8 @@
             "type": 9,
             "content": {
                 "version": "KqlParameterItem/1.0",
-                "query": "",
                 "crossComponentResources": [
-                    "{Resource}"
+                    "{Workspaces}"
                 ],
                 "parameters": [
                     {
@@ -1141,27 +1306,23 @@
                         "type": 2,
                         "isRequired": true,
                         "value": "P95th = round(percentile(CounterValue, 95), 2)",
-                        "isHiddenWhenLocked": false,
                         "typeSettings": {
                             "additionalResourceOptions": []
                         },
-                        "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\"},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\"},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\"},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\"},\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\"},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\"},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\"}\r\n]",
-                        "timeContextFromParameter": null
+                        "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\"},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\"},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\"},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\"},\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\"},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\"},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\"}\r\n]"
                     },
                     {
                         "id": "31ccd4a1-d626-44bb-a5de-1780a33b37a5",
                         "version": "KqlParameterItem/1.0",
                         "name": "aggregateOrderLeft",
                         "type": 1,
-                        "isRequired": false,
                         "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{Aggregate}' contains 'P5th'  or '{Aggregate}' contains 'P10th', 'asc', 'desc')",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "4765abab-a682-49f6-bb41-d64852aba192",
@@ -1171,12 +1332,11 @@
                         "isRequired": true,
                         "query": "print \"{Aggregate:value}\"",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "1d9b0ea9-09d4-4c73-8e59-fa7ab760b880",
@@ -1186,19 +1346,21 @@
                         "isRequired": true,
                         "query": "print \"{Aggregate:label}\"",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     }
                 ],
                 "style": "above",
                 "queryType": 0,
-                "resourceType": "microsoft.compute/virtualmachinescalesets"
+                "resourceType": "microsoft.operationalinsights/workspaces"
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "parameters - 20"
         },
@@ -1206,9 +1368,8 @@
             "type": 9,
             "content": {
                 "version": "KqlParameterItem/1.0",
-                "query": "",
                 "crossComponentResources": [
-                    "{Resource}"
+                    "{Workspaces}"
                 ],
                 "parameters": [
                     {
@@ -1218,27 +1379,23 @@
                         "type": 2,
                         "isRequired": true,
                         "value": "P95th = round(percentile(CounterValue, 95), 2)",
-                        "isHiddenWhenLocked": false,
                         "typeSettings": {
                             "additionalResourceOptions": []
                         },
-                        "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\"},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\"},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\"},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\"},\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\"},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\"},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\"}\r\n]",
-                        "timeContextFromParameter": null
+                        "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\"},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\"},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\"},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\"},\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\"},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\"},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\"}\r\n]"
                     },
                     {
                         "id": "5e2eef28-0528-406f-86b5-ceae535455f9",
                         "version": "KqlParameterItem/1.0",
                         "name": "aggregateOrderRight",
                         "type": 1,
-                        "isRequired": false,
                         "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{Aggregate}' contains 'P5th'  or '{Aggregate}' contains 'P10th', 'asc', 'desc')",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "586fa51c-1a45-4602-adcb-62eb0f619b7f",
@@ -1248,12 +1405,11 @@
                         "isRequired": true,
                         "query": "print \"{Aggregate:value}\"",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     },
                     {
                         "id": "912085b6-f920-4a37-9ce3-f1ef86bd5df8",
@@ -1263,19 +1419,21 @@
                         "isRequired": true,
                         "query": "print \"{Aggregate:label}\"",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     }
                 ],
                 "style": "above",
                 "queryType": 0,
-                "resourceType": "microsoft.compute/virtualmachinescalesets"
+                "resourceType": "microsoft.operationalinsights/workspaces"
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "parameters - 21"
         },
@@ -1288,9 +1446,9 @@
                 "showAnnotations": true,
                 "noDataMessage": "There is no data for this counter, either enable the counter or onboard machines to this workspace",
                 "queryType": 0,
-                "resourceType": "microsoft.compute/virtualmachinescalesets",
+                "resourceType": "microsoft.operationalinsights/workspaces",
                 "crossComponentResources": [
-                    "{Resource}"
+                    "{Workspaces}"
                 ],
                 "visualization": "linechart",
                 "tileSettings": {
@@ -1315,7 +1473,10 @@
                     }
                 }
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "query - 22"
         },
@@ -1328,9 +1489,9 @@
                 "showAnnotations": true,
                 "noDataMessage": "There is no data for this counter, either enable the counter or onboard machines to this workspace",
                 "queryType": 0,
-                "resourceType": "microsoft.compute/virtualmachinescalesets",
+                "resourceType": "microsoft.operationalinsights/workspaces",
                 "crossComponentResources": [
-                    "{Resource}"
+                    "{Workspaces}"
                 ],
                 "visualization": "linechart",
                 "tileSettings": {
@@ -1355,7 +1516,10 @@
                     }
                 }
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "query - 23"
         },
@@ -1364,7 +1528,10 @@
             "content": {
                 "json": "### <a name=\"logical-disk-space-used-\"></a>Porcentaje de espacio usado del disco lógico"
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "text - 24"
         },
@@ -1373,7 +1540,10 @@
             "content": {
                 "json": ""
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "text - 25"
         },
@@ -1381,9 +1551,8 @@
             "type": 9,
             "content": {
                 "version": "KqlParameterItem/1.0",
-                "query": "",
                 "crossComponentResources": [
-                    "{Resource}"
+                    "{Workspaces}"
                 ],
                 "parameters": [
                     {
@@ -1393,34 +1562,33 @@
                         "type": 2,
                         "isRequired": true,
                         "value": "P95th = round(percentile(CounterValue, 95), 2)",
-                        "isHiddenWhenLocked": false,
                         "typeSettings": {
                             "additionalResourceOptions": []
                         },
-                        "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\"},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\"},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\"},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\"},\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\"},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\"},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\"}\r\n]",
-                        "timeContextFromParameter": null
+                        "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\"},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\"},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\"},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\"},\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\"},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\"},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\"}\r\n]"
                     },
                     {
                         "id": "1d5a805c-acce-4afe-a38b-c2740fb3ff26",
                         "version": "KqlParameterItem/1.0",
                         "name": "aggregateOrder",
                         "type": 1,
-                        "isRequired": false,
                         "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{Aggregate}' contains 'P5th'  or '{Aggregate}' contains 'P10th', 'asc', 'desc')",
                         "crossComponentResources": [
-                            "{Resource}"
+                            "{Workspaces}"
                         ],
                         "isHiddenWhenLocked": true,
-                        "timeContextFromParameter": null,
                         "queryType": 0,
-                        "resourceType": "microsoft.compute/virtualmachinescalesets"
+                        "resourceType": "microsoft.operationalinsights/workspaces"
                     }
                 ],
                 "style": "above",
                 "queryType": 0,
-                "resourceType": "microsoft.compute/virtualmachinescalesets"
+                "resourceType": "microsoft.operationalinsights/workspaces"
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "parameters - 26"
         },
@@ -1429,7 +1597,10 @@
             "content": {
                 "json": ""
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "text - 27"
         },
@@ -1443,9 +1614,9 @@
                 "showAnnotations": true,
                 "noDataMessage": "There is no data for this counter, either enable the counter or onboard machines to this workspace",
                 "queryType": 0,
-                "resourceType": "microsoft.compute/virtualmachinescalesets",
+                "resourceType": "microsoft.operationalinsights/workspaces",
                 "crossComponentResources": [
-                    "{Resource}"
+                    "{Workspaces}"
                 ],
                 "visualization": "linechart",
                 "tileSettings": {
@@ -1470,7 +1641,10 @@
                     }
                 }
             },
-            "conditionalVisibility": null,
+            "conditionalVisibility": {
+                "parameterName": "Test",
+                "comparison": "isNotEqualTo"
+            },
             "customWidth": "50",
             "name": "query - 28"
         }
