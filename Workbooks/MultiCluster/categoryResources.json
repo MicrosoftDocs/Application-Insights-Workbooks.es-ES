@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Container Insights",
+        "description": "Proporciona información detallada sobre sus contenedores de Kubernetes en Azure y Arc",
+        "order": 100
+    }
+}
