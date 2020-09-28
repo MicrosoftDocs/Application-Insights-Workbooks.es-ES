@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Windows Virtual Desktop",
+        "description": "Proporciona información para los grupos de hosts de Windows Virtual Desktop",
+        "order": 100
+    }
+}
