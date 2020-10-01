@@ -36,8 +36,7 @@
                             "additionalResourceOptions": []
                         },
                         "queryType": 1,
-                        "resourceType": "microsoft.resourcegraph/resources",
-                        "value": "canaryweu"
+                        "resourceType": "microsoft.resourcegraph/resources"
                     },
                     {
                         "id": "951b5870-e216-45c6-b159-34150868a46e",
@@ -205,118 +204,6 @@
                         "name": "text - 0"
                     },
                     {
-                        "type": 3,
-                        "content": {
-                            "version": "KqlItem/1.0",
-                            "query": "Perf\r\n| where ObjectName == \"Process\" and CounterName == \"% User Time\"\r\n| join\r\n(\r\nVMProcess\r\n| where UserName !contains \"system\" and UserName !contains \"service\"\r\n| extend InstanceName = ExecutableName\r\n| project TimeGenerated, InstanceName, Computer, UserName, UserDomain\r\n)\r\non InstanceName\r\n| summarize AggregatedValue = avg(CounterValue) by bin(TimeGenerated, 10m), InstanceName, CounterName, UserName, Computer\r\n",
-                            "size": 0,
-                            "showAnalytics": true,
-                            "title": "Porcentaje de tiempo de usuario por proceso",
-                            "timeContext": {
-                                "durationMs": 0
-                            },
-                            "timeContextFromParameter": "TimeRange",
-                            "queryType": 0,
-                            "resourceType": "microsoft.operationalinsights/workspaces",
-                            "crossComponentResources": [
-                                "{Workspace}"
-                            ],
-                            "visualization": "linechart"
-                        },
-                        "customWidth": "50",
-                        "showPin": true,
-                        "name": "session-percusertime",
-                        "styleSettings": {
-                            "margin": "1px",
-                            "padding": "1px",
-                            "showBorder": true
-                        }
-                    },
-                    {
-                        "type": 3,
-                        "content": {
-                            "version": "KqlItem/1.0",
-                            "query": "Perf\r\n| where ObjectName == \"Process\" and CounterName == \"% Processor Time\"\r\n| join\r\n(\r\nVMProcess\r\n| where UserName !contains \"system\" and UserName !contains \"service\"\r\n| extend InstanceName = ExecutableName\r\n| project TimeGenerated, InstanceName, Computer, UserName, UserDomain\r\n)\r\non InstanceName\r\n| summarize AggregatedValue = avg(CounterValue) by bin(TimeGenerated, 10m), InstanceName, CounterName, UserName, Computer\r\n",
-                            "size": 0,
-                            "showAnalytics": true,
-                            "title": "Porcentaje de tiempo de usuario por proceso",
-                            "timeContext": {
-                                "durationMs": 604800000
-                            },
-                            "timeContextFromParameter": "TimeRange",
-                            "queryType": 0,
-                            "resourceType": "microsoft.operationalinsights/workspaces",
-                            "crossComponentResources": [
-                                "{Workspace}"
-                            ],
-                            "visualization": "linechart"
-                        },
-                        "customWidth": "50",
-                        "showPin": true,
-                        "name": "session-percproctime",
-                        "styleSettings": {
-                            "margin": "1px",
-                            "padding": "1px",
-                            "showBorder": true
-                        }
-                    },
-                    {
-                        "type": 3,
-                        "content": {
-                            "version": "KqlItem/1.0",
-                            "query": "Perf\r\n| where ObjectName == \"Process\" and CounterName == \"IO Write Operations/sec\"\r\n| join\r\n(\r\nVMProcess\r\n| where UserName !contains \"system\" and UserName !contains \"service\"\r\n| extend InstanceName = ExecutableName\r\n| project TimeGenerated, InstanceName, Computer, UserName, UserDomain\r\n)\r\non InstanceName\r\n| summarize AggregatedValue = avg(CounterValue) by bin(TimeGenerated, 10m), InstanceName, CounterName, UserName, Computer\r\n",
-                            "size": 0,
-                            "showAnalytics": true,
-                            "title": "Operaciones de escritura de E/S por segundo por proceso",
-                            "timeContext": {
-                                "durationMs": 604800000
-                            },
-                            "timeContextFromParameter": "TimeRange",
-                            "queryType": 0,
-                            "resourceType": "microsoft.operationalinsights/workspaces",
-                            "crossComponentResources": [
-                                "{Workspace}"
-                            ],
-                            "visualization": "linechart"
-                        },
-                        "customWidth": "50",
-                        "showPin": true,
-                        "name": "session-iowrite",
-                        "styleSettings": {
-                            "margin": "1px",
-                            "padding": "1px",
-                            "showBorder": true
-                        }
-                    },
-                    {
-                        "type": 3,
-                        "content": {
-                            "version": "KqlItem/1.0",
-                            "query": "Perf\r\n| where ObjectName == \"Process\" and CounterName == \"IO Read Operations/sec\"\r\n| join\r\n(\r\nVMProcess\r\n| where UserName !contains \"system\" and UserName !contains \"service\"\r\n| extend InstanceName = ExecutableName\r\n| project TimeGenerated, InstanceName, Computer, UserName, UserDomain\r\n)\r\non InstanceName\r\n| summarize AggregatedValue = avg(CounterValue) by bin(TimeGenerated, 10m), InstanceName, CounterName, UserName, Computer\r\n",
-                            "size": 0,
-                            "showAnalytics": true,
-                            "title": "Operaciones de lectura de E/S por segundo por proceso",
-                            "timeContext": {
-                                "durationMs": 604800000
-                            },
-                            "timeContextFromParameter": "TimeRange",
-                            "queryType": 0,
-                            "resourceType": "microsoft.operationalinsights/workspaces",
-                            "crossComponentResources": [
-                                "{Workspace}"
-                            ],
-                            "visualization": "linechart"
-                        },
-                        "customWidth": "50",
-                        "showPin": true,
-                        "name": "session-ioread",
-                        "styleSettings": {
-                            "margin": "1px",
-                            "padding": "1px",
-                            "showBorder": true
-                        }
-                    },
-                    {
                         "type": 12,
                         "content": {
                             "version": "NotebookGroup/1.0",
@@ -327,7 +214,7 @@
                                     "type": 3,
                                     "content": {
                                         "version": "KqlItem/1.0",
-                                        "query": "//aligning to this: https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-rdsh-performance-counters\r\nlet WVDHosts = dynamic([{WVDHosts}]);\r\nPerf\r\n| extend HostPool = '{HostPool:label}'\r\n| extend HostPool = strcat(HostPool, \"/\")\r\n| extend ComputerName = strcat(HostPool, Computer)\r\n| where ComputerName in (WVDHosts)\r\n//| where ObjectName in (\"User Input Delay per Session\", \"Terminal Services\", \"Terminal Services Session Lag\")  //\"User Input Delay per Process\", \r\n| where InstanceName == \"Max\" //in (\"Max\", \"All Average\", \"\", \"_Total\")\r\n| where CounterName == \"Max Input Delay\" //in (\"% Processor Time\",  \"Max Input Delay\")\r\n| make-series Value=max(CounterValue) default=int(null) on TimeGenerated from {TimeRange:start} to {TimeRange:end} step {TimeRange:grain} by _ResourceId\r\n| as SourceData\r\n| project TimeGenerated, _ResourceId, Value, series_stats(Value), outliers=series_outliers(Value)\r\n| mv-expand TimeGenerated to typeof(datetime), outliers to typeof(double), Value to typeof(double)\r\n| project TimeGenerated, _ResourceId, Value, outliers_removed=iff(outliers > 1.5 and series_stats_Value_avg < Value, series_stats_Value_avg , Value), Variance=series_stats_Value_variance // replace outliers with the average\r\n| as SourceData\r\n| where Value > 0\r\n| summarize Median=percentile(Value, 50), Peak=max(Value) by _ResourceId, Variance\r\n| join kind=fullouter\r\n(\r\n    SourceData\r\n    | summarize Samples=dcountif(TimeGenerated, Value > 0), Spikes=dcountif(TimeGenerated, Value > outliers_removed) by _ResourceId\r\n) on _ResourceId\r\n| extend Spikes=(1.0 * Spikes / Samples)\r\n| project Host=coalesce(_ResourceId, _ResourceId1), Samples, Median, Peak, Spikes, StDev=sqrt(Variance)\r\n",
+                                        "query": "//aligning to this: https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-rdsh-performance-counters\r\nlet WVDHosts = dynamic([{WVDHosts}]);\r\nPerf\r\n| extend HostPool = '{HostPool:label}'\r\n| extend HostPool = strcat(HostPool, \"/\")\r\n| extend ComputerName = strcat(HostPool, Computer)\r\n| where ComputerName in (WVDHosts)\r\n| where ObjectName == \"User Input Delay per Session\" and InstanceName == \"Max\" and CounterName == \"Max Input Delay\" \r\n| make-series Value=max(CounterValue) default=int(null) on TimeGenerated from {TimeRange:start} to {TimeRange:end} step {TimeRange:grain} by _ResourceId\r\n| project TimeGenerated, _ResourceId, Value, series_stats(Value), outliers=series_outliers(Value)\r\n| mv-expand TimeGenerated to typeof(datetime), outliers to typeof(double), Value to typeof(double)\r\n| project TimeGenerated, _ResourceId, Value, outliers_removed=iff(outliers > 1.5 and series_stats_Value_avg < Value, series_stats_Value_avg , Value), Variance=series_stats_Value_variance // replace outliers with the average\r\n| as SourceData\r\n| where Value > 0\r\n| summarize Median=percentile(Value, 50), Peak=max(Value) by _ResourceId, Variance\r\n| join kind=fullouter\r\n(\r\n    SourceData\r\n    | summarize Samples=dcountif(TimeGenerated, Value > 0), Spikes=dcountif(TimeGenerated, Value > outliers_removed) by _ResourceId\r\n) on _ResourceId\r\n| extend Spikes=(1.0 * Spikes / Samples)\r\n| project Host=coalesce(_ResourceId, _ResourceId1), Samples, Median, Peak, Spikes, StDev=sqrt(Variance)\r\n",
                                         "size": 0,
                                         "aggregation": 2,
                                         "title": "Resumen de retraso de entrada por host",
@@ -540,12 +427,12 @@
                                     "type": 3,
                                     "content": {
                                         "version": "KqlItem/1.0",
-                                        "query": "//aligning to this: https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-rdsh-performance-counters\r\nlet WVDHosts = dynamic([{WVDHosts}]);\r\nPerf\r\n| where \"{InputDelayHost}\" == \"*\" or _ResourceId == \"{InputDelayHost}\"\r\n| extend HostPool = '{HostPool:label}'\r\n| extend HostPool = strcat(HostPool, \"/\")\r\n| extend ComputerName = strcat(HostPool, Computer)\r\n| where ComputerName in (WVDHosts)\r\n//| where ObjectName in (\"User Input Delay per Session\", \"Terminal Services\", \"Terminal Services Session Lag\")  //\"User Input Delay per Process\", \r\n| where InstanceName == \"Max\" //in (\"Max\", \"All Average\", \"\", \"_Total\")\r\n| where CounterName == \"Max Input Delay\" //in (\"% Processor Time\",  \"Max Input Delay\")\r\n| make-series Value=max(CounterValue) default=int(null) on TimeGenerated from {TimeRange:start} to {TimeRange:end} step {TimeRange:grain} by Computer\r\n| as SourceData\r\n| project TimeGenerated, Computer, Value, series_stats(Value), outliers=series_outliers(Value)\r\n| mv-expand TimeGenerated to typeof(datetime), outliers to typeof(double), Value to typeof(double)\r\n| project TimeGenerated, Computer, Value, outliers_removed=iff(outliers > 1.5 and series_stats_Value_avg < Value, series_stats_Value_avg , Value ) // replace outliers with the average",
+                                        "query": "//aligning to this: https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-rdsh-performance-counters\r\nlet WVDHosts = dynamic([{WVDHosts}]);\r\nPerf\r\n| where \"{InputDelayHost}\" == \"*\" or _ResourceId == \"{InputDelayHost}\"\r\n| extend HostPool = '{HostPool:label}'\r\n| extend HostPool = strcat(HostPool, \"/\")\r\n| extend ComputerName = strcat(HostPool, Computer)\r\n| where ComputerName in (WVDHosts)\r\n| where ObjectName == \"User Input Delay per Session\" and InstanceName == \"Max\" and CounterName == \"Max Input Delay\" \r\n| make-series Value=max(CounterValue) default=int(null) on TimeGenerated from {TimeRange:start} to {TimeRange:end} step {TimeRange:grain} by Computer\r\n| as SourceData\r\n| project TimeGenerated, Computer, Value, series_stats(Value), outliers=series_outliers(Value)\r\n| mv-expand TimeGenerated to typeof(datetime), outliers to typeof(double), Value to typeof(double)\r\n| project TimeGenerated, Computer, Value, outliers_removed=iff(outliers > 1.5 and series_stats_Value_avg < Value, series_stats_Value_avg , Value ) // replace outliers with the average",
                                         "size": 0,
                                         "aggregation": 3,
                                         "title": "Retraso de entrada a lo largo del tiempo",
                                         "timeContext": {
-                                            "durationMs": 604800000
+                                            "durationMs": 0
                                         },
                                         "timeContextFromParameter": "TimeRange",
                                         "exportFieldName": "ComputerName",
@@ -619,12 +506,12 @@
                                     "type": 3,
                                     "content": {
                                         "version": "KqlItem/1.0",
-                                        "query": "//aligning to this: https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-rdsh-performance-counters\r\nlet WVDHosts = dynamic([{WVDHosts}]);\r\nPerf\r\n| where \"{InputDelayHost}\" == \"*\" or _ResourceId == \"{InputDelayHost}\"\r\n| extend HostPool = '{HostPool:label}'\r\n| extend HostPool = strcat(HostPool, \"/\")\r\n| extend ComputerName = strcat(HostPool, Computer)           \r\n| where ObjectName in (\"Memory\", \"Processor\", \"Terminal Services\", \"Terminal Services Session Lag\")  //\"User Input Delay per Process\", \r\n| as InputData\r\n| where InstanceName in (\"Max\", \"All Average\", \"\", \"_Total\")\r\n| where CounterName in (\"% Processor Time\",  \"Max Input Delay\", \"% Committed Bytes In Use\")\r\n| summarize maxValue = max(CounterValue) by TimeBin = bin(TimeGenerated, 1h), ComputerName, CounterName\r\n| evaluate pivot(CounterName, max(maxValue))\r\n| join kind = inner\r\n(\r\n    InputData\r\n    | where ObjectName == \"Terminal Services\" and CounterName == \"Active Sessions\"\r\n    | summarize MaxBin = max(CounterValue) by TimeBin = bin(TimeGenerated, 1h), CounterName, ComputerName\r\n    | summarize TotalActiveSessions = sum(MaxBin) by TimeBin, ComputerName    \r\n) on TimeBin, ComputerName\r\n| project TimeBin, [\"% Committed Bytes In Use\"]=[\"% Committed Bytes In Use\"]/100.0, [\"% Processor Time\"]=[\"% Processor Time\"]/100.0, TotalActiveSessions\r\n| sort by TimeBin asc\r\n\r\n\r\n",
+                                        "query": "//aligning to this: https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/rds-rdsh-performance-counters\r\nlet WVDHosts = dynamic([{WVDHosts}]);\r\nPerf\r\n| where \"{InputDelayHost}\" == \"*\" or _ResourceId == \"{InputDelayHost}\"\r\n| extend HostPool = '{HostPool:label}'\r\n| extend HostPool = strcat(HostPool, \"/\")\r\n| extend ComputerName = strcat(HostPool, Computer)           \r\n| where ObjectName in (\"Memory\", \"Processor Information\", \"Terminal Services\", \"Terminal Services Session Lag\")  //\"User Input Delay per Process\", \r\n| as InputData\r\n| where InstanceName in (\"Max\", \"All Average\", \"\", \"_Total\")\r\n| where CounterName in (\"% Processor Time\",  \"Max Input Delay\", \"% Committed Bytes In Use\")\r\n| summarize maxValue = max(CounterValue) by TimeBin = bin(TimeGenerated, 1h), ComputerName, CounterName\r\n| evaluate pivot(CounterName, max(maxValue))\r\n| join kind = inner\r\n(\r\n    InputData\r\n    | where ObjectName == \"Terminal Services\" and CounterName == \"Active Sessions\"\r\n    | summarize MaxBin = max(CounterValue) by TimeBin = bin(TimeGenerated, 1h), CounterName, ComputerName\r\n    | summarize TotalActiveSessions = sum(MaxBin) by TimeBin, ComputerName    \r\n) on TimeBin, ComputerName\r\n| project TimeBin, [\"% Committed Bytes In Use\"]=[\"% Committed Bytes In Use\"]/100.0, [\"% Processor Time\"]=[\"% Processor Time\"]/100.0, TotalActiveSessions\r\n| sort by TimeBin asc\r\n\r\n\r\n",
                                         "size": 1,
                                         "aggregation": 3,
                                         "title": "Métricas de proceso de host",
                                         "timeContext": {
-                                            "durationMs": 604800000
+                                            "durationMs": 0
                                         },
                                         "timeContextFromParameter": "TimeRange",
                                         "queryType": 0,
@@ -693,7 +580,7 @@
                                             }
                                         }
                                     },
-                                    "customWidth": "33",
+                                    "customWidth": "50",
                                     "name": "Session Compute",
                                     "styleSettings": {
                                         "padding": "10px"
@@ -703,12 +590,12 @@
                                     "type": 3,
                                     "content": {
                                         "version": "KqlItem/1.0",
-                                        "query": "Perf\r\n| where \"{InputDelayHost}\" == \"*\" or _ResourceId == \"{InputDelayHost}\"\r\n| extend HostPool = '{HostPool:label}'\r\n| extend HostPool = strcat(HostPool, \"/\")\r\n| extend ComputerName = strcat(HostPool, Computer)\r\n| where ObjectName == \"PhysicalDisk\"\r\n| where InstanceName == \"_Total\"\r\n| summarize maxValue = max(CounterValue) by TimeBin = bin(TimeGenerated, 1h), ComputerName, CounterName\r\n| evaluate pivot(CounterName, max(maxValue))\r\n| sort by TimeBin asc, ComputerName\r\n| project TimeBin, ComputerName, [\"% Idle Time\"],  [\"Avg. Disk sec/Read\"], [\"Avg. Disk sec/Transfer\"], [\"Avg. Disk Bytes/Read\"], [\"Avg. Disk Bytes/Write\"], [\"Avg. Disk Bytes/Transfer\"] //[\"Avg. Disk sec/Write\"],",
+                                        "query": "Perf\r\n| where \"{InputDelayHost}\" == \"*\" or _ResourceId == \"{InputDelayHost}\"\r\n| extend HostPool = '{HostPool:label}'\r\n| extend HostPool = strcat(HostPool, \"/\")\r\n| extend ComputerName = strcat(HostPool, Computer)\r\n| where ObjectName == \"PhysicalDisk\"\r\n| where InstanceName == \"_Total\"\r\n| summarize maxValue = max(CounterValue) by TimeBin = bin(TimeGenerated, 1h), ComputerName, CounterName\r\n| evaluate pivot(CounterName, max(maxValue))\r\n| sort by TimeBin asc, ComputerName\r\n| project TimeBin, ComputerName, [\"Avg. Disk Queue Length\"], [\"Avg. Disk sec/Read\"], [\"Avg. Disk sec/Write\"], [\"Avg. Disk sec/Transfer\"]",
                                         "size": 1,
                                         "aggregation": 5,
                                         "title": "Métricas de disco de host",
                                         "timeContext": {
-                                            "durationMs": 604800000
+                                            "durationMs": 0
                                         },
                                         "timeContextFromParameter": "TimeRange",
                                         "queryType": 0,
@@ -763,88 +650,8 @@
                                             ]
                                         }
                                     },
-                                    "customWidth": "33",
+                                    "customWidth": "50",
                                     "name": "Session Disk",
-                                    "styleSettings": {
-                                        "padding": "10px"
-                                    }
-                                },
-                                {
-                                    "type": 3,
-                                    "content": {
-                                        "version": "KqlItem/1.0",
-                                        "query": "Perf\r\n| where \"{InputDelayHost}\" == \"*\" or _ResourceId == \"{InputDelayHost}\"\r\n| extend HostPool = '{HostPool:label}'\r\n| extend HostPool = strcat(HostPool, \"/\")\r\n| extend ComputerName = strcat(HostPool, Computer)\r\n| where ObjectName == \"Network Interface\" \r\n| where InstanceName == \"Microsoft Hyper-V Network Adapter\"\r\n| summarize AggregatedValue = max(CounterValue) by bin(TimeGenerated, 1h), ComputerName, InstanceName, CounterName \r\n| project TimBin=TimeGenerated, ComputerName, [\"Max Bytes Total/sec\"]=AggregatedValue\r\n| sort by TimBin asc, ComputerName\r\n",
-                                        "size": 1,
-                                        "aggregation": 5,
-                                        "title": "Métricas de redes de host",
-                                        "timeContext": {
-                                            "durationMs": 604800000
-                                        },
-                                        "timeContextFromParameter": "TimeRange",
-                                        "queryType": 0,
-                                        "resourceType": "microsoft.operationalinsights/workspaces",
-                                        "crossComponentResources": [
-                                            "{Workspace}"
-                                        ],
-                                        "visualization": "linechart",
-                                        "gridSettings": {
-                                            "rowLimit": 25
-                                        },
-                                        "tileSettings": {
-                                            "titleContent": {
-                                                "columnMatch": "CounterName",
-                                                "formatter": 1
-                                            },
-                                            "leftContent": {
-                                                "columnMatch": "CounterValue",
-                                                "formatter": 12,
-                                                "formatOptions": {
-                                                    "palette": "auto"
-                                                },
-                                                "numberFormat": {
-                                                    "unit": 17,
-                                                    "options": {
-                                                        "style": "decimal",
-                                                        "useGrouping": false,
-                                                        "maximumFractionDigits": 2,
-                                                        "maximumSignificantDigits": 3
-                                                    }
-                                                }
-                                            },
-                                            "secondaryContent": {
-                                                "columnMatch": "TimeGenerated"
-                                            },
-                                            "showBorder": false
-                                        },
-                                        "chartSettings": {
-                                            "seriesLabelSettings": [
-                                                {
-                                                    "seriesName": "Max Input Delay",
-                                                    "label": "Retraso máximo de entrada (segundos)"
-                                                },
-                                                {
-                                                    "seriesName": "% Processor Time",
-                                                    "label": "Porcentaje de tiempo máximo de procesador del host"
-                                                },
-                                                {
-                                                    "seriesName": "TotalActiveSessions",
-                                                    "label": "Número total de sesiones activas"
-                                                }
-                                            ],
-                                            "ySettings": {
-                                                "numberFormatSettings": {
-                                                    "unit": 45,
-                                                    "options": {
-                                                        "style": "decimal",
-                                                        "useGrouping": true,
-                                                        "maximumSignificantDigits": 3
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "customWidth": "33",
-                                    "name": "Session Networking",
                                     "styleSettings": {
                                         "padding": "10px"
                                     }
