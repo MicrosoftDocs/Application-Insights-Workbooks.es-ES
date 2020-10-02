@@ -1,7 +1,7 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
     "name": "IoT Edge (versión preliminar)",
-    "description": "Proporciona visualizaciones para las métricas de los dispositivos IoT Edge",
+    "description": "Visualización de métricas integradas",
     "author": "Microsoft",
     "isPreview": true,
     "galleries": [

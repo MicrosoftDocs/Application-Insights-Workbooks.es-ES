@@ -451,6 +451,23 @@
                             "value": "UtilizationReport"
                         },
                         "name": "utilizationreport"
+                    },
+                    {
+                        "type": 11,
+                        "content": {
+                            "version": "LinkItem/1.0",
+                            "style": "nav",
+                            "links": [
+                                {
+                                    "cellValue": "community-Workbooks/Windows Virtual Desktop/Check Configuration",
+                                    "linkTarget": "WorkbookTemplate",
+                                    "linkLabel": "Libro de configuración.",
+                                    "preText": "Para configurar Azure Monitor para Windows Virtual Desktop Insights, consulte",
+                                    "style": "link"
+                                }
+                            ]
+                        },
+                        "name": "links - 8"
                     }
                 ]
             },
