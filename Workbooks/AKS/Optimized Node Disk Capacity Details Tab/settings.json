@@ -1,7 +1,0 @@
-{
-    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Pestaña Detalles de Capacidad de disco del nodo optimizada",
-    "author": "Microsoft",
-    "isPreview": true,
-    "galleries": []
-}
