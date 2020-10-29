@@ -2,11 +2,5 @@
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
     "name": "Red del nodo",
     "author": "Microsoft",
-    "galleries": [
-        {
-            "type": "container-insights",
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "order": 400
-        }
-    ]
+    "galleries": []
 }

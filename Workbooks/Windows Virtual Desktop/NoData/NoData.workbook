@@ -131,7 +131,8 @@
                         },
                         "value": {
                             "durationMs": 604800000
-                        }
+                        },
+                        "label": "Intervalo de horas"
                     },
                     {
                         "id": "ff8c2838-aaf0-40f6-a604-d4bfe72fc92f",
