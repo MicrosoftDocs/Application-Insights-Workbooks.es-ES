@@ -1,23 +1,23 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "GPU de nodo",
+    "name": "Configuración del administrador de directivas de red",
     "author": "Microsoft",
-    "isPreview": "true",
+    "isPreview": true,
     "galleries": [
         {
             "type": "container-insights",
             "resourceType": "Microsoft.ContainerService/managedClusters",
-            "order": 1500
+            "order": 900
         },
         {
             "type": "container-insights",
-            "resourceType": "Microsoft.Kubernetes/connectedClusters",
-            "order": 1500
+            "resourceType": "Microsoft.operationalinsights/workspaces",
+            "order": 900
         },
         {
             "type": "container-insights",
             "resourceType": "Microsoft.RedHatOpenShift/OpenShiftClusters",
-            "order": 1500
+            "order": 900
         }
     ]
 }
