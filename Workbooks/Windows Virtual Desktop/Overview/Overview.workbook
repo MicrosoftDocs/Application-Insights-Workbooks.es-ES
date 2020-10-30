@@ -4,7 +4,7 @@
         {
             "type": 1,
             "content": {
-                "json": "Este libro utiliza:\n* La versión de primavera de Windows Virtual Desktop con los registros de diagnóstico de WCD habilitados\n* Azure Monitor VMInsights con asignación habilitada\n* Área de trabajo de Azure Monitor Log Analytics con el contador de rendimiento y la colección de registros de eventos, tal como se detalla en *[este documento](dummyurl)*.\n* Registros de diagnóstico de Azure AD habilitados"
+                "json": "Este libro utiliza:\n* La versión de primavera de Windows Virtual Desktop con los registros de diagnóstico de WCD habilitados\n* Azure Monitor VMInsights con asignación habilitada\n* Área de trabajo de Azure Monitor Log Analytics con el contador de rendimiento y la colección de registros de eventos, tal como se detalla en *[este documento](dummyurl)* .\n* Registros de diagnóstico de Azure AD habilitados"
             },
             "conditionalVisibility": {
                 "parameterName": "DebugMode",
@@ -145,7 +145,8 @@
                         },
                         "value": {
                             "durationMs": 604800000
-                        }
+                        },
+                        "label": "Intervalo de horas"
                     },
                     {
                         "id": "ff8c2838-aaf0-40f6-a604-d4bfe72fc92f",
@@ -684,7 +685,7 @@
                                     "type": 3,
                                     "content": {
                                         "version": "KqlItem/1.0",
-                                        "query": "alertsmanagementresources\r\n| extend Details = parse_json(properties).essentials\r\n| project Severity= Details.severity, id, Alert=name, Rule = tostring(Details.alertRule), Condition=Details.monitorCondition, Time = todatetime(Details.startDateTime), State = Details.alertState, Message = Details.description, TargetResource=Details.targetResource\r\n//| where \"{SelectedSeverity}\" == \"all severities\" or \"{SelectedSeverity}\" == Severity\r\n| where Severity == \"Sev1\"\r\n| where Time {TimeRange:query}\r\n| project-away State",
+                                        "query": "alertsmanagementresources\r\n| extend Details = parse_json(properties).essentials\r\n| project Severity= Details.severity, id, Alert=name, Rule = tostring(Details.alertRule), State = Details.alertState, Condition=Details.monitorCondition, Time = todatetime(Details.startDateTime), Message = Details.description, TargetResource=Details.targetResource\r\n//| where \"{SelectedSeverity}\" == \"all severities\" or \"{SelectedSeverity}\" == Severity\r\n| where Severity == \"Sev1\"\r\n| where Time {TimeRange:query}",
                                         "size": 0,
                                         "title": "Detalles de la alerta de gravedad 1",
                                         "noDataMessage": "No Alerts in selected timeframe",
@@ -739,6 +740,10 @@
                                                     "formatter": 5
                                                 },
                                                 {
+                                                    "columnMatch": "State",
+                                                    "formatter": 1
+                                                },
+                                                {
                                                     "columnMatch": "Condition",
                                                     "formatter": 11
                                                 },
@@ -770,13 +775,6 @@
                                                             "description": "",
                                                             "runLabelSource": "static"
                                                         }
-                                                    }
-                                                },
-                                                {
-                                                    "columnMatch": "State",
-                                                    "formatter": 1,
-                                                    "formatOptions": {
-                                                        "customColumnWidthSetting": "9.7143ch"
                                                     }
                                                 }
                                             ]
@@ -1235,7 +1233,8 @@
                                             },
                                             "labelSettings": [
                                                 {
-                                                    "columnId": "SessionHost"
+                                                    "columnId": "SessionHost",
+                                                    "label": "Nombre de host"
                                                 },
                                                 {
                                                     "columnId": "Computer"
@@ -1245,10 +1244,11 @@
                                                 },
                                                 {
                                                     "columnId": "ShortName",
-                                                    "label": "Nombre de host"
+                                                    "label": ""
                                                 },
                                                 {
-                                                    "columnId": "HostPool"
+                                                    "columnId": "HostPool",
+                                                    "label": "Grupo de hosts"
                                                 },
                                                 {
                                                     "columnId": "LastHeartbeat",
@@ -1271,7 +1271,8 @@
                                                     "label": "Sesiones disponibles"
                                                 },
                                                 {
-                                                    "columnId": "24h Users"
+                                                    "columnId": "24h Users",
+                                                    "label": "Usuarios 24 horas"
                                                 },
                                                 {
                                                     "columnId": "VMSKU"
@@ -1293,6 +1294,24 @@
                                                 },
                                                 {
                                                     "columnId": "Stack version"
+                                                },
+                                                {
+                                                    "columnId": "resourceGroup1"
+                                                },
+                                                {
+                                                    "columnId": "HostPool1"
+                                                },
+                                                {
+                                                    "columnId": "location1"
+                                                },
+                                                {
+                                                    "columnId": "LoadBalanceType"
+                                                },
+                                                {
+                                                    "columnId": "MaxSessionLimit"
+                                                },
+                                                {
+                                                    "columnId": "HostPoolType"
                                                 }
                                             ]
                                         },
@@ -1305,7 +1324,7 @@
                                     "type": 3,
                                     "content": {
                                         "version": "KqlItem/1.0",
-                                        "query": "{\"version\":\"Merge/1.0\",\"merges\":[{\"id\":\"72b9c23e-c819-44bb-b2cb-46975a80b339\",\"mergeType\":\"table\",\"leftTable\":\"hostpoolspecifics\"}],\"projectRename\":[{\"originalName\":\"[hostpoolspecifics].HostPoolType\",\"mergedName\":\"HostPoolType\",\"fromId\":\"72b9c23e-c819-44bb-b2cb-46975a80b339\"},{\"originalName\":\"[Added column]\",\"mergedName\":\"Title\",\"fromId\":null,\"isNewItem\":true,\"newItemData\":[{\"criteriaContext\":{\"operator\":\"Default\",\"rightValType\":\"column\",\"resultValType\":\"static\",\"resultVal\":\"Host Pool Type\"}}]},{\"originalName\":\"[hostpoolspecifics].MaxSessionLimit\"},{\"originalName\":\"[hostpoolspecifics].resourceGroup\"},{\"originalName\":\"[hostpoolspecifics].HostPool\"},{\"originalName\":\"[hostpoolspecifics].location\"},{\"originalName\":\"[hostpoolspecifics].LoadBalancerType\"},{\"originalName\":\"[hostpoolspecifics].PreferredAppGroupType\"},{\"originalName\":\"[hostpoolspecifics].LoadBalanceType\"}]}",
+                                        "query": "{\"version\":\"Merge/1.0\",\"merges\":[{\"id\":\"72b9c23e-c819-44bb-b2cb-46975a80b339\",\"mergeType\":\"table\",\"leftTable\":\"hostpoolspecifics\"}],\"projectRename\":[{\"originalName\":\"[hostpoolspecifics].HostPoolType\",\"mergedName\":\"HostPoolType\",\"fromId\":\"72b9c23e-c819-44bb-b2cb-46975a80b339\"},{\"originalName\":\"[Added column]\",\"mergedName\":\"Title\",\"fromId\":null,\"isNewItem\":true,\"newItemData\":[{\"criteriaContext\":{\"operator\":\"Default\",\"rightValType\":\"column\",\"resultValType\":\"static\",\"resultVal\":\"Host pool type\"}}]},{\"originalName\":\"[hostpoolspecifics].MaxSessionLimit\"},{\"originalName\":\"[hostpoolspecifics].resourceGroup\"},{\"originalName\":\"[hostpoolspecifics].HostPool\"},{\"originalName\":\"[hostpoolspecifics].location\"},{\"originalName\":\"[hostpoolspecifics].LoadBalancerType\"},{\"originalName\":\"[hostpoolspecifics].PreferredAppGroupType\"},{\"originalName\":\"[hostpoolspecifics].LoadBalanceType\"}]}",
                                         "size": 4,
                                         "queryType": 7,
                                         "visualization": "tiles",
@@ -1347,7 +1366,7 @@
                                             "showBorder": false
                                         }
                                     },
-                                    "customWidth": "15",
+                                    "customWidth": "17",
                                     "showPin": false,
                                     "name": "HostPool-PoolType-Card"
                                 },
@@ -1355,7 +1374,7 @@
                                     "type": 3,
                                     "content": {
                                         "version": "KqlItem/1.0",
-                                        "query": "{\"version\":\"Merge/1.0\",\"merges\":[{\"id\":\"72b9c23e-c819-44bb-b2cb-46975a80b339\",\"mergeType\":\"table\",\"leftTable\":\"hostpoolspecifics\"}],\"projectRename\":[{\"originalName\":\"[hostpoolspecifics].LoadBalanceType\",\"mergedName\":\"LoadBalanceType\",\"fromId\":\"unknown\"},{\"originalName\":\"[Added column]\",\"mergedName\":\"Title\",\"fromId\":null,\"isNewItem\":true,\"newItemData\":[{\"criteriaContext\":{\"operator\":\"Default\",\"rightValType\":\"column\",\"resultValType\":\"static\",\"resultVal\":\"Load Balancer Type\"}}]},{\"originalName\":\"[hostpoolspecifics].HostPoolType\"},{\"originalName\":\"[hostpoolspecifics].PreferredAppGroupType\"},{\"originalName\":\"[hostpoolspecifics].MaxSessionLimit\"},{\"originalName\":\"[hostpoolspecifics].resourceGroup\"},{\"originalName\":\"[hostpoolspecifics].HostPool\"},{\"originalName\":\"[hostpoolspecifics].location\"},{\"originalName\":\"[hostpoolspecifics].LoadBalancerType\"}]}",
+                                        "query": "{\"version\":\"Merge/1.0\",\"merges\":[{\"id\":\"72b9c23e-c819-44bb-b2cb-46975a80b339\",\"mergeType\":\"table\",\"leftTable\":\"hostpoolspecifics\"}],\"projectRename\":[{\"originalName\":\"[hostpoolspecifics].LoadBalanceType\",\"mergedName\":\"LoadBalanceType\",\"fromId\":\"unknown\"},{\"originalName\":\"[Added column]\",\"mergedName\":\"Title\",\"fromId\":null,\"isNewItem\":true,\"newItemData\":[{\"criteriaContext\":{\"operator\":\"Default\",\"rightValType\":\"column\",\"resultValType\":\"static\",\"resultVal\":\"Load balancer type\"}}]},{\"originalName\":\"[hostpoolspecifics].HostPoolType\"},{\"originalName\":\"[hostpoolspecifics].PreferredAppGroupType\"},{\"originalName\":\"[hostpoolspecifics].MaxSessionLimit\"},{\"originalName\":\"[hostpoolspecifics].resourceGroup\"},{\"originalName\":\"[hostpoolspecifics].HostPool\"},{\"originalName\":\"[hostpoolspecifics].location\"},{\"originalName\":\"[hostpoolspecifics].LoadBalancerType\"}]}",
                                         "size": 4,
                                         "queryType": 7,
                                         "visualization": "tiles",
@@ -1390,7 +1409,7 @@
                                     "type": 3,
                                     "content": {
                                         "version": "KqlItem/1.0",
-                                        "query": "{\"version\":\"Merge/1.0\",\"merges\":[{\"id\":\"72b9c23e-c819-44bb-b2cb-46975a80b339\",\"mergeType\":\"table\",\"leftTable\":\"hostpoolspecifics\"}],\"projectRename\":[{\"originalName\":\"[hostpoolspecifics].MaxSessionLimit\",\"mergedName\":\"MaxSessionLimit\",\"fromId\":\"72b9c23e-c819-44bb-b2cb-46975a80b339\"},{\"originalName\":\"[Added column]\",\"mergedName\":\"Title\",\"fromId\":null,\"isNewItem\":true,\"newItemData\":[{\"criteriaContext\":{\"operator\":\"Default\",\"rightValType\":\"column\",\"resultValType\":\"static\",\"resultVal\":\"Max Sessions\"}}]},{\"originalName\":\"[hostpoolspecifics].LoadBalancerType\"},{\"originalName\":\"[hostpoolspecifics].HostPoolType\"},{\"originalName\":\"[hostpoolspecifics].PreferredAppGroupType\"},{\"originalName\":\"[hostpoolspecifics].resourceGroup\"},{\"originalName\":\"[hostpoolspecifics].HostPool\"},{\"originalName\":\"[hostpoolspecifics].location\"},{\"originalName\":\"[hostpoolspecifics].LoadBalanceType\"}]}",
+                                        "query": "{\"version\":\"Merge/1.0\",\"merges\":[{\"id\":\"72b9c23e-c819-44bb-b2cb-46975a80b339\",\"mergeType\":\"table\",\"leftTable\":\"hostpoolspecifics\"}],\"projectRename\":[{\"originalName\":\"[hostpoolspecifics].MaxSessionLimit\",\"mergedName\":\"MaxSessionLimit\",\"fromId\":\"72b9c23e-c819-44bb-b2cb-46975a80b339\"},{\"originalName\":\"[Added column]\",\"mergedName\":\"Title\",\"fromId\":null,\"isNewItem\":true,\"newItemData\":[{\"criteriaContext\":{\"operator\":\"Default\",\"rightValType\":\"column\",\"resultValType\":\"static\",\"resultVal\":\"Max sessions\"}}]},{\"originalName\":\"[hostpoolspecifics].LoadBalancerType\"},{\"originalName\":\"[hostpoolspecifics].HostPoolType\"},{\"originalName\":\"[hostpoolspecifics].PreferredAppGroupType\"},{\"originalName\":\"[hostpoolspecifics].resourceGroup\"},{\"originalName\":\"[hostpoolspecifics].HostPool\"},{\"originalName\":\"[hostpoolspecifics].location\"},{\"originalName\":\"[hostpoolspecifics].LoadBalanceType\"}]}",
                                         "size": 4,
                                         "queryType": 7,
                                         "visualization": "tiles",
@@ -1409,7 +1428,7 @@
                                             "showBorder": false
                                         }
                                     },
-                                    "customWidth": "15",
+                                    "customWidth": "17",
                                     "showPin": false,
                                     "name": "HostPool-MaxSessions-Card"
                                 },
@@ -1461,7 +1480,10 @@
                                                 },
                                                 {
                                                     "columnMatch": "Started",
-                                                    "formatter": 6
+                                                    "formatter": 6,
+                                                    "formatOptions": {
+                                                        "customColumnWidthSetting": "21ch"
+                                                    }
                                                 }
                                             ]
                                         },
@@ -1493,7 +1515,7 @@
                                             "size": "auto"
                                         }
                                     },
-                                    "customWidth": "50",
+                                    "customWidth": "45",
                                     "conditionalVisibilities": [
                                         {
                                             "parameterName": "SelectedComputer",
@@ -1508,10 +1530,22 @@
                                     ],
                                     "name": "hostsessions",
                                     "styleSettings": {
-                                        "margin": "1px",
-                                        "padding": "1px",
-                                        "progressStyle": "none"
+                                        "margin": "0px",
+                                        "padding": "0px"
                                     }
+                                },
+                                {
+                                    "type": 1,
+                                    "content": {
+                                        "json": "#### <a name=\"please-select-a-host-to-display-current-sessions-here\"></a>Seleccione el host para mostrar las sesiones actuales.",
+                                        "style": "info"
+                                    },
+                                    "customWidth": "45",
+                                    "conditionalVisibility": {
+                                        "parameterName": "SelectedComputer",
+                                        "comparison": "isEqualTo"
+                                    },
+                                    "name": "hostsessions_direction_SelectHost"
                                 }
                             ]
                         },
@@ -1939,7 +1973,7 @@
                                         "title": "Usuarios mensuales (MAU)",
                                         "noDataMessage": "No users detected",
                                         "timeContext": {
-                                            "durationMs": 604800000
+                                            "durationMs": 0
                                         },
                                         "timeContextFromParameter": "TimeRange",
                                         "queryType": 0,
@@ -1951,6 +1985,12 @@
                                         "chartSettings": {
                                             "yAxis": [
                                                 "RollingMAU"
+                                            ],
+                                            "seriesLabelSettings": [
+                                                {
+                                                    "seriesName": "RollingMAU",
+                                                    "label": "Usuarios"
+                                                }
                                             ],
                                             "ySettings": {
                                                 "min": 0
@@ -1974,7 +2014,7 @@
                                         "title": "Usuarios diarios (DAU)",
                                         "noDataMessage": "No users detected",
                                         "timeContext": {
-                                            "durationMs": 604800000
+                                            "durationMs": 0
                                         },
                                         "timeContextFromParameter": "TimeRange",
                                         "queryType": 0,
@@ -2006,7 +2046,7 @@
                                         "title": "Sesiones diarias",
                                         "noDataMessage": "No sessions detected",
                                         "timeContext": {
-                                            "durationMs": 604800000
+                                            "durationMs": 0
                                         },
                                         "timeContextFromParameter": "TimeRange",
                                         "queryType": 0,

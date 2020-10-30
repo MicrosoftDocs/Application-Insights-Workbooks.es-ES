@@ -130,7 +130,8 @@
                         },
                         "value": {
                             "durationMs": 604800000
-                        }
+                        },
+                        "label": "Intervalo de horas"
                     },
                     {
                         "id": "ff8c2838-aaf0-40f6-a604-d4bfe72fc92f",
@@ -332,7 +333,7 @@
                                     },
                                     {
                                         "columnId": "SessionId",
-                                        "label": "Identificador de sesión"
+                                        "label": "Identificador de conexión"
                                     },
                                     {
                                         "columnId": "UserName",
@@ -504,11 +505,12 @@
                                         "label": "Primer intento"
                                     },
                                     {
-                                        "columnId": "UserName"
+                                        "columnId": "UserName",
+                                        "label": "Usuario"
                                     },
                                     {
                                         "columnId": "SampleSession",
-                                        "label": "Identificador de sesión de ejemplo"
+                                        "label": "Identificador de conexión de ejemplo"
                                     },
                                     {
                                         "columnId": "Attempts"
@@ -869,11 +871,24 @@
                             "parameterName": "ExpandActivities",
                             "comparison": "isNotEqualTo"
                         },
-                        "name": "group - 4",
+                        "name": "SelectedActivityGroup",
                         "styleSettings": {
                             "padding": "10px",
                             "showBorder": true
                         }
+                    },
+                    {
+                        "type": 1,
+                        "content": {
+                            "json": "Seleccione {ReportBy} a la izquierda para mostrar más detalles.\n",
+                            "style": "info"
+                        },
+                        "customWidth": "50",
+                        "conditionalVisibility": {
+                            "parameterName": "ExpandActivities",
+                            "comparison": "isEqualTo"
+                        },
+                        "name": "NoSelectedActivity_Instruction"
                     }
                 ]
             },
@@ -1119,10 +1134,23 @@
                             "parameterName": "GroupedCorrelationId",
                             "comparison": "isNotEqualTo"
                         },
-                        "name": "query - 3 - Copy",
+                        "name": "DetailsCorrelationUser_Group",
                         "styleSettings": {
                             "padding": "10px"
                         }
+                    },
+                    {
+                        "type": 1,
+                        "content": {
+                            "json": "Para más información, seleccione una de las conexiones de la izquierda.",
+                            "style": "info"
+                        },
+                        "customWidth": "50",
+                        "conditionalVisibility": {
+                            "parameterName": "GroupedCorrelationId",
+                            "comparison": "isEqualTo"
+                        },
+                        "name": "SelectedActivity_Instructions"
                     }
                 ]
             },
@@ -1189,7 +1217,7 @@
                         "type": 3,
                         "content": {
                             "version": "KqlItem/1.0",
-                            "query": "let GetPrettyError=(ErrorName:string, ErrorCode:string)\r\n{\r\n    iif(ErrorName !in ('', '<>'), strcat(ErrorName, ' (', ErrorCode, ')'), ErrorCode)\r\n};\r\nWVDConnections\r\n| where \"{wvdActivityType}\" == \"Connection\"\r\n| where _ResourceId startswith \"{HostPool}\"\r\n| extend HostPool = '{HostPool:label}/'\r\n| extend ComputerName = strcat(HostPool, SessionHostName)\r\n| where ComputerName in ({WVDHosts})\r\n| union (WVDFeeds             | where \"{wvdActivityType}\" == \"Feed\")\r\n| union (WVDManagement        | where \"{wvdActivityType}\" == \"Management\")\r\n| union (WVDHostRegistrations | where \"{wvdActivityType}\" == \"HostRegistration\")\r\n| join kind=rightouter\r\n(\r\n    WVDErrors\r\n    | where TimeGenerated {TimeRange} and ActivityType == \"{wvdActivityType}\"\r\n    | extend Error=GetPrettyError(CodeSymbolic, Code)\r\n) on CorrelationId\r\n| as ErrorList\r\n| make-series ActivitiesImpactedOverTime=dcount(CorrelationId) default=0,\r\n              UsersImpactedOverTime=dcountif(UserName, strlen(UserName) > 2) default=0,\r\n              HostsImpactedOverTime=dcountif(SessionHostName, strlen(SessionHostName) > 2) default=0\r\n           on TimeGenerated from {TimeRange:start} to {TimeRange:end} step {TimeRange:grain} by ActivityType, ServiceError, Source, Error\r\n| join kind=inner\r\n(\r\n    ErrorList\r\n    | summarize MessageSample=any(Message), TotalActivitiesImpacted=dcount(CorrelationId), TotalUsersImpacted=dcountif(UserName, strlen(UserName) > 2), TotalHostsImpacted=dcountif(SessionHostName, strlen(SessionHostName) > 2)\r\n             by ActivityType, ServiceError, Source, Error\r\n) on ActivityType, ServiceError, Source, Error\r\n| project Kind=iif(ServiceError, \"Service\", \"Deployment\"), Source, Error, MessageSample, TotalActivitiesImpacted, ActivitiesImpactedOverTime, TotalUsersImpacted, UsersImpactedOverTime, TotalHostsImpacted, HostsImpactedOverTime\r\n// Hosts count not applicable for Feed activities, so blank out the columns\r\n| extend TotalHostsImpacted=iif(\"{wvdActivityType}\" != \"Feed\", TotalHostsImpacted, int(null)), HostsImpactedOverTime=iif(\"{wvdActivityType}\" != \"Feed\", HostsImpactedOverTime, series_divide(HostsImpactedOverTime, todouble(0/0)))\r\n| sort by TotalUsersImpacted, TotalActivitiesImpacted, TotalHostsImpacted\r\n| top {TopNErrors} by TotalActivitiesImpacted",
+                            "query": "let GetPrettyError=(ErrorName:string, ErrorCode:string)\r\n{\r\n    iif(ErrorName !in ('', '<>'), strcat(ErrorName, ' (', ErrorCode, ')'), ErrorCode)\r\n};\r\nWVDConnections\r\n| where \"{wvdActivityType}\" == \"Connection\"\r\n| where _ResourceId startswith \"{HostPool}\"\r\n| extend HostPool = '{HostPool:label}/'\r\n| extend ComputerName = strcat(HostPool, SessionHostName)\r\n| where ComputerName in ({WVDHosts})\r\n| union (WVDFeeds             | where \"{wvdActivityType}\" == \"Feed\")\r\n| union (WVDManagement        | where \"{wvdActivityType}\" == \"Management\")\r\n| union (WVDHostRegistrations | where \"{wvdActivityType}\" == \"RegistrationToken\")\r\n| join kind=rightouter\r\n(\r\n    WVDErrors\r\n    | where TimeGenerated {TimeRange} and ActivityType == \"{wvdActivityType}\"\r\n    | extend Error=GetPrettyError(CodeSymbolic, Code)\r\n) on CorrelationId\r\n| as ErrorList\r\n| make-series ActivitiesImpactedOverTime=dcount(CorrelationId) default=0,\r\n              UsersImpactedOverTime=dcountif(UserName, strlen(UserName) > 2) default=0,\r\n              HostsImpactedOverTime=dcountif(SessionHostName, strlen(SessionHostName) > 2) default=0\r\n           on TimeGenerated from {TimeRange:start} to {TimeRange:end} step {TimeRange:grain} by ActivityType, ServiceError, Source, Error\r\n| join kind=inner\r\n(\r\n    ErrorList\r\n    | summarize MessageSample=any(Message), TotalActivitiesImpacted=dcount(CorrelationId), TotalUsersImpacted=dcountif(UserName, strlen(UserName) > 2), TotalHostsImpacted=dcountif(SessionHostName, strlen(SessionHostName) > 2)\r\n             by ActivityType, ServiceError, Source, Error\r\n) on ActivityType, ServiceError, Source, Error\r\n| project Kind=iif(ServiceError, \"Service\", \"Deployment\"), Source, Error, MessageSample, TotalActivitiesImpacted, ActivitiesImpactedOverTime, TotalUsersImpacted, UsersImpactedOverTime, TotalHostsImpacted, HostsImpactedOverTime\r\n// Hosts count not applicable for Feed activities, so blank out the columns\r\n| extend TotalHostsImpacted=iif(\"{wvdActivityType}\" != \"Feed\", TotalHostsImpacted, int(null)), HostsImpactedOverTime=iif(\"{wvdActivityType}\" != \"Feed\", HostsImpactedOverTime, series_divide(HostsImpactedOverTime, todouble(0/0)))\r\n| sort by TotalUsersImpacted, TotalActivitiesImpacted, TotalHostsImpacted\r\n| top {TopNErrors} by TotalActivitiesImpacted",
                             "size": 0,
                             "aggregation": 3,
                             "title": "Clasificación de errores que afectan a las actividades de {wvdActivityType} en {TimeRange:label}",
@@ -1285,7 +1313,8 @@
                                         "columnId": "Error"
                                     },
                                     {
-                                        "columnId": "MessageSample"
+                                        "columnId": "MessageSample",
+                                        "label": "Ejemplo de mensaje"
                                     },
                                     {
                                         "columnId": "TotalActivitiesImpacted",
@@ -1377,7 +1406,7 @@
         }
     ],
     "fallbackResourceIds": [
-        "azure monitor"
+        "Azure Monitor"
     ],
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
 }
