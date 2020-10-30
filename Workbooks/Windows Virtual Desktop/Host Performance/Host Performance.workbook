@@ -130,7 +130,8 @@
                         },
                         "value": {
                             "durationMs": 86400000
-                        }
+                        },
+                        "label": "Intervalo de horas"
                     },
                     {
                         "id": "ff8c2838-aaf0-40f6-a604-d4bfe72fc92f",
@@ -369,7 +370,28 @@
                                                     }
                                                 }
                                             ],
-                                            "rowLimit": 25
+                                            "rowLimit": 25,
+                                            "labelSettings": [
+                                                {
+                                                    "columnId": "Host"
+                                                },
+                                                {
+                                                    "columnId": "Samples"
+                                                },
+                                                {
+                                                    "columnId": "Median"
+                                                },
+                                                {
+                                                    "columnId": "Peak"
+                                                },
+                                                {
+                                                    "columnId": "Spikes"
+                                                },
+                                                {
+                                                    "columnId": "StDev",
+                                                    "label": "Desv. est."
+                                                }
+                                            ]
                                         },
                                         "sortBy": [],
                                         "tileSettings": {
@@ -418,7 +440,7 @@
                                         }
                                     },
                                     "customWidth": "40",
-                                    "name": "HostResponsibleForDelay - Copy - Copy",
+                                    "name": "SummaryOfInputDelayByHost",
                                     "styleSettings": {
                                         "padding": "10px"
                                     }
@@ -497,7 +519,7 @@
                                         }
                                     },
                                     "customWidth": "60",
-                                    "name": "HostResponsibleForDelay - Copy - Copy - Copy",
+                                    "name": "InputDelayOverTime",
                                     "styleSettings": {
                                         "padding": "10px"
                                     }
@@ -570,9 +592,9 @@
                                             ],
                                             "ySettings": {
                                                 "numberFormatSettings": {
-                                                    "unit": 1,
+                                                    "unit": 0,
                                                     "options": {
-                                                        "style": "decimal",
+                                                        "style": "percent",
                                                         "useGrouping": true,
                                                         "maximumSignificantDigits": 2
                                                     }
