@@ -165,7 +165,7 @@
             "content": {
                 "json": "## <a name=\"impact-summary\"></a>Resumen de impacto\nEste es el impacto de la directiva seleccionada en el inquilino a lo largo de {TimeRange}. \n\n💡 _Vea el resumen por número de usuarios o de inicios de sesión. Haga clic en un icono para ver los detalles a continuación._"
             },
-            "name": "text - 5"
+            "name": "text - 5b"
         },
         {
             "type": 3,
@@ -669,7 +669,7 @@
                 "comparison": "isNotEqualTo",
                 "value": "0"
             },
-            "name": "text - 22"
+            "name": "text - 22b"
         },
         {
             "type": 3,

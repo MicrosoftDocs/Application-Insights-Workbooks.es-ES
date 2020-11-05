@@ -241,7 +241,7 @@
             "content": {
                 "json": "<h3>{topN:label} discos por % de disco usado</h3>"
             },
-            "name": "text - 12"
+            "name": "text - 12b"
         },
         {
             "type": 3,
