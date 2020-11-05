@@ -199,7 +199,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<div style=\"text-align:left;\"><h1> <span style=\"font-size:12px;font-weight:400;font-style:italic\"> Tiene almacenes que usan una **configuración de diagnóstico heredada**. Use la configuración de diagnóstico más reciente para todos los almacenes para que sean válidos para las actualizaciones de informes. <a href=\"https://aka.ms/AzureBackupUseResourceSpecific\" target=\"_blank\">Más información</a> </span> </h1> </div>"
+                "json": "<div style=\"text-align:left;\"><h1> <span style=\"font-size:12px;font-weight:400;font-style:italic\"> Tiene almacenes que usan una **configuración de diagnóstico heredada**. Use la configuración de diagnóstico más reciente para todos los almacenes para que sean válidos para las actualizaciones de informes. <a href=\"https://aka.ms/AzureBackupUseResourceSpecific\" target=\"_blank\">Más información</a></span> </h1> </div>"
             },
             "conditionalVisibilities": [
                 {
@@ -484,7 +484,7 @@
                 "parameterName": "Workspaces",
                 "comparison": "isNotEqualTo"
             },
-            "name": "Overview-InstructionText2",
+            "name": "Overview-InstructionText2b",
             "styleSettings": {
                 "margin": "0% 0% 0% 0%",
                 "padding": "0% 0% 0% 0%"
@@ -493,7 +493,7 @@
         {
             "type": 1,
             "content": {
-                "json": "<div style=\"text-align:left;\"><h1> <span style=\"font-size:12px;font-weight:400;font-style:italic\"> Tiene almacenes que usan una **configuración de diagnóstico heredada**. Use la configuración de diagnóstico más reciente para todos los almacenes para que sean válidos para las actualizaciones de informes. <a href=\"https://aka.ms/AzureBackupUseResourceSpecific\" target=\"_blank\">Más información</a> </span> </h1> </div>"
+                "json": "<div style=\"text-align:left;\"><h1> <span style=\"font-size:12px;font-weight:400;font-style:italic\"> Tiene almacenes que usan una **configuración de diagnóstico heredada**. Use la configuración de diagnóstico más reciente para todos los almacenes para que sean válidos para las actualizaciones de informes. <a href=\"https://aka.ms/AzureBackupUseResourceSpecific\" target=\"_blank\">Más información</a></span> </h1> </div>"
             },
             "conditionalVisibilities": [
                 {

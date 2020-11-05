@@ -267,7 +267,7 @@
             "content": {
                 "json": "Para obtener ayuda adicional sobre cómo configurar la cobertura de supervisión completa, visite la guía sobre cómo [habilitar el registro de Azure Key Vault](https://docs.microsoft.com/azure/key-vault/key-vault-logging)."
             },
-            "name": "text - 5"
+            "name": "text - 5b"
         }
     ],
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"

@@ -460,7 +460,7 @@
                 "json": "<h3>{unit:label} totales recibidos (por intervalos de {timeRange:grain})</h3>"
             },
             "customWidth": "50",
-            "name": "text - 5 - Copy"
+            "name": "text - 5 - Copyb"
         },
         {
             "type": 3,
@@ -523,7 +523,7 @@
                 "json": "<h3>Errores de entrada/s</h3>"
             },
             "customWidth": "50",
-            "name": "text - 5 - Copy - Copy - Copy - Copy"
+            "name": "text - 5 - Copy - Copy - Copy - Copyb"
         },
         {
             "type": 3,

@@ -201,7 +201,7 @@
         {
             "type": 1,
             "content": {
-                "json": "💡*Seleccione un dispositivo y haga clic en la pestaña \"**Profundizar en los detalles...**\"*"
+                "json": "💡*Seleccione un dispositivo y haga clic en la pestaña \" **Profundizar en los detalles...** \"*"
             },
             "conditionalVisibilities": [
                 {
@@ -768,7 +768,7 @@
                                 {
                                     "type": 1,
                                     "content": {
-                                        "json": "# <a name=\"span-stylecolorteal-no_loc_phselecteddeviceno_loc_ph-span\"></a><span style=\"color:teal\"> **{SelectedDevice}** </span>"
+                                        "json": "# <a name=\"span-stylecolorteal-no_loc_phselecteddeviceno_loc_ph-span\"></a><span style=\"color:teal\"> **{SelectedDevice}**</span>"
                                     },
                                     "customWidth": "0",
                                     "name": "text - 5",
@@ -853,7 +853,7 @@
                                 {
                                     "type": 1,
                                     "content": {
-                                        "json": "<span style=\"color:teal\"> *Métricas notificadas {LastUpdated}* </span>"
+                                        "json": "<span style=\"color:teal\"> *Métricas notificadas {LastUpdated}*</span>"
                                     },
                                     "customWidth": "0",
                                     "name": "text - 21",
@@ -2605,7 +2605,7 @@
                                                         "comparison": "isNotEqualTo"
                                                     }
                                                 ],
-                                                "name": "query - 0 - Copy"
+                                                "name": "query - 0 - Copyb"
                                             },
                                             {
                                                 "type": 3,
@@ -2842,7 +2842,7 @@
                                             "value": "<default>"
                                         }
                                     ],
-                                    "name": "text - 5"
+                                    "name": "text - 5b"
                                 }
                             ]
                         },

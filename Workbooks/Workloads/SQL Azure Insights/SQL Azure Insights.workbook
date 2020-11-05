@@ -901,7 +901,7 @@
                         "content": {
                             "json": "Use la pestaña **Habilitar supervisión** para configurar las máquinas para que empiecen a supervisar servidores SQL Server.\n"
                         },
-                        "name": "text - 0 - Copy"
+                        "name": "text - 0 - Copyb"
                     }
                 ]
             },
