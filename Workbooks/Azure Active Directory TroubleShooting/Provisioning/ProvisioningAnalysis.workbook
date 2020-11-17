@@ -18,8 +18,9 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "TimeRange",
                         "type": 4,
+                        "description": "Intervalo de tiempo por el que se filtran los datos",
                         "value": {
-                            "durationMs": 7776000000
+                            "durationMs": 86400000
                         },
                         "typeSettings": {
                             "selectableValues": [
@@ -73,14 +74,34 @@
                         }
                     },
                     {
-                        "id": "91a07371-89bf-42f5-9a7a-14eec6ac081c",
+                        "id": "91a07371-89bf-42f5-9a7a-15eec6ac081c",
                         "version": "KqlParameterItem/1.0",
                         "name": "JobId",
                         "type": 2,
+                        "description": "Identificador de la configuración de aprovisionamiento; se encuentra en la barra de progreso, debajo de la información técnica de la vista",
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
                         "query": "AADProvisioningLogs\r\n| distinct JobId",
+                        "typeSettings": {
+                            "additionalResourceOptions": [],
+                            "showDefault": false
+                        },
+                        "timeContextFromParameter": "TimeRange",
+                        "queryType": 0,
+                        "resourceType": "microsoft.operationalinsights/workspaces",
+                        "value": []
+                    },
+                    {
+                        "id": "91a07371-89bf-42f5-9a7a-14eec6ac081c",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Status",
+                        "type": 2,
+                        "description": "Filtro para determinar si el resultado del evento de aprovisionamiento fue satisfactorio, un error o se ha omitido",
+                        "multiSelect": true,
+                        "quote": "'",
+                        "delimiter": ",",
+                        "query": "AADProvisioningLogs\r\n| distinct ResultType",
                         "typeSettings": {
                             "additionalResourceOptions": [
                                 "value::all"
@@ -88,32 +109,10 @@
                             "showDefault": false
                         },
                         "timeContext": {
-                            "durationMs": 7776000000
+                            "durationMs": 604800000
                         },
                         "timeContextFromParameter": "TimeRange",
                         "defaultValue": "value::all",
-                        "queryType": 0,
-                        "resourceType": "microsoft.operationalinsights/workspaces"
-                    },
-                    {
-                        "id": "91a07371-89bf-42f5-9a7a-14eec6ac081c",
-                        "version": "KqlParameterItem/1.0",
-                        "name": "Status",
-                        "type": 2,
-                        "multiSelect": true,
-                        "quote": "'",
-                        "delimiter": ",",
-                        "query": "AADProvisioningLogs\r\n| distinct ResultType",
-                        "value": [
-                            "Success",
-                            "Failure",
-                            "Skipped"
-                        ],
-                        "typeSettings": {
-                            "additionalResourceOptions": [],
-                            "showDefault": false
-                        },
-                        "timeContextFromParameter": "TimeRange",
                         "queryType": 0,
                         "resourceType": "microsoft.operationalinsights/workspaces"
                     },
@@ -122,23 +121,19 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "App",
                         "type": 2,
+                        "description": "Nombre de la aplicación o entidad de servicio",
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
                         "query": "AADProvisioningLogs\r\n| extend servicePrincipal = parse_json(ServicePrincipal)\r\n| distinct tostring(servicePrincipal.Name)",
                         "typeSettings": {
-                            "additionalResourceOptions": [
-                                "value::all"
-                            ],
+                            "additionalResourceOptions": [],
                             "showDefault": false
                         },
-                        "timeContext": {
-                            "durationMs": 7776000000
-                        },
                         "timeContextFromParameter": "TimeRange",
-                        "defaultValue": "value::all",
                         "queryType": 0,
-                        "resourceType": "microsoft.operationalinsights/workspaces"
+                        "resourceType": "microsoft.operationalinsights/workspaces",
+                        "value": []
                     }
                 ],
                 "style": "pills",
@@ -153,10 +148,12 @@
                 "version": "KqlItem/1.0",
                 "query": "AADProvisioningLogs\r\n| extend servicePrincipal = parse_json(ServicePrincipal)\r\n| where servicePrincipal.Name in ({App}) or '*' in ({App})\r\n| where JobId in ({JobId}) or '*' in ({JobId})\r\n| where ResultType in ({Status}) or '*' in ({Status})\r\n| extend SourceIdentity = parse_json(SourceIdentity)\r\n| summarize Objects = dcount(tostring(SourceIdentity.Id)) by tostring(SourceIdentity.identityType)\r\n| order by Objects",
                 "size": 4,
+                "showAnalytics": true,
                 "timeContext": {
-                    "durationMs": 7776000000
+                    "durationMs": 259200000
                 },
                 "timeContextFromParameter": "TimeRange",
+                "showExportToExcel": true,
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "visualization": "tiles",
@@ -188,7 +185,7 @@
                 "size": 0,
                 "title": "Eventos de aprovisionamiento por hora",
                 "timeContext": {
-                    "durationMs": 7776000000
+                    "durationMs": 259200000
                 },
                 "timeContextFromParameter": "TimeRange",
                 "queryType": 0,
@@ -226,7 +223,7 @@
                 "size": 2,
                 "title": "Tasa de éxito de aprovisionamiento",
                 "timeContext": {
-                    "durationMs": 7776000000
+                    "durationMs": 259200000
                 },
                 "timeContextFromParameter": "TimeRange",
                 "queryType": 0,
@@ -263,7 +260,7 @@
                 "size": 1,
                 "title": "Errores de aprovisionamiento principales",
                 "timeContext": {
-                    "durationMs": 7776000000
+                    "durationMs": 259200000
                 },
                 "timeContextFromParameter": "TimeRange",
                 "queryType": 0,
@@ -299,7 +296,7 @@
                 "size": 1,
                 "title": "Actividad de aprovisionamiento por actividad",
                 "timeContext": {
-                    "durationMs": 7776000000
+                    "durationMs": 259200000
                 },
                 "timeContextFromParameter": "TimeRange",
                 "queryType": 0,
@@ -335,7 +332,7 @@
                 "size": 0,
                 "title": "Eventos de aprovisionamiento por ciclo",
                 "timeContext": {
-                    "durationMs": 7776000000
+                    "durationMs": 259200000
                 },
                 "timeContextFromParameter": "TimeRange",
                 "queryType": 0,
@@ -377,7 +374,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "SourceIdentityName",
                         "type": 1,
-                        "value": "",
+                        "description": "Nombre para mostrar del usuario del sistema de origen",
                         "timeContext": {
                             "durationMs": 86400000
                         }
@@ -387,7 +384,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "SourceIdentityId",
                         "type": 1,
-                        "value": "",
+                        "description": "Identificador del usuario del sistema de origen (por ejemplo, objectID)",
                         "timeContext": {
                             "durationMs": 86400000
                         }
@@ -397,7 +394,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "SourceIdentityType",
                         "type": 1,
-                        "value": "",
+                        "description": "Tipo de identidad (por ejemplo, usuario o grupo)",
                         "timeContext": {
                             "durationMs": 86400000
                         }
@@ -407,9 +404,7 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "TimeRange",
                         "type": 4,
-                        "value": {
-                            "durationMs": 3600000
-                        },
+                        "description": "Intervalo de tiempo para filtrar los datos",
                         "typeSettings": {
                             "selectableValues": [
                                 {
@@ -453,6 +448,9 @@
                                 }
                             ],
                             "allowCustom": false
+                        },
+                        "value": {
+                            "durationMs": 259200000
                         }
                     },
                     {
@@ -460,10 +458,12 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "ErrorCode",
                         "type": 2,
+                        "description": "Código de error del evento de aprovisionamiento",
                         "query": "AADProvisioningLogs\r\n| distinct ResultSignature",
                         "value": null,
                         "typeSettings": {
-                            "additionalResourceOptions": []
+                            "additionalResourceOptions": [],
+                            "showDefault": false
                         },
                         "queryType": 0,
                         "resourceType": "microsoft.operationalinsights/workspaces"
@@ -473,18 +473,18 @@
                         "version": "KqlParameterItem/1.0",
                         "name": "CycleId",
                         "type": 1,
-                        "value": ""
+                        "description": "Identifica el ciclo durante el que se produjeron los eventos"
                     },
                     {
                         "id": "13db71f0-e435-458f-b7cf-635159d4d0d2",
                         "version": "KqlParameterItem/1.0",
                         "name": "Status",
                         "type": 2,
+                        "description": "Indica si el resultado de los eventos de aprovisionamiento fue satisfactorio, un error o se ha omitido",
                         "multiSelect": true,
                         "quote": "'",
                         "delimiter": ",",
                         "query": "AADProvisioningLogs\r\n| distinct ResultType",
-                        "value": [],
                         "typeSettings": {
                             "additionalResourceOptions": [],
                             "showDefault": false
@@ -512,10 +512,12 @@
                 "version": "KqlItem/1.0",
                 "query": "AADProvisioningLogs\r\n| where TimeGenerated {TimeRange}\r\n| extend SourceIdentity = parse_json(SourceIdentity)\r\n| extend ErrorCode = ResultSignature\r\n| where tostring(SourceIdentity.Name) contains '{SourceIdentityName:label}' or tostring(SourceIdentity.Id) contains '{SourceIdentityId:label}' or tostring(SourceIdentity.IdentityType) contains '{SourceIdentityType:label}' or ErrorCode contains '{ErrorCode:label}' or CycleId contains '{CycleId:label}' or ResultType contains '{Status:label}'\r\n| project tostring(SourceIdentity.Name), tostring(SourceIdentity.Id), Action, Status = ResultType, ErrorCode, ErrorMessage = ResultDescription, TimeGenerated, ModifiedProperties, ProvisioningSteps, ServicePrincipal, SourceSystem, StatusInfo, TargetIdentity, TargetSystem, InitiatedBy, tostring(SourceIdentity.identityType), ChangeId, CycleId, CorrelationId, Id, JobId\r\n| order by TimeGenerated",
                 "size": 0,
+                "showAnalytics": true,
                 "timeContext": {
-                    "durationMs": 3600000
+                    "durationMs": 0
                 },
                 "timeContextFromParameter": "TimeRange",
+                "showExportToExcel": true,
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces",
                 "visualization": "table",
@@ -549,10 +551,12 @@
                 "version": "KqlItem/1.0",
                 "query": "AuditLogs\r\n| where TimeGenerated {TimeRange}\r\n| where ActivityDisplayName == \"User Provisioning\"\r\n| extend TargetResources = parse_json(TargetResources)\r\n| extend InitiatedBy = parse_json(InitiatedBy)\r\n| project TimeGenerated, ResultDescription, CorrelationId, Identity, ResultReason, TargetResources, InitiatedBy, AdditionalDetails ",
                 "size": 0,
+                "showAnalytics": true,
                 "timeContext": {
-                    "durationMs": 3600000
+                    "durationMs": 0
                 },
                 "timeContextFromParameter": "TimeRange",
+                "showExportToExcel": true,
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces"
             },
@@ -571,9 +575,11 @@
                 "version": "KqlItem/1.0",
                 "query": "AuditLogs\r\n| where ActivityDisplayName == \"Quarantine\"\r\n| extend TargetResources = parse_json(TargetResources)\r\n| project TimeGenerated, QuarantineReason = ResultDescription,TargetResources, CorrelationId, AdditionalDetails, Id, InitiatedBy, LoggedByService, Result, ResultReason, Identity",
                 "size": 0,
+                "showAnalytics": true,
                 "timeContext": {
                     "durationMs": 86400000
                 },
+                "showExportToExcel": true,
                 "queryType": 0,
                 "resourceType": "microsoft.operationalinsights/workspaces"
             },

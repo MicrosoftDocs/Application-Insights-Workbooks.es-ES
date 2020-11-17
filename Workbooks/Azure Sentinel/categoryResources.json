@@ -1,0 +1,8 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "en-us": {
+        "name": "Información importante acerca de Azure Sentinel",
+        "description": "Proporciona información importante sobre Azure Sentinel",
+        "order": 100
+    }
+}
