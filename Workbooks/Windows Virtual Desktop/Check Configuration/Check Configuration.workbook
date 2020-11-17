@@ -134,7 +134,7 @@
                         "resourceType": "microsoft.resourcegraph/resources"
                     },
                     {
-                        "id": "2edb83c2-527f-46fd-9e26-3e72d80da433",
+                        "id": "d3950ba8-36fb-4e6e-9e02-c7c764b655cd",
                         "version": "KqlParameterItem/1.0",
                         "name": "HasMonitorHosts",
                         "type": 1,
@@ -207,6 +207,42 @@
                         "name": "text - 1"
                     },
                     {
+                        "type": 9,
+                        "content": {
+                            "version": "KqlParameterItem/1.0",
+                            "crossComponentResources": [
+                                "value::all"
+                            ],
+                            "parameters": [
+                                {
+                                    "id": "47d10c5f-30e7-49ec-a61d-bc98f80e13b8",
+                                    "version": "KqlParameterItem/1.0",
+                                    "name": "poolWorspace",
+                                    "label": "Área de trabajo del grupo",
+                                    "type": 5,
+                                    "isRequired": true,
+                                    "query": "resources\r\n| where type =~ \"Microsoft.OperationalInsights/workspaces\"\r\n| project id, label=name, selected=id=~\"{poolla}\"",
+                                    "crossComponentResources": [
+                                        "value::all"
+                                    ],
+                                    "typeSettings": {
+                                        "additionalResourceOptions": [],
+                                        "showDefault": false
+                                    },
+                                    "timeContext": {
+                                        "durationMs": 86400000
+                                    },
+                                    "queryType": 1,
+                                    "resourceType": "microsoft.resourcegraph/resources"
+                                }
+                            ],
+                            "style": "pills",
+                            "queryType": 1,
+                            "resourceType": "microsoft.resourcegraph/resources"
+                        },
+                        "name": "parameters - 4"
+                    },
+                    {
                         "type": 12,
                         "content": {
                             "version": "NotebookGroup/1.0",
@@ -229,7 +265,7 @@
                                             {
                                                 "type": 1,
                                                 "content": {
-                                                    "json": "Azure Monitor no está configurado para el grupo de hosts de Windows Virtual Desktop seleccionado.  \nEs preciso configurar el diagnóstico para el grupo de hosts.\n\n1. Seleccione **Configure host pool** (Configurar grupo de hosts).\n2. Seleccione **Deploy** (Implementar). Cuando finalice la implementación, haga clic en el botón de actualización de la parte superior para actualizar el cuaderno.\n\n[Más información sobre Azure Monitor para Windows Virtual Desktop](https://docs.microsoft.com/en-us/azure/virtual-desktop/diagnostics-log-analytics)"
+                                                    "json": "Azure Monitor no está configurado para el grupo de hosts de Windows Virtual Desktop seleccionado.  \nEs preciso configurar el diagnóstico para el grupo de hosts.\n\n1. Seleccione el área de trabajo de Log Analytics en el parámetro **Pool workspace** (Área de trabajo del grupo).\n2. Seleccione **Configure host pool** (Configurar grupo de hosts).\n3. Seleccione **Deploy** (Implementar). Cuando finalice la implementación, haga clic en el botón de actualización de la parte superior para actualizar el cuaderno.\n\n[Más información sobre Azure Monitor para Windows Virtual Desktop](https://docs.microsoft.com/en-us/azure/virtual-desktop/diagnostics-log-analytics)"
                                                 },
                                                 "name": "text - 0"
                                             },
@@ -265,7 +301,7 @@
                                                                     {
                                                                         "name": "workspaceId",
                                                                         "source": "parameter",
-                                                                        "value": "Workspace",
+                                                                        "value": "poolWorspace",
                                                                         "kind": "stringValue"
                                                                     }
                                                                 ],
@@ -277,7 +313,11 @@
                                                         }
                                                     ]
                                                 },
-                                                "name": "links - 1"
+                                                "conditionalVisibility": {
+                                                    "parameterName": "poolWorspace",
+                                                    "comparison": "isNotEqualTo"
+                                                },
+                                                "name": "confighostpool"
                                             }
                                         ]
                                     },
@@ -699,7 +739,7 @@
                                             {
                                                 "type": 1,
                                                 "content": {
-                                                    "json": "Si faltan contadores de rendimiento, haga clic en **Configurar contadores de rendimiento** .  \nCuando termine la implementación, actualice el libro."
+                                                    "json": "Si faltan contadores de rendimiento, haga clic en **Configurar contadores de rendimiento**.  \nCuando termine la implementación, actualice el libro."
                                                 },
                                                 "name": "text - 4"
                                             },
@@ -844,7 +884,7 @@
                                             {
                                                 "type": 1,
                                                 "content": {
-                                                    "json": "Si faltan eventos, haga clic en **Open Workspace Configuration** (Abrir configuración del área de trabajo).  \nHaga clic en **Datos** y, después, en **Registros de eventos de Windows** . Agregue los eventos que falten."
+                                                    "json": "Si faltan eventos, haga clic en **Open Workspace Configuration** (Abrir configuración del área de trabajo).  \nHaga clic en **Datos** y, después, en **Registros de eventos de Windows**. Agregue los eventos que falten."
                                                 },
                                                 "name": "text - 5"
                                             },
@@ -864,7 +904,7 @@
                                                         }
                                                     ]
                                                 },
-                                                "name": "links - 3 - Copy"
+                                                "name": "configEvents"
                                             }
                                         ]
                                     },
