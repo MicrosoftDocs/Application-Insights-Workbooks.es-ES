@@ -1,6 +1,0 @@
-{
-    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Uso de Container Insights",
-    "author": "Microsoft",
-    "galleries": []
-}
