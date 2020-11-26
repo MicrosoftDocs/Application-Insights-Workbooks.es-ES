@@ -124,7 +124,6 @@
                         "type": 1,
                         "description": "Filtrar por identificador de clúster",
                         "isRequired": true,
-                        "value": "| where \"a\"  == \"a\"",
                         "isHiddenWhenLocked": true,
                         "criteriaData": [
                             {

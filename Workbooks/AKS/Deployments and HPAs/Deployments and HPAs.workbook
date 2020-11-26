@@ -107,7 +107,6 @@
                         "type": 1,
                         "description": "Filtrar consultas por identificador de clúster",
                         "isRequired": true,
-                        "value": "| where \"a\" == \"a\"",
                         "isHiddenWhenLocked": true,
                         "criteriaData": [
                             {
