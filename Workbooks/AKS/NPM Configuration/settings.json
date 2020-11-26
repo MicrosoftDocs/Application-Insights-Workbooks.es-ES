@@ -2,7 +2,6 @@
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
     "name": "Configuración del administrador de directivas de red",
     "author": "Microsoft",
-    "isPreview": true,
     "galleries": [
         {
             "type": "container-insights",
@@ -11,12 +10,12 @@
         },
         {
             "type": "container-insights",
-            "resourceType": "Microsoft.operationalinsights/workspaces",
+            "resourceType": "Microsoft.RedHatOpenShift/OpenShiftClusters",
             "order": 900
         },
         {
             "type": "container-insights",
-            "resourceType": "Microsoft.RedHatOpenShift/OpenShiftClusters",
+            "resourceType": "Microsoft.Kubernetes/connectedClusters",
             "order": 900
         }
     ]
