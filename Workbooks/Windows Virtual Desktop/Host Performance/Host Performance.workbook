@@ -225,6 +225,7 @@
                                         "exportFieldName": "Host",
                                         "exportParameterName": "InputDelayHost",
                                         "exportDefaultValue": "*",
+                                        "showExportToExcel": true,
                                         "queryType": 0,
                                         "resourceType": "microsoft.operationalinsights/workspaces",
                                         "crossComponentResources": [
@@ -398,6 +399,7 @@
                                         "exportFieldName": "ProcessName",
                                         "exportParameterName": "InputDelayProcess",
                                         "exportDefaultValue": "*",
+                                        "showExportToExcel": true,
                                         "queryType": 0,
                                         "resourceType": "microsoft.operationalinsights/workspaces",
                                         "crossComponentResources": [
@@ -586,6 +588,7 @@
                                             "durationMs": 0
                                         },
                                         "timeContextFromParameter": "TimeRange",
+                                        "showExportToExcel": true,
                                         "queryType": 0,
                                         "resourceType": "microsoft.operationalinsights/workspaces",
                                         "crossComponentResources": [
@@ -661,6 +664,7 @@
                                             "durationMs": 0
                                         },
                                         "timeContextFromParameter": "TimeRange",
+                                        "showExportToExcel": true,
                                         "queryType": 0,
                                         "resourceType": "microsoft.operationalinsights/workspaces",
                                         "crossComponentResources": [
@@ -739,6 +743,7 @@
                                             "durationMs": 86400000
                                         },
                                         "timeContextFromParameter": "TimeRange",
+                                        "showExportToExcel": true,
                                         "queryType": 0,
                                         "resourceType": "microsoft.operationalinsights/workspaces",
                                         "crossComponentResources": [
@@ -817,6 +822,7 @@
                                             "durationMs": 0
                                         },
                                         "timeContextFromParameter": "TimeRange",
+                                        "showExportToExcel": true,
                                         "queryType": 0,
                                         "resourceType": "microsoft.operationalinsights/workspaces",
                                         "crossComponentResources": [

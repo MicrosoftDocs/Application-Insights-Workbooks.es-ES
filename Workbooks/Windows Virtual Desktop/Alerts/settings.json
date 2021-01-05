@@ -1,18 +1,12 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name": "Comprobación de configuración",
+    "name": "Informes de alertas",
     "author": "Microsoft",
     "galleries": [
         {
             "type": "workbook",
             "resourceType": "Microsoft.DesktopVirtualization/hostpools",
-            "order": 300
-        },
-        {
-            "type": "workbook",
-            "resourceType": "Azure Monitor",
-            "categoryKey": "azureWVDMonitoring",
-            "order": 200
+            "order": 500
         }
     ]
 }

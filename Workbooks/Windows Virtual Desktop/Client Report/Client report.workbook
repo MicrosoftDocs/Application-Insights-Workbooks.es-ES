@@ -270,6 +270,7 @@
                                     "defaultValue": "all clients"
                                 }
                             ],
+                            "showExportToExcel": true,
                             "queryType": 0,
                             "resourceType": "microsoft.operationalinsights/workspaces",
                             "crossComponentResources": [
@@ -398,6 +399,7 @@
                                 "durationMs": 0
                             },
                             "timeContextFromParameter": "TimeRange",
+                            "showExportToExcel": true,
                             "queryType": 0,
                             "resourceType": "microsoft.operationalinsights/workspaces",
                             "crossComponentResources": [
