@@ -1,0 +1,12 @@
+{
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name": "Información de HDInsight Kafka",
+    "author": "Microsoft",
+    "isPreview": true,
+    "galleries": [
+        {
+            "type": "workbook",
+            "resourceType": "Microsoft.HDInsight/Clusters"
+        }
+    ]
+}
