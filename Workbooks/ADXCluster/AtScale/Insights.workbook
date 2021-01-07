@@ -35,7 +35,7 @@
                         "id": "f60ea0a0-3703-44ca-a59b-df0246423f41",
                         "version": "KqlParameterItem/1.0",
                         "name": "Resources",
-                        "label": "Clúster de Azure Data Explorer",
+                        "label": "Clúster",
                         "type": 5,
                         "isRequired": true,
                         "multiSelect": true,
